@@ -1,8 +1,8 @@
-<scheme name="Dracula-Nineties (muted) Light" version="142" parent_scheme="Default">
+<scheme name="Dracula-Nineties Light" version="142" parent_scheme="Default">
   <metaInfo>
     <property name="created">2026-08-07</property>
     <property name="ide">Rider</property>
-    <property name="originalScheme">Dracula-Nineties (muted) Light</property>
+    <property name="originalScheme">Dracula-Nineties Light</property>
   </metaInfo>
   <option name="LINE_SPACING" value="1.2" />
   <option name="EDITOR_FONT_SIZE" value="14" />

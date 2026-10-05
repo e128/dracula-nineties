@@ -1,4 +1,4 @@
-# Dracula-Nineties (muted): JetBrains Rider theme
+# Dracula-Nineties: JetBrains Rider theme
 
 Four artefacts, one palette, two appearances:
 
@@ -60,7 +60,7 @@ dracula-nineties-rider-<version>.zip
 
 Through v1.18.0 it was a bare jar, and that shape has a trap in it. A bare jar
 copied by hand into `<config>/plugins/` loads perfectly, and Rider 2026.2 reports
-`Loaded custom plugins: … Dracula-Nineties (muted) …` and the theme appears. But
+`Loaded custom plugins: … Dracula-Nineties …` and the theme appears. But
 **Install Plugin from Disk… refuses it**, which is how everyone actually
 installs. Bare-jar plugins are the legacy form; `Name/lib/*.jar` is what every
 other plugin in that directory is, and what every marketplace theme ships.

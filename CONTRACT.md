@@ -315,7 +315,7 @@ metadata beyond what the artifact already carries.
 stamps its own `<meta name="template-version">` or similar, separate from the CSS it actually
 shipped, can drift the same way a version-string staleness check can: the stamp is written once
 and the payload moves on without it. Line 2 of `dracula-nineties.css` is
-`/* Dracula-Nineties (muted) vMAJOR.MINOR.PATCH */`, the version of the bytes you are inlining right
+`/* Dracula-Nineties vMAJOR.MINOR.PATCH */`, the version of the bytes you are inlining right
 now. Read it from there at generation time if you need to display or log a version, so the number
 you show a reader can never disagree with the stylesheet you gave them.
 

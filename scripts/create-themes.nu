@@ -355,7 +355,7 @@ def render-itermcolors [palette: record, version: string, scheme: string = "dark
 # whole reason this function is shaped the way it is.
 #
 # A bare jar dropped straight into `<config>/plugins/` loads fine. Verified: Rider
-# 2026.2 logs `Loaded custom plugins: … Dracula-Nineties (muted) …` and the theme
+# 2026.2 logs `Loaded custom plugins: … Dracula-Nineties …` and the theme
 # appears. What a bare jar does NOT survive is Settings → Plugins → gear → Install
 # Plugin from Disk…, which refused it on a second machine while the same file
 # copied by hand into the same plugins directory worked. Bare-jar plugins are the
@@ -420,7 +420,7 @@ def package [out: path, version: string] {
   cp ($dir | path join "dracula-nineties-light.theme.json") ($jstage | path join "dracula-nineties-light.theme.json")
   cp ($dir | path join "dracula-nineties-light.icls") ($jstage | path join "dracula-nineties-light.xml")
   [ "Manifest-Version: 1.0"
-    "Implementation-Title: Dracula-Nineties (muted)"
+    "Implementation-Title: Dracula-Nineties"
     $"Implementation-Version: ($version)"
     ""
   ] | str join "\n" | save --force --raw ($jstage | path join "META-INF" "MANIFEST.MF")

@@ -1,12 +1,12 @@
 <idea-plugin>
   <id>com.e128.dracula-nineties</id>
-  <name>Dracula-Nineties (muted)</name>
-  <version>2.1.0</version>
+  <name>Dracula-Nineties</name>
+  <version>2.1.1</version>
   <vendor>e128</vendor>
 
   <description><![CDATA[
     Dark and light UI themes and editor colour schemes derived from the Dracula-Nineties
-    (muted) HTML template. Every colour is the sRGB rendering of a
+    HTML template. Every colour is the sRGB rendering of a
     <code>dracula-nineties.css</code> <code>:root</code> <code>oklch()</code> token, dark
     from the base palette and light from its <code>prefers-color-scheme: light</code>
     override.

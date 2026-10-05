@@ -1,4 +1,4 @@
-# Dracula-Nineties (muted): Zed theme
+# Dracula-Nineties: Zed theme
 
 One file, schema `v0.2.0`: 148 style keys, 43 syntax slots, 7 player colours, two
 appearances. Zed's `themes` array already holds more than one theme per file, so dark
@@ -21,8 +21,8 @@ nu scripts/create-themes.nu --check
 cp themes/zed/dracula-nineties.json ~/.config/zed/themes/
 ```
 
-Zed picks it up without a restart. `cmd-k cmd-t`, then **Dracula-Nineties (muted)** or
-**Dracula-Nineties (muted) Light**; **Theme: Auto** follows the system appearance and
+Zed picks it up without a restart. `cmd-k cmd-t`, then **Dracula-Nineties** or
+**Dracula-Nineties Light**; **Theme: Auto** follows the system appearance and
 picks between them on its own, since both live in the one installed file.
 
 ## Role mapping

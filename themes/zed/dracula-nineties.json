@@ -4,7 +4,7 @@
   "author": "the maintainer",
   "themes": [
     {
-      "name": "Dracula-Nineties (muted)",
+      "name": "Dracula-Nineties",
       "appearance": "dark",
       "style": {
         "accents": [
@@ -222,7 +222,7 @@
       }
     },
     {
-      "name": "Dracula-Nineties (muted) Light",
+      "name": "Dracula-Nineties Light",
       "appearance": "light",
       "style": {
         "accents": [

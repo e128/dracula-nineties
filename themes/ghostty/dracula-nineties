@@ -1,4 +1,4 @@
-# Dracula-Nineties (muted): Ghostty theme
+# Dracula-Nineties: Ghostty theme
 #
 # Every value is the sRGB rendering of a dracula-nineties.css :root oklch() token,
 # computed with .github/palette-check.py's oklch_to_hex. Bright ANSI slots that

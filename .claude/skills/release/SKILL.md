@@ -16,7 +16,7 @@ deviating. Everything below is that section made runnable.
 Read the current one, then decide the next:
 
 ```
-sed -n '2p' dracula-nineties.css          # /* Dracula-Nineties (muted) vX.Y.Z */
+sed -n '2p' dracula-nineties.css          # /* Dracula-Nineties vX.Y.Z */
 git log --oneline v<X.Y.Z>..HEAD       # what has landed untagged
 ```
 

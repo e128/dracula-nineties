@@ -1,4 +1,4 @@
-# Dracula-Nineties (muted): VS Code theme
+# Dracula-Nineties: VS Code theme
 
 Four files: `package.json` (the extension manifest), `extension.vsixmanifest`
 (the VSIX container manifest), `themes/dracula-nineties-color-theme.json` (dark,
@@ -32,7 +32,7 @@ code --install-extension themes/vscode/dist/dracula-nineties-vscode-<version>.vs
 
 Or, from the Extensions view: `...` menu -> **Install from VSIX...** -> pick
 the file. Either way, reload when prompted, then `Ctrl/Cmd+K Ctrl/Cmd+T` and
-pick **Dracula-Nineties (muted)** or **Dracula-Nineties (muted) Light**.
+pick **Dracula-Nineties** or **Dracula-Nineties Light**.
 
 There is still no marketplace listing, so this is the only install path aside
 from the unpacked folder below.

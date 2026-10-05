@@ -77,7 +77,7 @@ comment here is not written once. Every page a consumer renders carries a copy o
 - `mermaid-palette.json` already has `_comment` keys. Do not add more.
 - **Two exceptions exist. A machine reads both. Do not remove them:**
   - **Line 2 of `dracula-nineties.css`** must be a comment that holds the template version, in the
-    form `/* Dracula-Nineties (muted) vMAJOR.MINOR.PATCH */`. `scripts/build-sample.nu` parses it out of
+    form `/* Dracula-Nineties vMAJOR.MINOR.PATCH */`. `scripts/build-sample.nu` parses it out of
     `lines | get 1` to stamp `tokens.css`, and `scripts/maintain.nu bump` rewrites it. If you remove it,
     regeneration dies with `index too large (empty content)`. That failure is *silent* when you
     pipe the output, and it leaves stale fixtures that look correct.

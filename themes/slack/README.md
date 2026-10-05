@@ -1,4 +1,4 @@
-# Dracula-Nineties (muted): Slack sidebar theme
+# Dracula-Nineties: Slack sidebar theme
 
 Slack has no theme file. Custom Colors takes one string: eight `#rrggbb` values,
 comma-separated, no spaces, in a fixed order. This file exists because that string

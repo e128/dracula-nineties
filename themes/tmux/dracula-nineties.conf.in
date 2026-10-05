@@ -1,4 +1,4 @@
-# Dracula-Nineties (muted): tmux theme
+# Dracula-Nineties: tmux theme
 #
 # Every value is the sRGB rendering of a dracula-nineties.css :root oklch() token.
 # Style only, no content: status-bar text, window-list format and key bindings

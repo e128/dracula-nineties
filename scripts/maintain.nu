@@ -314,7 +314,7 @@ def "main check" [] {
 # version while the release process believes it was stamped.
 const STAMPS = [
   [file pattern template]; # pattern is a regex; template takes {v}
-  [dracula-nineties.css '/\* Dracula-Nineties \(muted\) v[\d.]+ \*/' '/* Dracula-Nineties (muted) v{v} */']
+  [dracula-nineties.css '/\* Dracula-Nineties v[\d.]+ \*/' '/* Dracula-Nineties v{v} */']
   [README.md '\(template v[\d.]+, oklch palette\)' '(template v{v}, oklch palette)']
   [README.md 'is \*\*`v[\d.]+`\*\*' 'is **`v{v}`**']
 ]

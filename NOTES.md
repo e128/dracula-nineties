@@ -14,7 +14,7 @@ correct on paper, shipped, and then went back out. Every "do not" below is one o
 
 Two comments remain in the CSS. A machine reads both.
 
-- **Line 2, the version** (`/* Dracula-Nineties (muted) vMAJOR.MINOR.PATCH */`).
+- **Line 2, the version** (`/* Dracula-Nineties vMAJOR.MINOR.PATCH */`).
   `scripts/build-sample.nu` reads it to stamp `tokens.css`. `scripts/maintain.nu bump` rewrites it.
   Strip that line and regeneration dies. The failure is silent through a pipe, and it leaves stale
   fixtures that look correct.
