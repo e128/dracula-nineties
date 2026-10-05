@@ -1,0 +1,21 @@
+geocities-timessquare-neighborhood-1996.png
+site: geocities.com, TimesSquare neighborhood
+period: 1996
+dimensions: 830x810
+sampled: 2026-10-05
+
+[PALETTE]
+ground #FEFFFE  role: page bg  white
+banner #D72EC8  role: art      magenta in the TimesSquare banner
+ink    #200F14  role: art      near-black banner ground
+link   #0710D7  role: link     blue links
+tint   #B5A07E  role: art      warm tan in the banner collage
+
+[LAYOUT]
+A left column holds the GeoCities logo, a sponsor strip and a stack of partner buttons. Above the center sits a modem advertisement. The main area opens with the wide TimesSquare banner and a right stack of five square nav buttons, then four centered nav words, an ad bar, a list of three featured member sites with blurbs, and a bracketed footer.
+
+[META]
+A neighborhood portal page where art and advertising carry the same weight. The banner is a collage, the navigation is literal buttons, and the content is a short list of member sites. It reads as a fairground noticeboard, and every element competes for the same attention.
+
+[RELEVANCE]
+Nothing transferable. The collage banner and the button stack are the texture this template avoids, and there is no type decision here to keep.

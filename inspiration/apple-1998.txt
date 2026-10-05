@@ -1,0 +1,21 @@
+apple-1998.png
+site: apple.com
+period: 1998
+dimensions: 830x800
+sampled: 2026-10-05
+
+[PALETTE]
+ground #FEFEFF  role: page bg  white
+bar    #CCCC99  role: news bar tan olive headline strip
+ink    #0F0F0C  role: nav       near-black tab strip
+link   #0606EF  role: link      bright blue links
+rule   #A6A675  role: rule      olive separators between tiles
+
+[LAYOUT]
+A product photograph with the wordmark and the tagline occupies the top half. A date, a tan headline strip and three bordered tiles follow, each tile a photo over a one word caption and a line of copy. The black tab strip closes the masthead, and a search row, two link clusters and a copyright line fill the lower third.
+
+[META]
+The same poster template as the 1999 page, one year earlier and with a lighter hand. The masthead is image and type only, the tiles are three equal columns, and the tan strip is the sole band of color. It reads as an advertisement that happens to be a home page.
+
+[RELEVANCE]
+Its value is as a pair with the 1999 page: the same structure carried two years running. It confirms the accent-band pattern without adding anything the template does not already do.

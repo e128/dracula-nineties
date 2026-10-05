@@ -1,0 +1,20 @@
+kaliber10000-2003.png
+site: kaliber10000.com
+period: 2003
+dimensions: 1020x860
+sampled: 2026-10-05
+
+[PALETTE]
+ground #F3F3EE  role: page bg  off-white paper field
+tint   #C7C4A3  role: panel    khaki panel fills
+accent #B55623  role: heading  rust orange headings and rules
+olive  #605F44  role: type     dark olive type and shapes
+
+[LAYOUT]
+A thin toolbar strip with small labeled tabs runs across the top. Below it the page is a three-column magazine grid of bordered panels: an issue panel at the left with a cover image and a description, a middle column of specials, store and backissue panels, and a right column of news and event lists. Each panel has a small labeled header, and a partner logo strip closes the foot.
+
+[META]
+A web magazine laid out as a print grid. Every panel is bordered and labeled, the type is small caps sans, and the palette is paper-like, so the page reads as a design quarterly rather than as a site. The grid is the design, and the content only fills it.
+
+[RELEVANCE]
+The paneled grid is a strong period reference and the paper palette is close in temperature to the template's light mode. Nothing else transfers.

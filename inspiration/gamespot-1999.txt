@@ -1,0 +1,21 @@
+gamespot-1999.png
+site: gamespot.com, ZDNet
+period: 1999
+dimensions: 830x1700
+sampled: 2026-10-05
+
+[PALETTE]
+ground  #000000  role: page bg  black
+header  #330066  role: masthead deep purple bar and left rail
+accent  #16E3C2  role: mark     teal mark inside the logo
+heading #CDB974  role: heading  warm gold headlines
+link    #446E96  role: link     muted blue links in the feed
+
+[LAYOUT]
+A black and purple bar holds the network and site logos over a purple left rail of section links. The center column is a stack of review cards, each a headline, a thumbnail and a blurb with a full story link, and the right rail is a column of widgets: a genre bar chart, a search box, a reader poll and promo tiles. A purple footer bar closes the page.
+
+[META]
+A magazine front page. Every item is a card with a headline, an image and a link, so the page reads as a printed contents page, and the right rail is a stack of instruments rather than of content. Purple and black frame the page while a dozen genre colors decode the right rail.
+
+[RELEVANCE]
+The card feed is a period pattern this template covers. The genre color bars are an interesting index idea, but a single accent color is a stronger choice here.

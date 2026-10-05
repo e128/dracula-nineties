@@ -1,0 +1,22 @@
+age-of-empires-ii-1998.png
+site: microsoft.com, Age of Empires II official
+period: 1998-1999
+dimensions: 830x1185
+sampled: 2026-10-05
+
+[PALETTE]
+ground    #6A7A3A  role: page bg   photographed grass, full bleed
+parchment #FCFDCB  role: panel     cream reading panel
+banner    #670404  role: banner    maroon vertical banner and rules
+gold      #E2AE30  role: heading   gold italic display type
+ink       #242320  role: body      near-black serif copy
+chrome    #FFFFFF  role: nav       white Microsoft tab bar
+
+[LAYOUT]
+Full-bleed photographic grass under a fixed stage, with a white Microsoft tab bar pinned across the top. A maroon vertical banner on the left carries the title and a stacked gold italic nav. The reading column is a narrow cream parchment panel offset right of center, holding script headings over serif paragraphs, a logo box at lower left, and a select plus button at the foot.
+
+[META]
+A period game marketing page built as a themed poster. The ground, the panel and the banner are all topical set dressing, so the page reads as one illustration rather than as a layout. The measure stays deliberately narrow inside a wide stage, which is the one structural decision the decoration does not hide.
+
+[RELEVANCE]
+Nothing transferable. Texture as ground and a topical palette are the opposite of this template's flat surface. The narrow measure is the only idea worth keeping, and it is already here.

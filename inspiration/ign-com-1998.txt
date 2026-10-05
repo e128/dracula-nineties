@@ -1,0 +1,21 @@
+ign-com-1998.png
+site: ign.com
+period: 1998
+dimensions: 830x1930
+sampled: 2026-10-05
+
+[PALETTE]
+ground #000000  role: page bg  black
+gold   #CEA923  role: frame    gold picture frame, headings and bars
+panel  #E6E5E5  role: panel    light grey boxes in the right column
+link   #D9AF2C  role: link     gold links in the feed
+accent #AD411A  role: label    rust on a few small labels
+
+[LAYOUT]
+A heavy gold frame with an arched top holds the logo and a tagline. Inside, a gold-bordered left rail of seven red and white buttons sits beside a wide center column of story items and a right column of boxes. Headings are gold bars with white type, and a gold back to top bar closes the page.
+
+[META]
+A games portal built as a marquee. The gold frame is the identity, and inside it the page is a stack of headlines with dates, each a thumbnail and a blurb. It reads as a fan magazine cover, and the frame is what stops the black field from reading as empty.
+
+[RELEVANCE]
+The gold frame on black is close in spirit to a template ground with one accent, and it is a useful precedent for how far one accent can carry a long page. The layout itself does not transfer.

@@ -152,10 +152,10 @@ wrong by v1.38.1, and every check stayed green. A search string survives regener
 - [ ] `--icon-color` on a `.step-node` set from any accent: a prose accent (`--orange`, `--link`,
       `--purple`, `--green`, `--pink`, `--red`) **or** the `--data-1` through `--data-4` ramp. The
       node fills at full strength and its letter is `--surface` painted on that fill, so the fill is
-      a text ground, and both sets are now legible under it: the Dracula baseline keeps `--surface`
-      on every ramp member above the text floor in every mode, which is what `palette-check.py` check
-      8 measures for the ramp and `.verdict-*`. This used to be a prohibition when the ramp was
-      pale in dark and printed; it is a permitted set now. `.tag-dot` and `.icon-chip` **may** also
+      a text ground, and both registers are legible under it: `--surface` sits on every ramp member
+      above the text floor in every mode, which is what `palette-check.py` check 8 measures for the
+      ramp and `.verdict-*`. This used to be a prohibition when the ramp was pale in dark and
+      printed; it is a permitted set now. `.tag-dot` and `.icon-chip` **may** also
       take a `--data-*` color, because neither puts text on the fill. No CSS rule can enforce the
       choice either way, because the color arrives in an inline `style` attribute (in
       `samples/dark.html`, search `class="step-node" style="--icon-color: var(--orange)"`).
@@ -163,7 +163,7 @@ wrong by v1.38.1, and every check stayed green. A search string survives regener
       reader's appearance.** A fence is diagram source, so it has no CSS to read and no `var()` it
       can resolve: one literal hex cannot serve both palettes, and the set in
       `mermaid-palette.json` under `classdef` is the **dark** projection. Emitted onto a page a
-      reader opens in light mode, those fills land at 1.69 to 2.15:1 against the light card, which
+      reader opens in light mode, those fills land at 1.31 to 1.63:1 against the light card, which
       is the failure the `--data-*` light values exist to prevent everywhere else. Let the nodes
       take the themed default instead, which `mermaid.js` already picks per scheme. Only a page
       **locked** to one palette (the way `samples/light.html` is) may carry the hex, and then it
@@ -261,6 +261,7 @@ regeneration re-inlines fresh CSS around whatever markup you already emitted.
 
 | since | your generator must now |
 | --- | --- |
+| v2.2.0 | nothing to emit, but **every page repaints**: the palette becomes a 1990s register of Dracula, so a pinned consumer that diffs screenshots sees a new ground (`#000000` dark, silver `#c0c0c0` light), a silver structural tier where the blue-grey was, and a web-safe link blue in light. One CSS-provided addition needs no markup: **`a:visited` now takes `--visited`**, a token separate from `--link`. No class, no token a generator writes, no § 2 requirement |
 | v1.50.2 | nothing. **A `nav.toc` that follows a floated `.sidenote` or `.marginnote` stack now drops below it at full width** instead of painting its `color-mix` ground under the note. The index's own `<ol>` already avoided the float; the `nav` box did not. Self-contained over markup you already emit |
 | v1.50.1 | **stop using `<br>` between an `.icon-list` title and its detail**: put the `<strong>` and the `<code>` side by side and `.icon-list strong` breaks the line. Mark a file path with `<code>`, not `<cite>`, which names the title of a standalone work |
 | v1.50.0 | nothing, but three existing renders change. **A `tfoot td` takes weight 600 and a strong rule above it**, so a table that already has a `tfoot` looks different. **A `table.bar-chart` draws faint guides at 25, 50 and 75 percent and a baseline at the zero edge.** **A Mermaid pie gets a smaller title, thinner strokes and labels nearer the slice centre.** Five opt-ins are new: `.stat-strip` (a `dl` of `div` groups), `.label` inside a `figcaption` or `caption`, `.chart-takeaway` with a `.more` second line, `table.evidence-table`, and `td.bar.lead`. No new token, no new § 2 requirement (in `samples/dark-charts.html`, search `class="stat-strip"` and `class="bar lead"`) |

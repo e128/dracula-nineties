@@ -1,0 +1,22 @@
+apple-1996.png
+site: apple.com
+period: 1996
+dimensions: 830x1420
+sampled: 2026-10-05
+
+[PALETTE]
+ground  #FDFDFD  role: page bg  white
+chrome  #E9E9E9  role: nav     light grey beveled header and buttons
+ink     #000000  role: body    black Times copy
+heading #FF0C0C  role: heading vivid red on the welcome line
+link    #4845BE  role: link    royal blue headings and links
+bevel   #A6A6C2  role: control blue-grey button face
+
+[LAYOUT]
+A beveled header box with a rainbow logo holds the page title, then a left stack of six pill buttons runs down beside a promo box. Below the masthead the page is a plain hypertext list: a dated news index with red and blue headings, then a second link list, then footer links and a copyright. A horizontal tab row separates the two halves.
+
+[META]
+The bevel era in one page. Navigation is a vertical stack of 3D pills, content is unadorned Times hypertext, and a single promo box with a starburst is the only place the two languages meet. The masthead is decorated and the document is not, which is the split that later stylesheets exist to remove.
+
+[RELEVANCE]
+The beveled button stack is period texture this template does not want. The useful part is the split itself: a decorated header over a plain document body is close to what the sample pages already do.

@@ -1,0 +1,21 @@
+battle-net-1997.png
+site: battle.net
+period: 1997
+dimensions: 830x600
+sampled: 2026-10-05
+
+[PALETTE]
+ground #140C06  role: page bg  photographed rusty metal, full bleed
+panel  #040502  role: surface  black riveted panels and buttons
+led    #00BB20  role: heading  bright green LED type, battle.net and Announcements
+alert  #B3070C  role: callout  red Download it now line
+badge  #0D374D  role: logo     Blizzard wordmark blue
+
+[LAYOUT]
+A full-bleed metal texture with five black panels placed on it like plates. The battle.net wordmark spans the top, an Announcements button sits upper right, a Diablo panel and a StarCraft panel fill the middle, a red callout button sits lower left, and the Blizzard logo is centered at the foot. Nothing else is on the page and there is no body text.
+
+[META]
+A navigation hub built as a single illustration. The page is a menu of five doors, and every door is a rendered object, so the layout is really a composition. Green LED type against rust is the whole identity, and the absence of a reading column is deliberate.
+
+[RELEVANCE]
+Nothing transferable. This is the opposite of a document page, and its texture-as-ground approach is exactly what this template rejects.

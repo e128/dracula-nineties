@@ -1,0 +1,22 @@
+amazon-1999.png
+site: amazon.com
+period: 1999
+dimensions: 830x1430
+sampled: 2026-10-05
+
+[PALETTE]
+ground  #FEFFFE  role: page bg  white
+navy    #006699  role: nav bar steel blue tab strip
+link    #04339B  role: link    blue links throughout
+accent  #B95307  role: heading rust orange on category headings
+button  #FECB65  role: control amber Go button
+rule    #CBC9C2  role: rule    warm grey table edges
+
+[LAYOUT]
+A top strip for cart and account sits over a navy tab bar of eight store sections. The body is three columns: a narrow search and browse rail at left, a wide editorial column at center, and a recommendation rail at right. The center column repeats one module six times, a category heading, a small product image, a title link, a paragraph and a Go link, while the right rail repeats a numbered best-seller list.
+
+[META]
+A commerce front page where the module, not the page, is the design. One shape repeats six times down the middle, so the eye reads the rhythm before it reads any single item. Everything is small, thumbnails, type and rules, with the amber button as the only control that asks to be pressed.
+
+[RELEVANCE]
+The repeated module and the three-column rail are the period's answer to a home page, and this template deliberately does not have one. Nothing transfers except the restraint of keeping every module the same shape.

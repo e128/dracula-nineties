@@ -1,0 +1,20 @@
+bestbuy-1997.png
+site: bestbuy.com
+period: 1997
+dimensions: 800x850
+sampled: 2026-10-05
+
+[PALETTE]
+ground #350AD5  role: page bg  deep blue gradient, full bleed
+glow   #5E5BFB  role: gradient lighter blue highlight band
+yellow #F0C107  role: heading  yellow headings and links
+ink    #140F1B  role: body     near-black type on the yellow footer
+
+[LAYOUT]
+The whole page is a blue gradient. A yellow link row spans the top, a left column of yellow bullet headings carries white sub-links, and the center and right field holds scattered product graphics, each with a yellow heading over a short white paragraph. A centered link block and contact lines sit above a yellow strip at the foot.
+
+[META]
+An all-blue page, which is the period's most aggressive color move. The gradient carries the entire ground, yellow type floats on top of it, and the product art is scattered rather than gridded. It reads as a flyer printed on blue paper, and the contrast is the only thing keeping it legible.
+
+[RELEVANCE]
+Nothing transferable. A saturated full-page ground is the opposite of what this template's grounds are for, and the yellow on blue here is a contrast risk the palette gate would reject.

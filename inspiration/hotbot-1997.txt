@@ -1,0 +1,21 @@
+hotbot-1997.png
+site: hotbot.com, Wired Digital
+period: 1997
+dimensions: 720x920
+sampled: 2026-10-05
+
+[PALETTE]
+ground #00CC33  role: page bg  saturated green, full bleed
+header #330099  role: masthead deep purple top bar
+panel  #0055F7  role: column   blue merchant column at the right
+alert  #FF0000  role: marker   red on a few links and the badge
+text   #FFFFFF  role: body     white type on the green and purple
+
+[LAYOUT]
+A purple top bar of site links sits over a white search band with a logo and a form of selects and checkboxes. Below that the page is three columns of categorized links on the green field, a directory of reference, technology, business, culture and media headings, with a blue merchant column at the right and a sponsor strip at the foot.
+
+[META]
+The loudest palette in this archive. A saturated green fills the whole ground while the type mixes white, blue, red and purple on top of it, so the page reads as a sticker sheet. The structure underneath is an ordinary three-column directory, which the color completely hides.
+
+[RELEVANCE]
+Nothing transferable. A full-bleed saturated ground with four competing type colors is the clearest example of what this template's contrast rules exist to prevent.

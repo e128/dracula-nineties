@@ -1,0 +1,21 @@
+apple-1999.png
+site: apple.com
+period: 1999
+dimensions: 830x1020
+sampled: 2026-10-05
+
+[PALETTE]
+ground #FEFEFE  role: page bg  white
+bar    #CCCC99  role: news bar tan olive headline strip
+ink    #020202  role: nav       black tab strip with white type
+link   #0504EF  role: link      bright blue links
+rule   #999966  role: rule      darker olive separators
+
+[LAYOUT]
+One product photograph takes the top half of the page, with a serif wordmark and two lines of display copy at its left. A tan headline strip sits under a timestamp, then three bordered news tiles run across on a single divider. A black tab strip of eleven links closes the masthead, and below it sit a search row, two link clusters and the copyright.
+
+[META]
+The launch page as a poster. One image carries the whole top, the page is otherwise white, and the tan bar is the only band of color. Type does the hierarchy, a serif wordmark against a sans news strip, so the page reads as calm and product-led rather than as a directory.
+
+[RELEVANCE]
+The tan headline strip is a useful precedent for a single accent band on an otherwise white page, and the template already has that move in its own palette. Nothing else transfers.

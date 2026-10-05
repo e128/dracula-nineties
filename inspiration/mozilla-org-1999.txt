@@ -1,0 +1,22 @@
+mozilla-org-1999.png
+site: mozilla.org
+period: 1999
+dimensions: 800x762
+sampled: 2026-10-05
+
+[PALETTE]
+ground #FFFFFF  role: page bg  white content field
+banner #000000  role: art      black banner and content frame
+accent #EFA201  role: graphic  amber star
+alert  #F22A04  role: graphic  red dinosaur mark
+rail   #DDDDDD  role: nav      grey left rail
+link   #0B0DEB  role: link     blue links
+
+[LAYOUT]
+A black banner strip across the top carries the wordmark and abstract art. Below, a grey left rail of bulleted nav groups sits beside a white content box framed in black, holding one large star image and a bordered news list with a header row and two items. A copyright line closes the foot.
+
+[META]
+A project page with one dominant graphic and two news items. The rail holds the whole site map and the content box is nearly empty, so the page reads as a poster with an index, and the black frame provides the only structure.
+
+[RELEVANCE]
+The framed content box on white is close to a document page, and the amber star on black shows how far one graphic can carry a sparse layout. Nothing else transfers.

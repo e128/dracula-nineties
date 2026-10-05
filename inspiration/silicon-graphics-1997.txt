@@ -1,0 +1,21 @@
+silicon-graphics-1997.png
+site: sgi.com
+period: 1997
+dimensions: 830x640
+sampled: 2026-10-05
+
+[PALETTE]
+ground #FFFFFF  role: page bg  white
+mark   #074468  role: logo     deep teal-navy wordmark
+orange #EF5E12  role: image    orange tile art
+blue   #0F289F  role: image    blue tile art
+green  #1E6605  role: image    green tile art
+
+[LAYOUT]
+A wordmark lockup sits at the top left with a five column link block at the right, set right aligned with rules under each line. The body is a two by two grid of large square images, each with a white caption line, plus a Mars Pathfinder tile at the lower right. Four small badges and a copyright line close the foot.
+
+[META]
+A corporate page built from four squares. The images carry all the color and each one gets a single caption line, so the page reads as a contact sheet. The right aligned link block is the only typographic decision, and it is a neat one.
+
+[RELEVANCE]
+The caption-line-under-image grid is a clean pattern, and the sample pages already cover it. The colors here are illustrative rather than structural, so nothing transfers.

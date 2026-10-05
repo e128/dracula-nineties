@@ -1,0 +1,21 @@
+geocities-1996.png
+site: geocities.com
+period: 1996
+dimensions: 830x1100
+sampled: 2026-10-05
+
+[PALETTE]
+ground  #F7F7F7  role: page bg  near-white
+banner  #000200  role: ad       black TechWire banner
+mark    #006300  role: brand    green in the banner art and buttons
+heading #FF0201  role: heading  red news headings
+link    #0E1DCD  role: link     blue links
+
+[LAYOUT]
+A narrow left column holds an ad banner, the GeoCities logo, a sponsor list and a stack of button ads. The main column opens with the red GeoCities banner and a row of inline links, then runs a news feed of bold blue and red headings over paragraphs, broken once by a GeoPlus promo box. A bracketed footer closes the page.
+
+[META]
+A service home page read as a news bulletin. The banner and the button stack are the only graphics, and the body is plain text with blue links, so the page reads as a newsletter. The left column is a permanent advertising rail that never changes down the scroll.
+
+[RELEVANCE]
+The red heading over blue links on white is a two color document, which is close to what this template does. Nothing else transfers.

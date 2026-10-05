@@ -1,0 +1,21 @@
+internet-explorer-5-0.png
+site: msn.com, viewed in Internet Explorer 5
+period: 1999
+dimensions: 800x600
+sampled: 2026-10-05
+
+[PALETTE]
+ground #FEFEFD  role: page bg  white page
+chrome #ADAEAE  role: frame    grey window chrome around the page
+navy   #336699  role: nav      steel blue tab row
+accent #E54C27  role: promo    orange-red on the MSN mark and promo strip
+link   #3C69CD  role: link     blue links
+
+[LAYOUT]
+The screenshot includes the whole application: menu bar, toolbar, address bar and status bar, so the page arrives inside a grey frame. Inside it, the MSN masthead sits under a red promo line, a navy tab row of six sections follows, and the body is a five-column link directory with a message center panel at the right. A strip of three boxes closes the page body.
+
+[META]
+The page is inseparable from its frame, and the chrome is part of what the reader actually saw. The content below is a portal directory with a login panel, so the page reads as a window onto a service rather than as a document.
+
+[RELEVANCE]
+Nothing transferable. The chrome is application furniture, and the login panel is a state this static template does not have.

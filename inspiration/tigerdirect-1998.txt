@@ -1,0 +1,20 @@
+tigerdirect-1998.png
+site: tigerdirect.com
+period: 1998
+dimensions: 830x1060
+sampled: 2026-10-05
+
+[PALETTE]
+ground #FFFFFF  role: page bg  white
+navy   #0B0469  role: nav      deep navy rail and buttons
+brand  #CA1824  role: logo     red in the wordmark
+gold   #D7A832  role: badge    amber on the blowout badge
+
+[LAYOUT]
+A wordmark and a phone number run across the top with a badge at the right, over a navy nav row of seven items. The body is three columns: a navy left rail of category buttons, a wide center column of promo blocks, and a right column of promo blocks. A long footer link row closes the page.
+
+[META]
+A catalog page from the mail-order era. Products are photographs with red or navy captions, and the left rail is a permanent index, so the page reads as a spread from a printed catalog. The navy rail is the only structure on the page.
+
+[RELEVANCE]
+Nothing transferable. The rail and the promo blocks are commerce furniture, and the navy rail is a stronger contrast than this template needs.

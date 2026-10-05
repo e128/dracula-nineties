@@ -1,0 +1,20 @@
+silicon-surf-1996.png
+site: sgi.com, Silicon Surf
+period: 1996
+dimensions: 830x780
+sampled: 2026-10-05
+
+[PALETTE]
+ground #070710  role: page bg  near-black ground with nebula art
+panel  #212950  role: panel    blue panel behind the nav
+accent #4CB4C3  role: accent   teal on the button and the logo
+text   #C4CAD8  role: body     light grey small caps type
+
+[LAYOUT]
+A starfield and nebula ground carries a large rendered wordmark. A left column of nine glowing spheres each pairs with a two line label, a right field holds a rendered VIRTUAL REALITY graphic and a teal button, and a row of three small news tiles sits above the copyright. A text-only link sits at the very top.
+
+[META]
+A corporate site as a 3D poster. The chrome is a rendered illustration, the navigation is a column of spheres, and every label is small caps on black. It reads as a screensaver, and nothing about the page suggests a document.
+
+[RELEVANCE]
+Nothing transferable. The rendered ground and the sphere navigation are the opposite of a readable document, and the text-only link at the top is the page admitting as much.

@@ -293,33 +293,31 @@ for found in sorted(set(re.findall(r"#[0-9a-f]{6}", (ROOT / "mermaid.js").read_t
 #    on --code-bg while a bare SVG lands on --surface. Through v1.24.0 this ramp had
 #    no light or print override and measured 1.69 to 2.15:1 there, which NOTES.md
 #    recorded and accepted. v1.25.0 gave it both, so the floor is now gated.
-TEXT = ["on-surface", "label", "muted", "link", "orange", "red", "purple", "purple-bright", "pink", "green"]
+TEXT = ["on-surface", "label", "muted", "link", "visited", "orange", "red", "purple", "purple-bright", "pink", "green"]
 RULES = ["rule-light"]
 DATA = ["data-1", "data-2", "data-3", "data-4"]
 MODES = {
     # name: (media condition, text floor, non-text boundary floor)
     #
-    # 3.0 for the default: the palette is now the authoritative Dracula baseline,
-    # exact upstream hexes, not the desaturated derivations that let it sit at 4.2.
-    # Dracula keeps Comment (#6272a4) and Red (#ff5555) deliberately dim on the
-    # Current Line fill, and the whole point of this mode is those upstream colors.
-    # The one pair that cannot meet even 3.0 is Comment on Current Line (1.94:1),
-    # recorded as FLOOR_OVERRIDE below rather than hidden by lowering the mode.
-    #
-    # 3.2 for light: the Alucard baseline is the same story, its Red sits at 3.26:1
-    # on the Deeper fill. Print stays 4.5 because paper has no such identity to
-    # preserve and its ground is white. High contrast stays 7.0.
-    "default": (None, 3.0, 3.0),
+    # Default is 4.0. Through v2.1.x it was 3.0, and that number existed only to
+    # carry the dracula baseline's deliberately dim Comment (#6272a4) and Red
+    # (#ff5555) on the Current Line fill. v2.2.0 reset both registers to a 1990s
+    # variant, and its hardest token (--muted) now measures 4.15 on --code-bg, so
+    # the floor is re-priced to the palette that ships rather than to the one that
+    # forced it down. Light stays 3.2 (hardest token --red at 3.39 on
+    # --surface-alt); print stays 4.5 because paper has no identity to preserve;
+    # high contrast stays 7.0.
+    "default": (None, 4.0, 3.0),
     "prefers-contrast: more": ("@media (prefers-contrast: more)", 7.0, 3.0),
     "prefers-color-scheme: light": ("@media (prefers-color-scheme: light)", 3.2, 3.0),
     "print": ("@media print", 4.5, 3.0),
 }
-# The upstream palette forces two pairs under the mode floor, and only these two.
-# Naming them here keeps the relaxation from spreading to a third token unnoticed.
-FLOOR_OVERRIDE = {
-    ("default", "muted"): 1.9,
-    ("default", "red"): 2.85,
-}
+# Empty since v2.2.0. The two entries here existed only because the dracula
+# baseline forced Comment and Red under 3.0 on the Current Line fill; the 1990s
+# reset lifted both, so the default floor carries them and no pair needs naming.
+# Keep the table: a future baseline that forces a pair names it here rather than
+# lowering a whole mode.
+FLOOR_OVERRIDE = {}
 resolved = {}
 for mode, (condition, text_floor, rule_floor) in MODES.items():
     triples_for_mode = dict(triples)

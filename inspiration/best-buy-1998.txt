@@ -1,0 +1,22 @@
+best-buy-1998.png
+site: bestbuy.com
+period: 1998
+dimensions: 830x1390
+sampled: 2026-10-05
+
+[PALETTE]
+ground #0A0611  role: page bg   near-black field
+rail   #2D05D2  role: nav       violet-blue left rail with yellow type
+panel  #040456  role: masthead  deep navy behind the logo lockup
+yellow #E8BF35  role: brand     warm yellow in the logo and rail headings
+link   #010466  role: link      navy links on white
+text   #FEFEFE  role: body      white on the dark rails
+
+[LAYOUT]
+A black page holding a white content column between two dark rails. The masthead is a navy band with a large yellow and blue logo, and a horizontal link row sits above it. The left rail stacks five boxed promo links in yellow on violet. The center column runs six promotional modules down the page, and the right column is a vertical stack of banner ads in blue, green and yellow.
+
+[META]
+A retail home page that is really an ad board. The white column is the only reading surface, and everything around it is promotional, so the eye is pulled left and right at once. Color is used to separate the rails from the content, not to build hierarchy inside it.
+
+[RELEVANCE]
+Nothing transferable. The dark rails around a white column are the one idea here, and the template already has that contrast without the ad noise.

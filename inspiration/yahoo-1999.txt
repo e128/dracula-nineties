@@ -1,0 +1,20 @@
+yahoo-1999.png
+site: yahoo.com
+period: 1999
+dimensions: 830x800
+sampled: 2026-10-05
+
+[PALETTE]
+ground #FFFFFF  role: page bg  white
+brand  #FF0F33  role: logo     red in the wordmark
+link   #0000EF  role: link     saturated blue links
+rule   #0000EF  role: rule     blue rule bars above and below the directory
+
+[LAYOUT]
+A service strip of four small buttons sits over a red wordmark, followed by a mail promo row, a search box and a category directory in two columns with sub-links under each heading. A right column of three boxed news lists sits beside the directory, and a footer of regional and other Yahoo links closes the page.
+
+[META]
+The directory at its most confident. Categories are the page, each a heading with a line of sub-links, and the right column is a stack of small boxes. It reads as a printed index card that happens to be a web page, and the blue rules are the only chrome.
+
+[RELEVANCE]
+A two-column link directory with one accent and a hard rule is the closest thing here to a document index, and it is the same shape this template already uses. Nothing new transfers.

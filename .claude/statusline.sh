@@ -3,18 +3,24 @@ set -euo pipefail
 
 # Truecolor (24-bit) projections of dracula-nineties.css's dark :root tokens, computed the
 # same way mermaid-palette.json documents its own hex projections: oklch() through
-# Oklab -> linear sRGB, gamut-clipped. Recompute with .github/palette-check.py's
-# oklch_to_hex() if dracula-nineties.css's :root values move.
-PURPLE='170;140;219'    # --purple  #aa8cdb
-LINK='143;201;217'      # --link    #8fc9d9
-LABEL='183;191;228'     # --label   #b7bfe4
-MUTED='151;159;196'     # --muted   #979fc4
-RULE='112;115;136'      # --rule-light #707388
-GREEN='109;205;147'     # --green   #6dcd93
-ORANGE='234;164;101'    # --orange  #eaa465
-RED='255;122;123'       # --red     #ff7a7b
-PINK='240;129;186'      # --pink    #f081ba
-DATA1='150;190;240'     # --data-1  #96bef0
+# Oklab -> linear sRGB, gamut-clipped. Recompute with
+# `python3 .github/palette-check.py --dump` if dracula-nineties.css's :root values move.
+#
+# The progress bar's three grades are --data-1, --data-2 and --purple. It read --link for
+# the middle grade until v2.1.0, but --data-1 and --link are now the same upstream cyan
+# (#8be9fd), which collapsed grades one and two into one colour. --data-2 keeps three
+# distinct steps. --link is still the timer's colour.
+PURPLE='189;147;249'    # --purple  #bd93f9
+LINK='139;233;253'      # --link    #8be9fd
+LABEL='192;192;192'     # --label   #c0c0c0
+MUTED='128;128;128'     # --muted   #808080
+RULE='102;102;102'      # --rule-light #666666
+GREEN='80;250;123'      # --green   #50fa7b
+ORANGE='255;184;108'    # --orange  #ffb86c
+RED='255;85;85'         # --red     #ff5555
+PINK='255;121;198'      # --pink    #ff79c6
+DATA1='139;233;253'     # --data-1  #8be9fd
+DATA2='255;121;198'     # --data-2  #ff79c6
 
 DATA=$(cat)
 
@@ -55,7 +61,7 @@ EMPTY=$((10 - FILLED))
 BAR=""
 for ((i=0; i<FILLED; i++)); do
   if [ $i -lt 3 ]; then BAR+="\033[38;2;${DATA1}m█"
-  elif [ $i -lt 6 ]; then BAR+="\033[38;2;${LINK}m█"
+  elif [ $i -lt 6 ]; then BAR+="\033[38;2;${DATA2}m█"
   else BAR+="\033[38;2;${PURPLE}m█"
   fi
 done

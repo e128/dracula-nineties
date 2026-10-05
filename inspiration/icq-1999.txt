@@ -1,0 +1,22 @@
+icq-1999.png
+site: icq.com
+period: 1999
+dimensions: 830x1150
+sampled: 2026-10-05
+
+[PALETTE]
+ground #F6F2DF  role: page bg  cream field
+header #604FDC  role: masthead violet header bar
+column #A1A5CE  role: tint     muted violet column fill
+mark   #2E30B8  role: logo     ICQ mark blue
+accent #E0A604  role: badge    gold on the download badge
+ink    #242425  role: body     near-black link and body text
+
+[LAYOUT]
+A top nav row sits above a violet header bar, and below that the page opens into columns of dense link lists: three narrow ones at the left for network, community and products, a very wide center column of sectioned link groups, and a right column with search forms and a company block. A banner sits top center, and the copyright closes the foot.
+
+[META]
+A link directory for a single product. Everything is a heading over a list, with colored bullets and almost no imagery beyond the logo and one banner, so the page reads as a sitemap rather than as a home page. The density is the point, and it is exhausting.
+
+[RELEVANCE]
+Nothing transferable. This is the density this template exists to oppose, and the muted violet column fill is a texture the palette does not carry.

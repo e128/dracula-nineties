@@ -313,6 +313,30 @@ Evaluate mobile-first authoring as current practice, not as a requirement to rev
 decisions. Record Baseline tier, Newly available date, current use, fallback behavior, and reason
 not to adopt each feature.
 
+## Inspiration analysis
+
+`inspiration/` holds reference screenshots of period pages, and each image gets a sibling `.txt`
+beside it with the same stem. Every file carries a header block and four marked sections in a
+fixed order: `[PALETTE]`, `[LAYOUT]`, `[META]`, `[RELEVANCE]`. The point of the fixed order is
+that 42 files stay comparable, so do not reorder, rename or drop a section.
+
+The header block carries `site`, `period`, `dimensions` and `sampled` (the date the analysis was
+written, `YYYY-MM-DD`). `[PALETTE]` lists role colors as `name  #rrggbb  role: <role>  <short hue
+description>`, sampled from the pixels rather than guessed. `[LAYOUT]` and `[META]` run two to
+four full sentences each, and `[META]` is the holistic read of the design rather than a summary
+of the other two. `[RELEVANCE]` is one line on what the page contributes to this template, or
+that it contributes nothing.
+
+Per image, the flow is shell plus model work:
+
+    magick identify -format "%f %wx%h\n" inspiration/<name>.png            # dimensions
+    magick inspiration/<name>.png -colors 12 -format %c histogram:info:-   # role colors
+    # then read the image and write the four sections
+
+**These files are tracked, so the no-dash rule and every other prose rule apply to them.** A
+re-run skips an image that already has a `.txt`; `--force` overwrites it, because a silent skip
+leaves a stale file that still looks current. Say which images were skipped.
+
 ## Harness entry points
 
 **Every rule in this file reaches every harness through this one file, and nothing in this section
@@ -322,17 +346,18 @@ orientation only. Delete `.claude/` and this repo still works exactly as written
 
 ### Claude Code
 
-Claude Code reads `AGENTS.md` directly from v2.1.277 on, with no `CLAUDE.md` beside it. Two skills
-live in `.claude/skills/`, and they are available to Claude Code only. Each one packages a flow that
-this file states in full as plain shell, so a harness without skills loses an entry point and no
-capability.
+Claude Code reads `AGENTS.md` directly from v2.1.277 on, with no `CLAUDE.md` beside it. Three
+skills live in `.claude/skills/`, and they are available to Claude Code only. Each one packages a
+flow that this file states in full as plain shell, so a harness without skills loses an entry
+point and no capability.
 
 | Skill | Wraps | Invoked by |
 | --- | --- | --- |
 | [`release`](.claude/skills/release/SKILL.md) | Release flow and three published assets | "release", "cut", "tag", or version |
 | [`design-audit`](.claude/skills/design-audit/SKILL.md) | Audits payload changes against NOTES.md and current practice. Checks current standards, Core Web Vitals, responsive usability, WCAG, manual accessibility, and prose rules. Renders changed components and writes a dated report with unapplied patch to `review/`. Never edits the payload | "design audit", "check WCAG compliance", `/design-audit` |
+| [`inspiration-analyze`](.claude/skills/inspiration-analyze/SKILL.md) | Writes the per-image `.txt` analysis beside each `inspiration/` screenshot, in the fixed four-section template above | "analyze inspiration", "analyze the reference pages", `/inspiration-analyze` |
 
-**Neither skill is required to do the work.** `release` is the order in which to call
+**None of these skills is required to do the work.** `release` is the order in which to call
 `scripts/maintain.nu`, and every one of those commands appears above. `design-audit` produces a
 report a person reads, and `review/` holds the prior ones as precedent whatever wrote them.
 

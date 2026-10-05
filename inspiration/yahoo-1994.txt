@@ -1,0 +1,29 @@
+yahoo-1994.png
+site: yahoo.com (akebono.stanford.edu)
+period: 1994
+dimensions: 830x660
+sampled: 2026-10-05
+
+[PALETTE]
+ground    #C0C0C0  role: page bg   default Netscape grey, never chosen by the page
+text      #000000  role: body     black Times for headings and copy
+link      #0000EE  role: link     classic unvisited blue, the only saturated color
+badge     #FFFF00  role: marker   full-strength yellow behind black NEW text
+bevel     #A9A8AA  role: chrome   grey gradient on the button-bar edges
+
+[LAYOUT]
+Single left-aligned column roughly 800 pixels wide, with no centering, no max-width and no
+margins. A serif wordmark heads the page, followed by a bracketed row of inline text links and
+a row of beveled 3D buttons carrying small icons. The body is a two-level bulleted directory:
+category name, entry count in parentheses, then a yellow NEW marker. The footer repeats the
+button row and closes with the total entry count and a copyright line.
+
+[META]
+The page is a plain hypertext document and nothing else. One type family, one link color, one
+marker color, structure carried entirely by bold weight and bullet indentation. There is no
+background, no image and no stylesheet, so every visual property is a browser default, not a
+decision. The result reads as an index card: dense, fast, and legible at 640 by 480.
+
+[RELEVANCE]
+Nothing transferable beyond the discipline of a single link color and default type. The grey
+ground is the browser's, not the designer's, so there is no palette precedent here.

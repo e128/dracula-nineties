@@ -1,0 +1,20 @@
+netscape-1999.png
+site: netscape.com
+period: 1999
+dimensions: 800x940
+sampled: 2026-10-05
+
+[PALETTE]
+ground #FFFFFF  role: page bg  white
+band   #D1E6EB  role: search   pale blue search band and rules
+link   #05049E  role: link     deep blue links
+accent #66CC33  role: promo    green promo box beside the search
+
+[LAYOUT]
+A link row of downloads sits above the logo, then a blue search band with a select and a green promo box beside it. The main area is a five-column directory of categories with sub-links, a weather and stock box at the left, and a right column with a world news list over a highlights list. Footer rows and a site list close the page.
+
+[META]
+The portal at its most complete. Categories run five across, each a heading over a row of links, so the page reads as a newspaper index and the eye has nowhere to rest. Color appears only in rules and in one promo box.
+
+[RELEVANCE]
+Nothing transferable. Five equal columns of links is the density this template's document pages deliberately avoid.

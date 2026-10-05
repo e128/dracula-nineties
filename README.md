@@ -5,11 +5,11 @@ stylesheet, the palette, the Mermaid init script, and the sample fixtures. Consu
 through a pinned git submodule at `external/dracula-nineties/`. One repo holds the payload, so no
 copy can drift from it.
 
-The palette comes from [Dracula](https://draculatheme.com/). The objective is 1990s web design: the
-dense single-page document, the small type, the hairline rules, and the boxy, table-heavy layouts
-that period used, restated as one inline stylesheet with no build step. This repo is not a fork of
-Dracula. The visual work toward the 1990s objective is still in progress; the current payload is the
-starting point.
+The palette is a 1990s register of [Dracula](https://draculatheme.com/): a black ground, a silver
+structural tier, and Dracula's own accents kept as the accent colors. The objective is 1990s web
+design: the dense single-page document, the small type, the hairline rules, and the boxy,
+table-heavy layouts that period used, restated as one inline stylesheet with no build step. This repo
+is not a fork of Dracula. Light mode is the silver register of the same idea.
 
 **Three files answer three different questions:**
 
@@ -46,7 +46,7 @@ contrast has no preview page. CI renders it and attaches the image to each pull 
 
 | File | What it is |
 | --- | --- |
-| `dracula-nineties.css` | The stylesheet payload (template v2.1.1, oklch palette). The complete `<style>…</style>` block, with its wrapper tags and its leading indent. Consumers inline it verbatim into every generated file. |
+| `dracula-nineties.css` | The stylesheet payload (template v2.2.0, oklch palette). The complete `<style>…</style>` block, with its wrapper tags and its leading indent. Consumers inline it verbatim into every generated file. |
 | `mermaid.js` | The Mermaid init script, with its `<script type="module">` wrapper. It holds the pinned CDN import, the init call, and the zoom overlay. Inline it only when the page has a mermaid fence. Bump the CDN pin here. |
 | `filter.js` | The filter-box script, with its wrapper. It wires each `input.filter-box` to the siblings that follow it. Inline it only when the page has a filter box. [CONTRACT.md § 6](CONTRACT.md#6-scope-of-filterjs) states the scope. |
 | `mermaid-palette.json` | Mermaid's hex palette for each `themeVariables` key, in dark and light, plus the `classDef` node roles. Mermaid cannot read `oklch()` or `var()`. Each entry names its `:root` source, and CI recomputes every hex. |
@@ -64,7 +64,7 @@ Both kinds resolve every path from the repo root. See [Repo layout](NOTES.md#rep
 
 ## Consumers
 
-The current release is **`v2.1.1`**. Consumers reach it through a git submodule. To refresh it,
+The current release is **`v2.2.0`**. Consumers reach it through a git submodule. To refresh it,
 run `git submodule update --remote external/dracula-nineties` and then commit the pointer.
 
 **Read [CONTRACT.md](CONTRACT.md) before you wire a generator.** It states five things:
@@ -198,9 +198,8 @@ its correctness is not a color.
 2. The `classdef` fills, dark and light, and the letter each set paints on its own fill.
 3. The `/* was */` provenance comments.
 4. Stray hex in `mermaid.js`.
-5. Contrast floors in all four modes. The floors follow the palette: 3.0 in dark, 3.2 in light,
-   7.0 in `prefers-contrast: more`, 4.5 in print, with two named exceptions where the exact
-   Dracula hexes cannot clear even 3.0.
+5. Contrast floors in all four modes. The floors follow the palette: 4.0 in dark, 3.2 in light,
+   7.0 in `prefers-contrast: more`, 4.5 in print.
 6. `--mermaid-scheme` in both directions, and the scroll breakpoint pinned across two files.
 7. The sRGB gamut ceiling.
 8. The inverted pairs, where an accent is the ground and `--surface` is the text.

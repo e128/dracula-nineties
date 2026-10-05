@@ -74,15 +74,16 @@ CONTRAST = "@media (prefers-contrast: more)"
 LIGHT = "@media (prefers-color-scheme: light)"
 CONDITIONS = [CONTRAST, LIGHT]
 MODES = {
-    "dark": (None, "#2a2b3c"),
-    "light": (LIGHT, "#fffbeb"),
-    "contrast": (CONTRAST, "#2a2b3c"),
+    "dark": (None, "#000000"),
+    "light": (LIGHT, "#c0c0c0"),
+    "contrast": (CONTRAST, "#000000"),
 }
 
 # Chrome renders the oklch() surface through its own conversion, which lands a
 # unit or two off the one in palette-check.py. 6 per channel is wide enough for
-# that and far too narrow to accept a different palette: the closest pair of
-# surfaces across the three modes differs by more than 190.
+# that and far too narrow to accept a different palette: the two distinct
+# surfaces (dark #000000, light #c0c0c0) differ by 192 per channel, and contrast
+# mode shares dark's surface on purpose (see the paragraph above).
 TOLERANCE = 6
 
 

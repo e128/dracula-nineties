@@ -1,0 +1,21 @@
+intel-1999.png
+site: intel.com
+period: 1999
+dimensions: 830x910
+sampled: 2026-10-05
+
+[PALETTE]
+ground #FFFFFF  role: page bg  white
+band   #0031F4  role: nav      saturated blue nav bar and buttons
+accent #42B841  role: marker   green bullet dots on list items
+panel  #E2ECDD  role: tint     pale green panel fill
+ink    #000000  role: body     black body copy
+
+[LAYOUT]
+A top row of small blue tabs sits over a full-width blue nav bar with three sections and the logo at the right. The body is a single wide column divided by thin green rules into blocks: a product feature with a photo, a technology note, a product list in two columns, and a headlines block. A back to top link and a legal line close the page.
+
+[META]
+A corporate page reduced to one reading column. The blue bar is the only saturated element and everything under it is black type on white with green rule marks. It reads as a product bulletin, and the column is wide enough that the text runs long.
+
+[RELEVANCE]
+The single reading column under a thin rule system is close to what this template does. Nothing else transfers, and the saturated blue bar is a step the palette does not take.

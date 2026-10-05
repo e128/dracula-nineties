@@ -1,0 +1,32 @@
+2advanced-2000.png
+site: 2advanced.com
+period: 2000-2001
+dimensions: 830x600
+sampled: 2026-10-05
+
+[PALETTE]
+matte     #999999  role: backdrop   grey page field around the fixed movie stage
+ground    #040F2D  role: stage bg   near-black navy behind everything
+panel     #152C59  role: surface    mid-navy blocks and gradient bands
+edge      #2B5597  role: edge       blue rim on panels and dividers
+accent    #549AD5  role: glow       cyan-blue interface light, scanlines and micro-type
+chrome    #B2B2B3  role: chrome     silver on the menu bar and the logo block
+frame     #31353B  role: bar        charcoal on the ticker and status bars
+
+[LAYOUT]
+A full-bleed Flash stage fixed at roughly 760 by 550, centered on a grey field. An eleven-item
+uppercase menu bar runs edge to edge across the top. The hero carries a cut-out photographic
+figure at left, a grid of thin cyan scanlines, decorative CJK glyphs used as texture, and a
+stacked logo block at right. A horizontal ticker band closes the hero, with two status bars
+below it, one for section links and one for copyright and an audio toggle.
+
+[META]
+Maximalist Flash-era showcase. Chrome and navy, with information density built from layered
+translucency, one-pixel rules and very small uppercase type instead of whitespace. Interface
+chrome is the ornament, so the menu bar and status bars carry as much visual weight as the
+hero. Everything is absolutely positioned inside a stage that assumes a desktop canvas.
+
+[RELEVANCE]
+The two-tier bar structure, a nav row plus a separate status row, is the one transferable idea.
+The saturated navy palette and the fixed pixel stage are both things this template avoids on
+purpose.

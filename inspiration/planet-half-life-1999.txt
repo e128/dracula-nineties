@@ -1,0 +1,21 @@
+planet-half-life-1999.png
+site: planethalflife.com
+period: 1999
+dimensions: 830x3155
+sampled: 2026-10-05
+
+[PALETTE]
+ground #000000  role: page bg  black
+frame  #DE7700  role: frame    amber banner, frame and rules
+gold   #E6B417  role: heading  gold headings
+text   #DFB97E  role: body     warm light body type
+grey   #404040  role: panel    grey panels in the right rail
+
+[LAYOUT]
+An amber banner spans the top over a left rail of section links, a wide center column of dated news posts, and a right rail with a feature image, a news archive list and a poll. Posts are amber headings over a source label and a paragraph. A footer link row closes the page.
+
+[META]
+The same engine as Planet Unreal, with an amber frame on black instead of navy. The center is a dated log, the rails are instruments, and the frame is the identity. It reads as a game HUD with a news feed inside it.
+
+[RELEVANCE]
+The amber on black with a narrow dated log is a direct precedent for a dark ground with one warm accent, which is close to what this template's dark mode does. The HUD frame does not transfer.

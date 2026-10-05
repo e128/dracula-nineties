@@ -1,0 +1,21 @@
+apple-1997.png
+site: apple.com
+period: 1997
+dimensions: 800x2650
+sampled: 2026-10-05
+
+[PALETTE]
+rail    #990101  role: nav      dark red left rail and section rules
+ground  #FDFDFD  role: page bg  white
+link    #0834D7  role: link     bright blue links
+heading #990101  role: heading  dark red section titles
+tab     #C9D3D2  role: tab      pale green-grey on the section tabs
+
+[LAYOUT]
+A dark red rail runs the full height at the left, about 130 pixels wide, holding an index of product sections, a region select and a search box. The remaining width is a two-column news feed, each item a bordered box with a red heading, a short paragraph and blue links. Tabs sit at intervals over the feed, and the footer repeats the index as a link row.
+
+[META]
+A news-driven corporate home page with a long scroll and a permanent rail. The rail is the strong element, a solid block of dark red that never moves, while the feed to its right is dense text in boxes. The page reads as a newspaper front page with a fixed left index.
+
+[RELEVANCE]
+The fixed index rail is a layout this template does not use, and the long two-column feed is a useful reminder of how tiring border-per-item can get. Nothing transfers directly.

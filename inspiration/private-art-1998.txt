@@ -1,0 +1,20 @@
+private-art-1998.png
+site: private-art.com, 86th Chemical Mortar Battalion tribute
+period: 1998
+dimensions: 830x710
+sampled: 2026-10-05
+
+[PALETTE]
+ground #1E2712  role: page bg  dark green textured field
+paper  #F1EFC4  role: panel    khaki paper sheet
+ink    #181C1A  role: body     near-black type on the sheet
+accent #9F8251  role: rule     brown-gold on rules and ribbon art
+
+[LAYOUT]
+A khaki paper sheet sits centered over a dark green textured field, with a torn calendar page at its left. The sheet carries a top bar of two tabs, a title, a What's New heading over four paragraphs, and a row of torn paper nav tabs along the foot. A signature block closes the copy.
+
+[META]
+A memorial page built as an artifact. The green ground, the khaki sheet and the torn edges make the page read as a scanned document rather than as a site. The content is prose with a signature, and the paper illusion is the only ornament.
+
+[RELEVANCE]
+Nothing transferable. The paper texture is the kind of surface ornament this template leaves out, though the single narrow measure over a quiet ground is already its own move.

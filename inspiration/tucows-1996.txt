@@ -1,0 +1,21 @@
+tucows-1996.png
+site: tucows.com
+period: 1996
+dimensions: 830x890
+sampled: 2026-10-05
+
+[PALETTE]
+ground #DBE9F5  role: page bg  pale blue field
+ocean  #0467FC  role: link     saturated blue ocean and links
+land   #E2ECC2  role: map      pale green landmass fill
+gold   #F3F64E  role: map      yellow map highlight
+ink    #1D4D26  role: map      dark green map outline
+
+[LAYOUT]
+A cow watermark covers the whole ground, under a logo, a banner ad, an instruction paragraph and a bordered table of seven mirror locations marked fast or slow. A large world map illustration with region labels fills the lower half, and a copyright block closes the page.
+
+[META]
+A download mirror page that is mostly a map. The cow watermark and the illustrated globe are the identity, and the actual content is one short table. It reads as a poster whose only job is to route a visitor to a server near them.
+
+[RELEVANCE]
+Nothing transferable. The watermark ground and the map illustration are both texture this template leaves out, and the page has no type decision to keep.

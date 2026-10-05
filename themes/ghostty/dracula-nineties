@@ -9,28 +9,28 @@
 #          ~/.config/ghostty/config. Ghostty then switches with the system
 #          appearance; `theme = dracula-nineties` alone stays dark-only.
 
-background = #282a36
-foreground = #f8f8f2
+background = #000000
+foreground = #ffffff
 
 cursor-color = #ff79c6
-cursor-text = #282a36
+cursor-text = #000000
 
-selection-background = #575a6e
-selection-foreground = #f8f8f2
+selection-background = #2e2f40
+selection-foreground = #ffffff
 
-palette = 0=#1e1f29
+palette = 0=#12121a
 palette = 1=#ff5555
 palette = 2=#50fa7b
 palette = 3=#f1fa8c
 palette = 4=#8be9fd
 palette = 5=#bd93f9
 palette = 6=#8be9fd
-palette = 7=#b7bfe4
-palette = 8=#707388
+palette = 7=#c0c0c0
+palette = 8=#666666
 palette = 9=#ff857f
 palette = 10=#bdffc5
 palette = 11=#ffb86c
 palette = 12=#d3f7ff
 palette = 13=#ff79c6
 palette = 14=#d3f7ff
-palette = 15=#fcfcf6
+palette = 15=#fcfcfc

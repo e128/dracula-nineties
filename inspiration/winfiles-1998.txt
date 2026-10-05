@@ -1,0 +1,21 @@
+winfiles-1998.png
+site: winfiles.com, a CNET service
+period: 1998
+dimensions: 830x800
+sampled: 2026-10-05
+
+[PALETTE]
+ground #B2CFE7  role: page bg  sky blue cloud field
+panel  #FFFFFF  role: surface  white window and page areas
+mark   #FAC807  role: logo     yellow folder mark
+navy   #3B49A3  role: heading  navy wordmark and type
+chrome #CCCCCC  role: frame    window chrome grey
+
+[LAYOUT]
+A black banner sits at the top, then a large logo floats over a sky blue cloud field, then a full-width window styled as Windows 95 holds a grid of sixteen desktop icons with labels across two rows. A promo link, an award strip of four badges, a two-row icon nav bar, a select and a long legal block fill the rest.
+
+[META]
+A download site dressed as the operating system it served. The window chrome, the menu bar and the icon grid are all quotations of Windows 95, so the page reads as a screenshot rather than as a site. The joke carries the entire design.
+
+[RELEVANCE]
+Nothing transferable. The OS quotation is period charm, not a layout idea, and the icon grid is a navigation this template has no use for.

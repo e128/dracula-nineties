@@ -1,0 +1,22 @@
+be-1996.png
+site: be.com, Be Inc.
+period: 1996
+dimensions: 830x630
+sampled: 2026-10-05
+
+[PALETTE]
+ground  #FBFBFB  role: page bg  white
+header  #010156  role: masthead deep navy title box
+heading #680303  role: heading  dark red on section titles
+link    #0000AC  role: link     royal blue links
+chrome  #B2B2B2  role: border   grey rules around the nav column
+logo    #AF827F  role: graphic  warm tones in the Be mark
+
+[LAYOUT]
+A white page with a deep navy title box across the top right, then a narrow left column of icon and label pairs inside a grey border, each row a small illustration over a product name. The center column is a stack of bordered news boxes: a red heading, a short paragraph, then a short blue link list or a photo. A bracketed link row closes the body above the copyright line.
+
+[META]
+A corporate home page built from nested boxes rather than from a grid. Each news item is its own bordered panel, so the page reads as a stack of cards, and the icon column acts as a permanent index. The palette is two working colors, navy and dark red, over white.
+
+[RELEVANCE]
+The bordered-panel stack is the period's card layout, and the sample pages already cover it. Nothing transfers beyond the reminder that two working colors are enough.

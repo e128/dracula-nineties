@@ -3,19 +3,19 @@
   "init": {
     "_comment": "mermaid.initialize({theme:'base', themeVariables:{darkMode:true, ...}}) in mermaid.js. darkMode has to sit inside themeVariables \u2014 mermaidAPI hands only config.themeVariables to base.getThemeVariables(), so a root-level darkMode is never seen by the theme.",
     "background": {
-      "hex": "#44475a",
+      "hex": "#1e1e2e",
       "from": "--code-bg"
     },
     "mainBkg": {
-      "hex": "#44475a",
+      "hex": "#1e1e2e",
       "from": "--code-bg"
     },
     "primaryColor": {
-      "hex": "#44475a",
+      "hex": "#1e1e2e",
       "from": "--code-bg"
     },
     "primaryTextColor": {
-      "hex": "#f8f8f2",
+      "hex": "#ffffff",
       "from": "--on-surface"
     },
     "primaryBorderColor": {
@@ -23,23 +23,23 @@
       "from": "--purple"
     },
     "lineColor": {
-      "hex": "#6272a4",
+      "hex": "#808080",
       "from": "--muted"
     },
     "textColor": {
-      "hex": "#f8f8f2",
+      "hex": "#ffffff",
       "from": "--on-surface"
     },
     "secondaryColor": {
-      "hex": "#1e1f29",
+      "hex": "#12121a",
       "from": "--surface-alt"
     },
     "clusterBkg": {
-      "hex": "#44475a",
+      "hex": "#1e1e2e",
       "from": "--code-bg"
     },
     "clusterBorder": {
-      "hex": "#707388",
+      "hex": "#666666",
       "from": "--rule-light"
     },
     "nodeBorder": {
@@ -47,27 +47,27 @@
       "from": "--purple"
     },
     "edgeLabelBackground": {
-      "hex": "#44475a",
+      "hex": "#1e1e2e",
       "from": "--code-bg"
     },
     "noteBkgColor": {
-      "hex": "#44475a",
+      "hex": "#1e1e2e",
       "from": "--code-bg"
     },
     "noteTextColor": {
-      "hex": "#f8f8f2",
+      "hex": "#ffffff",
       "from": "--on-surface"
     },
     "noteBorderColor": {
-      "hex": "#707388",
+      "hex": "#666666",
       "from": "--rule-light"
     },
     "archEdgeColor": {
-      "hex": "#6272a4",
+      "hex": "#808080",
       "from": "--muted"
     },
     "archGroupBorderColor": {
-      "hex": "#707388",
+      "hex": "#666666",
       "from": "--rule-light"
     },
     "pie1": {
@@ -87,114 +87,114 @@
       "from": "--data-4"
     },
     "pieSectionTextColor": {
-      "hex": "#282a36",
+      "hex": "#000000",
       "from": "--surface"
     },
     "pieStrokeColor": {
-      "hex": "#282a36",
+      "hex": "#000000",
       "from": "--surface"
     },
     "pieOuterStrokeColor": {
-      "hex": "#6272a4",
+      "hex": "#808080",
       "from": "--muted"
     }
   },
   "initLight": {
     "_comment": "The same themeVariables projected through the light palette, used when :root resolves --mermaid-scheme to 'light'. mermaid.js reads that CSS token rather than matchMedia, so the forced-light sample pages pick this set up from the same cascade the rest of the sheet follows. Every 'from' names the token in the @media (prefers-color-scheme: light) :root block, falling back to the base :root where light does not override it.",
     "background": {
-      "hex": "#cfcfde",
+      "hex": "#d4d0c8",
       "from": "--code-bg"
     },
     "mainBkg": {
-      "hex": "#cfcfde",
+      "hex": "#d4d0c8",
       "from": "--code-bg"
     },
     "primaryColor": {
-      "hex": "#cfcfde",
+      "hex": "#d4d0c8",
       "from": "--code-bg"
     },
     "primaryTextColor": {
-      "hex": "#1f1f1f",
+      "hex": "#000000",
       "from": "--on-surface"
     },
     "primaryBorderColor": {
-      "hex": "#644ac9",
+      "hex": "#660099",
       "from": "--purple"
     },
     "lineColor": {
-      "hex": "#6c664b",
+      "hex": "#404040",
       "from": "--muted"
     },
     "textColor": {
-      "hex": "#1f1f1f",
+      "hex": "#000000",
       "from": "--on-surface"
     },
     "secondaryColor": {
-      "hex": "#cfcfde",
+      "hex": "#b0b0b0",
       "from": "--surface-alt"
     },
     "clusterBkg": {
-      "hex": "#cfcfde",
+      "hex": "#d4d0c8",
       "from": "--code-bg"
     },
     "clusterBorder": {
-      "hex": "#7b7f94",
+      "hex": "#606060",
       "from": "--rule-light"
     },
     "nodeBorder": {
-      "hex": "#644ac9",
+      "hex": "#660099",
       "from": "--purple"
     },
     "edgeLabelBackground": {
-      "hex": "#cfcfde",
+      "hex": "#d4d0c8",
       "from": "--code-bg"
     },
     "noteBkgColor": {
-      "hex": "#cfcfde",
+      "hex": "#d4d0c8",
       "from": "--code-bg"
     },
     "noteTextColor": {
-      "hex": "#1f1f1f",
+      "hex": "#000000",
       "from": "--on-surface"
     },
     "noteBorderColor": {
-      "hex": "#7b7f94",
+      "hex": "#606060",
       "from": "--rule-light"
     },
     "archEdgeColor": {
-      "hex": "#6c664b",
+      "hex": "#404040",
       "from": "--muted"
     },
     "archGroupBorderColor": {
-      "hex": "#7b7f94",
+      "hex": "#606060",
       "from": "--rule-light"
     },
     "pie1": {
-      "hex": "#036a96",
+      "hex": "#0019ee",
       "from": "--data-1"
     },
     "pie2": {
-      "hex": "#a3144d",
+      "hex": "#8b005c",
       "from": "--data-2"
     },
     "pie3": {
-      "hex": "#14710a",
+      "hex": "#005500",
       "from": "--data-3"
     },
     "pie4": {
-      "hex": "#846e15",
+      "hex": "#5a4a00",
       "from": "--data-4"
     },
     "pieSectionTextColor": {
-      "hex": "#fffbeb",
+      "hex": "#c0c0c0",
       "from": "--surface"
     },
     "pieStrokeColor": {
-      "hex": "#fffbeb",
+      "hex": "#c0c0c0",
       "from": "--surface"
     },
     "pieOuterStrokeColor": {
-      "hex": "#6c664b",
+      "hex": "#404040",
       "from": "--muted"
     }
   },
@@ -203,52 +203,52 @@
     "repo": {
       "fill": "#ff79c6",
       "stroke": "#bd93f9",
-      "color": "#282a36",
+      "color": "#000000",
       "from": "--data-2"
     },
     "ext": {
       "fill": "#8be9fd",
       "stroke": "#bd93f9",
-      "color": "#282a36",
+      "color": "#000000",
       "from": "--data-1"
     },
     "store": {
       "fill": "#50fa7b",
       "stroke": "#bd93f9",
-      "color": "#282a36",
+      "color": "#000000",
       "from": "--data-3"
     },
     "queue": {
       "fill": "#f1fa8c",
       "stroke": "#bd93f9",
-      "color": "#282a36",
+      "color": "#000000",
       "from": "--data-4"
     }
   },
   "classdefLight": {
-    "_comment": "The same four roles projected through the @media (prefers-color-scheme: light) palette, for a page locked to light the way samples/light.html is. The light ramp is mid-tone rather than pale, so the text on the fill inverts: color is --on-surface, which measures 4.98 to 5.10:1 against the four fills where --surface measures 3.45 to 3.53:1. Same role names and same 'from' tokens as classdef, resolved through the light block; palette-check.py check 2 gates both sets and fails if the role sets diverge.",
+    "_comment": "The same four roles projected through the @media (prefers-color-scheme: light) palette, for a page locked to light the way samples/light.html is. The light ramp is mid-tone, so the text on the fill stays --surface: the light --surface (#c0c0c0) measures 4.78 to 5.12:1 against the four fills, where --on-surface (black) would land at 2.25 to 2.41:1. The ground inverts relative to the dark set, where --surface is black and the pale ramp carries black text. Same role names and same 'from' tokens as classdef, resolved through the light block; palette-check.py check 2 gates both sets and fails if the role sets diverge.",
     "repo": {
-      "fill": "#a3144d",
-      "stroke": "#644ac9",
-      "color": "#fffbeb",
+      "fill": "#8b005c",
+      "stroke": "#660099",
+      "color": "#c0c0c0",
       "from": "--data-2"
     },
     "ext": {
-      "fill": "#036a96",
-      "stroke": "#644ac9",
-      "color": "#fffbeb",
+      "fill": "#0019ee",
+      "stroke": "#660099",
+      "color": "#c0c0c0",
       "from": "--data-1"
     },
     "store": {
-      "fill": "#14710a",
-      "stroke": "#644ac9",
-      "color": "#fffbeb",
+      "fill": "#005500",
+      "stroke": "#660099",
+      "color": "#c0c0c0",
       "from": "--data-3"
     },
     "queue": {
-      "fill": "#846e15",
-      "stroke": "#644ac9",
-      "color": "#fffbeb",
+      "fill": "#5a4a00",
+      "stroke": "#660099",
+      "color": "#c0c0c0",
       "from": "--data-4"
     }
   }

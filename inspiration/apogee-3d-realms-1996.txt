@@ -1,0 +1,22 @@
+apogee-3d-realms-1996.png
+site: apogee.com / 3drealms.com
+period: 1996
+dimensions: 830x670
+sampled: 2026-10-05
+
+[PALETTE]
+ground  #000000  role: page bg  pure black, unmodulated
+text    #F9FFFA  role: body     near-white serif copy
+heading #E4CA26  role: heading  gold display type
+link    #003FAE  role: link     medium blue, underlined
+accent  #BD1B00  role: marker   brick red on NEW and HOT NEWS
+counter #F393AC  role: graphic  pink-lit LED digits
+
+[LAYOUT]
+A left rail of plain white text links about 100 pixels wide, then a centered column that is mostly headings and short numbered lists. A garland strip of clip-art lights divides the content twice, once below the masthead and once above the modification date. Logos sit at the top corners, and badges, a hit counter and a partner logo stack down the second half of the page.
+
+[META]
+A hobbyist-era game page where decoration arrives as clip art rather than as layout. The structure is a heading and a numbered list, repeated, with every spare gap filled by a bitmap. Text is small serif left to run wide, so the page reads as a printed flyer pinned to black.
+
+[RELEVANCE]
+The numbered-list rhythm and the single red marker color are usable, but both are already standard here. Nothing else transfers; the clip-art density is the thing this template exists to avoid.

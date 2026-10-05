@@ -1,0 +1,22 @@
+altavista-1999.png
+site: altavista.com
+period: 1999
+dimensions: 995x980
+sampled: 2026-10-05
+
+[PALETTE]
+ground   #FFFFFF  role: page bg  white
+navy     #003366  role: nav bar dark navy tab strip and section heads
+band     #FFCC00  role: banner  full-width gold search band
+tint     #FEFDCC  role: tint    pale yellow fill on directory headers
+link     #040067  role: link    near-black navy links
+accent   #9ACECE  role: accent  pale teal on the live-feed headers
+
+[LAYOUT]
+A masthead in three type colors sits over a navy tab strip, then a gold search band with an input, a button and a language select. Below that the page is a four-column table directory, each cell fenced by a one-pixel rule and headed by a colored bar, with a tool rail at the right. The footer is one dense row of links over a copyright line.
+
+[META]
+The portal as a directory. Every region is a table cell and every cell is fenced, so the page reads as a grid of equal claims rather than as a hierarchy. The gold band is the only high-energy element, and it is spent on the search box, which is the whole point of the page.
+
+[RELEVANCE]
+The fenced-column directory is a strong period reference, but this template is a document, not a portal, so it has no use for four competing columns. The gold-band emphasis trick is worth remembering for a single call to action.

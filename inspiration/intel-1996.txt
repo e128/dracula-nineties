@@ -1,0 +1,21 @@
+intel-1996.png
+site: intel.com
+period: 1996
+dimensions: 830x760
+sampled: 2026-10-05
+
+[PALETTE]
+ground #FFFFFF  role: page bg  white
+panel  #FFFFE8  role: panel    pale yellow news panel
+link   #3C60E0  role: link     blue links
+accent #FEAD27  role: heading  orange connector lines and headings
+mark   #5764A6  role: logo     Intel blue in the wordmark
+
+[LAYOUT]
+A thin nav row of grey links runs across the top with the logo at the right. The left two thirds is a diagram: a mark box at the top left, a network of orange connector lines, and eight orange headings, each with a small photo and a line of copy. The right third is a pale yellow panel of dated news. A language select, a contents link and the footer sit at the bottom.
+
+[META]
+An information diagram used as a home page. Orange connector lines turn navigation into a schematic, so the page is read spatially rather than as a list, and the news panel is the only conventional column. It reads as a fold-out product brochure.
+
+[RELEVANCE]
+The connector-line diagram is a genuine layout idea, but it needs a canvas this template does not have, since its pages are documents. Nothing transfers.

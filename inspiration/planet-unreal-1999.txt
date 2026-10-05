@@ -1,0 +1,21 @@
+planet-unreal-1999.png
+site: planetunreal.com
+period: 1999
+dimensions: 830x3570
+sampled: 2026-10-05
+
+[PALETTE]
+ground #0B0A1F  role: page bg  near-black navy
+panel  #2E2E53  role: panel    slate blue rails and banner
+accent #D98F0B  role: heading  amber headings and rules
+link   #686E9A  role: link     muted blue-violet links
+text   #CEAB81  role: body     warm light body type
+
+[LAYOUT]
+A dark navy page with a banner across the top, a left rail of section links, a wide center column of dated news posts, and a right rail of widgets. Each post is an amber heading over a small source label and a paragraph, and the right rail carries an update list, a poll and a search box. A footer link row closes the page.
+
+[META]
+A fan news site with a game HUD skin. The rails and the banner borrow the game's interface look while the middle column stays a plain dated log, so the page is a diary wearing armor. It reads as a bulletin board with a theme stretched over it.
+
+[RELEVANCE]
+The dated log in a narrow measure over a dark ground is the closest structure in this archive to the template's own page rhythm, and the amber accent is a useful precedent. The HUD frame does not transfer.

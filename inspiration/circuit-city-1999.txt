@@ -1,0 +1,21 @@
+circuit-city-1999.png
+site: circuitcity.com
+period: 1999
+dimensions: 830x990
+sampled: 2026-10-05
+
+[PALETTE]
+ground #FFFEFE  role: page bg  white
+brand  #CD0913  role: brand     red masthead and rules
+ink    #100D0D  role: mark      near-black logo lockup
+link   #D61214  role: link      red links throughout
+photo  #CEAA76  role: image     warm tones in the product photo
+
+[LAYOUT]
+A red masthead holds a black and red logo lockup, a search field and a red-tabbed nav row. The first band is three zones, a Shop and Learn link column at the left, a Free PC promo tile at center and a Specials list at the right. A second band repeats the same shape under What's Hot with three product tiles, then a red link row, a long legal block and a copyright close the page.
+
+[META]
+A big-box retail page where red is the only color. The page repeats its own shape once, a link column beside a promotional center, so it reads as two identical shelves. Type is small and dense, and the red is spent on structure rather than on any single message.
+
+[RELEVANCE]
+Red on white as a single accent is a stronger version of what this template already does with its own hue. Nothing else transfers.

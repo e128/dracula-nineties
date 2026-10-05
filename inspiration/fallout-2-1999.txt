@@ -1,0 +1,32 @@
+fallout-2-1999.png
+site: blackisle.com, Fallout 2 official
+period: 1998-1999
+dimensions: 830x5060
+sampled: 2026-10-05
+
+[PALETTE]
+ground    #000000  role: page bg   pure black across more than five thousand pixels
+surface   #161615  role: sidebar   near-black panel behind the icon nav
+text      #D5DAEB  role: body      light cool grey, typewriter register
+accent    #B74C14  role: heading   burnt orange on dates, rules and section bars
+accent-2  #E2A740  role: highlight amber on the header art and the ad strip
+link      #46B3E5  role: link      sky blue hyperlinks on black
+matte     #525252  role: backdrop  screenshot grey, outside the page
+
+[LAYOUT]
+A narrow content column around 600 pixels wide, offset right, beside a left icon rail of small
+pixel-art buttons (home, plan, downloads, feedback, fonts). A banner carries the logo art, and
+below it the page is one reverse-chronological log of dated developer posts, each a small date
+heading over several monospace paragraphs. The column runs several thousand pixels tall and
+ends in a stack of publisher ads.
+
+[META]
+A developer diary used as a front page: black ground, amber and blue accents, and almost no
+chrome. Structure comes from the date headings and the left rail, and the only decoration is
+the header art and the ad blocks. The register is dense and textual, closer to a changelog than
+to a marketing page, and it assumes a reader who will scroll.
+
+[RELEVANCE]
+The dated-log rhythm and the black ground with a single amber accent are the closest structural
+match in this archive to the template's page pattern. The blue link color would need remapping
+onto the template palette.

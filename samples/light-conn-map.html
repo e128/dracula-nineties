@@ -6,7 +6,7 @@
   <title>Dracula-Nineties connections-map layout: forced light preview</title>
   <meta name="generated-by" content="scripts/build-sample.nu"/>
   <style>
-    /* Dracula-Nineties v2.1.1 */
+    /* Dracula-Nineties v2.2.0 */
     @layer dracula-nineties {
     @font-face {
       font-family: 'Source Serif 4'; font-style: normal; font-weight: 200 900;
@@ -30,15 +30,16 @@
     }
     :root {
       color-scheme: dark;
-      --surface:     oklch(0.288 0.022 277.509);  /* was #282a36 */
-      --surface-alt: oklch(0.243 0.019 280.395);  /* was #1e1f29 */
-      --on-surface:  oklch(0.977 0.008 106.545);  /* was #f8f8f2 */
-      --label:       oklch(0.810 0.054 275.492);  /* was #b7bfe4 */
-      --muted:       oklch(0.560 0.080 270.086);  /* was #6272a4 */
+      --surface:     oklch(0 0 0);  /* was #000000 */
+      --surface-alt: oklch(0.185 0.016 283.716);  /* was #12121a */
+      --on-surface:  oklch(1 0 0);  /* was #ffffff */
+      --label:       oklch(0.807 0.000 89.876);  /* was #c0c0c0 */
+      --muted:       oklch(0.600 0.000 89.876);  /* was #808080 */
       --rule:        var(--muted);
-      --rule-light:  oklch(0.56 0.032 277.832);
+      --rule-light:  oklch(0.510 0.000 89.876);
       --link:        oklch(0.8826 0.0934 212.846);  /* was #8be9fd */
-      --code-bg:     oklch(0.403 0.032 277.832);  /* was #44475a */
+      --visited:     oklch(0.742 0.149 301.883);  /* was #bd93f9 */
+      --code-bg:     oklch(0.241 0.031 283.811);  /* was #1e1e2e */
       --orange:      oklch(0.834 0.124 66.558);  /* was #ffb86c */
       --red:         oklch(0.682 0.206 24.431);  /* was #ff5555 */
       --purple:      oklch(0.742 0.149 301.883);  /* was #bd93f9 */
@@ -56,7 +57,7 @@
       --radius:      4px;
       --radius-sm:   2px;
       --accent-bar:  3px;
-      --ring:        oklch(1 0 0 / 0.1);
+      --ring:        oklch(1 0 0 / 0.18);
       --highlight:   oklch(from var(--orange) l c h / 0.30);
       --space-2:     0.5rem;
       --space-3:     0.75rem;
@@ -108,6 +109,7 @@
       font-variant-caps: normal; font-weight: 400; letter-spacing: normal; }
     .newthought :is(.sidenote, .marginnote) { font-size: 0.75em; }
     a { color: var(--link); text-decoration: underline; text-decoration-thickness: max(1px, 0.07em); text-underline-offset: 0.15em; text-decoration-color: var(--muted); text-decoration-skip-ink: auto; overflow-wrap: break-word; transition: text-decoration-color 0.15s ease-out; }
+    a:visited { color: var(--visited); }
     :is(h1, h2, h3, h4, h5, h6) :is(a.headerlink, a.anchor) { opacity: 0; font-size: 0.8em;
       text-decoration: none; margin-inline-start: 0.35em; transition: opacity 0.15s ease-out; }
     :is(h1, h2, h3, h4, h5, h6) :is(a.headerlink, a.anchor):focus-visible { opacity: 1; }
@@ -469,6 +471,7 @@
         --muted:       oklch(0.912 0.038 275.000);
         --rule-light:  oklch(0.700 0.032 277.832);
         --link:        oklch(0.905 0.071 212.846);
+        --visited:     oklch(0.915 0.045 301.883);
         --orange:      oklch(0.916 0.056 66.558);
         --red:         oklch(0.915 0.039 24.431);
         --purple:      oklch(0.914 0.045 301.883);
@@ -488,24 +491,25 @@
     @media all {
       :root {
         color-scheme: light;
-        --surface:     oklch(0.987 0.021 95.277);
-        --surface-alt: oklch(0.859 0.021 285.958);
-        --on-surface:  oklch(0.239 0.000 89.876);
-        --code-bg:     oklch(0.859 0.021 285.958);
-        --label:       oklch(0.470 0.054 275.492);
-        --muted:       oklch(0.508 0.041 97.059);
-        --rule-light:  oklch(0.600 0.032 277.832);
-        --link:        oklch(0.496 0.106 236.172);
-        --orange:      oklch(0.521 0.131 48.459);
-        --red:         oklch(0.563 0.184 30.077);
-        --purple:      oklch(0.509 0.188 287.145);
-        --purple-bright: oklch(0.449 0.188 287.145);
-        --pink:        oklch(0.4682 0.1765 4.963);
-        --green:       oklch(0.4784 0.1547 141.896);
-        --data-1:      oklch(0.496 0.106 236.172);
-        --data-2:      oklch(0.4682 0.1765 4.963);
-        --data-3:      oklch(0.4784 0.1547 141.896);
-        --data-4:      oklch(0.5440 0.1044 93.877);
+        --surface:     oklch(0.807 0.000 89.876);
+        --surface-alt: oklch(0.756 0.000 89.876);
+        --on-surface:  oklch(0 0 0);
+        --code-bg:     oklch(0.858 0.011 83.582);
+        --label:       oklch(0.268 0.000 89.876);
+        --muted:       oklch(0.371 0.000 89.876);
+        --rule-light:  oklch(0.489 0.000 89.876);
+        --link:        oklch(0.440 0.289 264.2);
+        --visited:     oklch(0.378 0.171 301.901);
+        --orange:      oklch(0.444 0.109 55.566);
+        --red:         oklch(0.475 0.185 29.184);
+        --purple:      oklch(0.400 0.204 308.158);
+        --purple-bright: oklch(0.360 0.173 308.158);
+        --pink:        oklch(0.420 0.176 348.619);
+        --green:       oklch(0.389 0.133 142.495);
+        --data-1:      oklch(0.440 0.289 264.2);
+        --data-2:      oklch(0.420 0.176 348.619);
+        --data-3:      oklch(0.389 0.133 142.495);
+        --data-4:      oklch(0.412 0.085 94.382);
         --ring:        oklch(0 0 0 / 0.1);
         --mermaid-scheme: light;
       }
@@ -531,6 +535,7 @@
         --label:       oklch(0.470 0.054 275.492);
         --muted:       oklch(0.508 0.041 97.059);
         --link:        oklch(0.496 0.106 236.172);
+        --visited:     oklch(0.509 0.188 287.145);
         --pink:        oklch(0.4682 0.1765 4.963);
         --purple:      oklch(0.509 0.188 287.145);
         --purple-bright: oklch(0.509 0.188 287.145);
@@ -549,11 +554,11 @@
       .table-scroll { max-height: none; overflow: visible; }
       .mermaid-zoom { display: none; }
       pre.mermaid {
-        --surface:     oklch(0.288 0.022 277.509);
-        --on-surface:  oklch(0.977 0.008 106.545);
-        --code-bg:     oklch(0.403 0.032 277.832);
+        --surface:     oklch(0 0 0);
+        --on-surface:  oklch(1 0 0);
+        --code-bg:     oklch(0.241 0.031 283.811);
         --purple:      oklch(0.742 0.149 301.883);
-        --muted:       oklch(0.560 0.080 270.086);
+        --muted:       oklch(0.600 0.000 89.876);
         background: var(--surface); padding: var(--space-3) 0; border-radius: var(--radius);
         print-color-adjust: exact; -webkit-print-color-adjust: exact;
       }
@@ -609,48 +614,48 @@
     const mermaidLight = getComputedStyle(document.documentElement).getPropertyValue('--mermaid-scheme').trim() === 'light';
     const mermaidFont = '"JetBrains Mono", ui-monospace, "Fira Code", monospace';
     const mermaidDark = {
-      background:          '#44475a',
-      mainBkg:             '#44475a',
-      primaryColor:        '#44475a',
-      primaryTextColor:    '#f8f8f2',
+      background:          '#1e1e2e',
+      mainBkg:             '#1e1e2e',
+      primaryColor:        '#1e1e2e',
+      primaryTextColor:    '#ffffff',
       primaryBorderColor:  '#bd93f9',
-      lineColor:           '#6272a4',
-      textColor:           '#f8f8f2',
-      secondaryColor:      '#1e1f29',
-      clusterBkg:          '#44475a',
-      clusterBorder:       '#707388',
+      lineColor:           '#808080',
+      textColor:           '#ffffff',
+      secondaryColor:      '#12121a',
+      clusterBkg:          '#1e1e2e',
+      clusterBorder:       '#666666',
       nodeBorder:          '#bd93f9',
-      edgeLabelBackground: '#44475a',
-      noteBkgColor:        '#44475a',
-      noteTextColor:       '#f8f8f2',
-      noteBorderColor:     '#707388',
-      archEdgeColor:       '#6272a4',
-      archGroupBorderColor: '#707388',
+      edgeLabelBackground: '#1e1e2e',
+      noteBkgColor:        '#1e1e2e',
+      noteTextColor:       '#ffffff',
+      noteBorderColor:     '#666666',
+      archEdgeColor:       '#808080',
+      archGroupBorderColor: '#666666',
       pie1: '#8be9fd', pie2: '#ff79c6', pie3: '#50fa7b', pie4: '#f1fa8c',
-      pieSectionTextColor: '#282a36',
-      pieStrokeColor: '#282a36', pieOuterStrokeColor: '#6272a4',
+      pieSectionTextColor: '#000000',
+      pieStrokeColor: '#000000', pieOuterStrokeColor: '#808080',
     };
     const mermaidLightVars = {
-      background:          '#cfcfde',
-      mainBkg:             '#cfcfde',
-      primaryColor:        '#cfcfde',
-      primaryTextColor:    '#1f1f1f',
-      primaryBorderColor:  '#644ac9',
-      lineColor:           '#6c664b',
-      textColor:           '#1f1f1f',
-      secondaryColor:      '#cfcfde',
-      clusterBkg:          '#cfcfde',
-      clusterBorder:       '#7b7f94',
-      nodeBorder:          '#644ac9',
-      edgeLabelBackground: '#cfcfde',
-      noteBkgColor:        '#cfcfde',
-      noteTextColor:       '#1f1f1f',
-      noteBorderColor:     '#7b7f94',
-      archEdgeColor:       '#6c664b',
-      archGroupBorderColor: '#7b7f94',
-      pie1: '#036a96', pie2: '#a3144d', pie3: '#14710a', pie4: '#846e15',
-      pieSectionTextColor: '#fffbeb',
-      pieStrokeColor: '#fffbeb', pieOuterStrokeColor: '#6c664b',
+      background:          '#d4d0c8',
+      mainBkg:             '#d4d0c8',
+      primaryColor:        '#d4d0c8',
+      primaryTextColor:    '#000000',
+      primaryBorderColor:  '#660099',
+      lineColor:           '#404040',
+      textColor:           '#000000',
+      secondaryColor:      '#b0b0b0',
+      clusterBkg:          '#d4d0c8',
+      clusterBorder:       '#606060',
+      nodeBorder:          '#660099',
+      edgeLabelBackground: '#d4d0c8',
+      noteBkgColor:        '#d4d0c8',
+      noteTextColor:       '#000000',
+      noteBorderColor:     '#606060',
+      archEdgeColor:       '#404040',
+      archGroupBorderColor: '#606060',
+      pie1: '#0019ee', pie2: '#8b005c', pie3: '#005500', pie4: '#5a4a00',
+      pieSectionTextColor: '#c0c0c0',
+      pieStrokeColor: '#c0c0c0', pieOuterStrokeColor: '#404040',
     };
     mermaid.initialize({
       startOnLoad: true, theme: 'base', look: 'classic',

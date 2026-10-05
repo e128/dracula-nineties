@@ -5,18 +5,18 @@
   "editorScheme": "/dracula-nineties.xml",
 
   "colors": {
-    "surface": "#282a36",
-    "surfaceAlt": "#1e1f29",
-    "codeBg": "#44475a",
-    "onSurface": "#f8f8f2",
-    "label": "#b7bfe4",
-    "muted": "#6272a4",
-    "ruleLight": "#707388",
-    "rule": "#3e404f",
-    "hover": "#363946",
-    "pressed": "#454757",
-    "selection": "#575a6e",
-    "selectionSoft": "#3e5462",
+    "surface": "#000000",
+    "surfaceAlt": "#12121a",
+    "codeBg": "#1e1e2e",
+    "onSurface": "#ffffff",
+    "label": "#c0c0c0",
+    "muted": "#808080",
+    "ruleLight": "#666666",
+    "rule": "#1f1f1f",
+    "hover": "#141414",
+    "pressed": "#292929",
+    "selection": "#2e2f40",
+    "selectionSoft": "#1f3338",
     "link": "#8be9fd",
     "orange": "#ffb86c",
     "red": "#ff5555",
@@ -73,8 +73,8 @@
       "disabledBorderColor": "rule",
       "focusedBorderColor": "link",
       "default": {
-        "startBackground": "#463f5d",
-        "endBackground": "#463f5d",
+        "startBackground": "#261d32",
+        "endBackground": "#261d32",
         "startBorderColor": "purple",
         "endBorderColor": "purple",
         "foreground": "onSurface",
@@ -89,9 +89,9 @@
       "disabledBorderColor": "rule",
       "focusColor": "link",
       "errorFocusColor": "red",
-      "inactiveErrorFocusColor": "#64363f",
+      "inactiveErrorFocusColor": "#471818",
       "warningFocusColor": "orange",
-      "inactiveWarningFocusColor": "#645245",
+      "inactiveWarningFocusColor": "#47341e",
       "infoForeground": "muted"
     },
 
@@ -118,7 +118,7 @@
     "TextArea": { "background": "codeBg", "foreground": "onSurface" },
     "FormattedTextField": { "background": "codeBg", "foreground": "onSurface" },
     "SearchField": { "background": "codeBg" },
-    "SearchMatch": { "startBackground": "#735c49", "endBackground": "#735c49" },
+    "SearchMatch": { "startBackground": "#594026", "endBackground": "#594026" },
 
     "Editor": {
       "background": "surface",
@@ -251,9 +251,9 @@
 
     "ToolTip": { "background": "codeBg", "foreground": "onSurface", "borderColor": "ruleLight" },
     "ValidationTooltip": {
-      "errorBackground": "#53333c",
+      "errorBackground": "#331111",
       "errorBorderColor": "red",
-      "warningBackground": "#534641",
+      "warningBackground": "#332516",
       "warningBorderColor": "orange"
     },
 
@@ -261,31 +261,31 @@
       "background": "codeBg",
       "foreground": "onSurface",
       "borderColor": "ruleLight",
-      "errorBackground": "#53333c",
+      "errorBackground": "#331111",
       "errorBorderColor": "red",
       "errorForeground": "onSurface",
       "MoreButton": { "background": "codeBg", "innerBorderColor": "rule" },
       "ToolWindow": {
-        "informativeBackground": "#3c505e",
+        "informativeBackground": "#1c2f33",
         "informativeBorderColor": "data1",
         "informativeForeground": "onSurface",
-        "warningBackground": "#534641",
+        "warningBackground": "#332516",
         "warningBorderColor": "orange",
         "warningForeground": "onSurface",
-        "errorBackground": "#53333c",
+        "errorBackground": "#331111",
         "errorBorderColor": "red",
         "errorForeground": "onSurface"
       }
     },
 
     "Banner": {
-      "errorBackground": "#53333c",
+      "errorBackground": "#331111",
       "errorBorderColor": "red",
-      "warningBackground": "#534641",
+      "warningBackground": "#332516",
       "warningBorderColor": "orange",
-      "infoBackground": "#3c505e",
+      "infoBackground": "#1c2f33",
       "infoBorderColor": "data1",
-      "successBackground": "#305444",
+      "successBackground": "#103219",
       "successBorderColor": "data3"
     },
 
@@ -311,18 +311,18 @@
 
     "ScrollBar": {
       "background": "surface",
-      "thumbColor": "#4c4f5f",
+      "thumbColor": "#333333",
       "hoverThumbColor": "ruleLight",
       "trackColor": "surface",
       "Transparent": {
-        "thumbColor": "#4c4f5f",
+        "thumbColor": "#333333",
         "hoverThumbColor": "ruleLight",
         "trackColor": "surface"
       },
       "Mac": {
-        "thumbColor": "#4c4f5f",
+        "thumbColor": "#333333",
         "hoverThumbColor": "ruleLight",
-        "Transparent": { "thumbColor": "#4c4f5f", "hoverThumbColor": "ruleLight" }
+        "Transparent": { "thumbColor": "#333333", "hoverThumbColor": "ruleLight" }
       }
     },
 
@@ -371,13 +371,13 @@
     },
 
     "FileColor": {
-      "Blue": "#323d4a",
-      "Green": "#2c3f3d",
-      "Orange": "#3e383b",
-      "Yellow": "#3c3f3f",
-      "Rose": "#3e2e39",
-      "Violet": "#37354a",
-      "Gray": "#313340"
+      "Blue": "#0e1719",
+      "Green": "#08190c",
+      "Orange": "#1a120b",
+      "Yellow": "#18190e",
+      "Rose": "#1a0909",
+      "Violet": "#130f19",
+      "Gray": "#0c0c0c"
     },
 
     "VersionControl": {
@@ -408,7 +408,7 @@
       "areaBackground": "codeBg",
       "areaForeground": "onSurface",
       "borderColor": "purple",
-      "rowBackground": "#3e5462"
+      "rowBackground": "#1f3338"
     },
 
     "Debugger": {
@@ -451,10 +451,10 @@
       "Actions.Yellow": "#ffb86c",
       "Actions.Green": "#50fa7b",
       "Actions.Blue": "#8be9fd",
-      "Actions.Grey": "#b7bfe4",
-      "Actions.GreyInline": "#6272a4",
-      "Actions.GreyInline.Dark": "#6272a4",
-      "Objects.Grey": "#6272a4",
+      "Actions.Grey": "#c0c0c0",
+      "Actions.GreyInline": "#808080",
+      "Actions.GreyInline.Dark": "#808080",
+      "Objects.Grey": "#808080",
       "Objects.RedStatus": "#ff5555",
       "Objects.Red": "#ff5555",
       "Objects.Pink": "#ff79c6",
@@ -464,19 +464,19 @@
       "Objects.GreenAndroid": "#50fa7b",
       "Objects.Blue": "#8be9fd",
       "Objects.Purple": "#bd93f9",
-      "Objects.BlackText": "#282a36",
-      "Checkbox.Background.Default.Dark": "#44475a",
+      "Objects.BlackText": "#000000",
+      "Checkbox.Background.Default.Dark": "#1e1e2e",
       "Checkbox.Background.Selected.Dark": "#bd93f9",
-      "Checkbox.Border.Default.Dark": "#707388",
+      "Checkbox.Border.Default.Dark": "#666666",
       "Checkbox.Border.Selected.Dark": "#bd93f9",
-      "Checkbox.Foreground.Selected.Dark": "#282a36",
+      "Checkbox.Foreground.Selected.Dark": "#000000",
       "Checkbox.Focus.Thin.Default.Dark": "#8be9fd",
       "Checkbox.Focus.Thin.Selected.Dark": "#8be9fd",
       "Checkbox.Focus.Wide.Dark": "#8be9fd",
-      "Checkbox.Background.Disabled.Dark": "#1e1f29",
-      "Checkbox.Border.Disabled.Dark": "#3e404f",
-      "Checkbox.Foreground.Disabled.Dark": "#707388",
-      "Tree.iconColor": "#b7bfe4"
+      "Checkbox.Background.Disabled.Dark": "#12121a",
+      "Checkbox.Border.Disabled.Dark": "#1f1f1f",
+      "Checkbox.Foreground.Disabled.Dark": "#666666",
+      "Tree.iconColor": "#c0c0c0"
     }
   }
 }

@@ -1,0 +1,21 @@
+design-is-kinky-2001.png
+site: designiskinky.net
+period: 2001
+dimensions: 830x760
+sampled: 2026-10-05
+
+[PALETTE]
+ground #CCCCCC  role: page bg  light grey field
+accent #EC0159  role: shape    hot magenta polygons at the top and foot
+maroon #A50249  role: shape    darker magenta fill
+plum   #543041  role: shape    muted plum counter-shape
+ink    #333333  role: type     dark grey small caps
+
+[LAYOUT]
+A grey field with large magenta and plum polygons breaking across the top left and the foot, and a content band between them. The band holds a small caps header row, a profile column at the left, a narrow dated news feed at the right with tiny thumbnails, a mailing list form, a partner logo row, and a magenta statistics strip above the footer shapes.
+
+[META]
+A design-community page where the layout is quiet and the shapes carry the identity. Grey small caps type, one hot magenta and large flat polygons do all the work, so the page reads as a poster with a blog inside it. The restraint of the type is what lets the shapes be loud.
+
+[RELEVANCE]
+The idea worth keeping is the split between loud ornament and restrained type, which this template reaches differently, through a single accent and a fixed type scale. Nothing else transfers.

@@ -1,0 +1,21 @@
+download-com-1999.png
+site: download.com, CNET
+period: 1999
+dimensions: 830x1535
+sampled: 2026-10-05
+
+[PALETTE]
+band   #FFCC00  role: masthead CNET yellow banner
+nav    #036633  role: strip    green section strip
+link   #001AEE  role: link     saturated blue links
+logo   #CD0502  role: mark     red CNET mark
+ground #FEFFFE  role: page bg  white body
+
+[LAYOUT]
+A yellow masthead carries the logo and a black top link row, and a green strip below it holds the page title and the date. After a search band the body splits into three unequal columns: Today in Downloads at the left, Most Popular and Sponsored Downloads in the center, and an ad, a newsletter form and a link list at the right. A yellow footer band and a black legal strip close the page.
+
+[META]
+A download portal, so the content is a ranked list with a short blurb per item. Three columns of different widths carry three different kinds of claim, and color is spent only on the masthead and the footer, leaving the whole body white. It reads as a printed catalog with a colored cover.
+
+[RELEVANCE]
+The ranked list with a one line blurb is close to a useful pattern for a link index, and the template already has that shape. Nothing else transfers.

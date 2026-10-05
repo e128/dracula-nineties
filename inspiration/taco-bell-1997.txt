@@ -1,0 +1,21 @@
+taco-bell-1997.png
+site: tacobell.com
+period: 1997
+dimensions: 830x650
+sampled: 2026-10-05
+
+[PALETTE]
+ground #000000  role: content  black content field
+brick  #271A50  role: page bg  purple-brown gradient behind the panel
+mark   #BB0969  role: button   magenta in the logo and the nav buttons
+text   #07BB60  role: body     green body text and links
+cream  #DCD1A3  role: note     khaki on the instruction block
+
+[LAYOUT]
+A brick textured ground frames a black content panel, with the logo at the top left. A left column holds three illustrated buttons and a numbered instruction block, and a right column holds a green bulleted link list over a green copyright line and a legal link. Almost half the panel is empty black.
+
+[META]
+A fast food page lit like a late night drive-through sign. Green type on black, magenta buttons and a brick ground make the page read as a sign rather than as a document. The instruction block admits that the real site was a Flash menu, so this page is a doorway with a manual.
+
+[RELEVANCE]
+Nothing transferable. Green on black is a contrast choice the palette rejects, and the page carries no content of its own.

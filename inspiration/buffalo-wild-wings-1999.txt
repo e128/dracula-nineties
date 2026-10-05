@@ -1,0 +1,21 @@
+buffalo-wild-wings-1999.png
+site: buffalowildwings.com
+period: 1999
+dimensions: 830x860
+sampled: 2026-10-05
+
+[PALETTE]
+ground    #FEFEFD  role: page bg   white content field
+rail      #000000  role: nav       black left rail with red rules
+accent    #C21500  role: brand     red on headings, rules and buttons
+button    #F6B901  role: control   amber fill on the rail buttons
+watermark #E4E3E1  role: texture   faint repeated logo behind the copy
+
+[LAYOUT]
+A black left rail of red-ruled buttons runs the full height, carrying the site nav. The content field is white with a faint repeating logo watermark, and it holds a red banner strip, a bulleted feature list beside a product photo, then three paragraphs of body copy separated by two photographs. A red-ruled link row and a copyright line close the page.
+
+[META]
+A restaurant home page built as a printed menu. The rail is the only structured element, and the rest is prose with pictures, so the page reads as a flyer pinned to a wall. The watermark is the one attempt at texture, and it sits behind body copy, which is why the text stays readable.
+
+[RELEVANCE]
+Nothing transferable. The watermark behind body copy is exactly the kind of texture this template rules out, since it fights the contrast the type needs.
