@@ -122,22 +122,6 @@ def contract-markup-ok [] {
     }
   }
 
-  # `--icon-color` on a `.step-node` arrives in an inline style attribute, so no CSS
-  # rule and no palette check can see it. CONTRACT.md section 2 bans the `--data-*`
-  # ramp there: the node fills at full strength and its letter is `--surface` painted
-  # on that fill, which measures 3.45 to 3.53:1 in light mode, under the text floor.
-  # This catches the repo's own fixtures only. It cannot reach a consumer, and that is
-  # stated in CONTRACT.md rather than pretended away here.
-  for f in [samples/dark.html samples/dark-conn-map.html samples/dark-timeline.html samples/dark-charts.html samples/light.html samples/light-conn-map.html samples/light-timeline.html samples/light-charts.html] {
-    let body = (open --raw ($ROOT | path join $f))
-    for n in ($body | parse --regex '<span class="step-node"(?<attrs>[^>]*)>') {
-      if ($n.attrs =~ '--icon-color:\s*var\(--data-') {
-        print $"($f): a .step-node takes --icon-color from the --data-* ramp, which CONTRACT.md section 2 bans"
-        $ok = false
-      }
-    }
-  }
-
   if $ok { print $"CONTRACT pointers resolve \(($pointers | length) search strings, ($bullets | length) requirements)." }
   $ok
 }

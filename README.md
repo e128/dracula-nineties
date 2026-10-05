@@ -46,7 +46,7 @@ contrast has no preview page. CI renders it and attaches the image to each pull 
 
 | File | What it is |
 | --- | --- |
-| `dracula-nineties.css` | The stylesheet payload (template v2.0.0, oklch palette). The complete `<style>…</style>` block, with its wrapper tags and its leading indent. Consumers inline it verbatim into every generated file. |
+| `dracula-nineties.css` | The stylesheet payload (template v2.1.0, oklch palette). The complete `<style>…</style>` block, with its wrapper tags and its leading indent. Consumers inline it verbatim into every generated file. |
 | `mermaid.js` | The Mermaid init script, with its `<script type="module">` wrapper. It holds the pinned CDN import, the init call, and the zoom overlay. Inline it only when the page has a mermaid fence. Bump the CDN pin here. |
 | `filter.js` | The filter-box script, with its wrapper. It wires each `input.filter-box` to the siblings that follow it. Inline it only when the page has a filter box. [CONTRACT.md § 6](CONTRACT.md#6-scope-of-filterjs) states the scope. |
 | `mermaid-palette.json` | Mermaid's hex palette for each `themeVariables` key, in dark and light, plus the `classDef` node roles. Mermaid cannot read `oklch()` or `var()`. Each entry names its `:root` source, and CI recomputes every hex. |
@@ -64,7 +64,7 @@ Both kinds resolve every path from the repo root. See [Repo layout](NOTES.md#rep
 
 ## Consumers
 
-The current release is **`v2.0.0`**. Consumers reach it through a git submodule. To refresh it,
+The current release is **`v2.1.0`**. Consumers reach it through a git submodule. To refresh it,
 run `git submodule update --remote external/dracula-nineties` and then commit the pointer.
 
 **Read [CONTRACT.md](CONTRACT.md) before you wire a generator.** It states five things:
@@ -192,20 +192,21 @@ switched on and asserts that block's structure, which is the only coverage that 
 its correctness is not a color.
 
 **One palette feeds several projections.** The `:root` block is the only source of color truth.
-`.github/palette-check.py` runs twelve checks over it:
+`.github/palette-check.py` runs eleven checks over it:
 
 1. Hex projections in both Mermaid palettes.
 2. The `classdef` fills, dark and light, and the letter each set paints on its own fill.
 3. The `/* was */` provenance comments.
 4. Stray hex in `mermaid.js`.
-5. Contrast floors in all four modes.
+5. Contrast floors in all four modes. The floors follow the palette: 3.0 in dark, 3.2 in light,
+   7.0 in `prefers-contrast: more`, 4.5 in print, with two named exceptions where the exact
+   Dracula hexes cannot clear even 3.0.
 6. `--mermaid-scheme` in both directions, and the scroll breakpoint pinned across two files.
 7. The sRGB gamut ceiling.
-8. The vividness bands.
-9. The inverted pairs, where an accent is the ground and `--surface` is the text.
-10. The two relative-color tokens.
-11. The pie slice label against every slice fill, and `pieOpacity`.
-12. The number that sits on a `table.bar-chart` band, and the two pins that keep a CSS chart
+8. The inverted pairs, where an accent is the ground and `--surface` is the text.
+9. The relative-color `--highlight` token.
+10. The pie slice label against every slice fill, and `pieOpacity`.
+11. The number that sits on a `table.bar-chart` band, and the two pins that keep a CSS chart
     visible in print and out of the way in forced colors.
 
 **A measurement in prose is not a gate.** That is why those checks exist, and why

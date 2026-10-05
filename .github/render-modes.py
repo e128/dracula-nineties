@@ -75,7 +75,7 @@ LIGHT = "@media (prefers-color-scheme: light)"
 CONDITIONS = [CONTRAST, LIGHT]
 MODES = {
     "dark": (None, "#2a2b3c"),
-    "light": (LIGHT, "#fcfcf8"),
+    "light": (LIGHT, "#fffbeb"),
     "contrast": (CONTRAST, "#2a2b3c"),
 }
 

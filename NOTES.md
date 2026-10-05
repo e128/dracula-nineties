@@ -411,45 +411,61 @@ the inline hex in `mermaid.js` are machine-checked projections of it. **Measure 
 from rendered pixels, never a computed value**: a computed-value reading reports the un-composited
 mix, which is wrong (two surfaces went unmeasured this way for a long time).
 
+**The palette is the authoritative Dracula baseline: exact upstream hexes, dark, with Alucard for
+light.** Through v2.0.0 every accent was a hue-shifted, chroma-reduced variant of the real color,
+because the exact Dracula hexes fail the repo's own contrast gates. The baseline is restored and
+**the gates moved to it rather than the other way around**: that is the trade this section records.
+**Do not re-mute a token to satisfy a floor.** If a floor and an upstream hex disagree, the floor
+moves, and the divergence is named here.
+
 **Text can land on three grounds** (`--surface`, `--code-bg`, `--surface-alt`) **and a new token must
-clear its floor against all three.** `--surface-alt` (row-hover fill) is the harder one to check in
-light mode.
+clear its floor against all three.** `--code-bg` is Dracula Current Line `#44475a`, a much lighter
+fill than the old `#343746`, and it is the hardest dark ground now. `--surface-alt` stays the
+darkened Background `#1e1f29` rather than a second upstream token, so a hovered row stays distinct
+from a code block.
 
-**An accent can also be the ground.** `.verdict-*`, `.step-node`, `::selection` all invert and paint
-`--surface` text on an accent fill; check 9 gates all three (print is exempt for `.verdict-*` alone,
-since its print block swaps to an outline). **Two tokens in relative color syntax** (`--purple-bright`,
-`--highlight`) **sat outside every check** until check 10 resolved and gated both; this mattered most
-for `--purple-bright`, the one token putting purple text on `--code-bg` (accepted at 4.21:1, the
-`.hljs-type` pair).
+**An accent can also be the ground.** `.verdict-*`, `.step-node` (including the `--data-*` ramp now),
+and `::selection` all invert and paint `--surface` text on an accent fill; check 8 gates all three
+(print is exempt for `.verdict-*` alone, since its print block swaps to an outline).
 
-**`prefers-contrast: more` states `--purple-bright` explicitly, as `oklch(0.885 0.060 300.909)`**,
-because the base relative-color rule (`calc(l + 0.07)` off `--purple`) would land past the sRGB
-ceiling once high contrast already raised `--purple`. **Do not replace it with the relative form
-again**, and do not park it on the gamut boundary.
+**`--purple-bright` is a literal in all four modes.** The exact `--purple` (`#bd93f9`) sits on the
+sRGB boundary at its lightness, so the old relative rule (`calc(l + 0.07)` off `--purple`) leaves
+sRGB: chroma has to fall as lightness rises. Dark, high contrast and print state it outright.
+**Do not put it back in relative color syntax**, and do not park it on the gamut boundary.
 
-**Floors by mode: default 4.2:1, `prefers-contrast: more` 7:1, light 4.5:1, print 4.5:1.** Rule
-tokens sit at 3:1 against `--surface`; the data ramp at 3.2:1.
+**`--highlight` alpha is 0.30**, down from 0.35: the exact Dracula orange is brighter, and `mark`'s
+`--on-surface` text clears 4.5:1 on the wash over `--code-bg` at 0.30 and not at 0.35. Check 9
+measures the composite.
+
+**Floors by mode: default 3.0:1, `prefers-contrast: more` 7:1, light 3.2:1, print 4.5:1.** Rule
+tokens sit at 3:1 against `--surface`; the data ramp at 3:1. **Two pairs sit below even 3.0 and are
+the whole reason the default floor is that low**: Dracula Comment `#6272a4` on Current Line is
+1.94:1 (a code comment on the code ground) and Dracula Red `#ff5555` on Current Line is 2.91:1. Both
+are named in `FLOOR_OVERRIDE` so the relaxation cannot spread to a third token unnoticed. **This is a
+real WCAG shortfall, accepted on purpose**: it is what the upstream baseline looks like, and the
+alternative is a palette that is not Dracula.
 
 ### Tier decisions
 
-**`--label` moves toward body text; `--muted` is pinned at the contrast floor.** They differ in
-hue/chroma so the two tiers read apart where they co-occur (`.scorecard`, `.byline` above `h3`). `--muted`
-sits at the contrast floor, so `--label` is the one that moves.
+**`--label` and `--muted` are the two structural tiers and have no upstream equivalent.** `--label`
+carries headings `h3`-`h6`, `.badge` text and kickers; `--muted` carries comments, `dt` terms in a
+timeline and de-emphasized notes. They differ in lightness and chroma so the two read apart where
+they co-occur. `--label` was left at its old value: the exact Dracula accents are bright enough that
+a brighter `--label` was not needed.
 
 **The row-hover fill, `--surface-alt`, is a flat token that darkens, not a lightening `color-mix`.**
-A `color-mix` composited to a lighter row that took every accent below 4.5:1. **Do not reach for
+A `color-mix` composited to a lighter row that took every accent below floor. **Do not reach for
 another `color-mix`**: `--surface-alt` already exists and needs no compositing to reason about.
 
 **`aside` has no fill at all**, screen or paper: a tint took a `cite`/`.sc-note`/`.count`/`::marker`/
 status span below floor. The orange accent bar marks the callout instead.
 
-**`--purple` on `--code-bg` sits under the text floor, and the repo left it alone**: purple is `h2`,
-the `pre` bar, `::selection`, and nothing puts purple *text* there (an `h2` never renders inside a
-`pre` or cell). Recorded rather than fixed, since the token mirrors into `mermaid-palette.json` twice.
-
-**Borders on `--code-bg` take `--rule`, not `--rule-light`** (the lighter weight fails 1.4.11 there:
-`.filter-box`, `.mermaid-zoom`, `pre.mermaid:hover`). The side effect is wanted: a control now reads
-stronger than a passive container like `details`.
+**Borders on `--code-bg` still take `--rule` (which resolves to `--muted`), and that border is now
+below 1.4.11.** Dracula Comment on Current Line is 1.94:1, so `.filter-box`, `.mermaid-zoom` and
+`pre.mermaid:hover` draw a control boundary a reader with low vision can barely see. This is a
+recorded consequence of the baseline, not an oversight: the alternatives were a second rule token or
+a brighter `--muted`, and both undo the palette. **Do not introduce a `--rule-control` token to fix
+the border alone** unless the baseline itself changes.
 
 **`em` carries no color, it inherits**: correct inside `aside`/`blockquote`/`.sidenote`, matching
 surroundings rather than overriding a color they already chose.
@@ -460,81 +476,47 @@ highlight was built, measured, and removed on this basis).
 
 ### The data ramp
 
-**`--data-1` to `--data-4` exist so a diagram category can't borrow a prose accent.** `--data-1`
-moved off the link hue, a near-exact collision; hue separation between members is what matters, since
-they co-occur in one diagram. The ramp carries its own light and print values (a single base `:root`
-declaration once drew dark-ground fills on a light page). Each member holds a stated fraction of
-maximum in-gamut chroma at its lightness and hue; check 8 pins those fractions.
+**`--data-1` to `--data-4` are four Dracula accents: cyan, pink, green, yellow.** They exist so a
+diagram category can be told apart; hue separation between members is what matters, since they
+co-occur in one diagram. The ramp carries its own light and print values (a single base `:root`
+declaration once drew dark-ground fills on a light page). **This reverses an older decision that held
+`--data-1` off the link hue**: Dracula has eight colors and the baseline spends cyan on both, so
+`--data-1` and `--link` are now the same hex, as are `--data-2`/`--pink` and `--data-3`/`--green`.
+The overlap is accepted because a category fill and a prose accent never co-occur: a diagram does not
+put body copy inside it. **Do not "fix" the collision by re-muting a ramp member.**
 
 **A pie slice renders the token.** Check 5 always asserted the token cleared the
 non-text floor (governing a `classDef` fill, a legend swatch, any direct `var(--data-2)` use) but
 said nothing about what a `pie` fence itself rendered at Mermaid's default 0.7 `pieOpacity`.
-`pieOpacity: '1'` closes that gap; check 11 measures the label that lands on it. See
+`pieOpacity: '1'` closes that gap; check 10 measures the label that lands on it. See
 [Diagram types](#mermaid).
 
-**`--data-2` sits close to `--pink`, `--data-3` close to `--green`, left alone**: nothing in a
-diagram puts a category fill beside body copy, and a move means two more hex projections to
-recompute.
-
-**`classdef`/`classdefLight` fills both exist**, check 2 gating both sets plus the
-letter each paints on its own fill (`--surface` on the pale dark ramp, `--on-surface` on the
-mid-tone light ramp: reusing `--surface` in light would land at 3.45-3.53:1, out of bounds).
+**`classdef`/`classdefLight` fills both exist**, check 2 gating both sets plus the letter each paints
+on its own fill. **Both sets paint `--surface` now**: the Dracula ramp is legible under it in both
+palettes, so the light set no longer inverts to `--on-surface`, and `pieSectionTextColor` in the
+light palette moved to `--surface` for the same reason.
 **`CONTRACT.md` § 2 bans a `classDef name fill:#hex` line on any page that follows the reader's
 appearance**, permitting it only on a page locked to one palette: a fence has no CSS to read, so one
 literal hex can't follow appearance and no palette work changes that.
 
-### Gamut and vividness
+### Gamut
 
 **A declared chroma sRGB can't hold is silently clipped, and every contrast check stays green**
 (three high-contrast tokens shipped that way for two releases, since `oklch_to_linear` clips before
 measuring). Check 7 bisects the sRGB boundary and gates every parsed token in every mode. **The trap
 is directional**: the chroma ceiling shrinks as lightness climbs, so raising `L` for "more contrast"
 washes a color out faster than the numbers predict. **Do not park a token exactly on the gamut
-boundary**: it tips out on any later lightness nudge; each token holds a stated fraction of ceiling
-instead.
+boundary**: it tips out on any later lightness nudge. This is what `--purple-bright` demonstrates.
+
+**The P3 widening is retired.** Six accents used to reach past sRGB into Display P3, which is why the
+old sheet had two palettes in it. Every token is now an exact upstream sRGB hex, so the sRGB ceiling
+is the only ruler, `P3_WIDENED`/`P3_MODES` are gone, and every hex-only consumer (Mermaid, the editor
+themes) gets a straight conversion rather than a gamut map. **Do not re-widen a token into P3**: it
+reintroduces a color the hex-only projections cannot show.
 
 **High contrast compresses the accent set (the ceiling collapses at high lightness), and no token
 edit fixes that.** Text mitigates it (`verified`/`unverified`/`correction` spelled out), not color.
 **Do not try to widen these by a hue move**: chroma compressed, not hue separation.
-
-**`--red` is the loudest accent in every mode on purpose**, check 8 pins it there: its chroma is what
-separates `.correction` from `h1` pink and `.unverified` orange. **`--link` and four other accents
-(`--orange`, `--purple`, `--pink`, `--green`) deliberately let their fraction float** rather than
-holding one pinned fraction like `--red` and the data ramp: a pin means new chromas across three
-mode blocks each, re-measuring every ratio and both Mermaid projections, worth it for a status color
-but not for "`h2` calmer on paper". **A table of five that's true beats a table of ten that's
-aspirational.**
-
-### P3 gamut for six vivid accents
-
-**`--red`, `--orange`, `--purple`, `--pink`, `--green` and the `--data-*` ramp hold a wider,
-Display-P3-reaching chroma in dark and light mode only**: high contrast and print keep original
-sRGB values (high contrast is already gamut-compressed by design; a screen's P3 gamut has no
-correspondence to reproducible ink). `palette-check.py`'s `P3_WIDENED`/`P3_MODES` scope the relaxed
-ceiling to exactly these tokens in exactly these two modes; everywhere else the sRGB gate is
-unchanged.
-
-**`--red` and the data ramp keep their exact existing fraction**, now measured against the wider
-ceiling: no re-litigation of loudness, only a wider ruler. **`--orange`/`--purple`/`--pink`/`--green`
-get no pinned fraction**: their fraction of the sRGB ceiling swung wildly between modes purely by
-accident of where one hardcoded chroma landed, so porting one as a "target" would state a precision
-that was never designed. The rule instead: **+25% chroma, independently in dark and light**, capped
-wherever it would break an existing check-5 floor (only `--purple` dark against `--code-bg` needed
-the cap, to +9.3% instead of +25%, holding 4.21:1).
-
-**High contrast now restates the data ramp explicitly** (it never had to before check 8 caught an
-unstated inherited P3 chroma drifting its vividness fraction out of band), the same treatment the
-other five accents already get.
-
-**Every hex-only consumer (Mermaid, the three editor themes) is still sRGB and now needs gamut
-mapping, not a straight conversion.** Before this, no token's chroma ever exceeded the sRGB ceiling,
-so `oklch_to_hex`'s per-channel clip was dead code. `oklch_to_hex` now reduces chroma to the sRGB
-ceiling before converting (holding `L` and hue), matching what a browser's own CSS Color 4 gamut
-mapping does. `mermaid-palette.json` and `mermaid.js`'s `primaryBorderColor`/`nodeBorder`/`pie1..4`
-literals were recomputed to match; every other Mermaid hex was already in-gamut.
-
-**Percent of maximum chroma is the wrong yardstick across lightness: it works only across hue.**
-**Do not carry the fraction rule to the near-neutral grays** (`--label` etc).
 
 **An APCA reading inverts the WCAG 2 story (dark mode runs below light mode on identical roles), and
 no token moved because of it**: that's the known WCAG 2 overstatement of light-on-dark, not a
@@ -542,35 +524,33 @@ defect here, and a flat Lc threshold misapplies APCA, whose threshold falls with
 
 ### What is gated, and what is open
 
-`.github/palette-check.py` runs twelve checks: (1) hex projections in both Mermaid palettes; (2) the
+`.github/palette-check.py` runs eleven checks: (1) hex projections in both Mermaid palettes; (2) the
 `classdef` fills in both sets plus their painted letter; (3) `/* was */` provenance comments; (4)
 stray hex in `mermaid.js`; (5) the contrast floor in all four modes against three grounds, plus rules
-and the data ramp; (6) `--mermaid-scheme` both directions, no `prefers-color-scheme` in `mermaid.js`,
-and the `(max-width: 600px)` breakpoint pinned in both files; (7) sRGB gamut for every parsed token
-in every mode; (8) the vividness bands; (9) the inverted accent-as-ground pairs; (10) the two
-relative-color tokens per mode, plus `mark`'s alpha composite; (11) the pie slice label against all
-four fills in both palettes, plus `pieOpacity` pinned to `1`; (12) `--on-surface` over the
-`table.bar-chart` band at its alpha, against both grounds in every mode, plus print and forced-colors
-pins.
+and the data ramp, with the two named `FLOOR_OVERRIDE` pairs; (6) `--mermaid-scheme` both directions,
+no `prefers-color-scheme` in `mermaid.js`, and the `(max-width: 600px)` breakpoint pinned in both
+files; (7) sRGB gamut for every parsed token in every mode; (8) the inverted accent-as-ground pairs
+(`.verdict-*`, `.step-node` including the ramp, `::selection`); (9) the relative-color `--highlight`
+token per mode, plus `mark`'s alpha composite; (10) the pie slice label against all four fills in
+both palettes, plus `pieOpacity` pinned to `1`; (11) `--on-surface` over the `table.bar-chart` band
+at its alpha, against both grounds in every mode, plus print and forced-colors pins.
 
-**Check 9 also gates its own reason for existing**: `.step-node`'s role list deliberately omits
-`--data-*`, and the check says so out loud rather than leaving an untested prohibition. **A new token
-joins check 5's roles, then decide whether it also belongs in check 8's table**: a light-palette
-token move needs a matching Mermaid-side move, and the gate is what says so.
+**A new token joins check 5's roles.** The vividness band table is gone with the palette it measured
+(there is nothing left to pin: every chroma is an upstream value), and the `.step-node` ramp
+exclusion is gone with it, because the baseline makes `--surface` legible on the ramp in every mode.
 
-**Two `CONTRACT.md` § 2 requirements reach the sheet where no palette check can see them.**
-`--icon-color` on `.step-node` (inline `style` attribute) is gated in `scripts/maintain.nu check`
-instead, scanning every fixture for a banned `--data-*` value. A `quadrantChart` point label (inside
-a `pre.mermaid` fence, diagram source) stays prose: the fixture's own two overlong labels are the
-only instance in the repo and exist to exercise `overflow: visible` (see Diagram sizing), so a length
-gate would have to exempt its only subject and assert nothing. **Some obligations stay prose**: writing a gate that skips its only subject reports green about a question it never asked.
+**One `CONTRACT.md` § 2 requirement reaches the sheet where no palette check can see it.** A
+`quadrantChart` point label (inside a `pre.mermaid` fence, diagram source) stays prose: the fixture's
+own two overlong labels are the only instance in the repo and exist to exercise `overflow: visible`
+(see Diagram sizing), so a length gate would have to exempt its only subject and assert nothing.
+**Some obligations stay prose**: writing a gate that skips its only subject reports green about a
+question it never asked.
 
-**Three things stay open, none a measurement**: `--orange` carries eight roles (`strong`, the `mark`
+**Two things stay open, neither a measurement**: `--orange` carries eight roles (`strong`, the `mark`
 wash, syntax numerals/constants, the `aside`/alert bar, `.markdown-alert-title`, `.unverified`,
 `.verdict-partial`, `:target`): every alternative trades one hue collision for another, and a move
 would break the "orange arrival cue reads distinct from the link-blue focus ring" reasoning
-elsewhere. Five accents let their chroma fraction float (above). The high-contrast set is
-gamut-compressed and text mitigates it (above).
+elsewhere. The high-contrast set is gamut-compressed and text mitigates it (above).
 
 ### Forced colors
 
@@ -630,14 +610,16 @@ structure only, no color, every component reusing an existing token under the hu
 
 **`.kicker`** (eyebrow pill) reuses `--link` and the `oklch(from … / alpha)` pattern `--highlight`
 established: no new token for a tint. A document-status use picks the color already scoped to that
-state rather than adding a seventh accent. **Tint sits at 8% alpha, not 12%**: 12% pushed `--link`
-text on a `--link`-tinted background under the 4.5:1 floor in light mode (4.47:1); 8% clears it with
-margin.
+state rather than adding a seventh accent. **Tint sits at 8% alpha, not 12%**: it clears the floor
+with margin (light 5.15:1, dark 8.41:1). The original reason for 8% over 12% has expired with the
+palette (12% now measures 4.85:1 light, above floor too), and 8% is kept as the existing decision
+rather than churned for a difference of margin.
 
 **`.tag-dot`** (`::before` circle) paints `currentColor`, carrying no color of its own, so it can't
 reopen the rejected tier-ramp above. **Belongs on an empty element, never one that also holds the
-label**: `currentColor` recolors sibling text too, and the first fixture draft measured 3.45-3.53:1
-painting a label directly.
+label**: `currentColor` recolors sibling text too, and the first fixture draft measured a label
+painted directly under the text floor (the Dracula ramp under `--surface` now clears it, 4.80 to
+7.33:1 light, 5.98 to 12.74:1 dark, so the reason is the double-recolor, not the ratio).
 
 **`.live-dot`** (the sheet's first `@keyframes`) reuses `--green`, the existing "healthy" role.
 `prefers-reduced-motion`'s global animation-duration zero already freezes the pulse for free. No
@@ -663,11 +645,14 @@ one turns a problem one sentence of prose already solves into a payload API.
 
 **`.step-chain`/`.step-hop`/`.step-node`/`.step-arrow`** is a linear process strip for a flow too
 trivial for Mermaid (three or four stages, no branching): not a Mermaid replacement; any graph with
-a branch or loop still belongs in `pre.mermaid`. Same `--icon-color` convention as `.icon-list`,
-**with one exception: `.step-node`'s `--icon-color` takes a prose accent, never a `--data-*` slot**: the node fills at full strength under real text (`--surface`), and the ramp is only checked at the
-3:1 non-text floor (measured 3.45-3.60:1 there). `.tag-dot`/`.icon-chip` may still carry `--data-*`
-since neither puts text on the fill. **Only a full-strength fill under real text is the problem**: check the distinction before adding a fifth component to this convention; check 9 gates the
-permitted set, `CONTRACT.md` § 2 states the consumer obligation. **Every node but the first is
+a branch or loop still belongs in `pre.mermaid`. Same `--icon-color` convention as `.icon-list`, and
+**its `--icon-color` may take either a prose accent or a `--data-*` slot**: the node fills at full
+strength under real text (`--surface`), and the Dracula baseline keeps `--surface` legible on both
+sets in every mode, which is what check 8 measures. This reverses an older prohibition that held the
+ramp out of `.step-node` when its light and print values were pale. `.tag-dot`/`.icon-chip` carry
+`--data-*` too, since neither puts text on the fill. **Only a full-strength fill under real text is
+the problem**: check the distinction before adding a fifth component to this convention; check 8
+gates the permitted set, `CONTRACT.md` § 2 states the consumer obligation. **Every node but the first is
 wrapped with its leading arrow in one `.step-hop`**, so a flex-wrap can't strand an arrow on one line
 and its node on the next with no visible connector.
 
@@ -705,12 +690,13 @@ categories is `table.bar-chart`.
 **The bar chart is a table with a class, and the band paints inside the cell holding the number**
 (an empty cell was rejected: it would make the graphic the only carrier of the value).
 
-- **The band is a 0.3-alpha wash of `--data-1`, never full strength** (full strength under text is
-  the `.step-node` trap; text on it measures about 3.5:1). Check 12 measures the actual composite
-  rather than restating the alpha; the first floor failure appears at 0.5.
+- **The band is a 0.3-alpha wash of `--data-1`, never full strength** (a full-strength pale fill
+  under the near-white `--on-surface` number fails in dark mode). Check 11 measures the actual
+  composite rather than restating the alpha; the first floor failure appears at 0.5.
 - **Every band is one hue; a per-row `--bar-color` was tried and reverted.** At 0.3 alpha the four
   washes land within Lc 2 of each other (1.00-1.13:1 band-against-band) while the legend dot at full
-  strength reads 7.39:1: no alpha fix exists (even 0.4, check 12's cap, still leaves Lc 3). **Do not
+  strength reads 7.39:1: no alpha fix exists (check 11 measures the one alpha, 0.3, and 0.4
+  leaves Lc 3). **Do not
   reintroduce a per-bar color property**: it can't deliver the category key it implies, and as an
   inline hook it also invites a prose accent onto a neutral number. The row label carries the
   category.
@@ -772,7 +758,7 @@ first column of that table is bold.
 **`tfoot td` takes a strong rule above it and weight 600**, so a total reads as a total in any table.
 
 **`td.bar.lead` marks one emphasis row by weight 600 only.** A higher band alpha would fall outside
-check 12, which measures one alpha.
+check 11, which measures one alpha.
 
 **`.stat-strip` is a `dl` of `div` groups: `dt` label, `dd.v` value, `dd.s` gloss.** Cell borders
 overlap by 1px through negative margins, not a gap on a colored ground, because forced colors resets
@@ -924,7 +910,7 @@ theme and every derived color computes light-mode.
 
 **`fontFamily`, `fontSize`, `pieOpacity` are the only non-color `themeVariables`**, none mirrored
 into `mermaid-palette.json` (nothing there to catch). `fontSize: '1rem'` tracks the reader's root
-size (Mermaid defaults to a hardcoded 16px); `pieOpacity: '1'` is pinned by check 11 instead, since it
+size (Mermaid defaults to a hardcoded 16px); `pieOpacity: '1'` is pinned by check 10 instead, since it
 changes a measured contrast pair. **`background` is inert** (swept across twelve diagram types,
 never reaches output): correct by intent, not load-bearing.
 

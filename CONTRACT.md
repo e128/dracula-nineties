@@ -149,15 +149,16 @@ wrong by v1.38.1, and every check stayed green. A search string survives regener
       beside a visible `<strong>` label that already states what it identifies, so an unhidden glyph
       is a screen reader announcing the same information twice per row. `.step-node` is the opposite
       case and stays real text: it carries no adjacent label of its own.
-- [ ] `--icon-color` on a `.step-node` set from a **prose accent** (`--orange`, `--link`,
-      `--purple`, `--green`, `--pink`, `--red`), never from the `--data-1` through `--data-4` ramp.
-      The node fills at full strength and its letter is `--surface` painted on that fill, so the
-      fill is a text ground, and the ramp is contrast-checked for a 3:1 graphic: `--surface` on it
-      measures 3.45 to 3.53:1 in light mode and 3.60:1 in print, under the 4.5:1 text floor. This is
-      the same trap as the `.tag-dot` case above, one component over. `.tag-dot` and `.icon-chip`
-      **may** still take a `--data-*` color, because neither puts text on the fill. No CSS rule can
-      enforce this, because the color arrives in an inline `style` attribute (in `samples/dark.html`,
-      search `class="step-node" style="--icon-color: var(--orange)"`).
+- [ ] `--icon-color` on a `.step-node` set from any accent: a prose accent (`--orange`, `--link`,
+      `--purple`, `--green`, `--pink`, `--red`) **or** the `--data-1` through `--data-4` ramp. The
+      node fills at full strength and its letter is `--surface` painted on that fill, so the fill is
+      a text ground, and both sets are now legible under it: the Dracula baseline keeps `--surface`
+      on every ramp member above the text floor in every mode, which is what `palette-check.py` check
+      8 measures for the ramp and `.verdict-*`. This used to be a prohibition when the ramp was
+      pale in dark and printed; it is a permitted set now. `.tag-dot` and `.icon-chip` **may** also
+      take a `--data-*` color, because neither puts text on the fill. No CSS rule can enforce the
+      choice either way, because the color arrives in an inline `style` attribute (in
+      `samples/dark.html`, search `class="step-node" style="--icon-color: var(--orange)"`).
 - [ ] **No `classDef name fill:#hex` line inside a ` ```mermaid ` fence on a page that follows the
       reader's appearance.** A fence is diagram source, so it has no CSS to read and no `var()` it
       can resolve: one literal hex cannot serve both palettes, and the set in
@@ -189,7 +190,7 @@ wrong by v1.38.1, and every check stayed green. A search string survives regener
       numbers, and put the source in a `<span class="byline">`. This stays prose: no check can tell
       a caption that states them from one that does not. **The band has no color
       property, and that is deliberate:** it is a 0.3 alpha wash of `--data-1` in every row, which
-      is the alpha the number sitting on top of it needs (check 12 of `palette-check.py` measures
+      is the alpha the number sitting on top of it needs (check 11 of `palette-check.py` measures
       that pair in all four modes). A per-row hue was measured out, because four washes at that
       alpha land within Lc 2 of each other and cannot carry a category. Put the category in the row
       label.

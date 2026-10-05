@@ -81,12 +81,13 @@ comment here is not written once. Every page a consumer renders carries a copy o
     `lines | get 1` to stamp `tokens.css`, and `scripts/maintain.nu bump` rewrites it. If you remove it,
     regeneration dies with `index too large (empty content)`. That failure is *silent* when you
     pipe the output, and it leaves stale fixtures that look correct.
-  - **The `/* was #rrggbb */` notes on six `:root` tokens.** Check 3 of
-    `.github/palette-check.py` parses them, and the check fails when a stated hex disagrees with
-    its `oklch()`. If you delete a note, you disable that gate in silence. Match the exact
-    format when you add a token. Four tokens (`--orange`, `--purple`, `--pink`, `--green`) lost
-    this note when their chroma widened past sRGB into Display P3: a P3 chroma has no exact sRGB
-    hex to state. See NOTES.md, Color and the contrast budget.
+  - **The `/* was #rrggbb */` notes on the `:root` tokens that are exact upstream hexes.** Check 3
+    of `.github/palette-check.py` parses them, and the check fails when a stated hex disagrees with
+    its `oklch()`. If you delete a note, you disable that gate in silence. Match the exact format
+    when you add a token. The notes cover every token with a real sRGB hex behind it (the Dracula
+    and Alucard accents, the grounds, the data ramp); `--purple-bright`, the rule tokens and the
+    alpha or relative forms carry none, because no single hex states them. See NOTES.md, Color and
+    the contrast budget.
 - The Nushell scripts (`scripts/build-sample.nu`, `scripts/maintain.nu`), `README.md`, `backlog.md`
   and `AGENTS.md` are **not** inlined. Comment those files as normal.
 

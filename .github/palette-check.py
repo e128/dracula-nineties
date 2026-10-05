@@ -15,7 +15,7 @@ It is what makes the "from" fields load-bearing rather than decorative.
 Paths resolve from this script's location, so cwd does not matter (scripts/maintain.nu
 calls it by absolute path). Exit 1 on any drift.
 
-ponytail: stdlib-only Oklab -> sRGB, no colour-science dependency for 17 values.
+ponytail: stdlib-only Oklab -> sRGB, no colour-science dependency for 18 values.
 """
 import json
 import math
@@ -57,43 +57,6 @@ def max_chroma(L, h, eps=1e-4):
     for _ in range(40):
         mid = (lo + hi) / 2
         if all(-eps <= v <= 1 + eps for v in oklch_to_linear_raw(L, mid, h)):
-            lo = mid
-        else:
-            hi = mid
-    return lo
-
-
-def oklch_to_linear_raw_p3(L, C, h):
-    """oklch() -> linear Display P3, unclamped. Same Oklab step as sRGB, different matrix.
-
-    The matrix is an OKLab-to-XYZ matrix composed with an XYZ-to-linear-Display-P3
-    matrix (both from color.js, the reference implementation CSS Color 4 cites).
-    Composing the same OKLab-to-XYZ matrix with an XYZ-to-linear-sRGB matrix instead
-    reproduces the sRGB matrix above to 9 significant figures, which is what confirms
-    this composition method rather than trusting it.
-    """
-    a = C * math.cos(math.radians(h))
-    b = C * math.sin(math.radians(h))
-    l = (L + 0.3963377774 * a + 0.2158037573 * b) ** 3
-    m = (L - 0.1055613458 * a - 0.0638541728 * b) ** 3
-    s = (L - 0.0894841775 * a - 1.2914855480 * b) ** 3
-    return (
-        3.1277689714 * l - 2.2571357626 * m + 0.1293667912 * s,
-        -1.0910090184 * l + 2.4133317103 * m - 0.3223226919 * s,
-        -0.0260108019 * l - 0.5080413317 * m + 1.5340521336 * s,
-    )
-
-
-def max_chroma_p3(L, h, eps=1e-4):
-    """The largest chroma at this lightness and hue that still lands inside Display P3.
-
-    Same bisection as max_chroma, against the wider P3 boundary. Only P3_WIDENED
-    tokens in P3_MODES are ever checked against this instead of max_chroma.
-    """
-    lo, hi = 0.0, 0.5
-    for _ in range(40):
-        mid = (lo + hi) / 2
-        if all(-eps <= v <= 1 + eps for v in oklch_to_linear_raw_p3(L, mid, h)):
             lo = mid
         else:
             hi = mid
@@ -150,8 +113,8 @@ triples = {
     )
 }
 palette = {name: oklch_to_hex(*lch) for name, lch in triples.items()}
-if len(palette) < 17:
-    sys.exit(f"Only parsed {len(palette)} oklch tokens from :root, expected 17.")
+if len(palette) < 18:
+    sys.exit(f"Only parsed {len(palette)} oklch tokens from :root, expected 18.")
 
 # The light palette is the base :root overlaid with the light block's overrides, which
 # is how the cascade resolves it. mermaid.js carries both hex sets because khroma cannot
@@ -243,7 +206,7 @@ for section, source in (("init", palette), ("initLight", light_palette)):
 #    light set at 3.45 to 3.53:1 had it reused --surface.
 CLASSDEF = (
     ("classdef", palette, triples, "surface"),
-    ("classdefLight", light_palette, light_triples, "on-surface"),
+    ("classdefLight", light_palette, light_triples, "surface"),
 )
 for section, source, lch_for, text_token in CLASSDEF:
     if section not in pal:
@@ -330,20 +293,32 @@ for found in sorted(set(re.findall(r"#[0-9a-f]{6}", (ROOT / "mermaid.js").read_t
 #    on --code-bg while a bare SVG lands on --surface. Through v1.24.0 this ramp had
 #    no light or print override and measured 1.69 to 2.15:1 there, which NOTES.md
 #    recorded and accepted. v1.25.0 gave it both, so the floor is now gated.
-TEXT = ["on-surface", "label", "muted", "link", "orange", "red", "purple", "pink", "green"]
+TEXT = ["on-surface", "label", "muted", "link", "orange", "red", "purple", "purple-bright", "pink", "green"]
 RULES = ["rule-light"]
 DATA = ["data-1", "data-2", "data-3", "data-4"]
 MODES = {
     # name: (media condition, text floor, non-text boundary floor)
     #
-    # 4.2 for the default, not 4.5: --purple sits at 4.23 against --code-bg. That
-    # is the documented floor under "Color and the contrast budget", kept because
-    # --purple-bright carries the one role that puts purple text on that fill.
-    # The floor is pinned here so it cannot slip further without saying so.
-    "default": (None, 4.2, 3.0),
+    # 3.0 for the default: the palette is now the authoritative Dracula baseline,
+    # exact upstream hexes, not the desaturated derivations that let it sit at 4.2.
+    # Dracula keeps Comment (#6272a4) and Red (#ff5555) deliberately dim on the
+    # Current Line fill, and the whole point of this mode is those upstream colors.
+    # The one pair that cannot meet even 3.0 is Comment on Current Line (1.94:1),
+    # recorded as FLOOR_OVERRIDE below rather than hidden by lowering the mode.
+    #
+    # 3.2 for light: the Alucard baseline is the same story, its Red sits at 3.26:1
+    # on the Deeper fill. Print stays 4.5 because paper has no such identity to
+    # preserve and its ground is white. High contrast stays 7.0.
+    "default": (None, 3.0, 3.0),
     "prefers-contrast: more": ("@media (prefers-contrast: more)", 7.0, 3.0),
-    "prefers-color-scheme: light": ("@media (prefers-color-scheme: light)", 4.5, 3.0),
+    "prefers-color-scheme: light": ("@media (prefers-color-scheme: light)", 3.2, 3.0),
     "print": ("@media print", 4.5, 3.0),
+}
+# The upstream palette forces two pairs under the mode floor, and only these two.
+# Naming them here keeps the relaxation from spreading to a third token unnoticed.
+FLOOR_OVERRIDE = {
+    ("default", "muted"): 1.9,
+    ("default", "red"): 2.85,
 }
 resolved = {}
 for mode, (condition, text_floor, rule_floor) in MODES.items():
@@ -383,10 +358,11 @@ for mode, (condition, text_floor, rule_floor) in MODES.items():
                 grounds = ["surface", "code-bg", "surface-alt"]
             for ground in grounds:
                 got = contrast(fg, triples_for_mode[ground])
-                if got + 0.005 < floor:
+                limit = FLOOR_OVERRIDE.get((mode, name), floor)
+                if got + 0.005 < limit:
                     print(
                         f"CONTRAST: {mode} --{name} is {got:.2f}:1 on --{ground}, "
-                        f"below the {floor} floor for this mode"
+                        f"below the {limit} floor for this mode"
                     )
                     fail = 1
 
@@ -453,89 +429,36 @@ if f"matchMedia('{SCROLL_BREAKPOINT}')" not in mermaid_js:
 #    lightness nudge tips it out. Aim for the fraction of maximum chroma the dark
 #    token holds, which is the method the --data-* ramp already documents.
 #
-#    Six vivid accents (--red, --orange, --purple, --pink, --green, --data-1..4) hold
-#    a P3-reaching chroma in dark and light mode, gated by P3_WIDENED and P3_MODES.
-#    High-contrast and print keep these same tokens at their original sRGB values, so
-#    they still gate against the sRGB ceiling: a real sRGB clip in either untouched
-#    mode still fails loudly rather than passing under a relaxation meant for two
-#    modes it never applies to.
-P3_WIDENED = {"red", "orange", "purple", "pink", "green", "data-1", "data-2", "data-3", "data-4"}
-P3_MODES = {"default", "prefers-color-scheme: light"}
+#    Every token is now an exact sRGB hex from the upstream baseline, so the sRGB
+#    ceiling is the only ruler and the P3 widening this check used to carry is gone.
+#    The trap it closes is unchanged: a declared chroma over the ceiling renders as
+#    a browser clip, not an error, and every check above measures the clipped result.
 for mode, triples_for_mode in resolved.items():
     for name, (L, C, h) in sorted(triples_for_mode.items()):
-        wide = name in P3_WIDENED and mode in P3_MODES
-        ceiling = max_chroma_p3(L, h) if wide else max_chroma(L, h)
+        ceiling = max_chroma(L, h)
         if C > ceiling + 0.0005:
-            gamut = "P3" if wide else "sRGB"
             print(
                 f"GAMUT: {mode} --{name} declares chroma {C:.3f} at L {L:.3f} hue {h:g}, "
-                f"where {gamut} holds {ceiling:.3f} ({C / ceiling * 100:.0f}% of the ceiling). "
+                f"where sRGB holds {ceiling:.3f} ({C / ceiling * 100:.0f}% of the ceiling). "
                 f"The browser clips it to {oklch_to_hex(L, C, h)} instead."
             )
             fail = 1
 
-# 8. Vividness is policy for some tokens, so it is pinned here rather than left in
-#    prose. Chroma alone does not say how colorful a token looks: the sRGB ceiling
-#    moves with lightness, so one absolute chroma reads as two different intensities
-#    at two lightnesses. --red carried `0.142` in three modes and landed at 87% of the
-#    ceiling in dark, 65% in light and 63% in print, which is one number producing
-#    three different reds. It now holds 87% in all four, which keeps it the loudest
-#    accent on purpose, and the light and print values that came out of that were also
-#    strictly better on every measured pair. The --data-* ramp already held its
-#    fractions exactly across modes; NOTES.md stated them and nothing enforced it.
-#
-#    The band is the fraction of maximum in-gamut chroma, checked in every mode. It is
-#    wide enough for the third decimal a token is written to and narrow enough that a
-#    lightness edit made without recomputing chroma trips it, which is the whole point:
-#    L and C have to move together or the token changes character.
-#
-#    --link, --orange, --purple, --pink and --green are still deliberately absent from
-#    this table. --orange, --purple, --pink and --green each hold one absolute chroma in
-#    dark and a second one in light (see NOTES.md), so their fraction still floats
-#    independently per mode rather than being pinned to an invariant. Pinning those
-#    means rewriting the whole palette and re-measuring every ratio in this file,
-#    which is a much larger change than the drift it would prevent. A table of five
-#    tokens that is true beats a table of ten that is aspirational.
-#
-#    The five tokens below are pinned, and in dark and light mode the ceiling they are
-#    measured against is now the P3 one (P3_WIDENED / P3_MODES, same as check 7). The
-#    band numbers are unchanged; only the ruler is wider, in the two modes that widened.
-VIVIDNESS = {
-    "red": (0.85, 0.89),
-    "data-1": (0.69, 0.73),
-    "data-2": (0.54, 0.58),
-    "data-3": (0.59, 0.63),
-    "data-4": (0.55, 0.59),
-}
-for mode, triples_for_mode in resolved.items():
-    for name, (low, high) in VIVIDNESS.items():
-        L, C, h = triples_for_mode[name]
-        ceiling = max_chroma_p3(L, h) if mode in P3_MODES else max_chroma(L, h)
-        got = C / ceiling
-        if not low <= got <= high:
-            print(
-                f"VIVIDNESS: {mode} --{name} is {got * 100:.1f}% of the sRGB ceiling at "
-                f"L {L:.3f} hue {h:g}, outside the {low * 100:.0f} to {high * 100:.0f}% band. "
-                f"Chroma {(low + high) / 2 * ceiling:.3f} would sit mid-band."
-            )
-            fail = 1
-
-# 9. An accent used as a BACKGROUND is a pair no check above ever looks at. Check 5
+# 8. An accent used as a BACKGROUND is a pair no check above ever looks at. Check 5
 #    only ever puts a token in the foreground, on --surface, --code-bg or
 #    --surface-alt. Three components invert that: `.verdict-*`, `.step-node` and
 #    `::selection` all paint --surface TEXT on an accent fill. Nothing gated any of
-#    them, and the gap is not theoretical. `.step-node` takes its fill from an
-#    --icon-color custom property that NOTES.md invited an author to set from the
-#    --data-* ramp, and --surface on that ramp measures 3.45 to 3.53:1 in light mode
-#    and 3.60:1 in print. Those are the same numbers NOTES.md already records as "a
-#    real failure a reader would have copied" from the first draft of the .tag-dot
-#    fixture, one component over, caught by hand that time.
+#    them, and the gap is not theoretical: the first draft of the .tag-dot fixture
+#    painted --surface on a --data-* fill at a ratio a reader would have copied, caught
+#    by hand that time. `.step-node` takes its fill from an --icon-color custom
+#    property, so the same mistake is one property away.
 #
-#    So the ramp is now out of bounds for .step-node, stated in CONTRACT.md, and the
-#    permitted set is pinned below. A .tag-dot or an .icon-chip may still carry a
-#    --data-* color: the dot paints currentColor on an empty element, and the chip's
-#    glyph is --on-surface on a 15%-alpha tint, which measures 8.06:1 and up. Only a
-#    full-strength fill under real text is the problem.
+#    The Dracula baseline makes --surface legible on every --data-* member in every
+#    mode, so the ramp is no longer out of bounds for .step-node and the permitted set
+#    below includes it. A .tag-dot or an .icon-chip may still carry a --data-* color:
+#    the dot paints currentColor on an empty element, and the chip's glyph is
+#    --on-surface on a 15%-alpha tint. Only a full-strength fill under real text is
+#    the problem, and that pair is what this check measures.
 #
 #    Print is skipped for `.verdict-*` alone, because the print block replaces the
 #    fill with `background: none` plus a currentColor ring and recolors the text, so
@@ -543,7 +466,8 @@ for mode, triples_for_mode in resolved.items():
 #    override, so it is checked there like everywhere else.
 INVERTED = {
     ".verdict-*": ("surface", ["green", "orange", "red", "muted"], {"print"}),
-    ".step-node": ("surface", ["orange", "link", "purple", "green"], set()),
+    ".step-node": ("surface", ["orange", "link", "purple", "green",
+                               "data-1", "data-2", "data-3", "data-4"], set()),
     "::selection": ("surface", ["purple"], set()),
 }
 for mode, triples_for_mode in resolved.items():
@@ -560,38 +484,19 @@ for mode, triples_for_mode in resolved.items():
                 )
                 fail = 1
 
-#    The prohibition above needs a reason that stays true, not a comment. If a later
-#    edit to the ramp made --surface legible on all four members in every mode, the
-#    exclusion would be dead weight and this check says so out loud rather than
-#    leaving a rule nobody can retire.
-ramp_ok = True
-for mode, triples_for_mode in resolved.items():
-    for name in DATA:
-        if contrast(triples_for_mode["surface"], triples_for_mode[name]) + 0.005 < MODES[mode][1]:
-            ramp_ok = False
-if ramp_ok:
-    print(
-        "STALE: --surface now clears the text floor on every --data-* member in every "
-        "mode, so the .step-node exclusion in CONTRACT.md has no reason left. Either "
-        "widen INVERTED['.step-node'] to include the ramp, or delete this check."
-    )
-    fail = 1
-
-# 10. Two tokens are written with relative color syntax, and the triple regex above
-#     cannot see either one. `--purple-bright: oklch(from var(--purple) calc(l + 0.07)
-#     c h)` and `--highlight: oklch(from var(--orange) l c h / 0.35)` therefore sat
-#     outside checks 5 and 7 entirely. That matters most for --purple-bright, because
-#     it is the ONE token that puts purple text on --code-bg: NOTES.md records
-#     --purple itself at 4.21:1 there, the tightest accent-on-ground pair in the
-#     sheet, and accepts it precisely because no purple text renders on that fill.
-#     --purple-bright is the counterexample to that reasoning, it renders on every
-#     highlighted code block as .hljs-type, and nothing measured it. It currently
-#     clears its floor with margin, so this closes a blind spot rather than a failure,
-#     but a later nudge to --purple's lightness moves it silently either way.
+# 9. --highlight is written with relative color syntax, and the triple regex above
+#     cannot see it: `--highlight: oklch(from var(--orange) l c h / 0.30)` sat outside
+#     checks 5 and 7 entirely. It is a background, so check 5's foreground pairs never
+#     covered the `mark` text painted on it, and check 7 never saw the chroma.
 #
-#     Only two forms exist, so this resolves those two rather than implementing
-#     relative color in general. A third form fails loudly below instead of being
-#     silently skipped, which is the failure mode this check exists to remove.
+#     --purple-bright used to be relative here too, but the exact #bd93f9 has no
+#     headroom: any lightness bump off it leaves sRGB, so all four modes now state it
+#     as a literal and it rides checks 5 and 7 like any other accent.
+#
+#     Only the one form survives, and a second relative form may return, so this
+#     resolves the general shape rather than the single instance. A form it cannot
+#     parse fails loudly below instead of being silently skipped, which is the failure
+#     mode this check exists to remove.
 RELATIVE = re.compile(
     r"--([\w-]+):\s*oklch\(from var\(--([\w-]+)\) "
     r"(?:calc\(l ([+-]) ([\d.]+)\)|l) c h(?: / ([\d.]+))?\)"
@@ -670,11 +575,7 @@ for mode, (condition, text_floor, rule_floor) in MODES.items():
                     )
                     fail = 1
             if not literal:
-                ceiling = (
-                    max_chroma_p3(resolved_lch[0], resolved_lch[2])
-                    if base in P3_WIDENED and mode in P3_MODES
-                    else max_chroma(resolved_lch[0], resolved_lch[2])
-                )
+                ceiling = max_chroma(resolved_lch[0], resolved_lch[2])
                 if C > ceiling + 0.0005:
                     print(
                         f"GAMUT: {mode} {origin} declares chroma {C:.3f} at "
@@ -707,7 +608,7 @@ for name in ("purple-bright", "highlight"):
         )
         fail = 1
 
-# 11. A pie slice label is the one place a themeVariable lands ON another
+# 10. A pie slice label is the one place a themeVariable lands ON another
 #     themeVariable, so check 5 cannot see it: it measures every token against
 #     --surface, --code-bg and --surface-alt, and a slice is none of those. Mermaid
 #     draws `.slice { fill: pieSectionTextColor }` over `.pieCircle { fill: pieN }`,
@@ -786,7 +687,7 @@ if "@media print and (prefers-color-scheme: light) {" not in stylesheet:
           "light-themed diagram gets a dark ground it was never themed for")
     fail = 1
 
-# 12. The bar chart puts a --data-* member somewhere no check above looks: it is an
+# 11. The bar chart puts a --data-* member somewhere no check above looks: it is an
 #     alpha wash of --data-1 painted UNDER the number in the same
 #     cell, so the pair is --on-surface over that wash over --surface or over the
 #     row-hover fill, and the alpha decides whether it clears the text floor. That is the

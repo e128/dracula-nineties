@@ -2,7 +2,7 @@
   "name": "dracula-nineties",
   "displayName": "Dracula-Nineties (muted)",
   "description": "The muted Dracula-Nineties palette as a VS Code color theme.",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "publisher": "dracula-nineties",
   "engines": {
     "vscode": "^1.75.0"
