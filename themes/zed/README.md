@@ -1,0 +1,43 @@
+# Dracula-Nineties (muted): Zed theme
+
+One file, schema `v0.2.0`: 148 style keys, 43 syntax slots, 7 player colours, two
+appearances. Zed's `themes` array already holds more than one theme per file, so dark
+and light are two entries in the same array (`"appearance": "dark"` / `"light"`)
+rather than two separate files: no other target in `themes/` gets this for free.
+
+## Generated, do not hand-edit
+
+`scripts/create-themes.nu` writes `dracula-nineties.json` from `dracula-nineties.json.in`.
+Edit the template.
+
+```sh
+nu scripts/create-themes.nu
+nu scripts/create-themes.nu --check
+```
+
+## Install
+
+```sh
+cp themes/zed/dracula-nineties.json ~/.config/zed/themes/
+```
+
+Zed picks it up without a restart. `cmd-k cmd-t`, then **Dracula-Nineties (muted)** or
+**Dracula-Nineties (muted) Light**; **Theme: Auto** follows the system appearance and
+picks between them on its own, since both live in the one installed file.
+
+## Role mapping
+
+Same accent-to-role assignment as the Rider scheme. See
+[`../rider/README.md`](../rider/README.md) for the table. Zed-only decisions:
+
+- **`title` is `--pink` at weight 400**, matching `h1` in the stylesheet rather
+  than the bold a Markdown heading usually gets. `emphasis` is `--purple`
+  italic (`h2`) and `emphasis.strong` is `--orange` at 600 (`strong`), so a
+  Markdown buffer reads in the same colours as the rendered page.
+- **`text.literal` is `--green`**, the inline-`code` colour, for the same reason.
+- **Terminal ANSI matches `../ghostty/dracula-nineties` slot for slot.** The `dim_*`
+  slots have no Ghostty counterpart; they are the accent at 65% over
+  `--surface`.
+- **Player 1 is `--pink`**, so the primary cursor is the same colour Rider uses.
+  Players 2-7 are `--link` and the `--data-*` ramp: collaborator cursors are a
+  category, and the ramp is what categories draw from.

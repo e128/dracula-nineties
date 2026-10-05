@@ -1,0 +1,31 @@
+{
+  "name": "dracula-nineties",
+  "displayName": "Dracula-Nineties (muted)",
+  "description": "The muted Dracula-Nineties palette as a VS Code color theme.",
+  "version": "{{version}}",
+  "publisher": "dracula-nineties",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Dracula-Nineties (muted)",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dracula-nineties-color-theme.json"
+      },
+      {
+        "label": "Dracula-Nineties (muted) Light",
+        "uiTheme": "vs",
+        "path": "./themes/dracula-nineties-light-color-theme.json"
+      }
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/e128/dracula-nineties.git"
+  }
+}

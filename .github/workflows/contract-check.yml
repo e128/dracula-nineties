@@ -1,0 +1,194 @@
+name: contract-check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Verify the twelve contract files exist
+        run: |
+          for f in dracula-nineties.css mermaid.js filter.js mermaid-palette.json tokens.css samples/dark.html samples/dark-conn-map.html scripts/build-sample.nu README.md CONTRACT.md AGENTS.md NOTES.md; do
+            test -f "$f" || { echo "MISSING: $f"; exit 1; }
+          done
+          echo "All 12 contract files present."
+
+      - name: Stylesheet wrapper is exactly the first and last line
+        run: |
+          # Consumers that supply their own <style> wrapper slice the body out with
+          # `sed '1d;$d'`. That is only safe while the wrapper stays exactly one
+          # line at each end, so it is a contract, not a coincidence.
+          head -1 dracula-nineties.css | grep -qx '  <style>' \
+            || { echo "dracula-nineties.css line 1 must be exactly '  <style>'"; exit 1; }
+          tail -1 dracula-nineties.css | grep -qx '  </style>' \
+            || { echo "dracula-nineties.css last line must be exactly '  </style>'"; exit 1; }
+          echo "Wrapper intact. sed '1d;\$d' yields the bare body."
+
+      - name: Mermaid themeVariables must match mermaid-palette.json (both palettes)
+        run: |
+          # mermaid.js is inlined verbatim (no build step), so it carries the hex
+          # itself. This gate is what keeps that copy honest against the palette.
+          # jq runs before the loop, not in a process substitution: a malformed or
+          # emptied palette must abort the step, not yield zero rows and pass green.
+          # Both palettes: `init` is the default (dark) set and `initLight` is the same
+          # keys projected through the light block. mermaid.js carries both inline and
+          # picks one at init from the --mermaid-scheme CSS token, so a drifted light hex
+          # is invisible to anyone reading in dark mode.
+          rows=$(jq -er '(.init, .initLight) | to_entries[] | select(.key != "_comment") | "\(.key) \(.value.hex)"' mermaid-palette.json) \
+            || { echo "cannot read .init / .initLight out of mermaid-palette.json"; exit 1; }
+          n=$(printf '%s\n' "$rows" | grep -c .)
+          [ "$n" -ge 38 ] || { echo "mermaid-palette.json has only $n init rows across both palettes, refusing to pass vacuously"; exit 1; }
+          fail=0
+          while read -r key hex; do
+            grep -qE "$key:[[:space:]]*'$hex'" mermaid.js \
+              || { echo "DRIFT: mermaid.js $key is not '$hex' (mermaid-palette.json)"; fail=1; }
+          done <<< "$rows"
+          grep -q "theme: 'base'" mermaid.js || { echo "mermaid.js must use theme:'base', not 'dark'"; fail=1; }
+          exit $fail
+          # No separate "must not be oklch()" gate needed, because the per-key hex match
+          # above already fails on any non-hex value.
+
+      - name: mermaid-palette.json hex must match the CSS oklch
+        # Also re-derives the contrast floor for all four palettes (default,
+        # prefers-contrast, prefers-color-scheme: light, print). Those ratios are
+        # measured in NOTES.md, and prose is not a gate.
+        run: python3 .github/palette-check.py
+
+      - name: Sanity check (no hand-rolled style blocks)
+        run: |
+          # dracula-nineties.css/mermaid.js/filter.js are contracts that already carry
+          # their own <style>/<script> wrapper, and scripts/build-sample.nu inlines them
+          # verbatim into each fixture -- so exactly one <style> and two <script>
+          # blocks are expected. More means a hand-rolled block was added alongside
+          # the canonical ones.
+          # grep -o, not grep -c: -c counts matching *lines*, so a second block
+          # opened on a line that already holds one reads as 1 and passes.
+          for f in samples/dark.html samples/dark-conn-map.html samples/light.html samples/light-conn-map.html; do
+            n=$(grep -o "<style" "$f" | wc -l | tr -d ' ')
+            [ "$n" -eq 1 ] || { echo "$f: expected exactly 1 <style> block (canonical CSS), found $n"; exit 1; }
+            n=$(grep -o "<script" "$f" | wc -l | tr -d ' ')
+            [ "$n" -eq 2 ] || { echo "$f: expected exactly 2 <script> blocks (canonical mermaid.js + filter.js), found $n"; exit 1; }
+          done
+          echo "No hand-rolled style/script blocks."
+
+      - name: Light previews must actually force light
+        run: |
+          # samples/light*.html are the dark pages with the light condition forced on and the
+          # contrast condition forced off, so Pages can serve the light palette to a
+          # visitor on any OS. If the stylesheet renames either condition, the
+          # generator's `str replace` no-ops: it raises, but a hand-edited page would not
+          # go through the generator. Then Pages serves a dark page called light, which
+          # is the kind of quiet wrong this repo gates against, and the filename no
+          # longer warns anyone, now that it is `light.html` beside `dark.html`.
+          fail=0
+          for f in samples/light.html samples/light-conn-map.html; do
+            grep -q '@media all {' "$f" \
+              || { echo "$f: no forced '@media all {': the light palette is not on"; fail=1; }
+            grep -q '@media not all {' "$f" \
+              || { echo "$f: no '@media not all {': the contrast block is still live"; fail=1; }
+            # The banner prose names the condition it forces, so it is stripped
+            # before the leftover check. Anything else is a condition that survived.
+            perl -0pe 's{<p>This page forces.*?</p>}{}s' "$f" | grep -q 'prefers-color-scheme' \
+              && { echo "$f: a prefers-color-scheme condition survived the rewrite"; fail=1; }
+          done
+          [ "$fail" -eq 0 ] && echo "Light previews force light."
+          exit $fail
+
+      - name: No em-dash and no en-dash in any tracked file
+        run: |
+          # AGENTS.md bans U+2014 and U+2013 outright. This mirrors the same gate in
+          # `nu scripts/maintain.nu check` so a contributor who never runs the local
+          # check still cannot land one. `git ls-files -z` scans exactly what ships.
+          # rg exits 1 when it matches nothing, which is the passing case here, so the
+          # match list is collected rather than the exit code trusted. The patterns are
+          # `\u{...}` escapes, not the characters themselves: this file is tracked, so a
+          # literal pattern would make the gate fail on its own implementation.
+          hits=$(git ls-files -z | xargs -0 rg -n --no-messages -e '\u{2014}' -e '\u{2013}' || true)
+          if [ -n "$hits" ]; then
+            printf '%s\n' "$hits"
+            echo "AGENTS.md bans the em-dash and the en-dash. Use a period, comma, colon, parentheses or a plain hyphen."
+            exit 1
+          fi
+          echo "No em-dash or en-dash."
+
+      - name: Install nu
+        uses: hustcer/setup-nu@v3
+        with:
+          version: "*"
+
+      - name: Release gate still refuses what it should
+        run: nu scripts/maintain.nu selftest
+
+      - name: CONTRACT.md section 2 must hold against the fixtures
+        # Every § 2 obligation this repo can measure against its own fixtures, plus the
+        # claims § 2 makes about itself: each fixture pointer resolves in the file it
+        # names, every requirement either carries a pointer or says it has no fixture,
+        # the spelled-out count matches the bullets in CONTRACT.md and README.md, no
+        # unwrapped table lacks its tab stop or carries role="region", and no .step-node
+        # takes --icon-color from the --data-* ramp.
+        #
+        # The pointers were line numbers into a generated file until v1.40.0, and all 22
+        # were wrong with every check green. The table scan and the pointer gate both
+        # ran only in `nu scripts/maintain.nu check` before this step existed, and a
+        # gate that runs only locally does not hold a merge.
+        run: nu scripts/maintain.nu contract-markup
+
+      - name: Generated files must be regenerated (fails if stale vs CSS/JS)
+        run: |
+          # tokens.css is included here on purpose: it is a verbatim slice of the
+          # dracula-nineties.css :root block, so this gate is what keeps the palette
+          # reference from becoming a second, hand-edited source of truth.
+          nu scripts/build-sample.nu
+          # `git diff HEAD`, not `git diff`: scripts/build-sample.nu git-adds what it writes,
+          # so an index-vs-worktree diff is always empty and this gate would pass
+          # vacuously. HEAD-vs-worktree is what "stale in the commit" actually means.
+          git diff HEAD --exit-code -- samples tokens.css || {
+            echo "tokens.css / the samples/ pages are stale. Run 'nu scripts/build-sample.nu' and commit the result."
+            exit 1
+          }
+
+      - name: Each appearance mode renders, and paints its own surface
+        # Light and high-contrast mode are media queries, so no fixture shows
+        # them. This renders each fixture in each mode and asserts the top-left
+        # pixel is that mode's --surface, which is the end-to-end half that
+        # palette-check.py cannot see: it reads values, not what Chrome paints.
+        # google-chrome is preinstalled on the ubuntu runner image.
+        # The outdir argument is what makes it write into the workspace at all; without
+        # one it uses a temp dir. CI wants the files, so it names a gitignored path.
+        run: python3 .github/render-modes.py mode-renders
+
+      - name: The inlined scripts must still bind
+        # Every other step counts blocks, compares bytes or measures colors, and none
+        # of them asks whether a handler attaches to anything. samples/dark.html
+        # shipped an inert input.filter-box from v1.16.0 to v1.21.0 with every check
+        # green. This drives both inlined scripts in the real fixture through the same
+        # headless Chrome the render step uses, and asserts observable behaviour.
+        run: python3 .github/script-probe.py
+
+      - name: Upload the mode renders
+        # Advisory, and deliberately not in scripts/maintain.nu's REQUIRED_CHECKS: the
+        # assertions above are the gate, and these images are for a human to
+        # look at on the pull request. `always()` so a failed render still
+        # uploads whatever it managed to paint, which is the thing you want to
+        # see when it fails.
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: mode-renders
+          path: mode-renders/*.png
+          if-no-files-found: error
+
+      - name: Themes must be regenerated (fails if stale vs the CSS palette)
+        # themes/ projects the same :root palette into Ghostty, Rider and Zed.
+        # `nu scripts/maintain.nu release` attaches the Rider jar to the tag, so drift
+        # here ships to whoever installs it. The jar is tracked and checked too:
+        # scripts/create-themes.nu freezes every zip entry timestamp, so a rebuild of
+        # unchanged inputs is byte-identical and a diff means a real change.
+        # Needs `zip`, which is preinstalled on ubuntu-latest.
+        run: nu scripts/create-themes.nu --check

@@ -1,0 +1,36 @@
+# Dracula-Nineties (muted) Light: Ghostty theme
+#
+# Every value is the sRGB rendering of a dracula-nineties.css :root oklch() token,
+# computed with .github/palette-check.py's oklch_to_hex. Bright ANSI slots that
+# have no token of their own are the same hue and chroma at L + 0.07.
+#
+# Install: copy this file and dracula-nineties-light to ~/.config/ghostty/themes/,
+#          then add `theme = dark:dracula-nineties,light:dracula-nineties-light` to
+#          ~/.config/ghostty/config. Ghostty then switches with the system
+#          appearance; `theme = dracula-nineties` alone stays dark-only.
+
+background = #fcfcf8
+foreground = #161616
+
+cursor-color = #ad447d
+cursor-text = #fcfcf8
+
+selection-background = #fbfbff
+selection-foreground = #161616
+
+palette = 0=#efefea
+palette = 1=#d00932
+palette = 2=#057c47
+palette = 3=#878c48
+palette = 4=#3c88e4
+palette = 5=#7b58ae
+palette = 6=#397281
+palette = 7=#525879
+palette = 8=#7b7f94
+palette = 9=#ea3446
+palette = 10=#2b915a
+palette = 11=#9c5b15
+palette = 12=#529efc
+palette = 13=#ad447d
+palette = 14=#4e8796
+palette = 15=#262626

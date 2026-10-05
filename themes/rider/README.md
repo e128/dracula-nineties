@@ -1,0 +1,143 @@
+# Dracula-Nineties (muted): JetBrains Rider theme
+
+Four artefacts, one palette, two appearances:
+
+- `dracula-nineties.icls` / `dracula-nineties-light.icls`: editor colour scheme (syntax,
+  gutter, diff, console ANSI).
+- `dracula-nineties.theme.json` / `dracula-nineties-light.theme.json`: IDE chrome (tool
+  windows, tabs, menus, popups, icons).
+
+Every hex here is the sRGB rendering of a `dracula-nineties.css` `:root` `oklch()` token:
+dark from the base palette, light from its `prefers-color-scheme: light` override.
+The ANSI slots match `themes/ghostty/dracula-nineties` one-for-one, so the Rider console
+and the terminal agree.
+
+**IntelliJ Platform themes are one appearance per `theme.json`**, so this ships as two
+complete themes rather than one theme that follows the system setting: `plugin.xml`
+registers both as separate `themeProvider` entries, and each names its own
+`editorScheme`. Pick whichever one you want from Settings → Appearance → Theme; Rider
+does not switch between them on its own. The light `.icls` inherits from IntelliJ's
+built-in `Default` scheme (`parent_scheme="Default"`) where the dark one inherits from
+`Darcula`, and the light `theme.json`'s four `Checkbox.*` icon keys drop the `.Dark`
+suffix the dark theme's copies carry, per JetBrains' own light/dark icon-key
+convention. Neither of those two differences has been verified against a running
+Rider install, only against JetBrains' theme documentation: say so if either turns
+out wrong once installed.
+
+## These files are generated
+
+`scripts/create-themes.nu` writes all five (two `.icls`, two `theme.json`, one
+`plugin.xml`), plus the installable plugin, from the `.in` template beside each one.
+Edit the template, never the output.
+
+```sh
+nu scripts/create-themes.nu           # write the themes, then package the plugin
+nu scripts/create-themes.nu --check   # fail if any output drifts from its template
+nu scripts/create-themes.nu --no-jar  # themes only
+```
+
+## Install
+
+**Whole theme**, UI plus colour scheme:
+
+```sh
+nu scripts/create-themes.nu
+```
+
+Settings → Plugins → gear → Install Plugin from Disk… → pick
+`themes/rider/dist/dracula-nineties-rider-<version>.zip` → restart. Rider loads a
+UI theme only from a plugin, which is why there is an artefact to build at all;
+`zip` is the whole build.
+
+### Why a zip and not a bare jar
+
+The plugin is a zip wrapping a jar:
+
+```
+dracula-nineties-rider-<version>.zip
+  Dracula-Nineties/lib/dracula-nineties-rider-<version>.jar
+```
+
+Through v1.18.0 it was a bare jar, and that shape has a trap in it. A bare jar
+copied by hand into `<config>/plugins/` loads perfectly, and Rider 2026.2 reports
+`Loaded custom plugins: … Dracula-Nineties (muted) …` and the theme appears. But
+**Install Plugin from Disk… refuses it**, which is how everyone actually
+installs. Bare-jar plugins are the legacy form; `Name/lib/*.jar` is what every
+other plugin in that directory is, and what every marketplace theme ships.
+
+If you have an old `dracula-nineties-rider-*.jar` in your plugins directory, delete
+it before installing the zip. Two copies of the same plugin ID is its own
+problem.
+
+The plugin is tracked, and `nu scripts/maintain.nu release` attaches it to the GitHub
+release for the tag, so it can also be downloaded without cloning. Tracking a
+zip only works because the build is reproducible: every staged entry is stamped
+`1980-01-01` twice, since the inner jar is itself created new. `-X` drops
+per-machine uid/gid and xattrs, and entries are named in a fixed order instead of
+swept up by `-r`. `META-INF/MANIFEST.MF` deliberately carries no JVM, OS or
+platform-build stamps for the same reason. Rebuilding unchanged inputs is
+byte-identical, so a diff means a real change and `--check` can compare it.
+
+The scheme enters the jar renamed to `dracula-nineties.xml`. A theme's
+`editorScheme` path is resolved through `SchemeManager`, which registers only
+`*.xml` out of a plugin: bundle it as `.icls` and Rider shows the UI theme,
+falls back to Darcula for the editor, and logs `refers to unknown color scheme`.
+The file keeps its `.icls` name on disk because that is what Import Scheme…
+expects.
+
+**Colour scheme only**, no packaging step: Settings → Editor → Color Scheme →
+gear → Import Scheme… → pick `dracula-nineties.icls` or `dracula-nineties-light.icls`.
+Unnecessary once the plugin is installed, since each theme carries its own scheme
+with it.
+
+## Role mapping
+
+The CSS assigns each accent a job in prose. The scheme keeps those jobs.
+
+**As of v1.20.0 the editor column is shared, not merely parallel.** `dracula-nineties.css` paints
+`highlight.js`, pandoc and Prism classes inside `pre` and `code` from this same table, so a
+fenced code block in a document and the same code in the editor colour every token alike.
+Change a row here and the stylesheet's highlight rules change with it. Types are the one slot
+that differs by nothing but name: the sheet calls the L+0.07 lift `--purple-bright` and
+recomputes it from `--purple` rather than restating the hex.
+
+| Token | Hex | Prose role | Editor role |
+| --- | --- | --- | --- |
+| `--on-surface` | `#f8f8f2` | body copy | identifiers, locals, punctuation |
+| `--pink` | `#e48bb7` | `h1`, `th` | keywords, operators, caret, active tab underline |
+| `--purple` | `#a98ed6` | `h2`, `pre` accent bar | progress bar, predefined symbols; types at L+0.07 (`#bfa4ed`) |
+| `--green` | `#7fc99a` | inline `code` | strings, XML attribute values |
+| `--orange` | `#e0a878` | `strong` | parameters, numbers, constants, TODO, search match |
+| `--link` | `#8fc9d9` | `a` | functions and methods, focus ring, links |
+| `--label` | `#b7bfe4` | `h3`, sidenotes | instance and static fields |
+| `--muted` | `#979fc4` | `cite` | comments (italic), inlay hints |
+| `--rule-light` | `#707388` | hairlines | line numbers, unused symbols |
+| `--red` | `#f68281` | n/a | errors, deleted lines |
+| `--data-1..4` | `#99bdec` `#de8dc3` `#74caa6` `#bbc175` | diagram categories | VCS status, diff, log refs |
+
+The jobs are kept, but the *weighting* is not. Prose can afford a quiet tier because colour is
+sparse there; an editor colours nearly every glyph, so the same tier reads as wash. Punctuation
+sits at `--on-surface` rather than `--label`, and types take `--purple` at L+0.07 rather than
+plain. See [Editor themes](../../NOTES.md#editor-themes) for the measurements and the three
+slot maps that were rendered and rejected.
+
+The `--data-*` ramp stays on categorical things (diff, VCS, file colours) for the
+same reason it exists in the CSS: prose accents already mean something, and a
+category must not borrow them.
+
+Greys and tinted backgrounds are not tokens. They are sRGB mixes over
+`--surface`, written in the templates as `{{mix:surface:red:20}}` and resolved
+by `scripts/create-themes.nu`: the neutral ramp mixes toward `--rule-light` so it keeps
+the palette's violet cast, and every diff, file-colour and search background is
+its accent at a fixed 10 / 20 / 28 / 35 percent.
+
+## Deviations from the CSS
+
+- **Line height 1.2, not 1.6.** Body prose inherits `line-height: 1.6`; an editor
+  at 1.6 wastes half the viewport. Change `LINE_SPACING` in the `.icls` if you
+  disagree.
+- **Mono font, not serif.** `--mono-font` names `JetBrains Mono` first; the
+  scheme pins that. The serif is a prose face and has no editor role.
+- **Bright ANSI slots** (`#ff9896`, `#96e0b0`, `#afd4ff`, `#a5e0f0`, `#fcfcf6`)
+  have no token of their own. They are the matching hue and chroma at L + 0.07,
+  same derivation as the Ghostty theme.
