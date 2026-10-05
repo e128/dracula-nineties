@@ -193,7 +193,7 @@ phone-sized, and one breakpoint wrong for half its contents beats two with disti
 **The shell is the be-1996 frame: a filled title box, a narrow left rail, a center stack of bordered
 panels, and a bracketed link row.** That page is the closest single reference in `inspiration/` to the
 objective, so the document follows it rather than a multi-column grid. The corpus says the same thing
-at scale: of 42 references, about 20 carry a left link rail and only 2 name a bevel, so the rail is
+at scale: of the references, about 20 carry a left link rail and only 2 name a bevel, so the rail is
 the register and the 3D edge is not.
 
 **`h1` is a filled box, `--code-bg` with `--on-surface` text.** The heading is the masthead, not
@@ -398,16 +398,30 @@ anyone wanting a real axis wants a chart, which this stylesheet does not grow in
 construction). **Do not put tables in the mono stack**: costs about a quarter of table width and
 puts tables in a different register from the prose.
 
-**Every `th` and `td` is fenced with a two-pixel `--rule-light` border, and the header row is filled
-`--surface-alt`.** The 1996 corpus drew its directories as fenced cells headed by a bar
-(altavista-1999, "each cell fenced by a one-pixel rule and headed by a colored bar"; tucows-1996, "a
-flat one-pixel bordered box with a heading row"). The sheet had drawn a modern booktabs table:
-horizontal hairlines, no vertical rules, no header fill. **Do not strip the fence back to
-hairlines.** The fence was one pixel through v2.5.0 and went to two against a maintainer's reference
-screenshot of a heavy-framed 1990s table: the corpus drew flat one-pixel rules, but the heavier frame
-is the register the maintainer wanted, and both reads are period. The sticky header's lower edge
-(an inset shadow, below) and the forced-colors block's structural `currentColor` border track the
-same width. The header fill is the row-hover ground, so `--pink`'s floor against it is already
+**Every `th` and `td` is fenced with a one-pixel `--rule-light` border, the table carries one too,
+and the header row is filled `--surface-alt`.** The 1996 corpus drew its directories as fenced cells
+headed by a bar (altavista-1999, "each cell fenced by a one-pixel rule and headed by a colored bar";
+tucows-1996, "a flat one-pixel bordered box with a heading row"). The sheet had drawn a modern
+booktabs table: horizontal hairlines, no vertical rules, no header fill. **Do not strip the fence
+back to hairlines.**
+
+**The frame is the period's doubled line, and it comes from `border-collapse: separate` with
+`border-spacing: 2px`, not from a thicker single border.** The table border, every cell border and
+the table's own frame each draw their own one-pixel line 2px apart, which is the heavy-framed table
+a maintainer's reference screenshot asked for. The fence was a collapsed one pixel through v2.5.0
+and a collapsed two pixels at v2.6.0; the corpus drew flat one-pixel rules and both collapsed reads
+were period, but the doubling is what the reference shows. **Do not set `border-collapse: collapse`
+back**: it merges the table and cell borders into one line and drops the doubling. **Do not raise
+the cell border width to recover the frame**: the frame comes from the second border 2px out, not
+from a thicker first.
+
+**The header fill is `--surface-alt`, and the sticky `th` carries a `box-shadow` halo of the same
+colour.** With separate borders the 2px spacing between header cells belongs to no cell, so a
+scrolled row paints through it. **Do not drop that halo while the borders stay separate**: it is one
+line and it is the only thing covering the gap. Forced colors suppresses shadows, so the gap is
+exposed there, the same accepted trade the print and forced-colors sections already take; the mode
+still restores the grid. The forced-colors block's structural `currentColor` border tracks the same
+one-pixel width. The header fill is the row-hover ground, so `--pink`'s floor against it is already
 check 5's. A saturated header bar in the corpus's own colors would need a new inverted
 accent-as-ground pair and a check-8 entry, which the hue budget does not have to spend; the neutral
 band keeps the heading row without one.
@@ -440,8 +454,9 @@ semantics on `display: block`**, measured rather than assumed; role counts are i
 below the breakpoint.
 
 **A sticky `th` needs an opaque background and a rule that survives the stick**: the header fill is
-`--surface-alt`, which is opaque, and the header's lower edge is an inset shadow rather than a
-`border-bottom`, because `border-collapse: collapse` scrolls a real border away from a stuck header.
+`--surface-alt`, which is opaque, and with separate borders the header cell keeps its own border as
+it sticks, so no inset-shadow substitute is needed. The `box-shadow` on `thead th` is the gap halo
+described above, not a border: the border itself is the cell's own rule.
 
 **Two consequences of the current fills are load-bearing**: `table.tree [data-depth="0"] td` is the
 only in-table `--code-bg` fill (the meaning is *root row*; the header band is `--surface-alt`, a
@@ -485,7 +500,7 @@ initial, so this is the browser default the sheet stopped overriding. **Do not d
 quieter underline weakens it.
 
 **There is no outbound-link marker.** The sheet painted a `↗` after every `a[href^="http"]`. It is
-gone, because none of the 42 references carries one, and a glyph that promises a destination the
+gone, because none of the references carries one, and a glyph that promises a destination the
 link never names is a modern docs convention. **Do not reintroduce an external-link glyph.**
 
 **A decorative `::before`/`::after` glyph carries empty alternative text** (`content: "…" / ""`),
@@ -689,7 +704,8 @@ elsewhere. The high-contrast set is gamut-compressed and text mitigates it (abov
 ### Forced colors
 
 **Forced colors suppresses shadows.** Anything whose only boundary was a shadow needs a border
-instead; the print block's inset-shadow trick can't be reused (an inset shadow is still a shadow).
+instead. The sticky `th`'s gap halo is one such shadow, and it is not a boundary, so losing it here
+exposes the header gap rather than the frame, which the cell's own border keeps.
 
 - **Semantic chips outline themselves**: `code, kbd, .verdict, .badge { border: 1px solid
   currentColor }`. State survives in the chip's own text (`PASS`/`PARTIAL`/etc); the border restores
@@ -697,8 +713,9 @@ instead; the print block's inset-shadow trick can't be reused (an inset shadow i
 - **A code BLOCK is not a chip.** `pre > code` is `display: inline`, so the chip border fragmented
   across every code-block line into three broken boxes. `pre code { border: none }` undoes it; `pre`
   keeps its own accent bar, which forced colors already preserves.
-- **Tables carry a real border** (`table, th, td { border: 1px solid currentColor }`), or the outer
-  rule, header shading and inset header rule all vanish, leaving no frame and no header distinction.
+- **Tables carry a real border** (`table, th, td { border: 1px solid currentColor }`), so the outer
+  rule and the header shading keep their structure under the mode's own colors. The sticky `th`'s
+  `box-shadow` halo is suppressed here, so the 2px header gap is exposed; the grid itself survives.
 
 Fills inside a table still flatten, left alone deliberately: the mode restores the grid, not the tint.
 
@@ -767,6 +784,11 @@ Chrome-blue; a 1996 one is a square with a black inset bevel and a thick tick. A
   border, and `:checked` also fills the box, so a browser that drops a replaced element's `::before`
   still shows a checked box rather than an empty square. GFM's task box stays `disabled`; the sheet
   keeps it at full strength, because the box states the item's value.
+- **The reset does not reach the inert margin toggle.** The sidenote control is an `input.margin-toggle`,
+  and its `display: none` rule (see Keyboard and assistive technology) sits above this reset at the
+  same specificity, so the checkbox reset repainted every hidden control as a visible square and put it
+  back in the tab order. **Do not let the control reset match `.margin-toggle`**: exclude the class in
+  the selector rather than raising the hide rule's specificity.
 - **`accent-color: var(--green)`** colors the widgets the sheet does not repaint (`progress`, `meter`,
   `input[type="range"]`). The repainted checkbox and radio ignore it.
 - **`color-scheme` stays undeclared** (see Appearance modes): the reset is a shape fix, not a request

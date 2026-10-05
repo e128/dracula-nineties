@@ -6,7 +6,7 @@
   <title>Dracula-Nineties connections-map layout</title>
   <meta name="generated-by" content="scripts/build-sample.nu"/>
   <style>
-    /* Dracula-Nineties v2.6.0 */
+    /* Dracula-Nineties v2.7.0 */
     @layer dracula-nineties {
     @font-face {
       font-family: 'Tinos'; font-style: normal; font-weight: 400;
@@ -182,16 +182,17 @@
     .math.display { display: block; overflow-x: auto; margin-block: var(--space-3); }
     section { margin-bottom: var(--space-10); }
     table {
-      border-collapse: collapse; width: auto; max-width: 100%; margin: 0.5rem 0;
+      border-collapse: separate; border-spacing: 2px;
+      border: 1px solid var(--rule-light);
+      width: auto; max-width: 100%; margin: 0.5rem 0;
       font-size: 0.95em;
     }
-    th, td { border: 2px solid var(--rule-light); }
+    th, td { border: 1px solid var(--rule-light); }
     th {
       font-weight: 400; font-style: italic; text-align: start;
       padding: .4rem .6rem; color: var(--pink);
-      box-shadow: inset 0 -2px 0 var(--rule-light);
     }
-    thead th { position: sticky; top: 0; background: var(--surface-alt); z-index: 1; }
+    thead th { position: sticky; top: 0; background: var(--surface-alt); z-index: 1; box-shadow: 0 0 0 2px var(--surface-alt); }
     .table-scroll { overflow: auto; max-height: 70vh; margin: 0.5rem 0; overscroll-behavior: contain; scroll-padding-top: 3em; }
     .table-scroll > table { display: table; margin-block: 0; }
     td {
@@ -300,7 +301,7 @@
       background-repeat: no-repeat; }
     input[type="search"]::-webkit-search-cancel-button,
     input[type="search"]::-webkit-search-decoration { appearance: none; -webkit-appearance: none; }
-    input[type="checkbox"], input[type="radio"] {
+    input[type="checkbox"]:not(.margin-toggle), input[type="radio"] {
       display: inline-grid; place-content: center; width: 1em; height: 1em; padding: 0;
       vertical-align: -0.08em; border: 1px solid var(--rule-light);
       background: var(--surface-alt); border-radius: var(--radius-sm); }
@@ -542,7 +543,7 @@
       code, kbd, .verdict, .badge, .icon-chip, .step-node { border: 1px solid currentColor; }
       :is(input, select, textarea, button, progress, meter) { border: 1px solid currentColor; }
       pre code { border: none; }
-      table, th, td { border: 2px solid currentColor; }
+      table, th, td { border: 1px solid currentColor; }
       .tag-dot::before, .live-dot { background: CanvasText; }
     }
     @media print {
@@ -660,7 +661,7 @@
     }
   </style>
   <script type="module">
-    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@12.0.0/dist/mermaid.esm.min.mjs';
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@12.1.0/dist/mermaid.esm.min.mjs';
     const mermaidLight = getComputedStyle(document.documentElement).getPropertyValue('--mermaid-scheme').trim() === 'light';
     const mermaidFont = '"Cousine", "Courier New", Courier, monospace';
     const mermaidDark = {
