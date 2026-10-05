@@ -119,7 +119,6 @@ DRIVER = """
     };
     t('alt-outbound-arrow', alt('a[href^="http"]', '::after'));
     t('alt-tree-arrow', alt('table.tree [data-depth="1"] td:first-child', '::before'));
-    t('alt-pull-quote', alt('blockquote.pull', '::before'));
     t('alt-summary-triangle', alt('details.deep > summary', '::before'));
     t('alt-nav-bracket-open', alt('nav:not(.toc) > a', '::before'));
     t('alt-nav-bracket-close', alt('nav:not(.toc) > a', '::after'));
@@ -204,6 +203,7 @@ FORCED_DRIVER = """
     t('fc-inline-code-outlined', border(document.querySelector('p code')) === 'solid');
     t('fc-kbd-outlined', border(document.querySelector('kbd')) === 'solid');
     t('fc-verdict-outlined', border(document.querySelector('.verdict')) === 'solid');
+    t('fc-icon-chip-outlined', border(document.querySelector('.icon-chip')) === 'solid');
     t('fc-table-outlined', border(document.querySelector('table')) === 'solid');
     t('fc-cell-outlined', border(document.querySelector('td')) === 'solid');
     // A code BLOCK is not a chip. Its `pre` keeps a real border-inline-start, so the
@@ -211,9 +211,6 @@ FORCED_DRIVER = """
     t('fc-block-code-not-outlined', border(document.querySelector('pre > code')) === 'none');
     t('fc-pre-keeps-its-bar',
       getComputedStyle(document.querySelector('pre')).borderInlineStartStyle === 'solid');
-    // The film grain is decorative and forced colors is a legibility mode.
-    t('fc-grain-off',
-      getComputedStyle(document.body, '::before').display === 'none');
     const el = document.createElement('pre');
     el.id = 'script-probe';
     el.textContent = out.join('\\n');

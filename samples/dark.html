@@ -6,30 +6,49 @@
   <title>Dracula-Nineties component sample</title>
   <meta name="generated-by" content="scripts/build-sample.nu"/>
   <style>
-    /* Dracula-Nineties v2.3.0 */
+    /* Dracula-Nineties v2.4.0 */
     @layer dracula-nineties {
     @font-face {
-      font-family: 'Source Serif 4'; font-style: normal; font-weight: 200 900;
+      font-family: 'Tinos'; font-style: normal; font-weight: 400;
       font-display: swap;
-      src: url('https://cdn.jsdelivr.net/npm/@fontsource-variable/source-serif-4@5.3.0/files/source-serif-4-latin-wght-normal.woff2') format('woff2');
+      src: url('https://cdn.jsdelivr.net/npm/@fontsource/tinos@5.3.0/files/tinos-latin-400-normal.woff2') format('woff2');
     }
     @font-face {
-      font-family: 'Source Serif 4'; font-style: italic; font-weight: 200 900;
+      font-family: 'Tinos'; font-style: italic; font-weight: 400;
       font-display: swap;
-      src: url('https://cdn.jsdelivr.net/npm/@fontsource-variable/source-serif-4@5.3.0/files/source-serif-4-latin-wght-italic.woff2') format('woff2');
+      src: url('https://cdn.jsdelivr.net/npm/@fontsource/tinos@5.3.0/files/tinos-latin-400-italic.woff2') format('woff2');
     }
     @font-face {
-      font-family: 'JetBrains Mono'; font-style: normal; font-weight: 100 800;
+      font-family: 'Tinos'; font-style: normal; font-weight: 700;
       font-display: swap;
-      src: url('https://cdn.jsdelivr.net/npm/@fontsource-variable/jetbrains-mono@5.3.0/files/jetbrains-mono-latin-wght-normal.woff2') format('woff2');
+      src: url('https://cdn.jsdelivr.net/npm/@fontsource/tinos@5.3.0/files/tinos-latin-700-normal.woff2') format('woff2');
     }
     @font-face {
-      font-family: 'JetBrains Mono'; font-style: italic; font-weight: 100 800;
+      font-family: 'Tinos'; font-style: italic; font-weight: 700;
       font-display: swap;
-      src: url('https://cdn.jsdelivr.net/npm/@fontsource-variable/jetbrains-mono@5.3.0/files/jetbrains-mono-latin-wght-italic.woff2') format('woff2');
+      src: url('https://cdn.jsdelivr.net/npm/@fontsource/tinos@5.3.0/files/tinos-latin-700-italic.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Cousine'; font-style: normal; font-weight: 400;
+      font-display: swap;
+      src: url('https://cdn.jsdelivr.net/npm/@fontsource/cousine@5.3.0/files/cousine-latin-400-normal.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Cousine'; font-style: italic; font-weight: 400;
+      font-display: swap;
+      src: url('https://cdn.jsdelivr.net/npm/@fontsource/cousine@5.3.0/files/cousine-latin-400-italic.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Cousine'; font-style: normal; font-weight: 700;
+      font-display: swap;
+      src: url('https://cdn.jsdelivr.net/npm/@fontsource/cousine@5.3.0/files/cousine-latin-700-normal.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Cousine'; font-style: italic; font-weight: 700;
+      font-display: swap;
+      src: url('https://cdn.jsdelivr.net/npm/@fontsource/cousine@5.3.0/files/cousine-latin-700-italic.woff2') format('woff2');
     }
     :root {
-      color-scheme: dark;
       --surface:     oklch(0 0 0);  /* was #000000 */
       --surface-alt: oklch(0.185 0.016 283.716);  /* was #12121a */
       --on-surface:  oklch(1 0 0);  /* was #ffffff */
@@ -50,8 +69,8 @@
       --data-2:      oklch(0.755 0.183 346.812);  /* was #ff79c6 */
       --data-3:      oklch(0.8710 0.2195 148.025);  /* was #50fa7b */
       --data-4:      oklch(0.955 0.134 112.757);  /* was #f1fa8c */
-      --body-font:   'Source Serif 4', Georgia, "Noto Serif", "DejaVu Serif", serif;
-      --mono-font:   'JetBrains Mono', ui-monospace, 'Fira Code', monospace;
+      --body-font:   'Tinos', 'Times New Roman', Times, 'Nimbus Roman', 'Noto Serif', 'DejaVu Serif', serif;
+      --mono-font:   'Cousine', 'Courier New', Courier, Monaco, 'Lucida Console', 'Nimbus Mono PS', monospace;
       --page-width:  min(94vw, 66rem);
       --gutter:      max(2rem, env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px));
       --radius:      0;
@@ -70,35 +89,27 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: var(--body-font);
-      font-weight: 450;
+      font-weight: 400;
       width: min(100% - 2 * var(--gutter), var(--page-width)); margin-inline: auto;
       padding-block: var(--space-12);
-      line-height: 1.6; font-size: clamp(1rem, 0.95rem + 0.25vw, 1.25rem);
+      line-height: 1.6; font-size: 1rem;
       background: var(--surface); color: var(--on-surface);
       overflow-wrap: break-word;
-      scrollbar-color: var(--rule) var(--surface-alt);
-    }
-    body::before {
-      content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
-      background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22 opacity=%220.05%22/%3E%3C/svg%3E');
-      mix-blend-mode: overlay; opacity: 0.5;
     }
     h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
-    h1 { font-weight: 400; line-height: 1.15; font-size: 1.75em; margin-bottom: 0.15rem; letter-spacing: -0.02em; color: var(--pink); text-wrap: balance; }
+    h1 { font-weight: 400; line-height: 1.15; font-size: 1.75em; margin-bottom: 0.15rem; color: var(--pink); }
     .byline { font-size: 0.9em; color: var(--muted); font-style: italic; margin: 0 0 0.4rem; letter-spacing: 0.01em; }
-    .kicker { display: inline-block; font-size: 0.75em; font-weight: 600; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--link); padding: 0.25em 0.7em; margin-bottom: 0.5rem;
-      border-radius: var(--radius-sm); background: oklch(from var(--link) l c h / 0.08);
-      border: 1px solid oklch(from var(--link) l c h / 0.65); }
-    h2 { font-weight: 400; line-height: 1.2; font-style: italic; font-size: 1.35em; margin: var(--space-10) 0 var(--space-3); color: var(--purple); text-wrap: balance; }
-    h3 { font-weight: 500; line-height: 1.3; font-size: 1.12em; color: var(--label); margin: var(--space-6) 0 0.4rem; text-wrap: balance; }
-    h4 { font-weight: 600; line-height: 1.35; font-size: 1em; color: var(--label); margin: var(--space-4) 0 0.3rem; }
-    h5, h6 { font-weight: 500; line-height: 1.4; font-size: 1em; color: var(--label); margin: var(--space-3) 0 0.3rem; }
+    .kicker { display: inline-block; font-size: 0.75em; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--link); margin-bottom: 0.5rem; }
+    h2 { font-weight: 400; line-height: 1.2; font-style: italic; font-size: 1.35em; margin: var(--space-10) 0 var(--space-3); color: var(--purple); }
+    h3 { font-weight: 700; line-height: 1.3; font-size: 1.12em; color: var(--label); margin: var(--space-6) 0 0.4rem; }
+    h4 { font-weight: 700; line-height: 1.35; font-size: 1em; color: var(--label); margin: var(--space-4) 0 0.3rem; }
+    h5, h6 { font-weight: 700; line-height: 1.4; font-size: 1em; color: var(--label); margin: var(--space-3) 0 0.3rem; }
     h6 { font-style: italic; }
-    p { margin: var(--space-2) 0; text-wrap: pretty; }
+    p { margin: var(--space-2) 0; }
     .indented p { margin-block: 0; }
     .indented p + p { text-indent: 1.5em; }
-    .newthought { font-variant-caps: small-caps; font-size: 1.2em; font-weight: 600; letter-spacing: 0.03em; color: var(--on-surface); }
+    .newthought { font-variant-caps: small-caps; font-size: 1.2em; font-weight: 700; letter-spacing: 0.03em; color: var(--on-surface); }
     article, main { counter-reset: sidenote-counter; }
     input.margin-toggle { display: none; }
     label.margin-toggle:not(.sidenote-number) { display: none; }
@@ -106,13 +117,13 @@
     .sidenote-number:after, .sidenote:before { content: counter(sidenote-counter) " "; font-size: 0.75em;
       position: relative; top: -0.4em; line-height: 0; color: var(--muted); }
     .sidenote, .marginnote { float: right; float: inline-end; clear: right; clear: inline-end; width: 28%;
-      margin-block: 0.2rem 1rem; margin-inline: 1.5rem 0; font-size: 0.9em; line-height: 1.4; color: var(--label); text-wrap: pretty; hyphens: auto;
+      margin-block: 0.2rem 1rem; margin-inline: 1.5rem 0; font-size: 0.9em; line-height: 1.4; color: var(--label);
       font-variant-caps: normal; font-weight: 400; letter-spacing: normal; }
     .newthought :is(.sidenote, .marginnote) { font-size: 0.75em; }
-    a { color: var(--link); text-decoration: underline; text-decoration-thickness: max(1px, 0.07em); text-underline-offset: 0.15em; text-decoration-color: var(--muted); text-decoration-skip-ink: auto; overflow-wrap: break-word; transition: text-decoration-color 0.15s ease-out; }
+    a { color: var(--link); text-decoration: underline; text-decoration-thickness: max(1px, 0.07em); text-underline-offset: 0.15em; text-decoration-color: var(--muted); text-decoration-skip-ink: auto; overflow-wrap: break-word; }
     a:visited { color: var(--visited); }
     :is(h1, h2, h3, h4, h5, h6) :is(a.headerlink, a.anchor) { opacity: 0; font-size: 0.8em;
-      text-decoration: none; margin-inline-start: 0.35em; transition: opacity 0.15s ease-out; }
+      text-decoration: none; margin-inline-start: 0.35em; }
     :is(h1, h2, h3, h4, h5, h6) :is(a.headerlink, a.anchor):focus-visible { opacity: 1; }
     a:focus-visible, summary:focus-visible, .filter-box:focus-visible,
     .mermaid-zoom:focus-visible, [tabindex="0"]:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
@@ -125,7 +136,7 @@
       a[href^="http"]::after { content: "\A0↗" / ""; }
     }
     cite { font-family: var(--mono-font); font-style: normal; font-size: 0.9em; color: var(--muted); overflow-wrap: break-word; }
-    strong { font-weight: 600; color: var(--orange); }
+    strong { font-weight: 700; color: var(--orange); }
     del, s { color: var(--muted); }
     :is(ins, u) { text-decoration: underline dotted; text-underline-offset: 0.2em; }
     samp { font-family: var(--mono-font); font-size: 0.9em; }
@@ -180,7 +191,7 @@
       font-size: 0.95em;
     }
     th {
-      font-weight: 450; font-style: italic; text-align: start;
+      font-weight: 400; font-style: italic; text-align: start;
       padding: .4rem .6rem; color: var(--pink);
       box-shadow: inset 0 -1px 0 var(--rule-light);
     }
@@ -190,12 +201,11 @@
     td {
       border: none; padding: .35rem .6rem; text-align: start;
       vertical-align: top; font-variant-numeric: tabular-nums;
-      transition: background-color 0.12s ease-out;
     }
     table.evidence-table tbody tr + tr td { border-block-start: 1px solid var(--rule-light); }
     table.evidence-table thead th { box-shadow: inset 0 -1px 0 var(--rule); }
-    table.evidence-table td:first-child { font-weight: 600; color: var(--on-surface); }
-    tfoot td { font-weight: 600; box-shadow: inset 0 1px 0 var(--rule); }
+    table.evidence-table td:first-child { font-weight: 700; color: var(--on-surface); }
+    tfoot td { font-weight: 700; box-shadow: inset 0 1px 0 var(--rule); }
     .chart-takeaway { border-inline-start: 2px solid var(--rule-light); padding-inline-start: var(--space-4); color: var(--label); }
     .chart-takeaway strong { color: var(--on-surface); }
     .chart-takeaway .more { display: block; font-size: 0.9em; color: var(--muted); }
@@ -220,16 +230,16 @@
     @supports (content: "x" / "y") {
       table.tree [data-depth]:not([data-depth="0"]) td:first-child::before { content: "\21B3\A0" / ""; }
     }
-    table.tree [data-depth="0"] td { background: var(--code-bg); font-weight: 600; }
+    table.tree [data-depth="0"] td { background: var(--code-bg); font-weight: 700; }
     table.tree [data-depth="2"] td, table.tree [data-depth="3"] td { color: var(--label); }
     details { margin: var(--space-2) 0; border: 1px solid var(--rule-light); border-radius: var(--radius); padding: .5rem; }
-    summary { cursor: pointer; font-weight: 450; font-style: italic; color: var(--link); padding: 0.4rem 0; transition: color 0.15s ease-out; }
+    summary { cursor: pointer; font-weight: 400; font-style: italic; color: var(--link); padding: 0.4rem 0; }
     details[open] summary { margin-bottom: 0.5rem; }
     aside, .markdown-alert {
       border-inline-start: var(--accent-bar) solid var(--orange); padding: .5rem 1rem;
       margin: var(--space-6) 0; color: var(--label); font-size: 0.95em;
     }
-    .markdown-alert-title { font-weight: 600; color: var(--orange); }
+    .markdown-alert-title { font-weight: 700; color: var(--orange); }
     .markdown-alert-note { border-inline-start-color: var(--link); }
     .markdown-alert-note .markdown-alert-title { color: var(--link); }
     .markdown-alert-tip { border-inline-start-color: var(--green); }
@@ -244,28 +254,22 @@
       margin: var(--space-6) 0; color: var(--label); font-style: italic;
     }
     blockquote p:last-child { margin-bottom: 0; }
-    blockquote.pull { position: relative; padding-inline-start: 2.2rem; }
-    blockquote.pull::before { content: "\201C"; position: absolute; inset-inline-start: 0.2rem; top: -0.15em;
-      font-family: var(--body-font); font-size: 2.5em; line-height: 1; color: var(--muted); opacity: 0.4; }
-    @supports (content: "x" / "y") {
-      blockquote.pull::before { content: "\201C" / ""; }
-    }
     hr { border: none; border-block-start: 1px solid var(--rule-light); margin: var(--space-10) 0; }
     img { max-width: 100%; height: auto; box-shadow: 0 0 0 1px var(--ring); border-radius: var(--radius-sm); }
     :is(svg, video, canvas, iframe, object, embed) { max-width: 100%; }
     img.emoji { box-shadow: none; width: 1.1em; height: 1.1em; vertical-align: -0.15em; }
     figure { margin: var(--space-6) 0; }
-    figcaption, caption { font-size: 0.9em; line-height: 1.4; color: var(--label); text-align: start; text-wrap: pretty; }
+    figcaption, caption { font-size: 0.9em; line-height: 1.4; color: var(--label); text-align: start; }
     figcaption { margin-top: 0.4rem; }
     caption { font-style: italic; padding-block-end: 0.3rem; }
     :is(figcaption, caption) .byline { display: block; font-size: 1em; margin: 0.15rem 0 0; }
     table:has(caption) { box-shadow: 0 1px 0 var(--rule); }
     dl { margin: var(--space-4) 0; }
-    dt { font-weight: 600; margin-top: .5rem; }
+    dt { font-weight: 700; margin-top: .5rem; }
     dd { margin-inline-start: 1.5rem; margin-bottom: .5rem; color: var(--label); }
     dl.timeline { display: grid; grid-template-columns: var(--timeline-date, max-content) 1fr;
       align-items: baseline; gap: var(--space-3) var(--space-6); }
-    dl.timeline > dt { margin-top: 0; text-align: end; font-weight: 500;
+    dl.timeline > dt { margin-top: 0; text-align: end; font-weight: 700;
       font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--on-surface); }
     dl.timeline > dd { margin-inline-start: 0; margin-bottom: 0; color: var(--on-surface);
       border-inline-start: 1px solid var(--rule-light); padding-inline-start: var(--space-4); }
@@ -275,7 +279,7 @@
     li { padding: 0.15rem 0; line-height: 1.5; }
     li::marker { color: var(--muted); }
     li:has(input[type="checkbox"]:first-child) { list-style: none; }
-    li input[type="checkbox"] { accent-color: var(--purple); font-size: 1em; width: 1em; height: 1em;
+    li input[type="checkbox"] { font-size: 1em; width: 1em; height: 1em;
       margin-inline-end: 0.45em; vertical-align: -0.08em; }
     :is(button, input, select, textarea) { font: inherit; font-size: max(1em, 1rem); }
     nav { margin: var(--space-4) 0; padding: .5rem 0; color: var(--label); font-size: 0.95em; }
@@ -292,7 +296,6 @@
     .verified { color: var(--green); }
     .unverified { color: var(--orange); }
     .correction { color: var(--red); }
-    section:has(> .scorecard) { container-type: inline-size; }
     .scorecard { display: grid; grid-template-columns: max-content max-content 1fr;
       gap: 0.3rem 0.9rem; align-items: baseline; margin: var(--space-3) 0 1.25rem;
       font-size: 0.95em;
@@ -300,7 +303,7 @@
     .scorecard .sc-label { color: var(--on-surface); }
     .scorecard .sc-note { color: var(--muted); font-size: 0.92em; }
     .scorecard .sc-full { grid-column: 1 / -1; color: var(--label); margin-top: 0.2rem; }
-    .verdict { display: inline-block; justify-self: start; font-size: 0.8em; font-weight: 600; font-style: normal;
+    .verdict { display: inline-block; justify-self: start; font-size: 0.8em; font-weight: 700; font-style: normal;
       padding: 0.12em 0.55em; border-radius: var(--radius-sm); color: var(--surface);
       letter-spacing: 0.03em; text-transform: uppercase; white-space: nowrap; min-width: 5.2ch; text-align: center; }
     .verdict-pass { background: var(--green); }
@@ -323,20 +326,17 @@
     details.nav-group > summary { font-style: italic; color: var(--link); padding: 0.6rem 0; }
     details.nav-group > summary .count { color: var(--muted); font-style: normal; font-size: 0.82em; margin-inline-start: 0.4em; }
     details.nav-group .nav-list { border: none; padding: 0; }
-    .badge { display: inline-block; font-size: 0.8em; font-weight: 600; font-style: normal;
+    .badge { display: inline-block; font-size: 0.8em; font-weight: 700; font-style: normal;
       padding: 0.05em 0.5em; border-radius: var(--radius-sm); margin-inline-start: 0.5em; vertical-align: middle;
       color: var(--label); box-shadow: inset 0 0 0 1px currentColor; }
-    .tag-dot::before { content: ""; display: inline-block; width: 0.6em; height: 0.6em;
-      border-radius: 50%; background: currentColor; margin-inline-end: 0.4em; vertical-align: middle; }
-    .live-dot { display: inline-block; width: 0.5em; height: 0.5em; border-radius: 50%;
-      background: var(--green); vertical-align: middle; animation: live-pulse 2s ease-in-out infinite; }
-    @keyframes live-pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+    .tag-dot::before { content: ""; display: inline-block; width: 0.55em; height: 0.55em;
+      background: currentColor; margin-inline-end: 0.4em; vertical-align: middle; }
+    .live-dot { display: inline-block; width: 0.5em; height: 0.5em;
+      background: var(--green); vertical-align: middle; }
     .nav-list { list-style: none; padding-inline-start: 0;
       border: 1px solid var(--rule-light); border-radius: var(--radius); padding: 0.3rem; }
     .nav-list li { padding: 0; font-size: 0.95em; line-height: 1.4; }
-    .nav-list li a { display: block; padding: 0.7rem 0.5rem; min-height: 40px; border-radius: var(--radius-sm); text-decoration-color: transparent; touch-action: manipulation;
-      transition: text-decoration-color 0.15s ease-out, background-color 0.15s ease-out, scale 0.12s ease-out; }
-    .nav-list li a:active { scale: 0.96; }
+    .nav-list li a { display: block; padding: 0.7rem 0.5rem; min-height: 40px; border-radius: var(--radius-sm); text-decoration-color: transparent; touch-action: manipulation; }
     .edge-list { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4) 0; margin: var(--space-6) 0;
       --edge-gutter: var(--space-4); --edge-rule: 1px solid var(--rule-light); }
     .edge-list h3 { margin-top: 0; }
@@ -355,13 +355,13 @@
       background: var(--code-bg); border-radius: var(--radius);
       border-inline-start: var(--accent-bar) solid var(--icon-color, var(--muted)); }
     .icon-list strong { display: block; }
-    .icon-chip { flex: none; width: 2.25em; height: 2.25em; border-radius: var(--radius-sm); display: flex;
+    .icon-chip { flex: none; width: 2.25em; height: 2.25em; display: flex;
       align-items: center; justify-content: center; font-weight: 700; color: var(--on-surface);
-      background: oklch(from var(--icon-color, var(--muted)) l c h / 0.15); }
+      background: var(--code-bg); border: 1px solid var(--rule-light); }
     .step-chain { display: flex; align-items: center; justify-content: center; flex-wrap: wrap;
       gap: var(--space-3); margin: var(--space-6) 0; }
     .step-hop { display: flex; align-items: center; gap: var(--space-3); }
-    .step-node { flex: none; width: 2.5em; height: 2.5em; border-radius: 50%; display: flex;
+    .step-node { flex: none; width: 2.5em; height: 2.5em; display: flex;
       align-items: center; justify-content: center; font-weight: 700; color: var(--surface);
       background: var(--icon-color, var(--muted)); }
     .step-arrow { color: var(--muted); }
@@ -373,9 +373,9 @@
           var(--bar-guide) 0 50%, transparent 0 calc(75% - 1px), var(--bar-guide) 0 75%, transparent 0);
       background-repeat: no-repeat; background-size: var(--bar, 0) 1.1em, 1px 100%, 100% 100%;
       background-position: left center; inline-size: 12rem; }
-    table.bar-chart td.bar.lead { font-weight: 600; }
+    table.bar-chart td.bar.lead { font-weight: 700; }
     [dir="rtl"] table.bar-chart td.bar { background-position: right center; }
-    .col-2 > ol, .col-2 > ul { columns: 2; column-gap: 2.5rem; hyphens: auto; }
+    .col-2 > ol, .col-2 > ul { columns: 2; column-gap: 2.5rem; }
     .col-2 > ol > li, .col-2 > ul > li { break-inside: avoid; }
     .mermaid-overlay[open] {
       position: fixed; inset: 0; z-index: 1000;
@@ -383,7 +383,7 @@
       max-width: none; max-height: none;
       background: oklch(from var(--surface-alt) l c h / 0.92);
       display: flex; align-items: center; justify-content: center;
-      cursor: zoom-out; opacity: 0; transition: opacity 0.2s ease-out;
+      cursor: zoom-out; opacity: 0;
       pointer-events: none; overscroll-behavior: contain;
     }
     .mermaid-overlay.active { opacity: 1; pointer-events: auto; }
@@ -394,14 +394,12 @@
     @supports (content: "x" / "y") {
       .mermaid-overlay::after { content: "✕" / ""; }
     }
-    .mermaid-overlay svg { width: 95vw; height: 95vh; filter: drop-shadow(0 0 24px oklch(from var(--surface-alt) 0.15 c h / 0.5)); }
+    .mermaid-overlay svg { width: 95vw; height: 95vh; }
     pre.mermaid { cursor: zoom-in; text-align: center; background: none; border-inline-start: none; overflow: visible; }
     pre.mermaid svg, .mermaid-overlay svg { overflow: visible; }
     .mermaid-zoom { display: block; margin: var(--space-3) auto 0; min-height: 40px; padding: 0.5rem 0.9rem;
       font: inherit; font-family: var(--body-font); font-size: 0.9em; color: var(--link); background: none; cursor: zoom-in;
-      border: 1px solid var(--rule); border-radius: var(--radius); touch-action: manipulation;
-      transition: color 0.15s ease-out, background-color 0.15s ease-out, scale 0.12s ease-out; }
-    .mermaid-zoom:active { scale: 0.96; }
+      border: 1px solid var(--rule); border-radius: var(--radius); touch-action: manipulation; }
     pre.mermaid :is(.packetByte, .packetLabel, .packetTitle) { fill: var(--on-surface) !important; }
     pre.mermaid .packetBlock { fill: var(--code-bg) !important; stroke: var(--purple) !important; }
     pre.mermaid .cluster rect { fill: var(--code-bg) !important; stroke: var(--rule) !important; }
@@ -437,7 +435,6 @@
       pre.mermaid:hover { box-shadow: 0 0 0 1px var(--rule); }
       .mermaid-zoom:hover { color: var(--on-surface); background: var(--code-bg); }
     }
-    ::selection { background: var(--purple); color: var(--surface); }
     @media (max-width: 1000px) {
       .sidenote, .marginnote { float: none; width: auto; margin: 0.5rem 0; display: block; }
       table { display: block; overflow-x: auto; width: fit-content; }
@@ -463,7 +460,7 @@
       pre.mermaid { overflow-x: auto; overscroll-behavior-x: contain; }
       pre.mermaid svg, body.conn-map pre.mermaid svg { width: var(--natural-width, auto) !important; max-width: none !important; }
     }
-    @container (max-width: 15em) { .scorecard { grid-template-columns: minmax(0, 1fr); } }
+    body.conn-map article > section:nth-of-type(1) .scorecard { grid-template-columns: minmax(0, 1fr); }
     @media (prefers-contrast: more) {
       :root {
         --on-surface:  oklch(1 0 0);
@@ -491,7 +488,6 @@
     }
     @media (prefers-color-scheme: light) {
       :root {
-        color-scheme: light;
         --surface:     oklch(0.807 0.000 89.876);
         --surface-alt: oklch(0.756 0.000 89.876);
         --on-surface:  oklch(0 0 0);
@@ -516,18 +512,13 @@
       }
     }
     @media (forced-colors: active) {
-      code, kbd, .verdict, .badge, .kicker, .icon-chip, .step-node { border: 1px solid currentColor; }
+      code, kbd, .verdict, .badge, .icon-chip, .step-node { border: 1px solid currentColor; }
       pre code { border: none; }
       table, th, td { border: 1px solid currentColor; }
       .tag-dot::before, .live-dot { background: CanvasText; }
-      body::before { display: none; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      *, ::before, ::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
     }
     @media print {
       :root {
-        color-scheme: light;
         --surface:     oklch(1 0 0);
         --surface-alt: oklch(1 0 0);
         --on-surface:  oklch(0.200 0 0);
@@ -551,7 +542,6 @@
       }
       mark { background: none; box-shadow: inset 0 0 0 1px currentColor; }
       body { width: auto; max-width: none; padding: 1rem; }
-      body::before { display: none; }
       .table-scroll { max-height: none; overflow: visible; }
       .mermaid-zoom { display: none; }
       pre.mermaid {
@@ -632,7 +622,7 @@
   <script type="module">
     import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@12.0.0/dist/mermaid.esm.min.mjs';
     const mermaidLight = getComputedStyle(document.documentElement).getPropertyValue('--mermaid-scheme').trim() === 'light';
-    const mermaidFont = '"JetBrains Mono", ui-monospace, "Fira Code", monospace';
+    const mermaidFont = '"Cousine", "Courier New", Courier, monospace';
     const mermaidDark = {
       background:          '#1e1e2e',
       mainBkg:             '#1e1e2e',
@@ -845,11 +835,11 @@
       <h4>Fourth level: body size, label tier</h4>
       <h5>Fifth level: body size, muted tier</h5>
       <h6>Sixth level: muted and italic</h6>
-      <p><span class="newthought">A new thought</span> opens in small-caps. Body copy is Source Serif 4 at weight 450, with <strong>strong (orange)</strong>, <em>emphasis (inherits its surroundings)</em>, an <a href="#">internal hyperlink</a>, an <a href="https://example.com">outbound link</a> carrying its marker, a source citation <code>src/theme/tokens.css:14</code>, and inline <code>code()</code>.</p>
+      <p><span class="newthought">A new thought</span> opens in small-caps. Body copy is Times New Roman at weight 400, with <strong>strong (orange)</strong>, <em>emphasis (inherits its surroundings)</em>, an <a href="#">internal hyperlink</a>, an <a href="https://example.com">outbound link</a> carrying its marker, a source citation <code>src/theme/tokens.css:14</code>, and inline <code>code()</code>.</p>
       <p>Status spans: <span class="verified">verified</span>, <span class="unverified">unverified</span>, <span class="correction">correction</span>.</p>
       <p>Annotation elements: <mark>a marked passage</mark> takes a translucent orange wash, and a shortcut renders as <kbd>Ctrl</kbd> <kbd>K</kbd>, a ringed chip distinct from inline <code>code()</code>.</p>
       <p>Markdown inline output: <del>struck through</del> drops to the muted tier, <samp>program output</samp> takes the mono face without the code chip, an <abbr title="HyperText Markup Language">HTML</abbr> abbreviation carries a dotted rule, and H<sub>2</sub>O sits beside 10<sup>3</sup> without opening the line. An emoji image <img class="emoji" alt="&#128578;" title=":slightly_smiling_face:" src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Ccircle cx=%228%22 cy=%228%22 r=%227%22 fill=%22%23e6c84f%22/%3E%3Ccircle cx=%225.5%22 cy=%226.5%22 r=%221%22/%3E%3Ccircle cx=%2210.5%22 cy=%226.5%22 r=%221%22/%3E%3Cpath d=%22M5 10q3 2.5 6 0%22 fill=%22none%22 stroke=%22%23000%22/%3E%3C/svg%3E"> sets at text size with no frame.</p>
-      <details class="deep"><summary>Why weight 450 and not 400</summary><p>The webfont exists for the weight axis. A system serif ships 400 and 700 and nothing between, so nothing else renders the 450 that light-on-dark body copy wants.</p></details>
+      <details class="deep"><summary>Why Times New Roman and Courier New</summary><p>The payload names the two faces a 1996 document actually had: Times New Roman for body copy and Courier New for code. Each loads from a libre metric clone on jsDelivr, pinned to an exact version, and falls back to the system face of the same name.</p></details>
       <p>A sidenote lives here.<label for="sn-1" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-1" class="margin-toggle"/><span class="sidenote">This is a sidenote. It floats to the right margin and auto-numbers.</span> And a margin note follows.<label for="mn-1" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-1" class="margin-toggle"/><span class="marginnote">A margin note carries no number.</span></p>
     </section>
 
@@ -943,20 +933,19 @@
     <section>
       <h2>Blockquote, aside, details</h2>
       <blockquote><p><span lang="la">Stat crux dum volvitur orbis.</span> The Cross stands while the world turns.</p></blockquote>
-      <blockquote class="pull"><p>A <code>blockquote.pull</code> carries a large faint opening quote mark over the same accent bar. Opt-in, because the plain blockquote above is used too densely for citations to carry the glyph everywhere.</p></blockquote>
       <aside>An aside: orange accent-bar, no fill. For asides and callouts. A <mark>marked passage inside the label tier</mark> keeps body-copy text, since the wash carries nothing dimmer.</aside>
       <details><summary>Collapsible summary</summary><p>Hidden content revealed on click.</p></details>
     </section>
 
     <section>
       <h2>Icon rows and a step chain</h2>
-      <p>A tag-dot marks a categorical value that already has a color elsewhere, never a rank. The class carries only the dot, never the label, because it paints <code>currentColor</code> and would otherwise recolor the text beside it: <span class="tag-dot" style="color: var(--data-1)"></span>Rust, <span class="tag-dot" style="color: var(--data-3)"></span>Go, <span class="tag-dot" style="color: var(--data-2)"></span>Python. A live-dot is the sheet's first animation, frozen for free under reduced motion: <span class="live-dot"></span> streaming.</p>
+      <p>A tag-dot marks a categorical value that already has a color elsewhere, never a rank. The class carries only the dot, never the label, because it paints <code>currentColor</code> and would otherwise recolor the text beside it: <span class="tag-dot" style="color: var(--data-1)"></span>Rust, <span class="tag-dot" style="color: var(--data-3)"></span>Go, <span class="tag-dot" style="color: var(--data-2)"></span>Python. A live-dot marks something live: <span class="live-dot"></span> streaming.</p>
       <ul class="icon-list" role="list">
         <li style="--icon-color: var(--orange)"><span class="icon-chip" aria-hidden="true">I</span><div><strong>Implement</strong><code>implement the functionality</code></div></li>
         <li style="--icon-color: var(--link)"><span class="icon-chip" aria-hidden="true">I</span><div><strong>Identify</strong><code>identify the bottleneck</code></div></li>
         <li style="--icon-color: var(--green)"><span class="icon-chip" aria-hidden="true">V</span><div><strong>Validate</strong><code>verify behavioral correctness</code></div></li>
       </ul>
-      <p>A step chain is for a flow too trivial to justify a Mermaid diagram. A graph with a branch or a loop still belongs in <code>pre.mermaid</code>. Its <code>--icon-color</code> takes a prose accent, never a <code>--data-*</code> slot: the node fills at full strength and the letter is <code>--surface</code> on top of it, so a ramp scoped to the 3:1 diagram floor lands that pair at 3.5:1 in light mode. A <code>.tag-dot</code> or an <code>.icon-chip</code> may still carry a <code>--data-*</code> color, because neither puts text on the fill. The chain below runs Specify, Implement, Optimize, Verify, one letter to a node. A node is a circle with room for one character, so the words belong in the sentence that introduces the chain, the way this one does. Each <code>.step-arrow</code> is <code>aria-hidden</code>, because a screen reader otherwise reads the glyph between every pair of steps.</p>
+      <p>A step chain is for a flow too trivial to justify a Mermaid diagram. A graph with a branch or a loop still belongs in <code>pre.mermaid</code>. Its <code>--icon-color</code> takes a prose accent, never a <code>--data-*</code> slot: the node fills at full strength and the letter is <code>--surface</code> on top of it, so a ramp scoped to the 3:1 diagram floor lands that pair at 3.5:1 in light mode. A <code>.tag-dot</code> or an <code>.icon-chip</code> may still carry a <code>--data-*</code> color, because neither puts text on the fill. The chain below runs Specify, Implement, Optimize, Verify, one letter to a node. A node is a square with room for one character, so the words belong in the sentence that introduces the chain, the way this one does. Each <code>.step-arrow</code> is <code>aria-hidden</code>, because a screen reader otherwise reads the glyph between every pair of steps.</p>
       <div class="step-chain">
         <span class="step-node" style="--icon-color: var(--orange)">S</span>
         <span class="step-hop"><span class="step-arrow" aria-hidden="true">&rarr;</span><span class="step-node" style="--icon-color: var(--link)">I</span></span>
