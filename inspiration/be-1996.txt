@@ -19,4 +19,4 @@ A white page with a deep navy title box across the top right, then a narrow left
 A corporate home page built from nested boxes rather than from a grid. Each news item is its own bordered panel, so the page reads as a stack of cards, and the icon column acts as a permanent index. The palette is two working colors, navy and dark red, over white.
 
 [RELEVANCE]
-The bordered-panel stack is the period's card layout, and the sample pages already cover it. Nothing transfers beyond the reminder that two working colors are enough.
+The bracketed link row is the nav convention to reuse, as in [About Be] [BeProducts] [What's New], and the icon rail inside a one-pixel grey border is the bordered edge beside it.

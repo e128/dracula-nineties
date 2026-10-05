@@ -19,4 +19,4 @@ A left rail of plain white text links about 100 pixels wide, then a centered col
 A hobbyist-era game page where decoration arrives as clip art rather than as layout. The structure is a heading and a numbered list, repeated, with every spare gap filled by a bitmap. Text is small serif left to run wide, so the page reads as a printed flyer pinned to black.
 
 [RELEVANCE]
-The numbered-list rhythm and the single red marker color are usable, but both are already standard here. Nothing else transfers; the clip-art density is the thing this template exists to avoid.
+The persistent left link rail and the dated site-last-modified stamp are the period frame to reuse: a flat single-column nav beside the copy, with red reserved to mark new or updated items.

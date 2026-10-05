@@ -19,4 +19,4 @@ A beveled header box with a rainbow logo holds the page title, then a left stack
 The bevel era in one page. Navigation is a vertical stack of 3D pills, content is unadorned Times hypertext, and a single promo box with a starburst is the only place the two languages meet. The masthead is decorated and the document is not, which is the split that later stylesheets exist to remove.
 
 [RELEVANCE]
-The beveled button stack is period texture this template does not want. The useful part is the split itself: a decorated header over a plain document body is close to what the sample pages already do.
+The dated news list plus the footer boilerplate: linked headings each carrying a date, closed by a copyright line, a webmaster address and a last-modified date.

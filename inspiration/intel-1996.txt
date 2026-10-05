@@ -18,4 +18,4 @@ A thin nav row of grey links runs across the top with the logo at the right. The
 An information diagram used as a home page. Orange connector lines turn navigation into a schematic, so the page is read spatially rather than as a list, and the news panel is the only conventional column. It reads as a fold-out product brochure.
 
 [RELEVANCE]
-The connector-line diagram is a genuine layout idea, but it needs a canvas this template does not have, since its pages are documents. Nothing transfers.
+The right-hand weekly-updates panel is the dated news-list column to reuse, a stack of short headed items each carrying a date, and the thin grey utility nav row across the top is the same tier. Drop the connector-line diagram.

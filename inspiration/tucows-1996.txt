@@ -18,4 +18,4 @@ A cow watermark covers the whole ground, under a logo, a banner ad, an instructi
 A download mirror page that is mostly a map. The cow watermark and the illustrated globe are the identity, and the actual content is one short table. It reads as a poster whose only job is to route a visitor to a server near them.
 
 [RELEVANCE]
-Nothing transferable. The watermark ground and the map illustration are both texture this template leaves out, and the page has no type decision to keep.
+The Primary TUCOWS Mirrors table is a flat one-pixel bordered box with a heading row, the bordered-panel tier to reuse, and the closing copyright plus liability line is footer boilerplate. Leave out the cow watermark and the map.

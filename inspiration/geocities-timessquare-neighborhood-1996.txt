@@ -18,4 +18,4 @@ A left column holds the GeoCities logo, a sponsor strip and a stack of partner b
 A neighborhood portal page where art and advertising carry the same weight. The banner is a collage, the navigation is literal buttons, and the content is a short list of member sites. It reads as a fairground noticeboard, and every element competes for the same attention.
 
 [RELEVANCE]
-Nothing transferable. The collage banner and the button stack are the texture this template avoids, and there is no type decision here to keep.
+The stacked left rail of plain underlined link labels and the bracketed footer row ([Home] [Neighborhoods] [Information] [What's New] [What's Cool] [Utilities]) are both reusable; leave the collage banner out.

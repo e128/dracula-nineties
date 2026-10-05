@@ -17,4 +17,4 @@ A starfield and nebula ground carries a large rendered wordmark. A left column o
 A corporate site as a 3D poster. The chrome is a rendered illustration, the navigation is a column of spheres, and every label is small caps on black. It reads as a screensaver, and nothing about the page suggests a document.
 
 [RELEVANCE]
-Nothing transferable. The rendered ground and the sphere navigation are the opposite of a readable document, and the text-only link at the top is the page admitting as much.
+The black ground with silver nav labels and the footer boilerplate, a copyright line plus a webmaster address, are the closest match in the corpus; leave the sphere art out.

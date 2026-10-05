@@ -18,4 +18,4 @@ A narrow left column holds an ad banner, the GeoCities logo, a sponsor list and 
 A service home page read as a news bulletin. The banner and the button stack are the only graphics, and the body is plain text with blue links, so the page reads as a newsletter. The left column is a permanent advertising rail that never changes down the scroll.
 
 [RELEVANCE]
-The red heading over blue links on white is a two color document, which is close to what this template does. Nothing else transfers.
+The dated news list: a bold colored heading over a short paragraph down one column, closed by a bracketed [What's New?] footer row.
