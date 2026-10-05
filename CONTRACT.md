@@ -262,44 +262,51 @@ regeneration re-inlines fresh CSS around whatever markup you already emitted.
 | since | your generator must now |
 | --- | --- |
 | v2.2.0 | nothing to emit, but **every page repaints**: the palette becomes a 1990s register of Dracula, so a pinned consumer that diffs screenshots sees a new ground (`#000000` dark, silver `#c0c0c0` light), a silver structural tier where the blue-grey was, and a web-safe link blue in light. One CSS-provided addition needs no markup: **`a:visited` now takes `--visited`**, a token separate from `--link`. No class, no token a generator writes, no § 2 requirement |
-| v1.50.2 | nothing. **A `nav.toc` that follows a floated `.sidenote` or `.marginnote` stack now drops below it at full width** instead of painting its `color-mix` ground under the note. The index's own `<ol>` already avoided the float; the `nav` box did not. Self-contained over markup you already emit |
-| v1.50.1 | **stop using `<br>` between an `.icon-list` title and its detail**: put the `<strong>` and the `<code>` side by side and `.icon-list strong` breaks the line. Mark a file path with `<code>`, not `<cite>`, which names the title of a standalone work |
-| v1.50.0 | nothing, but three existing renders change. **A `tfoot td` takes weight 600 and a strong rule above it**, so a table that already has a `tfoot` looks different. **A `table.bar-chart` draws faint guides at 25, 50 and 75 percent and a baseline at the zero edge.** **A Mermaid pie gets a smaller title, thinner strokes and labels nearer the slice centre.** Five opt-ins are new: `.stat-strip` (a `dl` of `div` groups), `.label` inside a `figcaption` or `caption`, `.chart-takeaway` with a `.more` second line, `table.evidence-table`, and `td.bar.lead`. No new token, no new § 2 requirement (in `samples/dark-charts.html`, search `class="stat-strip"` and `class="bar lead"`) |
-| v1.49.0 | nothing. **An `.edge-list` draws a hairline between its two tracks** and **a `<span class="byline">` inside a `figcaption` or `caption` becomes a second caption tier**. The second is the only opt-in, and it is the class placement alone; a caption without one renders as before. No new class, no new token, no § 2 requirement (in `samples/dark.html`, search `class="edge-list"` and `Source: the flowchart above`) |
-| v1.48.2 | **supply `tabindex="0"`, `role="region"` and a label on any pandoc `span.math.display`**, the same three a `<math display="block">` already takes. That span has its own sideways-scroll axis, CSS cannot give it a tab stop, and Safari does not focus a scroller on its own, so a wide equation was out of keyboard reach there. The rest is self-contained: two decorative glyphs left the accessibility tree and four previously untested rules gained a fixture instance |
-| v1.48.0 | nothing. Nine more fence types theme correctly, and two of them need the front-matter form rather than written-inline options: **`kanban` and Mermaid's own `timeline` keyword accept `accTitle`/`accDescr` and never surface them**, and a written-inline `kanban` draws them as two junk columns, so those two take a `---` block above the diagram keyword with both keys at column 0 and keep the bare `Zoom diagram` label. `gantt` needs `tickInterval 1day`, since its default tick spacing drew every date twice. **`zenuml` still does not render**, and stays out on the same cost basis that dropped the separate ELK import in v1.47.0 (in `samples/dark-charts.html`, search `classDiagram`) |
-| v1.47.0 | nothing. `mermaid.js` moves its pinned CDN import from `mermaid@11.17.2` to `mermaid@12.0.0`: self-contained over fences you already emit, but **layout is now the bundled ELK engine rather than `dagre`, which can reflow an existing diagram's geometry on the next render**. The separate `@mermaid-js/layout-elk` import and its dynamic loader are gone, so delete that pin if you referenced it directly |
-| v1.46.0 | nothing, unless you emit a `nav.toc`, and then one § 2 requirement applies: **name the landmark with `aria-labelledby` pointing at its own `p.toc-label`, not with an `aria-label` that repeats the label's text.** Everything else is self-contained over markup you already emit, and all of it repairs v1.45.0. **One known gap stays open:** the `forced-colors: active` block does not mention `nav.toc`, so the index loses its `color-mix` ground there and reads as a bordered box rather than a filled one |
-| v1.45.1 | nothing. It republished the samples, `tokens.css` and the editor themes that v1.45.0 tagged while stale. No payload byte changed |
-| v1.45.0 | nothing required, and two components became available: **`nav.toc`, an on-this-page index, and `details.deep`, a collapsed tier for detail a reader can skip.** Both are CSS over markup you write yourself, no script and no CDN. **Pin v1.46.0 rather than either v1.45 release if you emit them:** the components as shipped here carried eight defects, every one fixed in v1.46.0 |
-| v1.44.0 | nothing, unless you emit a `.step-chain`, and then one § 2 requirement applies: **name its steps in the sentence that introduces the chain, and put `aria-hidden="true"` on every `.step-arrow`.** That is the one requirement in § 2 that asks you for copy rather than markup: a `.step-node` is a circle with room for one character, so its letter stays real text and no CSS rule can supply the word. The rest of the release is self-contained |
-| v1.43.0 | **replace every `.pie-chart` with a Mermaid `pie showData` fence.** The CSS pie is gone, rule and § 2 requirement with it, so a `<div class="pie-chart">` left in your markup is an empty box. The fence draws the percentage inside each slice, a legend and a title; the CSS pie could draw none of the three. It costs a CDN request, so a page that must render offline should draw a `table.bar-chart` instead, which was already the first recommendation |
-| v1.42.0 | nothing, unless you draw a chart, and then two § 2 requirements apply. **Two chart components ship.** A bar chart is an ordinary `<table class="bar-chart">` with a `--bar` percentage per cell: the band paints inside the cell that already holds the number, in one hue, so the row label carries the category rather than the color. A pie was one `conic-gradient` over `--p1` to `--p4`, capped at the four members of the `--data-*` ramp. Both need `print-color-adjust: exact` to survive a reader printing with background graphics off, and **`.tag-dot` joined that pin** (in `samples/dark-charts.html`, search `class="bar-chart"`) |
-| v1.41.1 | nothing. `code` takes a 1px outline under `forced-colors: active`, because that mode drops the fill that bounded it, and `pre code { border: none }` stops that outline fragmenting into broken boxes across every line of a code block. Self-contained over markup you already emit |
-| v1.41.0 | nothing, and three things print or announce better. **A printed diagram keeps the palette Mermaid baked into it at init**, because `pre.mermaid` re-declares the five tokens its own rules resolve through rather than recoloring text classes. Both pie strokes are themed, where Mermaid defaulted them to literal `black`. **A `pre.mermaid` region below 600px is named `Scrollable diagram`** rather than the diagram's own title, which the SVG already exposes, so a screen reader no longer reads that title twice on entry: override it with `window.mermaidRegionLabel` |
-| v1.40.1 | nothing, and your printed pages get their diagram text back: a diagram themed for a dark page kept painting text at `#f8f8f2` while `@media print` turned the page white. One rule pulls the pie title and legend, the `quadrantChart` axis labels and every `sequenceDiagram` message label onto `--on-surface`, which is what Mermaid already paints on screen in both palettes. **A `gantt`, `class`, `state` or `journey` diagram still prints its page-ground text light**, and NOTES.md records the general fix and why it was not taken |
-| v1.40.0 | **drop any `classDef name fill:#hex` line from a fence on a page that follows the reader's appearance**, per the new § 2 requirement: a fence has no CSS to read, so one literal hex cannot serve both palettes. `classdefLight` is there for a page locked to light. Everything else is self-contained, and a `pie` fence renders differently: `pieOpacity` is pinned to `1` and `pieSectionTextColor` puts the slice percentage on the right end of the ramp. § 2 also stopped citing line numbers into the fixture and cites search strings instead |
-| v1.39.0 | nothing, and check two § 2 requirements if you emit either component: keep `--icon-color` on a `.step-node` off the `--data-*` ramp, and keep `quadrantChart` point labels short. Everything else is a self-contained stylesheet change over markup you already emit. Page width and the prose measure are unchanged |
-| v1.38.1 | nothing. A self-contained stylesheet change over markup you already emit: `.sidenote` and `.marginnote` reset `font-variant-caps`, `font-weight` and `letter-spacing`, so a margin note renders in its normal register wherever its anchor lands. Three new § 2 requirements: same-page citation targets as relative fragments, bracket-style citations linked into the source list, and the scope of `.newthought` |
-| v1.36.0 | **add `aria-label` to every `.footnote-backref` you emit, numbered per footnote** (`Back to reference 1`, `Back to reference 2`, ...). This is a real markup gap in what `cmark-gfm` and pandoc emit by default, not a stylesheet oversight: the glyph carries no accessible name on its own, and no CSS rule can add one to content it did not write. `.step-node` also joined the forced-colors border list, self-contained over markup you already emit |
-| v1.34.0 | nothing. Two self-contained stylesheet additions over markup you already emit: a fixed full-viewport film-grain texture behind every page, off in print and under `forced-colors: active`, and a second shadow layer on `kbd` for a raised bottom edge |
-| v1.33.0 | nothing, unless you opt in to one of six new presentational classes: `.kicker`, `.tag-dot`, `.live-dot`, `.icon-list` / `.icon-chip`, `.step-chain` / `.step-hop` / `.step-node` / `.step-arrow`, and `blockquote.pull`. All are CSS over markup you write yourself. Two carry a real § 2 requirement if you use them: keep `.tag-dot` off any element that also holds the label text, and wrap every arrow-plus-node pair after the first in `.step-hop` |
-| v1.31.0 | opt in to `.verdict` plus `.verdict-pass` / `.verdict-partial` / `.verdict-failed` / `.verdict-neutral` on any page that grades a claim. The classes existed before this row did, and nothing in this file told a generator they were there, so a real graded page rendered every verdict as plain text. `.verdict` also gained `display: inline-block`, so its `min-width` now holds wherever you place it, not only inside `.scorecard`'s grid |
-| v1.30.0 | nothing. `.recent-group .nav-list li` lays its `<span class="count">` out beside the link instead of on its own line below it, and equalizes card height within a `.recent-groups` row. Self-contained over markup you already emit |
-| v1.27.0 | **drop `role="region"` from any bare `<table>` you put it on**, and emit `tabindex="0"` plus a `<caption>` there instead. § 2 used to fold a table into the same sentence as `pre` and `math`, so it asked for a role that overrides `role="table"`. The tab stop is still required: the stylesheet gives a table its own sideways-scroll axis below 1000px. A table inside `.table-scroll` needs no edit |
-| v1.27.0 | nothing, and a filtered `details.nav-group` now counts what it shows. `summary .count` reads the matched count while a query is live and returns to the number you authored when the query clears, so the two figures on one screen agree |
-| v1.27.0 | nothing, and the filter's live count sits in the annotation register: `[role="status"]` is claimed at `--label` and `0.95em`. Override it in your own layer if you had styled it yourself |
-| v1.27.0 | nothing, and a wrapped table prints in full. `.table-scroll` released its `70vh` cap and `overflow: auto` on paper. `samples/dark.html` carries the first instance in the repo, twenty-four rows by eight columns |
-| v1.26.0 | nothing, unless you emit dated events. `dl.timeline` is opt-in: a `dl` with no class keeps the glossary register it always had. Emit the class and the two § 2 requirements apply, `--timeline-date` and `sup` citations. Everything else is self-contained |
-| v1.26.0 | nothing for the palette, but expect a visible shift in three places if you diff screenshots: light and print `--red` are more saturated, the light row-hover fill is one step lighter, and three high-contrast accents now declare the color they actually paint. All are `:root` values; no markup reads them |
-| v1.25.0 | nothing. `--data-1..4` gained light and print values, `h5` and `h6` dropped to weight 500, and the conn-map Links column is height-bounded. `filter.js` now writes its own no-matches line into a `.filter-empty` it creates, and still leaves your own copy untouched |
-| v1.24.0 | drop any specificity hack or `!important` you added to override the template. The sheet is in `@layer dracula-nineties` and your unlayered CSS wins on its own |
-| v1.24.0 | nothing for light or high-contrast mode; both are media queries over the same markup |
-| v1.22.0 | emit `<nav>` with sibling `<a>` children to get link separators; nothing to change if you already do |
-| v1.22.0 | supply `tabindex="0"`, `role="region"` and a label on any `<math display="block">` |
-| v1.22.0 | keep the `markdown-alert` and `markdown-alert-<type>` class pair on GFM alerts |
-| v1.21.0 | wrap a wide table in `.table-scroll` to get a working sticky header, if you want one |
-| v1.20.0 | emit `align` attributes or inline `text-align` for pipe-table alignment |
+| v2.1.0 to v2.1.1 | nothing to emit. **The palette reset to the upstream Dracula and Alucard baseline**, so a pinned consumer that diffs screenshots sees every accent and ground move at once. v2.1.1 dropped the `(muted)` qualifier from the template name. No class, no token a generator writes, no § 2 requirement |
+| before v2.0.0 | **one consolidated instruction set, below.** Counting in this repo begins at v2.0.0, so every earlier release is reconciled into the single set that follows rather than kept as a row of its own |
+
+### Everything before v2.0.0, in one set
+
+A generator written against a pre-2.0.0 pin must satisfy all of the following. Grouped by what it
+must change. Anything not named here needs no edit.
+
+**Markup a generator emits:**
+
+- Wrap a wide table in `.table-scroll` for a working sticky header, and put `tabindex="0"` plus a
+  `<caption>` on a bare scrolling `<table>`, in place of `role="region"`.
+- Write pipe-table alignment as an `align` attribute or inline `text-align`.
+- Emit `<nav>` with sibling `<a>` children to get link separators.
+- Supply `tabindex="0"`, `role="region"` and a label on any `<math display="block">` and on any
+  pandoc `span.math.display`.
+- Keep the `markdown-alert` and `markdown-alert-<type>` class pair on GFM alerts.
+- Add `aria-label` to every `.footnote-backref`, numbered per footnote (`Back to reference 1`, ...).
+  The glyph carries no accessible name of its own and no CSS rule can add one.
+- Opt in to `.verdict` plus its four state classes on any page that grades a claim.
+- For a `dl.timeline`, emit the class and the two § 2 requirements (`--timeline-date` and `sup`
+  citations).
+- For a `.step-chain`, name its steps in the introducing sentence and put `aria-hidden="true"` on
+  every `.step-arrow`; wrap every arrow-plus-node pair after the first in `.step-hop`.
+- For an `.icon-list`, put the `<strong>` and `<code>` side by side with no `<br>`, and mark a file
+  path with `<code>`, not `<cite>`.
+- For a `nav.toc`, name the landmark with `aria-labelledby` pointing at its own `p.toc-label`.
+- Replace any `.pie-chart` div with a Mermaid `pie showData` fence; a bar chart is
+  `table.bar-chart` with a `--bar` percentage per cell.
+- Drop any `classDef name fill:#hex` line from a fence on a page that follows the reader's
+  appearance.
+- Drop any specificity hack or `!important` added to override the template: the sheet is in
+  `@layer dracula-nineties` and unlayered CSS wins on its own.
+
+**Opt-ins a pre-2.0.0 generator would not know:** `nav.toc`, `details.deep`, `.edge-list`, a
+`.byline` inside a `figcaption` or `caption`, `.stat-strip`, `.label` inside a caption,
+`.chart-takeaway`, `table.evidence-table`, `td.bar.lead`, and the six presentational classes
+`.kicker`, `.tag-dot`, `.live-dot`, `.icon-list`/`.icon-chip`, the `.step-*` chain, and
+`blockquote.pull`.
+
+**Self-contained, no generator edit:** the filter's live count and its no-matches line, the
+film-grain texture, the print and forced-colors fixes, and the Mermaid CDN and layout-engine moves.
+The one worth a screenshot diff is the v1.47.0 layout engine change from `dagre` to the bundled
+ELK, which can reflow an existing diagram's geometry.
+
 ## 4. Regenerate on a byte compare, not a version string
 
 A version comment is not a staleness signal. A generated file can carry a current comment over
