@@ -19,4 +19,4 @@ A black page holding a white content column between two dark rails. The masthead
 A retail home page that is really an ad board. The white column is the only reading surface, and everything around it is promotional, so the eye is pulled left and right at once. Color is used to separate the rails from the content, not to build hierarchy inside it.
 
 [RELEVANCE]
-Nothing transferable. The dark rails around a white column are the one idea here, and the template already has that contrast without the ad noise.
+The left rail of yellow-on-violet boxed links is the left nav rail and the white reading column between two rails is the three-column portal frame; take the rail and the frame and leave the right ad stack.

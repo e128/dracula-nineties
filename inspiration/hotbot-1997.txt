@@ -18,4 +18,4 @@ A purple top bar of site links sits over a white search band with a logo and a f
 The loudest palette in this archive. A saturated green fills the whole ground while the type mixes white, blue, red and purple on top of it, so the page reads as a sticker sheet. The structure underneath is an ordinary three-column directory, which the color completely hides.
 
 [RELEVANCE]
-Nothing transferable. A full-bleed saturated ground with four competing type colors is the clearest example of what this template's contrast rules exist to prevent.
+The three-column directory of categorized link groups under flat headings is the portal grid to reuse, and the white search band with its selects and checkboxes is the form strip. Leave out the saturated green ground and the four competing type colors.

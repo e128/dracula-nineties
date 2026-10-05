@@ -18,4 +18,4 @@ A black starfield banner holds the logo, over a search band with a select and an
 A portal front page in its simplest form. Three columns of links with a search box above and ads at the side, so the page reads as a directory with a shop window. The starfield banner is the only atmosphere, and it is spent entirely on the wordmark.
 
 [RELEVANCE]
-Nothing transferable. The starfield banner and the ad column are both the period texture this template leaves out.
+The search band with a select and an input is the search strip to reuse, and the three columns of bold link headings each trailing a row of small links are the portal grid. Leave out the starfield banner and the ad column.

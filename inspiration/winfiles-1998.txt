@@ -18,4 +18,4 @@ A black banner sits at the top, then a large logo floats over a sky blue cloud f
 A download site dressed as the operating system it served. The window chrome, the menu bar and the icon grid are all quotations of Windows 95, so the page reads as a screenshot rather than as a site. The joke carries the entire design.
 
 [RELEVANCE]
-Nothing transferable. The OS quotation is period charm, not a layout idea, and the icon grid is a navigation this template has no use for.
+The two-row nav bar of small one-pixel bordered buttons is the tab strip to reuse, and the closing copyright plus usage-terms and privacy-policy block is footer boilerplate. Leave out the Windows 95 window quotation and the cloud field.

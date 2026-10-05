@@ -25,5 +25,4 @@ background, no image and no stylesheet, so every visual property is a browser de
 decision. The result reads as an index card: dense, fast, and legible at 640 by 480.
 
 [RELEVANCE]
-Nothing transferable beyond the discipline of a single link color and default type. The grey
-ground is the browser's, not the designer's, so there is no palette precedent here.
+The bracketed inline link row is the nav convention to reuse, the dense two-level bulleted directory with a colored marker is the index tier, and the closing copyright plus webmaster address is footer boilerplate. Drop the beveled 3D button bar.

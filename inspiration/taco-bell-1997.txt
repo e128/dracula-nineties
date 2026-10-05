@@ -18,4 +18,4 @@ A brick textured ground frames a black content panel, with the logo at the top l
 A fast food page lit like a late night drive-through sign. Green type on black, magenta buttons and a brick ground make the page read as a sign rather than as a document. The instruction block admits that the real site was a Flash menu, so this page is a doorway with a manual.
 
 [RELEVANCE]
-Nothing transferable. Green on black is a contrast choice the palette rejects, and the page carries no content of its own.
+The left rail of stacked bordered buttons is the nav rail to reuse, and the closing copyright plus Legal Notices line is footer boilerplate. Leave out the green type on black and the numbered instructions for a Flash menu.

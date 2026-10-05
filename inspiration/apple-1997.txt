@@ -18,4 +18,4 @@ A dark red rail runs the full height at the left, about 130 pixels wide, holding
 A news-driven corporate home page with a long scroll and a permanent rail. The rail is the strong element, a solid block of dark red that never moves, while the feed to its right is dense text in boxes. The page reads as a newspaper front page with a fixed left index.
 
 [RELEVANCE]
-The fixed index rail is a layout this template does not use, and the long two-column feed is a useful reminder of how tiring border-per-item can get. Nothing transfers directly.
+The fixed dark red rail of white text nav is the left nav rail, the two-column feed of bordered items beside it is the dense news column, and the closing Copyright 1997 plus Maintained online by webmaster@apple.com line is the footer boilerplate.

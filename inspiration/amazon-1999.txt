@@ -19,4 +19,4 @@ A top strip for cart and account sits over a navy tab bar of eight store section
 A commerce front page where the module, not the page, is the design. One shape repeats six times down the middle, so the eye reads the rhythm before it reads any single item. Everything is small, thumbnails, type and rules, with the amber button as the only control that asks to be pressed.
 
 [RELEVANCE]
-The repeated module and the three-column rail are the period's answer to a home page, and this template deliberately does not have one. Nothing transfers except the restraint of keeping every module the same shape.
+The three-column portal is the frame to reuse, a narrow browse rail at left, a wide column of same-shape modules at center and a recommendation rail at right, and the closing centered link row over the Copyright and disclaimer line is the footer tier.

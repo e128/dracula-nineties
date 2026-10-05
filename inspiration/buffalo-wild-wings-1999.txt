@@ -18,4 +18,4 @@ A black left rail of red-ruled buttons runs the full height, carrying the site n
 A restaurant home page built as a printed menu. The rail is the only structured element, and the rest is prose with pictures, so the page reads as a flyer pinned to a wall. The watermark is the one attempt at texture, and it sits behind body copy, which is why the text stays readable.
 
 [RELEVANCE]
-Nothing transferable. The watermark behind body copy is exactly the kind of texture this template rules out, since it fights the contrast the type needs.
+The black left rail of stacked bordered nav buttons is the nav rail to reuse, and the bracketed [Our Story] [Locations] [Menu] link row above the footer is the bracketed-row convention. Leave out the watermark behind the copy.

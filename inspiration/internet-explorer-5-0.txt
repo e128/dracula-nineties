@@ -18,4 +18,4 @@ The screenshot includes the whole application: menu bar, toolbar, address bar an
 The page is inseparable from its frame, and the chrome is part of what the reader actually saw. The content below is a portal directory with a login panel, so the page reads as a window onto a service rather than as a document.
 
 [RELEVANCE]
-Nothing transferable. The chrome is application furniture, and the login panel is a state this static template does not have.
+The navy tab row of six sections is the tab strip to reuse, and the yellow Message Center panel beside the directory is the bordered side panel. Leave out the browser chrome and the login state.

@@ -17,4 +17,4 @@ A wordmark and a phone number run across the top with a badge at the right, over
 A catalog page from the mail-order era. Products are photographs with red or navy captions, and the left rail is a permanent index, so the page reads as a spread from a printed catalog. The navy rail is the only structure on the page.
 
 [RELEVANCE]
-Nothing transferable. The rail and the promo blocks are commerce furniture, and the navy rail is a stronger contrast than this template needs.
+The permanent left rail of category buttons beside a two-column promo grid is the three-column portal layout to reuse, with the seven-item utility nav row as its tab strip and the closing link row as footer boilerplate. Keep the structure, not the navy fill.

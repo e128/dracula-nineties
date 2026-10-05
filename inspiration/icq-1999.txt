@@ -19,4 +19,4 @@ A top nav row sits above a violet header bar, and below that the page opens into
 A link directory for a single product. Everything is a heading over a list, with colored bullets and almost no imagery beyond the logo and one banner, so the page reads as a sitemap rather than as a home page. The density is the point, and it is exhausting.
 
 [RELEVANCE]
-Nothing transferable. This is the density this template exists to oppose, and the muted violet column fill is a texture the palette does not carry.
+The right rail of stacked search and company panels is the utility rail to reuse, and the section headings over dense bulleted link lists are the directory block. Leave out the muted violet column fill.

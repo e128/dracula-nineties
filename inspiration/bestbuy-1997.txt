@@ -17,4 +17,4 @@ The whole page is a blue gradient. A yellow link row spans the top, a left colum
 An all-blue page, which is the period's most aggressive color move. The gradient carries the entire ground, yellow type floats on top of it, and the product art is scattered rather than gridded. It reads as a flyer printed on blue paper, and the contrast is the only thing keeping it legible.
 
 [RELEVANCE]
-Nothing transferable. A saturated full-page ground is the opposite of what this template's grounds are for, and the yellow on blue here is a contrast risk the palette gate would reject.
+The bracketed [Home] [Weekly Ad] [Product Info] row is the link-row convention to reuse, top and foot, and the closing Last Updated date with the 1997 copyright and contact the Webmaster line is the footer boilerplate; leave the saturated blue ground and the scattered product art.
