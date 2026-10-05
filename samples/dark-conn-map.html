@@ -6,7 +6,7 @@
   <title>Dracula-Nineties connections-map layout</title>
   <meta name="generated-by" content="scripts/build-sample.nu"/>
   <style>
-    /* Dracula-Nineties v2.5.0 */
+    /* Dracula-Nineties v2.6.0 */
     @layer dracula-nineties {
     @font-face {
       font-family: 'Tinos'; font-style: normal; font-weight: 400;
@@ -125,8 +125,8 @@
     :is(h1, h2, h3, h4, h5, h6) :is(a.headerlink, a.anchor) { opacity: 0; font-size: 0.8em;
       text-decoration: none; margin-inline-start: 0.35em; }
     :is(h1, h2, h3, h4, h5, h6) :is(a.headerlink, a.anchor):focus-visible { opacity: 1; }
-    a:focus-visible, summary:focus-visible, .filter-box:focus-visible,
-    .mermaid-zoom:focus-visible, [tabindex="0"]:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+    :is(a, summary, input, select, textarea, button, [tabindex="0"]):focus-visible {
+      outline: 2px solid var(--link); outline-offset: 2px; }
     :target { scroll-margin-block-start: var(--space-6); }
     li:target, dl.timeline > dt:target + dd { outline: 2px solid var(--orange);
       outline-offset: 3px; border-radius: var(--radius-sm); }
@@ -185,11 +185,11 @@
       border-collapse: collapse; width: auto; max-width: 100%; margin: 0.5rem 0;
       font-size: 0.95em;
     }
-    th, td { border: 1px solid var(--rule-light); }
+    th, td { border: 2px solid var(--rule-light); }
     th {
       font-weight: 400; font-style: italic; text-align: start;
       padding: .4rem .6rem; color: var(--pink);
-      box-shadow: inset 0 -1px 0 var(--rule-light);
+      box-shadow: inset 0 -2px 0 var(--rule-light);
     }
     thead th { position: sticky; top: 0; background: var(--surface-alt); z-index: 1; }
     .table-scroll { overflow: auto; max-height: 70vh; margin: 0.5rem 0; overscroll-behavior: contain; scroll-padding-top: 3em; }
@@ -277,9 +277,40 @@
     li { padding: 0.15rem 0; line-height: 1.5; }
     li::marker { color: var(--muted); }
     li:has(input[type="checkbox"]:first-child) { list-style: none; }
-    li input[type="checkbox"] { font-size: 1em; width: 1em; height: 1em;
-      margin-inline-end: 0.45em; vertical-align: -0.08em; }
+    li input[type="checkbox"] { margin-inline-end: 0.45em; }
     :is(button, input, select, textarea) { font: inherit; font-size: max(1em, 1rem); }
+    :is(input, button, select, textarea, progress, meter) { appearance: none; -webkit-appearance: none;
+      color: inherit; accent-color: var(--green); }
+    :is(input, select, textarea):not([type="checkbox"], [type="radio"], [type="range"],
+      [type="color"], [type="file"], [type="submit"], [type="button"], [type="reset"], [type="image"]) {
+      border: 1px solid var(--rule); background-color: var(--code-bg);
+      border-radius: var(--radius); padding: 0.35em 0.55em; }
+    :is(button, input[type="submit"], input[type="button"], input[type="reset"]) {
+      border: 1px solid var(--rule); background: var(--surface-alt); color: var(--link);
+      border-radius: var(--radius); padding: 0.35em 0.8em; cursor: pointer; }
+    input[type="file"]::file-selector-button {
+      appearance: none; -webkit-appearance: none; font: inherit; font-size: max(1em, 1rem);
+      border: 1px solid var(--rule); background: var(--surface-alt); color: var(--link);
+      border-radius: var(--radius); padding: 0.35em 0.8em; margin-inline-end: 0.6em; cursor: pointer; }
+    select { padding-inline-end: 1.8em;
+      background-image: linear-gradient(45deg, transparent 50%, var(--label) 50%),
+        linear-gradient(135deg, var(--label) 50%, transparent 50%);
+      background-size: 0.4em 0.4em;
+      background-position: calc(100% - 1.1em) center, calc(100% - 0.7em) center;
+      background-repeat: no-repeat; }
+    input[type="search"]::-webkit-search-cancel-button,
+    input[type="search"]::-webkit-search-decoration { appearance: none; -webkit-appearance: none; }
+    input[type="checkbox"], input[type="radio"] {
+      display: inline-grid; place-content: center; width: 1em; height: 1em; padding: 0;
+      vertical-align: -0.08em; border: 1px solid var(--rule-light);
+      background: var(--surface-alt); border-radius: var(--radius-sm); }
+    input[type="radio"] { border-radius: 50%; }
+    input[type="checkbox"]:checked, input[type="radio"]:checked { background: var(--green); border-color: var(--green); }
+    input[type="checkbox"]:checked::before { content: ""; width: 0.24em; height: 0.46em;
+      border: solid var(--surface); border-width: 0 0.15em 0.15em 0;
+      transform: rotate(45deg) translate(-0.02em, -0.04em); }
+    input[type="radio"]:checked::before { content: ""; width: 0.45em; height: 0.45em;
+      border-radius: 50%; background: var(--surface); }
     nav { margin: var(--space-4) 0; padding: .5rem 0; color: var(--label); font-size: 0.95em; }
     nav:has(> a) { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 0.7em; row-gap: 0.2em; }
     nav > a + a { border-inline-start: 1px solid var(--rule-light); padding-inline-start: 0.7em; }
@@ -480,8 +511,7 @@
       }
       a { text-decoration-thickness: max(2px, 0.1em); }
       .nav-list li a { text-decoration-color: currentColor; }
-      a:focus-visible, summary:focus-visible, .filter-box:focus-visible,
-      .mermaid-zoom:focus-visible, [tabindex="0"]:focus-visible { outline-width: 3px; }
+      :is(a, summary, input, select, textarea, button, [tabindex="0"]):focus-visible { outline-width: 3px; }
     }
     @media (prefers-color-scheme: light) {
       :root {
@@ -510,8 +540,9 @@
     }
     @media (forced-colors: active) {
       code, kbd, .verdict, .badge, .icon-chip, .step-node { border: 1px solid currentColor; }
+      :is(input, select, textarea, button, progress, meter) { border: 1px solid currentColor; }
       pre code { border: none; }
-      table, th, td { border: 1px solid currentColor; }
+      table, th, td { border: 2px solid currentColor; }
       .tag-dot::before, .live-dot { background: CanvasText; }
     }
     @media print {
