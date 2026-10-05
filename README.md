@@ -167,8 +167,8 @@ unverified payload. **When a push reports a bypass, say so and revert. Do not ta
 
 [`AGENTS.md`](AGENTS.md) states this flow as plain shell, and states the rules that have no
 exception. It is the only instruction file in this repo and the one any agent reads, whichever
-harness runs it, Claude Code included. Its *Harness entry points* section lists the two Claude Code
-skills, `release` and `design-audit`, each of which packages a flow stated in full there.
+harness runs it, Claude Code included. Its *Harness entry points* section lists the three Claude Code
+skills, `release`, `design-audit` and `inspiration-analyze`, each of which packages a flow stated in full there.
 
 ## Contract enforcement
 

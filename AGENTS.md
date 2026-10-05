@@ -227,98 +227,64 @@ decline is a cost estimate with a date on it, not a verdict.
 
 ## Design Audit Evidence
 
-Every design audit includes performance, responsive usability, accessibility, and standards currency.
-For each check, report measured results, limits, and missing inputs. Never report an unrun check as a pass. Recheck current W3C, ISO/IEC, ETSI, and Baseline sources on each run. Add
-newly ratified applicable criteria to that audit's report, even if this file and the skill have not
-changed. Update either instruction file only through a separate maintainer-authorized change.
+Every design audit reports on period fidelity: whether the drawn design still matches the standards
+of 1994 through 1999, and whether the payload has drifted from a decision NOTES.md records. For each
+check, report measured results, limits, and missing inputs. Never report an unrun check as a pass.
+**The audit's design vocabulary stops at 1999.** Judge the design against the period record: HTML
+3.2 (14 January 1997), HTML 4.0 (18 December 1997) and HTML 4.01 (24 December 1999), CSS1 (17
+December 1996), CSS2 (12 May 1998), WCAG 1.0 (5 May 1999), the 216-color web-safe palette, and the
+era's font stacks and fixed-width layout practice. Do not import a post-1999 standard as the
+yardstick.
 
-### Performance and Stability
+The cap is on design convention, not on CSS implementation. The payload renders in a modern browser
+and may use a modern property to reach a period result; NOTES.md records those decisions. An audit
+does not propose replacing them, and does not propose a modern design idiom. Update this file and
+the skill only through a separate maintainer-authorized change.
 
-- Check the current Core Web Vitals thresholds at web.dev on every audit. The good targets currently are LCP at or below 2.5 seconds, INP at or below 200 milliseconds, and CLS at or below 0.1. Cite the source and access date. For field data, report the 75th percentile and separate mobile from desktop.
-- If lab data is collected, label it as lab data and report it separately from field data. Report INP only when valid field data exists.
-- Use PageSpeed Insights only for a public deployment and after the user authorizes the external
-  request. The `web-vitals` library may measure field data only when the deployed consumer provides
-  consent and instrumentation. Do not add it to this static template. If no public URL or CrUX data
-  exists, report field data as unavailable.
-- The stylesheet is inline. Do not report a separate stylesheet request as render-blocking. Check
-  the resources that the fixture actually loads.
-- Check images and embedded content for reserved dimensions or aspect ratios that prevent layout
-  shifts. Mark ad checks not applicable when no ad slot exists.
-- Use browser Coverage to find CSS that fixtures did not exercise. Treat each result as a candidate,
-  not proof that the CSS is unused. Do not remove CSS based only on fixtures or a PurgeCSS report.
-  Fixtures do not cover every consumer.
+### Period Fidelity
 
-### Responsive Usability
-
-- Render representative fixtures at every combination of these viewport widths and heights:
-  320, 375, 768, 1024, and 1280 CSS pixels wide, with heights of 568, 768, and 900 CSS pixels.
-- Measure page-level horizontal overflow with `scrollWidth` and `clientWidth`. Identify intentional
-  overflow inside documented scroll hatches. Check flex and grid stacking against DOM order.
-- Measure interactive targets at the rendered size. Report targets below 44 x 44 CSS pixels as a
-  usability gap. Keep this result separate from WCAG 2.2 AA, whose 2.5.8 minimum is 24 x 24 CSS
-  pixels.
+- Render representative fixtures at the period's canonical resolutions: 640x480, 800x600 and
+  1024x768. Measure page-level horizontal overflow with `scrollWidth` and `clientWidth`, and
+  identify any overflow inside a documented scroll hatch. Check flex and grid stacking against
+  DOM order.
+- Check the settled fixed-width layout (NOTES.md, Width and measure), the type scale and the
+  heading decisions at each resolution. Report the visual result, not the arithmetic.
+- Review the `inspiration/` entries added since the previous audit. A new reference is the one
+  input that can introduce a design consideration the earlier runs did not weigh. Name each added
+  entry and what it teaches the template, or say it teaches nothing.
+- Report the period standards the run checked against, with each document and its date.
 - Test each implemented loading, error, and empty state. Confirm that critical actions remain
   reachable. If a state does not exist, report it as not applicable and do not invent one.
-- Check visual hierarchy and typography at each viewport. Preserve the settled type scale and
-  heading decisions in NOTES.md.
 
 ### Accessibility Checks
 
-At each audit, check current records from the [W3C WCAG standards page](https://www.w3.org/WAI/standards-guidelines/wcag/),
-[W3C TR index](https://www.w3.org/TR/), [ISO catalog](https://www.iso.org/search.html?q=ISO%2FIEC%2040500),
-[ETSI Human Factors group](https://www.etsi.org/technical-groups/hf/), and [EU Official Journal](https://eur-lex.europa.eu/oj/direct-access.html).
-Check WCAG 3.0 draft status at [W3C TR](https://www.w3.org/TR/wcag-3.0/). Cite each source and access date.
-Do not treat a draft as a conformance standard or a published EN version as harmonised unless its
-Official Journal status confirms that claim. Compare their applicable web-content criteria with the
-WCAG sweep and report any difference. Report standards mapping only. Do not claim legal compliance.
-
-When W3C ratifies a new version or changes criteria, add the relevant current Level A and AA
-criteria to that audit's report table. Track relevant AAA criteria separately. Include Focus Not
-Obscured, Dragging Movements, Target Size (Minimum), Consistent Help, Redundant Entry, and
-Accessible Authentication checks where they apply. Track Focus Appearance as AAA, not AA. Mark
-criteria for absent features not applicable with a reason. Record version, status, and date checked.
-Update this file and the skill only through a separate maintainer-authorized change.
-
-Track WCAG 3.0 changes as draft information only until W3C publishes a Recommendation. Record the
-latest draft date and relevant changes. Do not treat proposed outcomes as conformance criteria or
-state a predicted Recommendation date as fact.
+Run a WCAG 1.0 sweep, the period's accessibility standard (W3C Recommendation, 5 May 1999). Check
+the [W3C TR record](https://www.w3.org/TR/) for the Recommendation date and its checkpoint list.
+Report the Priority 1 and Priority 2 checkpoints that apply to a static, no-build CSS and
+vanilla-JS template, and mark a checkpoint that needs absent content not applicable with a reason.
+Do not import WCAG 2.x, WCAG 3.0, ISO/IEC 40500, EN 301 549, or any later document as a criterion:
+each post-dates the period. Report standards mapping only. Do not claim legal compliance.
 
 Do not send non-public content to an external service without user authorization.
 
 Test keyboard navigation by hand. Check Tab, Shift+Tab, Enter, Space, and Escape where relevant.
-Confirm visible focus for each interactive element in each appearance mode. Automated results, when available, supplement the current WCAG sweep. They do not replace the palette gate, manual keyboard checks, or rendered contrast checks.
+Confirm visible focus for each interactive element in each appearance mode. Automated results, when
+available, supplement the manual checks, the palette gate, and the rendered contrast checks.
 
-### Modern CSS Evaluation Targets
+### Period Technique Review
 
-At each audit, check current MDN or web.dev Baseline status and dates for every feature below.
-Report status as of the audit date. Prefer Baseline Widely available features when the audience
-includes older browsers. Newly available features need an `@supports` fallback unless current
-consumer needs make the fallback unnecessary. In that case, state why. Baseline indicates
-interoperability across its core browsers. It does not guarantee support on every device or with
-every assistive technology. Do not claim a feature is safe to ship without checking its status and
-support needs.
-
-Evaluate these features against actual use and the current stylesheet. Do not add them only to
-follow a trend:
-
-- Container queries (`@container`), `:has()`, subgrid, cascade layers (`@layer`), native CSS
-  nesting, and `@scope`.
-- OKLCH, `color-mix()`, `clamp()`, logical properties, `aspect-ratio`, and Flexbox `gap`.
-- Dynamic viewport units (`dvh`, `svh`, `lvh`), scroll-driven animations, View Transitions,
-  and `@starting-style`.
-- CSS Grid Lanes, `sibling-index()`, `sibling-count()`, CSS Anchor Positioning, and registered
-  custom properties (`@property`).
-
-Evaluate mobile-first authoring as current practice, not as a requirement to reverse settled layout
-decisions. Record Baseline tier, Newly available date, current use, fallback behavior, and reason
-not to adopt each feature.
+Check the drawn result against the period repertoire: fixed-width columns, web-safe or
+dithered-safe grounds, the era font stacks (Georgia, Verdana, Trebuchet MS, Courier, Times),
+visible link states, and rule or bevel ornament in the period vocabulary. Look for a modern default
+that arrived after 1999 and changes the look: a system-UI sans stack, flat neutral chrome, or a
+generated modern widget. Record each as a candidate and check NOTES.md before proposing an addition.
 
 ## Inspiration analysis
 
 `inspiration/` holds reference screenshots of period pages, and each image gets a sibling `.txt`
 beside it with the same stem. Every file carries a header block and four marked sections in a
 fixed order: `[PALETTE]`, `[LAYOUT]`, `[META]`, `[RELEVANCE]`. The point of the fixed order is
-that 42 files stay comparable, so do not reorder, rename or drop a section.
+that the files stay comparable, so do not reorder, rename or drop a section.
 
 The header block carries `site`, `period`, `dimensions` and `sampled` (the date the analysis was
 written, `YYYY-MM-DD`). `[PALETTE]` lists role colors as `name  #rrggbb  role: <role>  <short hue
@@ -354,7 +320,7 @@ point and no capability.
 | Skill | Wraps | Invoked by |
 | --- | --- | --- |
 | [`release`](.claude/skills/release/SKILL.md) | Release flow and three published assets | "release", "cut", "tag", or version |
-| [`design-audit`](.claude/skills/design-audit/SKILL.md) | Audits payload changes against NOTES.md and current practice. Checks current standards, Core Web Vitals, responsive usability, WCAG, manual accessibility, and prose rules. Renders changed components and writes a dated report with unapplied patch to `review/`. Never edits the payload | "design audit", "check WCAG compliance", `/design-audit` |
+| [`design-audit`](.claude/skills/design-audit/SKILL.md) | Audits payload changes against NOTES.md and the design standards of 1994 through 1999 (HTML 3.2, HTML 4.0, CSS1, CSS2, WCAG 1.0, the web-safe palette). Reviews new `inspiration/` references, renders changed components, and writes a dated report with unapplied patch to `review/`. Never edits the payload | "design audit", "period fidelity", "review the references", `/design-audit` |
 | [`inspiration-analyze`](.claude/skills/inspiration-analyze/SKILL.md) | Writes the per-image `.txt` analysis beside each `inspiration/` screenshot, in the fixed four-section template above | "analyze inspiration", "analyze the reference pages", `/inspiration-analyze` |
 
 **None of these skills is required to do the work.** `release` is the order in which to call
