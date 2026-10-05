@@ -6,9 +6,22 @@ on:
   pull_request:
     branches: [main]
 
+# A newer push on the same pull request cancels the older run, so a burst of
+# pushes does not leave several runs competing for one runner pool. `main` is
+# excluded on purpose: its `contract` check is the one that gates the tag, and a
+# cancelled run leaves that check without a conclusion, which blocks the release
+# gate rather than freeing anything.
+concurrency:
+  group: contract-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   contract:
     runs-on: ubuntu-latest
+    # A clean run finishes in about six minutes. The default is 360, which lets a
+    # single wedged step hold the required check pending for six hours, and a
+    # pending required check is what `nu maintain.nu release` waits on.
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v7
 
