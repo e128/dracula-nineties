@@ -25,8 +25,8 @@ Two comments remain in the CSS. A machine reads both.
 
 | Section | Covers |
 | --- | --- |
-| [Fonts](#fonts) | Source Serif 4, the weight axis, the fallback path |
-| [Type scale](#type-scale) | The one clamp, em steps, compounding traps |
+| [Fonts](#fonts) | Times New Roman and Courier New, the two weights, the fallback path |
+| [Type scale](#type-scale) | The one body size, em steps, compounding traps |
 | [Italics](#italics) | Which eight rules slant, and why h3 does not |
 | [Width and measure](#width-and-measure) | `--page-width`, sidenote stacking, hyphenation scope |
 | [Document shell and the 1996 register](#document-shell-and-the-1996-register) | The title box, the left rail, the bordered panels, squared corners, the bracketed nav |
@@ -36,7 +36,7 @@ Two comments remain in the CSS. A machine reads both.
 | [Links](#links) | Underline floor, the outbound arrow's alt text |
 | [Color and the contrast budget](#color-and-the-contrast-budget) | Grounds, floors, the data ramp, gamut, forced colors |
 | [Form follows role](#form-follows-role) | Filled and outlined chips, bars and boxes, the hue budget |
-| [Borrowed components](#borrowed-components) | `.kicker`, `.tag-dot`, `.live-dot`, `.icon-list`, `.step-chain`/`.step-hop`, `blockquote.pull` |
+| [Borrowed components](#borrowed-components) | `.kicker`, `.tag-dot`, `.live-dot`, `.icon-list`, the `.step-*` chain |
 | [CSS charts](#css-charts) | `table.bar-chart`, the alpha under the number, why the CSS pie went out, print and forced colors |
 | [Progressive disclosure](#progressive-disclosure) | `nav.toc`, `details.deep`, the narrow and print column overrides |
 | [Editor themes](#editor-themes) | Why the Rider slot map differs from the prose one |
@@ -56,33 +56,40 @@ Two comments remain in the CSS. A machine reads both.
 | [Raw HTML and other generators](#raw-html-and-other-generators) | Intrinsic-width media, unbreakable tokens, permalinks |
 | [Fixtures are coverage](#fixtures-are-coverage) | Which fixture details catch a regression, why a pointer is a search string, and the one check that runs the payload |
 | [Repo layout](#repo-layout) | Why `scripts/` holds the Nushell, `.github/` keeps the Python, and `AGENTS.md` holds the rules |
-| [Odds and ends](#odds-and-ends) | `hr`, scrollbars, `--ring`, the validator |
+| [Odds and ends](#odds-and-ends) | `hr`, scroll behavior, `--ring`, the validator |
 
 ---
 
 ## Fonts
 
-**The body face is Source Serif 4.** Variable, pinned to an exact jsDelivr version, roman and italic.
+**The body face is Times New Roman, and the code face is Courier New.** Those are the two faces a
+1996 document actually had, and each one existed on Windows, macOS and Linux. The payload loads a
+libre metric clone of each from a pinned jsDelivr version: **Tinos** for Times New Roman and
+**Cousine** for Courier New. A reader who already has the real face still gets the clone's metrics,
+so the page measures the same everywhere.
 
-**The webfont exists for the weight axis.** Every system serif ships only 400 and 700. Nothing else
-renders the 450 that light-on-dark body copy wants, or the real 600 on `.newthought`, `strong` and `dt`.
+**Both families ship 400 and 700, and the sheet requests nothing else.** Body copy is 400, and
+`strong`, `.newthought`, `dt`, `.kicker` and the small headings are 700. The variable face this
+replaced let the body sit at 450; a two-weight family cannot, and a `500` or `600` request against it
+renders a synthesized face. **Do not reintroduce a middle weight.** A 1996 desktop had two stops.
 
-**It also won on tabular, lining figures.** A table aligns with no OpenType feature support.
-Literata, Newsreader, Lora and Petrona were rejected: Lora carries Georgia's old-style proportional
-figures, and none of the five ship `smcp`, so `.newthought` small caps stay synthesized either way.
+**Times New Roman has lining figures, but not tabular ones.** Source Serif 4 was tabular; Tinos
+measures `1111` narrower than `0000`, and `tabular-nums` does nothing, because `tnum` is a modern
+OpenType feature no period serif carries. **A numeric column stays readable only because `.num` and
+`[align="right"]` right-align it**: proportional digits still line up on the right edge. Do not add a
+left-aligned numeric column and expect its digits to stack. Georgia was rejected again here, since its
+old-style figures are proportional as well and visibly so.
 
 **The fallback path is a real downgrade, not an equivalence, and the repo accepts it.** Offline the
-stack falls to Georgia (no 450, proportional figures, tables lose alignment), then Noto Serif
-(Android/ChromeOS), then DejaVu Serif (Linux). Charter and Palatino are deliberately absent: both
-exist only where Georgia already does. `font-display: swap` keeps text visible during load.
+body stack falls to the system Times New Roman (Windows, macOS), then Times (macOS), Nimbus Roman
+(Linux), Noto Serif (Android/ChromeOS), then DejaVu Serif. The mono stack falls to the system Courier
+New (Windows, macOS), then Courier, Monaco, Lucida Console, then Nimbus Mono PS (Linux).
+`font-display: swap` keeps text visible during load.
 
-**The code face is also a webfont, `'JetBrains Mono'` first**, loaded from
-`@fontsource-variable/jetbrains-mono`, pinned like the body face, matching the Rider theme's editor
-font. Offline it falls to `ui-monospace`. `mermaid.js` repeats the same order in both of its literals,
-because the measurement font must stay the render font (see [Mermaid](#mermaid)).
-
-**`blockquote.pull`'s glyph takes `var(--body-font)`, not a hardcoded Georgia**, which exists on
-neither Android nor Linux.
+**The mono face is Courier New, and `mermaid.js` names the same stack in its font literal**, because
+the measurement font must stay the render font (see [Mermaid](#mermaid)). **Do not lead the mono stack
+with `ui-monospace` or `Fira Code`**: both are modern faces, and neither was on a 1996 desktop. The
+Rider scheme pins `Courier New` too, with ligatures off, since the face draws none.
 
 **Both font stacks are tokens because three rules need the literal.** `.mermaid-zoom`'s
 `font: inherit` would otherwise resolve to `pre.mermaid`'s code face, so it re-sets
@@ -96,14 +103,15 @@ the inverse, and grayscale-only antialiasing thins strokes.
 
 ## Type scale
 
-The body `font-size` clamp is the **only size lever**. Every other step is em-relative to it,
-headings included. Floor `1rem` (also the iOS input-zoom threshold `.filter-box` inherits), cap
-`1.25rem`, every bound `rem` never `px`, so the page scales with a raised browser default.
+**The body `font-size` is a fixed `1rem`.** A fluid `clamp()` is a lever a 1996 page never had: the
+sheet sets one size and lets every other step be em-relative to it, headings included. `1rem` is the
+browser default, and it stays `rem` and never `px`, so the page scales with a raised default.
 
-**Do not lower the floor past `1rem`** without a separate 16px floor on `.filter-box`.
+**Do not turn the body size into a `clamp()` or lower it past `1rem`** without a separate 16px floor
+on `.filter-box` (the iOS input-zoom threshold).
 
 ```
-1.75em  h1  ┐ headings in em so they track the body clamp, not the fixed root
+1.75em  h1  ┐ headings in em so they track the body size, not the fixed root
 1.35em  h2  │
 1.12em  h3  ┘
 1em     body copy, prose li, .filter-box
@@ -113,13 +121,15 @@ headings included. Floor `1rem` (also the iOS input-zoom threshold `.filter-box`
 0.75em  the outbound arrow
 ```
 
-**`text-wrap: balance` sits on `h1`, `h2`, `h3` only.** They're short blocks where a stray last-line
-word is the defect; `h4`-`h6` render at body size with no wider measure to justify it.
+**`text-wrap` is not used anywhere.** `balance` and `pretty` landed in 2023, and a 1996 browser
+wrapped lines one way: the sheet takes that default. **Do not put `text-wrap: balance` on a heading
+or `pretty` on body copy**: a stray last-line word is the period's cost, not a defect to fix at the
+price of a modern property.
 
 Nested ratios compound. Check the parent before adding a step. Three paid-for traps:
 
-- **Headings are `em`, not `rem`.** Anchored to the root they'd diverge from body copy, which grows
-  on a vw clamp, and h3 would render smaller than its own paragraphs.
+- **Headings are `em`, not `rem`.** Anchored to the root they'd diverge from body copy the moment a
+  consumer changes the body size, and h3 could render smaller than its own paragraphs.
 - **`.verdict`/`.badge` sit at 0.8em, not 0.75em.** They nest inside a 0.95em parent, and 0.75em
   lands under the 12px floor. Re-check both if the body floor moves.
 - **`pre code` is `font-size: 1em`** to halt the compounding; `code`/`pre` each carry 0.9em.
@@ -153,9 +163,10 @@ Eight rules slant: `.byline`, `h2`, `th`, `summary`, `blockquote`, `details.nav-
 distinguish neither, resting the hierarchy on size and color alone; upright h3 gives the pair a
 second axis, and italic costs the most legibility at text size on a dark surface anyway.
 
-**`summary` and `th` are both 450, italic near reading size.** At 400 each read lighter than the
-copy around it. `th` can't drop its declaration (UA default is bold), so italic plus `--pink` carry
-the distinction instead.
+**`summary` and `th` are both 400, italic near reading size.** Italic and color are what separate
+them from the copy around them, because the two-weight face ships nothing between 400 and 700.
+`th` can't drop its declaration (UA default is bold), so italic plus `--pink` carry the distinction
+instead.
 
 ## Width and measure
 
@@ -169,9 +180,10 @@ the document shell below.
 **Sidenotes stack below 1000px, not 600px**: the 28% float is narrower than any measure worth
 reading between 600 and about 1280px.
 
-**`hyphens: auto` is scoped to the two narrowest prose measures**, the sidenote (28%) and `.col-2`
-(half a column). Not body copy, not `.nav-list li a` (a hyphen there reads as part of the slug), not
-headings. Both fixtures carry `lang="en"`, which hyphenation requires.
+**Hyphenation is off: the sheet declares no `hyphens`.** The property landed in 2015, long after the
+period, and a 1996 browser never broke a word across lines. **Do not scope `hyphens: auto` back onto
+the narrow measures**: the sidenote and `.col-2` wrap without it, the way every page in the
+reference corpus does.
 
 **The 1000px and 600px breakpoints stay separate on purpose**: the 600px block is genuinely
 phone-sized, and one breakpoint wrong for half its contents beats two with distinct reasons.
@@ -223,11 +235,10 @@ sticky was never wanted. **Do not put the rail back on a grid row-span.**
 - `> nav:not(.toc)` and `> section`, so the toc, the margin notes and the byline are not caught.
 
 **Corners are square: `--radius` and `--radius-sm` are both `0`.** `border-radius` postdates the
-period, and the sheet's boxes are period boxes. Two hardcoded roundings went with it: the `.kicker`
-pill (`999px`, now `var(--radius-sm)`, so it is a rectangle carrying the same border and 8% fill it
-already had) and the `.nav-list` container (`calc(var(--radius-sm) + 0.3rem)`, now `var(--radius)`,
-which would otherwise have left a `4.8px` rounding on one box). `.tag-dot`, `.live-dot` and
-`.step-node` keep `border-radius: 50%`: a dot and a node are circles, not rounded corners.
+period, and the sheet's boxes are period boxes. Every rounding went with it, including the shapes
+that are not boxes: `.tag-dot::before`, `.live-dot` and `.step-node` are squares, and the `.kicker`
+pill is plain text (see [Borrowed components](#borrowed-components)). A 1996 bullet, a GIF status
+marker and a process node were all square. **Do not round a dot, a node or a chip.**
 
 ## Paragraphs and section rhythm
 
@@ -248,7 +259,7 @@ every paragraph with a note. `position: relative; top: -0.4em; line-height: 0` l
 no line-box impact instead.
 
 **`.sidenote`/`.marginnote` reset what a surrounding `.newthought` inherits into them** (small caps,
-weight 600, tracking, 1.2em size), so a note pins the annotation register regardless of where its
+weight 700, tracking, 1.2em size), so a note pins the annotation register regardless of where its
 anchor lands. **Do not replace the reset with a markup rule.** A rendering invariant is the
 stylesheet's job.
 
@@ -256,9 +267,8 @@ stylesheet's job.
 rather than snapped to a scale that would move rendered boxes to satisfy an abstraction. The list
 indent stays literal too, pairing with `--tree-step` rather than the vertical scale.
 
-**`text-wrap: pretty` sits on `p`, `.sidenote`/`.marginnote`, `figcaption`/`caption`** to avoid a
-stranded last-line word, for blocks too long for `balance`. Firefox falls back to normal wrapping
-with no breakage.
+**Paragraph, sidenote and caption wrapping is the browser default.** `text-wrap` is not used
+anywhere in the sheet; see the type-scale decision above for the reason and the prohibition.
 
 ## Lists
 
@@ -349,7 +359,7 @@ left to protect and nowrap would be the one thing pushing the page wider than th
 
 **A deep link's arrival cue is an `outline`, not the `--highlight` wash** (which takes link text
 under 4.5:1). It costs no layout shift, reads distinct from the link-blue focus ring by hue, and
-survives `prefers-reduced-motion` where a flash wouldn't. `dt:target` takes the orange text color
+is static, so it needs no reduced-motion exemption the way a flash would. `dt:target` takes the orange text color
 instead (an outline can't reach a `dt`, and a background wash can't either since a grid gap takes no
 background). `:target` also carries `scroll-margin-block-start`, so a deep link doesn't land with its
 era heading scrolled off above. **Smooth scrolling was rejected**: on a long page it becomes a long
@@ -491,9 +501,9 @@ Light inverts to a silver scheme: `--surface` is `#c0c0c0`, `--surface-alt` dark
 silver field is the light-mode half of the period register, and `#c0c0c0` is the one value that both
 Netscape and the X11 `silver` name agree on.
 
-**An accent can also be the ground.** `.verdict-*`, `.step-node` (including the `--data-*` ramp now),
-and `::selection` all invert and paint `--surface` text on an accent fill; check 8 gates all three
-(print is exempt for `.verdict-*` alone, since its print block swaps to an outline).
+**An accent can also be the ground.** `.verdict-*` and `.step-node` (including the `--data-*` ramp
+now) both invert and paint `--surface` text on an accent fill; check 8 gates both (print is exempt
+for `.verdict-*` alone, since its print block swaps to an outline).
 
 **The link is the period bright, and there is now a `--visited` token.** Dark keeps the Dracula cyan
 `#8be9fd`; light is the web-safe blue `#0019ee`, chosen from the HTML5 default `#0000EE` (one unit
@@ -623,7 +633,7 @@ stray hex in `mermaid.js`; (5) the contrast floor in all four modes against thre
 and the data ramp (`FLOOR_OVERRIDE` is empty since the reset); (6) `--mermaid-scheme` both directions,
 no `prefers-color-scheme` in `mermaid.js`, and the `(max-width: 600px)` breakpoint pinned in both
 files; (7) sRGB gamut for every parsed token in every mode; (8) the inverted accent-as-ground pairs
-(`.verdict-*`, `.step-node` including the ramp, `::selection`); (9) the relative-color `--highlight`
+(`.verdict-*`, `.step-node` including the ramp); (9) the relative-color `--highlight`
 token per mode, plus `mark`'s alpha composite; (10) the pie slice label against all four fills in
 both palettes, plus `pieOpacity` pinned to `1`; (11) `--on-surface` over the `table.bar-chart` band
 at its alpha, against both grounds in every mode, plus print and forced-colors pins.
@@ -665,8 +675,7 @@ Fills inside a table still flatten, left alone deliberately: the mode restores t
 `--surface` painted) can't transfer here, since forced colors means the sheet's colors stop deciding
 anything. So it's gated on **structure** instead, in `.github/script-probe.py`: the condition is
 rewritten to `@media all` in a scratch copy, and eight assertions read computed styles an edit here
-actually breaks (chip outlined, table/cell outlined, block `code` not outlined, `pre` keeps its bar,
-the grain is off). **A mode whose correctness is not a color needs a structural gate, not a pixel
+actually breaks (chip outlined, table/cell outlined, block `code` not outlined, `pre` keeps its bar). **A mode whose correctness is not a color needs a structural gate, not a pixel
 one.**
 
 ## Form follows role
@@ -688,7 +697,7 @@ a button read as one kind of object. `.scorecard` now takes `border-inline-start
 bordered box in the sheet is something you can click, type in, or open.**
 
 **Three prose accents carry two or three roles each, accepted:** `--pink` (h1, th), `--purple` (h2,
-`pre` bar, `::selection`), `--orange` (`strong`, aside bar, `.unverified`). Only `--orange`'s overlap
+`pre` bar), `--orange` (`strong`, aside bar, `.unverified`). Only `--orange`'s overlap
 is visible to a reader; the other two pairs are separated by form (a heading vs. an italic small
 header; a heading vs. a 3px bar and a selection fill).
 
@@ -698,40 +707,45 @@ for a third prose role needs a line here explaining why the two won't appear tog
 
 ## Borrowed components
 
-Six components plus one page-wide texture were adapted from factory.strongdm.ai's product pages:
-structure only, no color, every component reusing an existing token under the hue-budget rule above.
+Five components were adapted from factory.strongdm.ai's product pages: structure only, no color,
+every component reusing an existing token under the hue-budget rule above. **Each borrowed shape was
+then pulled back to a period form.** A 1996 page drew no pills, no animated dots, no rounded nodes
+and no rounded icon chips, so every one of these is now the plain rectangle or square the era drew.
+A sixth component, `blockquote.pull`, and the page-wide film grain were deleted outright, because
+neither had a period form worth keeping.
 
-**`.kicker`** (eyebrow pill) reuses `--link` and the `oklch(from … / alpha)` pattern `--highlight`
-established: no new token for a tint. A document-status use picks the color already scoped to that
-state rather than adding a seventh accent. **Tint sits at 8% alpha, not 12%**: it clears the floor
-with margin (light 5.15:1, dark 8.41:1). The original reason for 8% over 12% has expired with the
-palette (12% now measures 4.85:1 light, above floor too), and 8% is kept as the existing decision
-rather than churned for a difference of margin.
+**`.kicker`** is plain uppercase text: bold, letter-spaced and `--link`-colored, with no pill. A
+rounded, tinted pill is a modern eyebrow; a 1996 page set an overline in caps and moved on. **Do not
+reintroduce a fill or a border on `.kicker`**: the link color already separates it from the heading,
+and a tinted box on the black ground was the reason the old pill needed a border of its own.
 
-**`.tag-dot`** (`::before` circle) paints `currentColor`, carrying no color of its own, so it can't
-reopen the rejected tier-ramp above. **Belongs on an empty element, never one that also holds the
-label**: `currentColor` recolors sibling text too, and the first fixture draft measured a label
-painted directly under the text floor (the Dracula ramp under `--surface` now clears it, 4.80 to
-7.33:1 light, 5.98 to 12.74:1 dark, so the reason is the double-recolor, not the ratio).
+**`.tag-dot`** (a `::before` square) paints `currentColor`, carrying no color of its own, so it can't
+reopen the rejected tier-ramp above. A square, not a circle: a 1996 bullet was square. **Belongs on
+an empty element, never one that also holds the label**: `currentColor` recolors sibling text too,
+and the first fixture draft measured a label painted directly under the text floor (the Dracula ramp
+under `--surface` now clears it, so the reason is the double-recolor, not the ratio).
 
-**`.live-dot`** (the sheet's first `@keyframes`) reuses `--green`, the existing "healthy" role.
-`prefers-reduced-motion`'s global animation-duration zero already freezes the pulse for free. No
-print override needed (paged media runs no CSS animation regardless).
+**`.live-dot`** is a static `--green` square, reusing the existing "healthy" role. It used to pulse
+via the sheet's first `@keyframes`; the animation and its `prefers-reduced-motion` cover are gone
+with the rest of the motion. **Do not give it an animation**: a static mark is the period form, and
+there is no reduced-motion reset left to cover a new one.
 
-**`.icon-list`/`.icon-chip`** takes color from an inline `--icon-color` per `<li>` (the
-`--timeline-date` convention), keeping the component color-free by default. **The glyph itself is
-fixed `--on-surface`, never `--icon-color`**: a same-hue glyph on its own tint measured as low as
-3.35:1 dark and failed outright in light mode for all four demo hues, where `--on-surface` measures
-8.06:1+. **The `.icon-chip` glyph is `aria-hidden="true"`**, since it always sits beside a visible
-label (unhidden, a screen reader announces the initial and then the title right after it, twice).
-`.step-node` is the opposite case (no adjacent label) and keeps its letter as real text.
+**`.icon-list`/`.icon-chip`** takes its accent from an inline `--icon-color` per `<li>` (the
+`--timeline-date` convention) on the row's leading border, keeping the component color-free by
+default. The chip itself is a square of `--code-bg` with a `--rule-light` border, no tint. **The
+glyph is fixed `--on-surface`, never `--icon-color`**: a same-hue glyph on its own tint measured as
+low as 3.35:1 dark and failed outright in light mode for all four demo hues, where `--on-surface` on
+`--code-bg` clears the floor in every mode. **The `.icon-chip` glyph is `aria-hidden="true"`**,
+since it always sits beside a visible label (unhidden, a screen reader announces the initial and
+then the title right after it, twice). `.step-node` is the opposite case (no adjacent label) and
+keeps its letter as real text.
 
 **An `.icon-list` row never breaks its title from its detail with `<br>`.** `br` is for line breaks that
 are content (a poem, an address), so `.icon-list strong` is `display: block` and the CSS makes the break.
 A `cite` marks the title of a standalone work. A file path and line is `<code>`.
 
 **A step chain names its steps in the prose that introduces it, and every `.step-arrow` is
-`aria-hidden="true"`.** A node is a circle with room for one character, so the words can't go inside
+`aria-hidden="true"`.** A node is a square with room for one character, so the words can't go inside
 it: bare letters (`S`, `I`, `O`, `V`) decode to nothing for any
 reader. **Do not answer this with a visually-hidden label class**: the sheet has none, and adding
 one turns a problem one sentence of prose already solves into a payload API.
@@ -749,21 +763,11 @@ gates the permitted set, `CONTRACT.md` § 2 states the consumer obligation. **Ev
 wrapped with its leading arrow in one `.step-hop`**, so a flex-wrap can't strand an arrow on one line
 and its node on the next with no visible connector.
 
-**`blockquote.pull`** adds a large faint opening quote over the existing accent bar, opt-in since the
-default `blockquote` is used densely for citations. Decorative, so it takes the same alt-text
-convention as the outbound arrow.
-
-**`body::before` paints a fixed, full-viewport film grain** (an inline SVG `feTurbulence` filter,
-low opacity, `mix-blend-mode: overlay`), carrying no hue of its own so it crosses dark/light/print
-cleanly. `pointer-events: none` and `z-index: -1` (still paints above `body`'s own background, per
-CSS stacking order). **Switched off in print and `forced-colors: active`**: ink has no blend-mode
-equivalent, and a reader in that mode shouldn't see pure texture.
-
-**`.kicker`, `.icon-chip`, `.step-node` join the forced-colors border list** (all three carry their
-whole shape through fill alone). **`.tag-dot`/`.live-dot` take `background: CanvasText` there, not a
-border**: both are round and empty, so a border would ring nothing; a render showed any author
-background (even `currentColor` on an empty `::before`) resolves to Canvas under forced colors, so
-the dot doesn't flatten, it vanishes without this. `.verified`/`.unverified`/`.correction` need no
+**`.icon-chip` and `.step-node` join the forced-colors border list** (both carry their whole shape
+through fill alone). `.kicker` left that list with its pill. **`.tag-dot`/`.live-dot` take
+`background: CanvasText` there, not a border**: both are empty, so a border would ring nothing; a
+render showed any author background (even `currentColor` on an empty `::before`) resolves to Canvas
+under forced colors, so the dot doesn't flatten, it vanishes without this. `.verified`/`.unverified`/`.correction` need no
 override: they color a glyph forced colors keeps drawing, so they only lose a hue, not their content.
 
 **A sticky element does not take `backdrop-filter` blur**: the sticky-`th` decision above (opaque
@@ -848,9 +852,9 @@ they structure a findings summary without changing every table: a strong rule un
 hairline between rows, and none after the last row, since the table's own bottom rule closes it. The
 first column of that table is bold.
 
-**`tfoot td` takes a strong rule above it and weight 600**, so a total reads as a total in any table.
+**`tfoot td` takes a strong rule above it and weight 700**, so a total reads as a total in any table.
 
-**`td.bar.lead` marks one emphasis row by weight 600 only.** A higher band alpha would fall outside
+**`td.bar.lead` marks one emphasis row by weight 700 only.** A higher band alpha would fall outside
 check 11, which measures one alpha.
 
 **`.stat-strip` is a `dl` of `div` groups: `dt` label, `dd.v` value, `dd.s` gloss.** Cell borders
@@ -1330,25 +1334,25 @@ enforces, but the recommended default past the threshold above.
 
 ## Interaction states
 
-**A transition belongs on the resting rule, and `transform`/`scale` are different properties.** The
-`.nav-list li a` press feedback was inert for both reasons: the transition named `scale` while the
-rule set `transform`, and it sat inside `:active` where it vanished with the state. Now `scale: 0.96`
-in `:active`, transition on the base rule. `.mermaid-zoom` (the sheet's only real `<button>`) takes
-the same treatment.
+**There is no press feedback: the sheet declares no transition and no animation.** A pressed nav
+link or zoom button used to scale to 0.96 through a transition; both are gone, because neither
+existed before CSS transitions (2008) and a 1996 button gave no such feedback. **Do not reintroduce
+a `transition`, a `:active` scale, or a `@keyframes` rule**: the sheet is static by decision, and the
+`prefers-reduced-motion` reset that used to cover for motion is gone with the motion.
 
 **`[tabindex="0"]:focus-visible` is in the focus rule**: the one stop this sheet doesn't own is the
 one consumers are told to add (a focused `pre`/`math`/`.table-scroll` would otherwise fall back to
 Chromium's default ring). **No `border-radius` in `:focus-visible`**: it tightened `.filter-box`
 corners unevenly at the moment the ring appeared (Chromium already rounds an outline to the
-element's own radius). **`.nav-list` radius is `calc(var(--radius-sm) + 0.3rem)`**, not
-`var(--radius)`, keeping the outer/inner radii concentric as either changes.
+element's own radius, which is `0` here). **`.nav-list` radius is `var(--radius)`**, square like
+every other box.
 
 **Every hover rule sits inside `@media (hover: hover)`.** Eight rules didn't, and an unguarded hover
 rule doesn't fail to apply on touch: it applies at the wrong time and sticks: the browser sets
 `:hover` on tap and leaves it set until the next tap elsewhere (measured with real touch emulation).
-**The block's position, immediately before `::selection`, is load-bearing**: a media query adds no
-specificity, so placed after `prefers-contrast: more` instead, `.nav-list li a:hover` would tie and
-win on source order, stripping that mode's underline from hovered nav links.
+**The block's position, before `@media (prefers-contrast: more)`, is load-bearing**: a media query
+adds no specificity, so placed after that block instead, `.nav-list li a:hover` would tie and win on
+source order, stripping that mode's underline from hovered nav links.
 
 **`pre.mermaid:hover` gets an instant, untransitioned 1px ring, for a pointer only.** It is not the
 touch affordance: a hover rule fires after the tap, so it can never advertise anything in advance on
@@ -1382,10 +1386,10 @@ has no accessible name of its own).
 
 **Close runs through one `hide()`**, called from both a `click` listener on the overlay and a
 `cancel` listener that calls `preventDefault()` first, so the same cleanup runs either way (drop the
-`active` class, call `overlay.close()`, empty its `innerHTML`). `close()` runs synchronously rather
-than deferred to `transitionend`, since a transition that never completes would otherwise leave the
-dialog open forever with no cleanup. **The trade: the overlay fades in but does not fade out**: `showModal()`'s top-layer removal is synchronous, and a removed property can't transition. **Focus
-returns to the opening button for free** via `close()`'s native restore.
+`active` class, call `overlay.close()`, empty its `innerHTML`). `close()` runs synchronously, so the
+same cleanup runs whichever way the overlay is dismissed. **The overlay opens and closes instantly**:
+it carries no transition, so there is no fade in or out and nothing left waiting on a
+`transitionend`. **Focus returns to the opening button for free** via `close()`'s native restore.
 
 **The zoom button is named from the diagram (`accTitle` → SVG `<title>`), not a hardcoded constant**: a page with several diagrams would otherwise get several identically named buttons. `aria-label` is
 `label + ': ' + title`; the overlay takes the same name on open. **The trade: `kanban` and
@@ -1449,13 +1453,13 @@ ran under the notch without this. **The `0px` `env()` fallbacks are load-bearing
 browser with no support makes the whole custom property invalid at computed-value time, taking the
 `width: min(...)` calc down with it. Not verified on real hardware (Chromium doesn't emulate insets).
 
-**A container query fixes `.scorecard` overflow under text-only zoom; a media query cannot**: `em`
-inside a container query resolves against the container's own font size (correctly asking "is text
-large relative to space"), where a media query's `em` resolves against the browser's initial size and
-sees nothing at a doubled root. Two things about it are load-bearing: the `:has()` scoping (plain
-`container-type: inline-size` on every `section` would also shrink the conn-map sticky sidebar at
-zoom), and its position after the `max-width: 600px` block (container queries add no specificity, so
-source order decides).
+**`.scorecard` collapses to one column inside the conn-map sidebar, by a descendant rule, not a
+container query**: `container-type: inline-size` on every `section`, scoped with `:has()`, once
+caught a text-only-zoom overflow, but `container-type` and `:has()` both postdate the period. The
+sidebar is the one place a `.scorecard` meets a narrow measure, so
+`body.conn-map article > section:nth-of-type(1) .scorecard` sets one column directly. **Do not
+reintroduce a container query for this**: the sidebar rule covers the only narrow container a
+scorecard lands in.
 
 Two earlier attempts failed: `minmax(0, max-content)` tracks let a track shrink to zero without the
 `.verdict` chip shrinking with it (chip spilled out); `auto` tracks plus `overflow-wrap: break-word`
@@ -1481,8 +1485,8 @@ duplicated `@media` blocks).
 They fall in three groups: **six fight Mermaid**, which nothing else can reach (four fight its
 id-scoped injected stylesheet: `packet`, `cluster` fill/label; two fight its inline `style`
 attributes: conn-map and narrow-viewport svg sizing); **`.filter-hidden { display: none !important }`**
-(a consumer override there means a filtered row stays on the page); **the `prefers-reduced-motion`
-reset** (has to beat every transition/animation the sheet declares).
+(a consumer override there means a filtered row stays on the page). The
+`prefers-reduced-motion` reset left with the motion it covered.
 
 **One layer, not four** (`@layer reset, base, components, utilities`): that convention is for a
 stylesheet a consumer composes from parts and can reorder; this is one file, inlined verbatim, in a
@@ -1699,11 +1703,11 @@ The sheet was written for hand-authored markup; a consumer can also point a mark
 Every construct a converter emits lands in a theme register with **no classes of its own**. **Do not
 invent classes for markdown constructs.**
 
-**`h4`-`h6` all sit at `1em`**; weight (600/500/500) and color (`--label` then `--muted`, h6 also
-italic) carry the tier, since the `*` reset ate UA margins while the UA font-size ramp survived
+**`h4`-`h6` all sit at `1em`**; weight 700 and color (`--label` then `--muted`, h6 also italic)
+carry the tier, since the `*` reset ate UA margins while the UA font-size ramp survived
 (a sixth-level heading would otherwise render smaller and heavier than body copy, the exact inverse
-of the type scale). **Weight 450 was rejected for h5/h6**: it ties body copy and pushes the same
-problem one tier down.
+of the type scale). **Do not drop h5/h6 to 400**: with the two-weight face that ties body copy and
+pushes the same problem one tier down.
 
 **A presentational attribute loses to author CSS**: `td { text-align: start }` silently beat
 `<td align="right">`, so three `[align]` rules fix pipe-table alignment (inline
@@ -1732,13 +1736,15 @@ on light ground.
 **Monospace was inheriting italic from `blockquote`/`th`/`summary`**: one rule resets `code`, `pre`,
 `kbd`, `samp` inside those three (and `h2`/`h6` for the same reason).
 
-**`color-scheme: dark` on `:root` is not cosmetic**: without it a UA form control renders light-mode
-inside a dark page. Print sets `color-scheme: light`.
+**`color-scheme` is not declared.** The property landed in 2019, and a 1996 page took the UA's own
+widgets and left them alone: on the black ground a native control renders light-mode, which is the
+period look. **Do not add `color-scheme: dark`** to darken the widgets; the sheet deliberately lets
+them render as the browser draws them.
 
-**The task-list checkbox stays native and gray when checked**: GFM emits it `disabled`, and Chromium
-ignores `accent-color` on a disabled control; a repaint would mean a literal hex data-URI SVG with
-nothing to gate its drift and unreliable pseudo-elements in Safari. **A read-only checkbox that reads
-as read-only is the cheaper answer.** `list-style` drops through
+**The task-list checkbox stays fully native**: GFM emits it `disabled`, and the sheet sets no
+`accent-color`, so it draws as the browser's own widget. A repaint would mean a literal hex data-URI
+SVG with nothing to gate its drift and unreliable pseudo-elements in Safari. **A read-only checkbox
+that reads as read-only is the cheaper answer.** `list-style` drops through
 `li:has(input[type="checkbox"]:first-child)` rather than GFM's own class, so it holds for
 `markdown-it` output too.
 
@@ -1799,8 +1805,8 @@ order while invisible, a keyboard stop nobody can see.
 **Form controls take `font: inherit` and a `1rem` floor, nothing else**: `.filter-box` was the only
 control that set a family; every other one fell to a small sans-serif below the iOS Safari zoom
 threshold. **Appearance is deliberately not styled**: a focus ring, hover, disabled and pressed state
-is a button design this document theme (one control) doesn't need. `color-scheme: dark` already
-themes the UA widgets dark.
+is a button design this document theme (one control) doesn't need, and the sheet declares no
+`color-scheme`, so the UA draws its own widgets.
 
 **Three conventions stay unclaimed, reasons worth keeping**: non-GFM callouts (`.admonition`,
 `.callout-*`, `.admonitionblock`) render bare: Asciidoctor's is worse, rendering as a `<table>` that
@@ -1976,9 +1982,9 @@ no separator between the halves; a flex item wraps as a unit and carries its lea
 **The `:has(> a)` scoping is deliberate**: a bare `nav { display: flex }` would also catch a
 consumer's `nav > ul`, silently turning it into a shrinking flex item.
 
-**`scrollbar-color` sits on `body`, not on every scrolling box**, since the property inherits: one
-declaration reaches `.table-scroll`, `pre`, the narrow-viewport mermaid scroll, and the document
-scrollbar. **`overscroll-behavior: contain` goes on every scroll container the sheet owns**
+**The scrollbar is left to the UA: the sheet sets no `scrollbar-color`.** The property landed in
+2018, and a 1996 page had no way to restyle a scrollbar. **`overscroll-behavior: contain` goes on
+every scroll container the sheet owns**
 (`.table-scroll`, the mermaid overlay, narrow-viewport `pre.mermaid`, the conn-map sticky column), or
 a scroll to an edge chains into the page behind it.
 
@@ -1986,7 +1992,7 @@ a scroll to an edge chains into the page behind it.
 10% over an arbitrary image is a translucent veil, not a hue), so its alpha-slash form doesn't match
 `palette-check.py`'s token regex, leaving the parsed token count unaffected.
 
-**The W3C CSS validator reports two errors, and both are the validator**: it flags `container-type`
-and `@container` (a module its `css3` profile predates), which are the load-bearing `.scorecard`
-zoom fix. **Do not delete them to make the validator quiet**: that trades a real rendering bug for a
-green badge.
+**The W3C CSS validator's `css3` profile once flagged `container-type` and `@container`; both are
+gone, so the flags are too.** The validator now reports the sheet clean. If a future edit adds them
+back, the two "errors" return, and they are the validator's profile rather than the sheet: **do not
+delete a load-bearing rule to quiet it.**

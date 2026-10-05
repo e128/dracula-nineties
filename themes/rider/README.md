@@ -136,8 +136,10 @@ its accent at a fixed 10 / 20 / 28 / 35 percent.
 - **Line height 1.2, not 1.6.** Body prose inherits `line-height: 1.6`; an editor
   at 1.6 wastes half the viewport. Change `LINE_SPACING` in the `.icls` if you
   disagree.
-- **Mono font, not serif.** `--mono-font` names `JetBrains Mono` first; the
-  scheme pins that. The serif is a prose face and has no editor role.
+- **Mono font, not serif.** `--mono-font` names `Cousine`, the Courier New
+  metric clone, first; the scheme pins `Courier New`, the same face without the
+  CDN file. The serif is a prose face and has no editor role. Ligatures are off
+  because Courier New has none to draw.
 - **Bright ANSI slots** (`#ff9896`, `#96e0b0`, `#afd4ff`, `#a5e0f0`, `#fcfcf6`)
   have no token of their own. They are the matching hue and chroma at L + 0.07,
   same derivation as the Ghostty theme.

@@ -444,18 +444,18 @@ for mode, triples_for_mode in resolved.items():
 
 # 8. An accent used as a BACKGROUND is a pair no check above ever looks at. Check 5
 #    only ever puts a token in the foreground, on --surface, --code-bg or
-#    --surface-alt. Three components invert that: `.verdict-*`, `.step-node` and
-#    `::selection` all paint --surface TEXT on an accent fill. Nothing gated any of
-#    them, and the gap is not theoretical: the first draft of the .tag-dot fixture
-#    painted --surface on a --data-* fill at a ratio a reader would have copied, caught
-#    by hand that time. `.step-node` takes its fill from an --icon-color custom
-#    property, so the same mistake is one property away.
+#    --surface-alt. Two components invert that: `.verdict-*` and `.step-node` both
+#    paint --surface TEXT on an accent fill. Nothing gated either of them, and the gap
+#    is not theoretical: the first draft of the .tag-dot fixture painted --surface on a
+#    --data-* fill at a ratio a reader would have copied, caught by hand that time.
+#    `.step-node` takes its fill from an --icon-color custom property, so the same
+#    mistake is one property away.
 #
 #    The Dracula baseline makes --surface legible on every --data-* member in every
 #    mode, so the ramp is no longer out of bounds for .step-node and the permitted set
-#    below includes it. A .tag-dot or an .icon-chip may still carry a --data-* color:
-#    the dot paints currentColor on an empty element, and the chip's glyph is
-#    --on-surface on a 15%-alpha tint. Only a full-strength fill under real text is
+#    below includes it. A .tag-dot still paints currentColor on an empty element, and
+#    an .icon-chip still paints its glyph on a --code-bg fill, neither of which is a
+#    full-strength accent under real text. Only a full-strength fill under real text is
 #    the problem, and that pair is what this check measures.
 #
 #    Print is skipped for `.verdict-*` alone, because the print block replaces the
@@ -466,7 +466,6 @@ INVERTED = {
     ".verdict-*": ("surface", ["green", "orange", "red", "muted"], {"print"}),
     ".step-node": ("surface", ["orange", "link", "purple", "green",
                                "data-1", "data-2", "data-3", "data-4"], set()),
-    "::selection": ("surface", ["purple"], set()),
 }
 for mode, triples_for_mode in resolved.items():
     floor = MODES[mode][1]
@@ -521,9 +520,9 @@ def over(fg, bg, alpha):
     """Alpha-composite two oklch triples, in the gamma-encoded space a browser uses.
 
     Compositing the linear values instead reads several tenths of a ratio too bright,
-    which is enough to turn a failing pair into a passing one. Reproducing NOTES.md's
-    own recorded .kicker numbers (6.60:1 dark, 4.71:1 light) is what confirms this is
-    the right space rather than an assumption about it.
+    which is enough to turn a failing pair into a passing one. Checks 9 and 11 both
+    depend on the gamma-encoded space, so it has to match what the browser does rather
+    than an assumption about it.
     """
     f, b = oklch_to_linear(*fg), oklch_to_linear(*bg)
     return tuple(decode(encode(x) * alpha + encode(y) * (1 - alpha)) for x, y in zip(f, b))
@@ -689,7 +688,7 @@ if "@media print and (prefers-color-scheme: light) {" not in stylesheet:
 #     alpha wash of --data-1 painted UNDER the number in the same
 #     cell, so the pair is --on-surface over that wash over --surface or over the
 #     row-hover fill, and the alpha decides whether it clears the text floor. That is the
-#     same shape as the .kicker measurement check 10 does for a :root token, except the
+#     same shape as the --highlight wash check 9 measures for a :root token, except this
 #     wash is written inside a rule, so no token exists for the regex to find.
 #
 #     The alpha is read out of the rule rather than restated here, so nudging it is what

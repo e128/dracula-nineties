@@ -209,7 +209,7 @@ wrong by v1.38.1, and every check stayed green. A search string survives regener
       the arrow down with the node it points to.
 - [ ] The steps of a `.step-chain` named in the sentence that introduces it, and `aria-hidden="true"`
       on every `.step-arrow` (in `samples/dark.html`, search `class="step-arrow" aria-hidden="true"`).
-      A `.step-node` is a circle with room for one character, so its letter stays real text and
+      A `.step-node` is a square with room for one character, so its letter stays real text and
       carries no adjacent label, per the `.icon-chip` bullet above. That makes this the one
       requirement here that asks you for copy rather than for markup: an unexpanded `S`, `I`, `O`,
       `V` decodes to nothing for any reader, and no CSS rule can supply words the stylesheet did not
@@ -241,7 +241,7 @@ wrong by v1.38.1, and every check stayed green. A search string survives regener
       source number. No fixture demonstrates this yet.
 - [ ] `.newthought` covers the opening few words of a section's first paragraph, never the whole
       sentence, and never splits a proper name at the span boundary. The class sets small caps at
-      `1.2em` and weight 600, which is display treatment: a four-line paragraph inside it reads as
+      `1.2em` and weight 700, which is display treatment: a four-line paragraph inside it reads as
       shouting, and `of St.</span> John the Baptist` breaks a name in half. The stylesheet resets
       variant, weight, letter-spacing and size on a note nested inside the span, so the note renders
       normally, but the treatment itself is for opening words, not paragraphs. Keep the span short
@@ -307,12 +307,11 @@ Anything not named here needs no edit.
 
 **Opt-ins in the v2.0.0 baseline:** `nav.toc`, `details.deep`, `.edge-list`, a
 `.byline` inside a `figcaption` or `caption`, `.stat-strip`, `.label` inside a caption,
-`.chart-takeaway`, `table.evidence-table`, `td.bar.lead`, and the six presentational classes
-`.kicker`, `.tag-dot`, `.live-dot`, `.icon-list`/`.icon-chip`, the `.step-*` chain, and
-`blockquote.pull`.
+`.chart-takeaway`, `table.evidence-table`, `td.bar.lead`, and the five presentational classes
+`.kicker`, `.tag-dot`, `.live-dot`, `.icon-list`/`.icon-chip`, and the `.step-*` chain.
 
 **Self-contained, no generator edit:** the filter's live count and its no-matches line, the
-film-grain texture, the print and forced-colors fixes, and the Mermaid CDN and layout-engine moves.
+print and forced-colors fixes, and the Mermaid CDN and layout-engine moves.
 The one worth a screenshot diff is the v1.47.0 layout engine change from `dagre` to the bundled
 ELK, which can reflow an existing diagram's geometry.
 
