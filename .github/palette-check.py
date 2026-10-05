@@ -444,8 +444,9 @@ for mode, triples_for_mode in resolved.items():
 
 # 8. An accent used as a BACKGROUND is a pair no check above ever looks at. Check 5
 #    only ever puts a token in the foreground, on --surface, --code-bg or
-#    --surface-alt. Two components invert that: `.verdict-*` and `.step-node` both
-#    paint --surface TEXT on an accent fill. Nothing gated either of them, and the gap
+#    --surface-alt. Three components invert that: `.verdict-*`, `.step-node` and
+#    `h2.band` all paint --surface TEXT on an accent fill. Nothing gated either of the
+#    first two, and the gap
 #    is not theoretical: the first draft of the .tag-dot fixture painted --surface on a
 #    --data-* fill at a ratio a reader would have copied, caught by hand that time.
 #    `.step-node` takes its fill from an --icon-color custom property, so the same
@@ -458,12 +459,13 @@ for mode, triples_for_mode in resolved.items():
 #    full-strength accent under real text. Only a full-strength fill under real text is
 #    the problem, and that pair is what this check measures.
 #
-#    Print is skipped for `.verdict-*` alone, because the print block replaces the
-#    fill with `background: none` plus a currentColor ring and recolors the text, so
+#    Print is skipped for `.verdict-*` and `h2.band`, because the print block replaces
+#    the fill with `background: none` plus a currentColor ring and recolors the text, so
 #    the pair this check describes does not exist on paper. `.step-node` has no print
 #    override, so it is checked there like everywhere else.
 INVERTED = {
     ".verdict-*": ("surface", ["green", "orange", "red", "muted"], {"print"}),
+    "h2.band": ("surface", ["purple"], {"print"}),
     ".step-node": ("surface", ["orange", "link", "purple", "green",
                                "data-1", "data-2", "data-3", "data-4"], set()),
 }

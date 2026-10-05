@@ -31,9 +31,9 @@ Two comments remain in the CSS. A machine reads both.
 | [Width and measure](#width-and-measure) | `--page-width`, sidenote stacking, hyphenation scope |
 | [Document shell and the 1996 register](#document-shell-and-the-1996-register) | The title box, the left rail, the bordered panels, squared corners, the bracketed nav |
 | [Paragraphs and section rhythm](#paragraphs-and-section-rhythm) | Section gaps, `.indented`, `--space-*` |
-| [Lists](#lists) | Markers, list semantics, `dl.timeline` |
-| [Tables](#tables) | `table.tree`, widths, fills, `.num`, sticky `th`, `.table-scroll` |
-| [Links](#links) | Underline floor, the outbound arrow's alt text |
+| [Lists](#lists) | Markers, list semantics, `dl.timeline` and its `.log` variant |
+| [Tables](#tables) | `table.tree`, widths, fences, fills, `.num`, sticky `th`, `.table-scroll` |
+| [Links](#links) | Underline floor and colour |
 | [Color and the contrast budget](#color-and-the-contrast-budget) | Grounds, floors, the data ramp, gamut, forced colors |
 | [Form follows role](#form-follows-role) | Filled and outlined chips, bars and boxes, the hue budget |
 | [Borrowed components](#borrowed-components) | `.kicker`, `.tag-dot`, `.live-dot`, `.icon-list`, the `.step-*` chain |
@@ -49,7 +49,7 @@ Two comments remain in the CSS. A machine reads both.
 | [Appearance modes](#appearance-modes) | High contrast, light, `--mermaid-scheme`, the mode gates |
 | [Print](#print) | Token reassignment, page breaks, chip outlining |
 | [Filter](#filter) | `filter.js` scope and its load-bearing decisions |
-| [Nav link separators](#nav-link-separators) | The `nav > a + a` rule and the wrapped-line artefact |
+| [Nav link separators](#nav-link-separators) | `nav.tabs`, the `nav > a + a` rule, the wrapped-line artefact |
 | [Version stamps are not version history](#version-stamps-are-not-version-history) | Why `bump` rewrites three anchored stamps and nothing more |
 | [Unclaimed elements](#unclaimed-elements) | `mark`, `kbd`, `caption`, `figure`, `figcaption` |
 | [Markdown coverage](#markdown-coverage) | What a converter emits, and how the sheet claims it |
@@ -118,7 +118,6 @@ on `.filter-box` (the iOS input-zoom threshold).
 0.95em  structural: table, aside, nav, .scorecard, .nav-list li
 0.9em   annotation: .byline, .sidenote, cite, code, pre, footer
 0.8em   chips: .badge, .verdict
-0.75em  the outbound arrow
 ```
 
 **`text-wrap` is not used anywhere.** `balance` and `pretty` landed in 2023, and a 1996 browser
@@ -333,6 +332,13 @@ baseline than its neighbors.
 the wrong shape too: label-tier weight 500 reads fainter than the event title, and dates never align
 into a column.
 
+**`dl.timeline.log` is the reverse-chronological log**, the shape the corpus's developer logs take
+(fallout-2-1999 among them): one dated post under the last, newest first. It drops the spine
+(`display: block`), the `dt` becomes a full-width heading with a hairline beneath it, and the `dd`
+loses its own start rule and indent. It wants no `--timeline-date`, since there is no column to
+align, and the narrow-width collapse already matches what `.log` wants, so the two rules never
+conflict.
+
 **`--timeline-date` exists because era groups are separate lists**, and `max-content` sizes each
 track against only its own rows, so a multi-list timeline needs `var(--timeline-date, max-content)`
 to pin one width in `ch` across lists CSS otherwise cannot see (no shared-parent `subgrid` applies).
@@ -391,6 +397,16 @@ anyone wanting a real axis wants a chart, which this stylesheet does not grow in
 construction). **Do not put tables in the mono stack**: costs about a quarter of table width and
 puts tables in a different register from the prose.
 
+**Every `th` and `td` is fenced with a one-pixel `--rule-light` border, and the header row is filled
+`--surface-alt`.** The 1996 corpus drew its directories as fenced cells headed by a bar
+(altavista-1999, "each cell fenced by a one-pixel rule and headed by a colored bar"; tucows-1996, "a
+flat one-pixel bordered box with a heading row"). The sheet had drawn a modern booktabs table:
+horizontal hairlines, no vertical rules, no header fill. **Do not strip the fence back to
+hairlines.** The header fill is the row-hover ground, so `--pink`'s floor against it is already
+check 5's. A saturated header bar in the corpus's own colors would need a new inverted
+accent-as-ground pair and a check-8 entry, which the hue budget does not have to spend; the neutral
+band keeps the heading row without one.
+
 **`table.tree` is a table, deliberately not a `treegrid`.** That role promises roving `tabindex`,
 arrow keys, `aria-level`/`expanded`/`posinset`/`setsize`, a keyboard contract this repo ships no
 script for, and it would strip the native row/column semantics a plain `<table>` announces. Depth is
@@ -401,7 +417,7 @@ an author attribute (`data-depth`); everything else is presentation.
   level-4 row degrades to flat, not wrong.
 - **Depth de-emphasizes with `--label` at levels 2-3, not smaller type** (nested ratios compound, and
   the table already sits at 0.95em).
-- **The `↳` needs the same alt-text treatment as the outbound arrow** (`content: "\21B3\A0" / ""`
+- **The `↳` needs the same alt-text treatment as every other decorative glyph** (`content: "\21B3\A0" / ""`
   behind `@supports`), or the glyph lands in the row's accessible name. **Any future decorative
   `::before` owes this.**
 
@@ -418,12 +434,13 @@ desktop width. The opt-in answer to both is `.table-scroll`. **Chromium does not
 semantics on `display: block`**, measured rather than assumed; role counts are identical above and
 below the breakpoint.
 
-**A sticky `th` needs an opaque background** (an inset shadow, not `border-bottom`, since
-`border-collapse: collapse` would scroll the border away from the stuck header).
+**A sticky `th` needs an opaque background and a rule that survives the stick**: the header fill is
+`--surface-alt`, which is opaque, and the header's lower edge is an inset shadow rather than a
+`border-bottom`, because `border-collapse: collapse` scrolls a real border away from a stuck header.
 
 **Two consequences of the current fills are load-bearing**: `table.tree [data-depth="0"] td` is the
-only in-table fill (meaning *root row*, nothing else), and `tbody tr:hover td` keeps its `tbody`
-qualifier to stay clear of `thead`.
+only in-table `--code-bg` fill (the meaning is *root row*; the header band is `--surface-alt`, a
+different ground), and `tbody tr:hover td` keeps its `tbody` qualifier to stay clear of `thead`.
 
 **`.num` is an opt-in class, not a heuristic**: CSS can't tell a number from a label, and `:has()`
 can't match text content. Goes on the `th` too, or the header floats off its own column.
@@ -455,16 +472,25 @@ line, and the underline is the only thing that marks a link. `overflow-wrap: bre
 URL or slug break rather than escape its container (the conn-map Links column runs as narrow as
 220px).
 
-**The outbound arrow is decorative and once reached the accessibility tree** (a screen reader read
-"north east arrow" after every external label). `content: "…" / ""` gives the pseudo-element empty
-alternative text, behind `@supports (content: "x" / "y")` since the alt-text syntax is a single
-value a browser that can't parse it discards **whole** (Firefox ESR still ships in that state).
-**The twin sits after its base rule, never above it.** `@supports` adds no specificity, so a twin
-above the base loses on source order and the glyph reaches the accessibility tree anyway (a tree
-cell once read "↳ F1").
-`.github/script-probe.py` asserts every twin.
-`\A0` keeps the arrow from an orphan line. Print drops both arrow and underline (the destination is
-unreachable on paper).
+**The underline takes the link's own colour.** `text-decoration-color` was `--muted`, which painted
+the underline quieter than the text it marked; the period underlined link carried its own blue
+(apogee-3d-realms-1996, "medium blue, underlined"). The property is left at its `currentColor`
+initial, so this is the browser default the sheet stopped overriding. **Do not dim
+`text-decoration-color` back toward a tier**: the underline is the one affordance a link has, and a
+quieter underline weakens it.
+
+**There is no outbound-link marker.** The sheet painted a `↗` after every `a[href^="http"]`. It is
+gone, because none of the 42 references carries one, and a glyph that promises a destination the
+link never names is a modern docs convention. **Do not reintroduce an external-link glyph.**
+
+**A decorative `::before`/`::after` glyph carries empty alternative text** (`content: "…" / ""`),
+behind `@supports (content: "x" / "y")`, since the alt-text syntax is a single value a browser that
+can't parse it discards **whole** (Firefox ESR still ships in that state). **The twin sits after its
+base rule, never above it.** `@supports` adds no specificity, so a twin above the base loses on
+source order and the glyph reaches the accessibility tree anyway (a tree cell once read "↳ F1", and
+a screen reader once read "north east arrow" after every outbound label).
+`.github/script-probe.py` asserts every twin that remains. Print drops the underline (the
+destination is unreachable on paper).
 
 `cite` is monospace and `font-style: normal`: the browser default (italic serif) is indistinguishable
 from `<em>` in this theme.
@@ -633,7 +659,7 @@ stray hex in `mermaid.js`; (5) the contrast floor in all four modes against thre
 and the data ramp (`FLOOR_OVERRIDE` is empty since the reset); (6) `--mermaid-scheme` both directions,
 no `prefers-color-scheme` in `mermaid.js`, and the `(max-width: 600px)` breakpoint pinned in both
 files; (7) sRGB gamut for every parsed token in every mode; (8) the inverted accent-as-ground pairs
-(`.verdict-*`, `.step-node` including the ramp); (9) the relative-color `--highlight`
+(`.verdict-*`, `h2.band`, `.step-node` including the ramp); (9) the relative-color `--highlight`
 token per mode, plus `mark`'s alpha composite; (10) the pie slice label against all four fills in
 both palettes, plus `pieOpacity` pinned to `1`; (11) `--on-surface` over the `table.bar-chart` band
 at its alpha, against both grounds in every mode, plus print and forced-colors pins.
@@ -704,6 +730,13 @@ header; a heading vs. a 3px bar and a selection fill).
 **The hue budget is spent.** A new role takes an existing accent **plus a different form** (weight,
 bar, ring, fill), or a diagram role takes `--data-1..4`. A new hue is the last resort, and reusing one
 for a third prose role needs a line here explaining why the two won't appear together.
+
+**A `h2.band` is the corpus's one saturated bar, opt-in.** A section heading takes the `--purple`
+fill with `--surface` text, the period's single loud band. It stays opt-in (`class="band"`) because
+the corpus spends its strip once per page, on a lead heading, not on every `h2`. `--surface` on
+`--purple` clears the floor in all four modes, so the band is check 8's third inverted pair. Print
+drops the fill for a `currentColor` ring and `--purple` text, the same treatment `.verdict` takes,
+so no saturated band spends ink and the heading text never goes white-on-white.
 
 ## Borrowed components
 
@@ -847,12 +880,12 @@ convention that makes an unlabelled axis honest) plus a Mermaid pie of the same 
 text remains the source of each value. Do not use guides to encode categories or remove the text
 values. **Guides draw at 25, 50 and 75 percent only, faint, with a strong 1px baseline at the zero
 edge.** The axis edge and the grid carry two weights, as on a printed chart. Do not add a guide at
-100 percent (it drew a second border on the cell). **Row rules stay scoped to `.evidence-table`** so
-they structure a findings summary without changing every table: a strong rule under the header, a
-hairline between rows, and none after the last row, since the table's own bottom rule closes it. The
-first column of that table is bold.
-
-**`tfoot td` takes a strong rule above it and weight 700**, so a total reads as a total in any table.
+100 percent (it drew a second border on the cell). **`.evidence-table` no longer draws a rule family
+of its own.** It used to add a strong rule under the header, a hairline between rows, and a strong
+rule above its `tfoot` total; the per-cell fence (Tables) separates every row and closes the table,
+so both the row rules and the `tfoot` rule are gone. The first column of that table stays bold.
+**Do not add a second, stronger rule family back onto one table**: the fence is the register now, and
+a per-table override reopens the booktabs form the sheet just dropped.
 
 **`td.bar.lead` marks one emphasis row by weight 700 only.** A higher band alpha would fall outside
 check 11, which measures one alpha.
@@ -869,10 +902,13 @@ read it.** `.chart-takeaway .more` is its second tier. Both are opt-in spans.
 Two components: `nav.toc` (on-this-page index), `details.deep` (collapsed detail
 tier).
 
-**`nav.toc` marks links with a dotted `border-block-end`, not an underline.** The underline-only-mark
-rule (Links) holds for prose; a standalone index is a list of links and nothing else, so the dotted
-rule is its marker (`prefers-contrast: more`'s underline bump can't reach it, outranked by
-`nav.toc a`).
+**`nav.toc` is a fenced directory box.** A one-pixel `--rule-light` frame, a `--surface-alt` label
+strip, and a rule under each row: the corpus drew its indexes this way (tucows-1996, "a flat
+one-pixel bordered box with a heading row"; altavista-1999, a directory table "each cell fenced by a
+one-pixel rule and headed by a colored bar"). Its links are plain underlined links. It used to mark
+them with a dotted `border-block-end` over a translucent `color-mix` ground; **do not put either
+back**. The dotted rule stood in for a border the box now draws, and the ground was the one
+composited fill no gate could reach, which is gone with it.
 
 **The index runs two columns above 600px, one below**: at 320px two columns left each entry about
 68px and wrapped titles to five lines (matches `.col-2`'s breakpoint). **The print override targets
@@ -888,22 +924,18 @@ token without declaring it.**
 
 **The summary triangles are decorative and once reached the accessibility tree** (`<details>` already
 exposes its own open state, so the marker only added a spoken "black right-pointing small triangle").
-Same `content: "…" / ""` alt-text convention as the outbound arrow.
-
-**`nav.toc` paints a composited ground no gate reaches** (`color-mix(in oklab, var(--surface-alt) 60%,
-transparent)` lands between two measured grounds). `--muted`/`--purple-bright` clear their floor
-against both, so this is an honest, documented gap, not a check that cannot see the mix.
+Same `content: "…" / ""` alt-text convention as every other decorative glyph.
 
 **`nav.toc` clears the floated note column** (`clear: right; clear: inline-end`, the same value
-pair `.sidenote` already carries). The index paints a full-width ground, and a `.sidenote`/
+pair `.sidenote` already carries). The index draws a full-width box, and a `.sidenote`/
 `.marginnote` stack taller than its anchor paragraph (three citations in one paragraph is the
 common case) extends past that paragraph into the block after it. **A float shortens the line
-boxes of a block it overlaps, never its box**, so the ground painted under the note. The index's
+boxes of a block it overlaps, never its box**, so the box painted under the note. The index's
 `ol` escaped on its own only because `columns: 2` makes it a block formatting context; the `nav`
 box did not. Clearing drops the whole index below the stack at full width. **Rejected:
 `display: flow-root`**, which also stops the overlap but squeezes the index into a half column
-beside the note, compressing the two-column list for no reason. Every other full-width filled
-block in the sheet is already a BFC (`pre` through `overflow-x`, `.icon-list li`, `.edge-list`,
+beside the note, compressing the two-column list for no reason. Every other full-width box
+in the sheet is already a BFC (`pre` through `overflow-x`, `.icon-list li`, `.edge-list`,
 `.recent-groups`, `.stat-strip`, `.scorecard` through their display), so `nav.toc` was the only
 one exposed. The fixture carries a three-note stack immediately before its index, and
 `.github/script-probe.py` asserts the index does not overlap it. **Do not remove the `clear` to
@@ -1361,7 +1393,7 @@ touch. The injected `.mermaid-zoom` button is the real touch affordance.
 **The overlay's way out is a `✕` glyph on `.mermaid-overlay::after`**: click-anywhere and Escape
 already dismiss it, so this is a cue on an already-clickable surface, not a new target. `cursor:
 zoom-out` alone is invisible on touch. Glyph rather than a word (untranslatable in a file consumers
-inline verbatim), same `content: "✕" / ""` alt-text convention as the outbound arrow.
+inline verbatim), same `content: "✕" / ""` alt-text convention as every other decorative glyph.
 
 ## Keyboard and assistive technology
 
@@ -1648,6 +1680,20 @@ iOS-zoom threshold is 12pt.
 `nav > a + a` takes a `border-inline-start` plus symmetric padding: without it, sibling `<a>`
 children in a `<nav>` render as an undifferentiated run of link text.
 
+### `nav.tabs`
+
+**A `nav.tabs` is the corpus's tab strip, rebuilt so it collides with no existing selector.** The
+markup is `<nav class="tabs"><ol><li><a>`, so no `nav > a` or `nav:has(> a)` rule matches it and the
+left rail, the bracket pseudos and the link separator all stay off it. The active tab takes
+`aria-current="page"` and swaps to the page's own ground (`--surface`), so it opens into the panel
+below the way a 1996 tab does; the rest sit at `--surface-alt`. Overlapping `-1px` start margins
+share one border between adjacent tabs. No new token, no new gate.
+
+**It is the one horizontal, boxed nav form in the sheet**, which is why it is a separate class
+rather than a shape on the bracketed `nav > a` rail: those carry `[label]` brackets and read as a run
+of links, not as tabs. The corpus draws this strip ten times over (altavista-1999's navy row,
+apple-1998's black row, IE5's six-section row), always at the top of a page.
+
 **The wrapped-line separator is a known artefact, accepted.** A link beginning a wrapped line carries
 a separator with nothing to its left. **No pure-CSS rule can suppress a border at a line break** (the
 wrap position isn't addressable from a selector, and flex wrapping just moves the problem). The
@@ -1759,8 +1805,8 @@ for figures) and takes `1.1em`.
 
 **`.footnote-backref` needs an `aria-label`**: the one accessible-name requirement this repo asks of
 converter output, not just hand-authored markup, since `cmark-gfm`/pandoc emit it as a bare `&#8617;`
-glyph a screen reader can't name. This is the opposite fix from the outbound-arrow (which was
-silenced because it's decorative): a backref is a real functional control, so it gets a name rather
+glyph a screen reader can't name. This is the opposite fix from a decorative glyph (which is
+silenced rather than named): a backref is a real functional control, so it gets a name rather
 than losing one. `CONTRACT.md` § 2 states it as a generator obligation, numbered per footnote.
 
 **The sheet styles math where it arrives as real HTML; it renders none.** An unstyled
