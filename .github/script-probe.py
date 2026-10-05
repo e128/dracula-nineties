@@ -117,14 +117,13 @@ DRIVER = """
       const el = document.querySelector(sel);
       return Boolean(el) && getComputedStyle(el, pseudo).content.endsWith('/ ""');
     };
-    t('alt-outbound-arrow', alt('a[href^="http"]', '::after'));
     t('alt-tree-arrow', alt('table.tree [data-depth="1"] td:first-child', '::before'));
     t('alt-summary-triangle', alt('details.deep > summary', '::before'));
     t('alt-nav-bracket-open', alt('nav:not(.toc) > a', '::before'));
     t('alt-nav-bracket-close', alt('nav:not(.toc) > a', '::after'));
 
-    // nav.toc paints a full-width ground, and a floated note stack that outgrows its
-    // paragraph must not paint under it (NOTES.md, Progressive disclosure). A float
+    // nav.toc draws a full-width box, and a floated note stack that outgrows its
+    // paragraph must not paint over it (NOTES.md, Progressive disclosure). A float
     // shortens the line boxes of a block it overlaps, never its box, so the index has
     // to clear the stack explicitly. This is a layout claim a screenshot cannot check.
     const toc = document.querySelector('nav.toc');

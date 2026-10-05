@@ -57,7 +57,7 @@ nothing after it.
 
 ## 2. Emit this markup
 
-Twenty-six requirements. No stylesheet change can supply any of them. Most name a string to search
+Twenty-seven requirements. No stylesheet change can supply any of them. Most name a string to search
 for in a fixture, so you have a working example instead of only a sentence. The few with no fixture
 yet say so.
 
@@ -108,7 +108,9 @@ wrong by v1.38.1, and every check stayed green. A search string survives regener
       against the element the variable is set on, which is weight 400, and 400 is about 1.7%
       narrower per character, so a value measured at 400 is short by a quarter character at 16ch.
       Too small a value has no CSS backstop: the label overflows into the column gap and touches
-      the rule. One list needs nothing.
+      the rule. One list needs nothing. A `dl.timeline.log` stacks each date as a heading over its
+      entry instead of a date column, so it needs no `--timeline-date` (in `samples/dark.html`,
+      search `class="timeline log"`).
 - [ ] Citations inside a `dl.timeline` entry as `sup` links into a numbered source list, never a
       `.sidenote` (in `samples/dark-timeline.html`, search `class="footnote-ref"`). A float cannot
       escape a grid item, so the note lands inside the entry column instead of the page margin.
@@ -229,11 +231,9 @@ wrong by v1.38.1, and every check stayed green. A search string survives regener
       line below: the class arrives from the converter, and the label is still yours to add.
 
 - [ ] Same-page citation targets emitted as relative fragments (`#src-1`), never absolute
-      self-URLs. The stylesheet paints an outbound-link arrow after every `a[href^="http"]`, so a
-      footnote ref written as `href="https://your.site/page#src-1"` renders `1 ↗` while the click
-      only scrolls within the page. The arrow is a promise the link does not keep. Absolute URLs to
-      other hosts keep the arrow; that is what it is for (in `samples/dark-timeline.html`, search
-      `href="#src-1"`).
+      self-URLs. An absolute self-URL is a full navigation where the reader wanted a scroll, and it
+      leaves the address bar and the browser history pointing at a different page than the one the
+      reader is on (in `samples/dark-timeline.html`, search `href="#src-1"`).
 - [ ] A bracket-style inline citation (`[2, 3]`) is a link into the numbered source list, not bare
       text. The page's other citations are `sup` links into Sources; a bare `[2, 3]` asks the
       reader to count an ordered list by hand to learn what corroborates the claim. Emit the same
@@ -254,6 +254,11 @@ wrong by v1.38.1, and every check stayed green. A search string survives regener
       the label an `id` and point at it. Entries are `<a>` inside `<li>` inside a single `<ol>`, so
       the two-column rule and its narrow and print overrides have a list to act on (in
       `samples/dark.html`, search `class="toc" aria-labelledby`).
+- [ ] A `nav.tabs` names itself with an `aria-label` and marks the current tab with
+      `aria-current="page"`, the one attribute the strip paints differently: that tab takes the
+      page's own ground and the rest stay at `--surface-alt`. Emit `<nav class="tabs"><ol><li><a>`,
+      so no `nav > a` rule matches and the rail, the bracket pseudos and the link separator stay
+      off it (in `samples/dark.html`, search `class="tabs" aria-label`).
 
 Markdown constructs otherwise need **no classes of their own**. Do not invent any beyond what this
 section already asks for. A converter's output lands in a theme register already.
@@ -268,7 +273,7 @@ regeneration re-inlines fresh CSS around whatever markup you already emitted.
 
 | since | your generator must now |
 | --- | --- |
-| v2.3.0 | **the document shell lands, and every page repaints and reflows.** A direct `<section>` of `<article>` is now a one-pixel bordered panel with interior padding, so bare blocks get boxed; a plain `<nav>` that is a direct child of `<article>` becomes the left rail above 1000px; `h1` is a filled title box. Page width narrows from `min(90vw, 160rem)` to `min(94vw, 66rem)`, and every `border-radius` is now `0`, so corners are square. **One new § 2 requirement**: each top-level block of the document body is a `<section>` that is a direct child of `<article>` |
+| v2.5.0 | **one new § 2 requirement and one removed, and every table and link repaints.** A `nav.tabs` (`<nav class="tabs"><ol><li><a>`) is now a tab strip: name it with `aria-label` and mark the current tab `aria-current="page"`. **A generator that emitted the outbound-link marker must drop it**: the `↗` appended to `a[href^="http"]` is gone, so the markup needs no edit but a screenshot diff shows it missing. Tables now fence every cell with a one-pixel `--rule-light` border and fill the header row `--surface-alt`; links underline in the ink's own colour; `nav.toc` is a bordered directory box. Two opt-ins are added: `dl.timeline.log`, a reverse-chronological log with no date column, and `h2.band`, a section heading on the violet bar |
 | v2.2.0 | nothing to emit, but **every page repaints**: the palette becomes a 1990s register of Dracula, so a pinned consumer that diffs screenshots sees a new ground (`#000000` dark, silver `#c0c0c0` light), a silver structural tier where the blue-grey was, and a web-safe link blue in light. One CSS-provided addition needs no markup: **`a:visited` now takes `--visited`**, a token separate from `--link`. No class, no token a generator writes, no § 2 requirement |
 | v2.1.0 to v2.1.1 | nothing to emit. **The palette reset to the upstream Dracula and Alucard baseline**, so a pinned consumer that diffs screenshots sees every accent and ground move at once. v2.1.1 dropped the `(muted)` qualifier from the template name. No class, no token a generator writes, no § 2 requirement |
 | v2.0.0 | **the baseline, and every requirement the pre-2.0.0 line carried is part of it**, in the set below. Counting in this repo begins here, so no earlier release is a row of its own |
@@ -293,11 +298,16 @@ Anything not named here needs no edit.
 - Opt in to `.verdict` plus its four state classes on any page that grades a claim.
 - For a `dl.timeline`, emit the class and follow § 2's two `dl.timeline` requirements
   (`--timeline-date` when a page carries more than one, and `sup` citations into a source list).
+  A `dl.timeline.log` stacks each date as a full-width heading over its entry instead of a date
+  spine, so it needs no `--timeline-date`.
 - For a `.step-chain`, name its steps in the introducing sentence and put `aria-hidden="true"` on
   every `.step-arrow`; wrap every arrow-plus-node pair after the first in `.step-hop`.
 - For an `.icon-list`, put the `<strong>` and `<code>` side by side with no `<br>`, and mark a file
   path with `<code>`, not `<cite>`.
 - For a `nav.toc`, name the landmark with `aria-labelledby` pointing at its own `p.toc-label`.
+- For a `nav.tabs`, emit `<nav class="tabs"><ol><li><a>` with an `aria-label`, and put
+  `aria-current="page"` on the one tab for the current page. The strip paints that tab in the
+  page's own ground and leaves the rest at `--surface-alt`.
 - Replace any `.pie-chart` div with a Mermaid `pie showData` fence; a bar chart is
   `table.bar-chart` with a `--bar` percentage per cell.
 - Drop any `classDef name fill:#hex` line from a fence on a page that follows the reader's
@@ -305,10 +315,11 @@ Anything not named here needs no edit.
 - Drop any specificity hack or `!important` added to override the template: the sheet is in
   `@layer dracula-nineties` and unlayered CSS wins on its own.
 
-**Opt-ins in the v2.0.0 baseline:** `nav.toc`, `details.deep`, `.edge-list`, a
+**Opt-ins in the v2.0.0 baseline:** `nav.toc`, `nav.tabs`, `details.deep`, `.edge-list`, a
 `.byline` inside a `figcaption` or `caption`, `.stat-strip`, `.label` inside a caption,
-`.chart-takeaway`, `table.evidence-table`, `td.bar.lead`, and the five presentational classes
-`.kicker`, `.tag-dot`, `.live-dot`, `.icon-list`/`.icon-chip`, and the `.step-*` chain.
+`.chart-takeaway`, `table.evidence-table`, `td.bar.lead`, a `dl.timeline` with `.log`, and the six
+presentational classes `.kicker`, `.tag-dot`, `.live-dot`, `.icon-list`/`.icon-chip`, the `.step-*`
+chain, and `h2.band`.
 
 **Self-contained, no generator edit:** the filter's live count and its no-matches line, the
 print and forced-colors fixes, and the Mermaid CDN and layout-engine moves.
