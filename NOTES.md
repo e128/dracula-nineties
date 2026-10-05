@@ -497,12 +497,14 @@ surroundings rather than overriding a color they already chose.
 other tier fails on the wash. **Do not paint the wash under anything but body copy** (a `li:target`
 highlight was built, measured, and removed on this basis).
 
-**`.kicker`'s tint is nearly invisible on black.** The kicker's pill is
+**`.kicker`'s pill carries a border, because its 8% fill is near-invisible on black.** The fill is
 `oklch(from var(--link) l c h / 0.08)`, an 8% wash of the link cyan. Over the old `#282a36` ground it
-read as a faint pill; over pure black the composite is almost the black itself, so only the cyan text
-and the pill's padding carry the shape. This is recorded, not fixed: restoring the tint means a
-lighter wash, which is a second color change the kicker does not need. **Do not darken the wash
-further.**
+read as a faint pill; over pure black the composite is almost the black itself. The fix is a
+`oklch(from var(--link) l c h / 0.65)` hairline on the same pill, which clears 3:1 against the ground
+in both registers (6.43 dark, 3.26 light) where the fill alone does not. **The fill stays at 0.08**:
+raising it trades the pill's visibility for the kicker text's contrast, which falls as the fill moves
+toward the link hue. **Do not darken the wash, and do not drop the border** while the dark ground is
+black.
 
 ### The data ramp
 

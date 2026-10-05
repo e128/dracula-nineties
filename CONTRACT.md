@@ -263,12 +263,13 @@ regeneration re-inlines fresh CSS around whatever markup you already emitted.
 | --- | --- |
 | v2.2.0 | nothing to emit, but **every page repaints**: the palette becomes a 1990s register of Dracula, so a pinned consumer that diffs screenshots sees a new ground (`#000000` dark, silver `#c0c0c0` light), a silver structural tier where the blue-grey was, and a web-safe link blue in light. One CSS-provided addition needs no markup: **`a:visited` now takes `--visited`**, a token separate from `--link`. No class, no token a generator writes, no § 2 requirement |
 | v2.1.0 to v2.1.1 | nothing to emit. **The palette reset to the upstream Dracula and Alucard baseline**, so a pinned consumer that diffs screenshots sees every accent and ground move at once. v2.1.1 dropped the `(muted)` qualifier from the template name. No class, no token a generator writes, no § 2 requirement |
-| before v2.0.0 | **one consolidated instruction set, below.** Counting in this repo begins at v2.0.0, so every earlier release is reconciled into the single set that follows rather than kept as a row of its own |
+| v2.0.0 | **the baseline, and every requirement the pre-2.0.0 line carried is part of it**, in the set below. Counting in this repo begins here, so no earlier release is a row of its own |
 
-### Everything before v2.0.0, in one set
+### The v2.0.0 baseline, in one set
 
-A generator written against a pre-2.0.0 pin must satisfy all of the following. Grouped by what it
-must change. Anything not named here needs no edit.
+These requirements are part of the v2.0.0 contract, reconciled from every release before it. A
+generator pinned at v2.0.0 or later must satisfy all of them, grouped by what it must change.
+Anything not named here needs no edit.
 
 **Markup a generator emits:**
 
@@ -282,8 +283,8 @@ must change. Anything not named here needs no edit.
 - Add `aria-label` to every `.footnote-backref`, numbered per footnote (`Back to reference 1`, ...).
   The glyph carries no accessible name of its own and no CSS rule can add one.
 - Opt in to `.verdict` plus its four state classes on any page that grades a claim.
-- For a `dl.timeline`, emit the class and the two § 2 requirements (`--timeline-date` and `sup`
-  citations).
+- For a `dl.timeline`, emit the class and follow § 2's two `dl.timeline` requirements
+  (`--timeline-date` when a page carries more than one, and `sup` citations into a source list).
 - For a `.step-chain`, name its steps in the introducing sentence and put `aria-hidden="true"` on
   every `.step-arrow`; wrap every arrow-plus-node pair after the first in `.step-hop`.
 - For an `.icon-list`, put the `<strong>` and `<code>` side by side with no `<br>`, and mark a file
@@ -296,7 +297,7 @@ must change. Anything not named here needs no edit.
 - Drop any specificity hack or `!important` added to override the template: the sheet is in
   `@layer dracula-nineties` and unlayered CSS wins on its own.
 
-**Opt-ins a pre-2.0.0 generator would not know:** `nav.toc`, `details.deep`, `.edge-list`, a
+**Opt-ins in the v2.0.0 baseline:** `nav.toc`, `details.deep`, `.edge-list`, a
 `.byline` inside a `figcaption` or `caption`, `.stat-strip`, `.label` inside a caption,
 `.chart-takeaway`, `table.evidence-table`, `td.bar.lead`, and the six presentational classes
 `.kicker`, `.tag-dot`, `.live-dot`, `.icon-list`/`.icon-chip`, the `.step-*` chain, and
