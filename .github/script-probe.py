@@ -24,7 +24,7 @@ behaviour. It is the only check in the repo that runs the payload rather than re
               immediately before it, the case where a full-width ground would otherwise
               paint under the note. NOTES.md, Progressive disclosure
   controls    the search box drops the WebKit searchfield chrome, the task checkbox is
-              a square with a tick, and a table cell keeps its two-pixel fence
+              a square with a tick, and a table cell keeps its one-pixel fence
 
 Run: python3 .github/script-probe.py
 
@@ -138,8 +138,19 @@ DRIVER = """
       && checkStyle.borderTopStyle === 'solid');
     const tick = cs('input[type="checkbox"]:checked', '::before');
     t('control-checkbox-tick', Boolean(tick) && tick.content !== 'none');
+    // The sidenote margin toggle is inert (NOTES.md, Keyboard and assistive technology). The
+    // control reset once repainted it as a visible square and put it back in the tab order, at
+    // the same specificity and later in source order than its own `display: none`. A computed
+    // style is the whole assertion: the control is never drawn, so nothing else can check it.
+    const toggles = [...document.querySelectorAll('input.margin-toggle')];
+    t('control-margin-toggle-hidden', toggles.length >= 1
+      && toggles.every((el) => getComputedStyle(el).display === 'none'));
     const cellStyle = cs('td');
-    t('table-fence-thick', Boolean(cellStyle) && cellStyle.borderTopWidth === '2px');
+    const tableStyle = cs('table');
+    t('table-fence-thin', Boolean(cellStyle) && cellStyle.borderTopWidth === '1px');
+    t('table-borders-separate', Boolean(tableStyle)
+      && tableStyle.borderCollapse === 'separate'
+      && tableStyle.borderSpacing.startsWith('2px'));
 
     // nav.toc draws a full-width box, and a floated note stack that outgrows its
     // paragraph must not paint over it (NOTES.md, Progressive disclosure). A float

@@ -1,0 +1,47 @@
+diff --git a/NOTES.md b/NOTES.md
+index 88436f1..7e012b4 100644
+--- a/NOTES.md
++++ b/NOTES.md
+@@ -193,7 +193,7 @@ phone-sized, and one breakpoint wrong for half its contents beats two with disti
+ **The shell is the be-1996 frame: a filled title box, a narrow left rail, a center stack of bordered
+ panels, and a bracketed link row.** That page is the closest single reference in `inspiration/` to the
+ objective, so the document follows it rather than a multi-column grid. The corpus says the same thing
+-at scale: of 42 references, about 20 carry a left link rail and only 2 name a bevel, so the rail is
++at scale: of the references, about 20 carry a left link rail and only 2 name a bevel, so the rail is
+ the register and the 3D edge is not.
+ 
+ **`h1` is a filled box, `--code-bg` with `--on-surface` text.** The heading is the masthead, not
+@@ -485,7 +485,7 @@ initial, so this is the browser default the sheet stopped overriding. **Do not d
+ quieter underline weakens it.
+ 
+ **There is no outbound-link marker.** The sheet painted a `↗` after every `a[href^="http"]`. It is
+-gone, because none of the 42 references carries one, and a glyph that promises a destination the
++gone, because none of the references carries one, and a glyph that promises a destination the
+ link never names is a modern docs convention. **Do not reintroduce an external-link glyph.**
+ 
+ **A decorative `::before`/`::after` glyph carries empty alternative text** (`content: "…" / ""`),
+@@ -767,6 +767,11 @@ Chrome-blue; a 1996 one is a square with a black inset bevel and a thick tick. A
+   border, and `:checked` also fills the box, so a browser that drops a replaced element's `::before`
+   still shows a checked box rather than an empty square. GFM's task box stays `disabled`; the sheet
+   keeps it at full strength, because the box states the item's value.
++- **The reset does not reach the inert margin toggle.** The sidenote control is an `input.margin-toggle`,
++  and its `display: none` rule (see Keyboard and assistive technology) sits above this reset at the
++  same specificity, so the checkbox reset repainted every hidden control as a visible square and put it
++  back in the tab order. **Do not let the control reset match `.margin-toggle`**: exclude the class in
++  the selector rather than raising the hide rule's specificity.
+ - **`accent-color: var(--green)`** colors the widgets the sheet does not repaint (`progress`, `meter`,
+   `input[type="range"]`). The repainted checkbox and radio ignore it.
+ - **`color-scheme` stays undeclared** (see Appearance modes): the reset is a shape fix, not a request
+diff --git a/dracula-nineties.css b/dracula-nineties.css
+index c7381a5..d984e34 100644
+--- a/dracula-nineties.css
++++ b/dracula-nineties.css
+@@ -293,7 +293,7 @@
+       background-repeat: no-repeat; }
+     input[type="search"]::-webkit-search-cancel-button,
+     input[type="search"]::-webkit-search-decoration { appearance: none; -webkit-appearance: none; }
+-    input[type="checkbox"], input[type="radio"] {
++    input[type="checkbox"]:not(.margin-toggle), input[type="radio"] {
+       display: inline-grid; place-content: center; width: 1em; height: 1em; padding: 0;
+       vertical-align: -0.08em; border: 1px solid var(--rule-light);
+       background: var(--surface-alt); border-radius: var(--radius-sm); }
