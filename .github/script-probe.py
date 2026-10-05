@@ -23,6 +23,8 @@ behaviour. It is the only check in the repo that runs the payload rather than re
   layout      `nav.toc` does not overlap a floated `.sidenote`/`.marginnote` stack placed
               immediately before it, the case where a full-width ground would otherwise
               paint under the note. NOTES.md, Progressive disclosure
+  controls    the search box drops the WebKit searchfield chrome, the task checkbox is
+              a square with a tick, and a table cell keeps its two-pixel fence
 
 Run: python3 .github/script-probe.py
 
@@ -121,6 +123,23 @@ DRIVER = """
     t('alt-summary-triangle', alt('details.deep > summary', '::before'));
     t('alt-nav-bracket-open', alt('nav:not(.toc) > a', '::before'));
     t('alt-nav-bracket-close', alt('nav:not(.toc) > a', '::after'));
+
+    // Period form controls: the sheet resets the UA chrome (the WebKit searchfield, the
+    // 2026 rounded widget) and repaints the text box and the checkbox square. A computed
+    // style reaches the rule; the render is what a person actually sees.
+    const cs = (sel, pseudo) => {
+      const el = document.querySelector(sel);
+      return el ? getComputedStyle(el, pseudo || undefined) : null;
+    };
+    const boxStyle = cs('input.filter-box');
+    t('control-search-no-ua', Boolean(boxStyle) && boxStyle.appearance === 'none');
+    const checkStyle = cs('input[type="checkbox"]:checked');
+    t('control-checkbox-square', Boolean(checkStyle) && checkStyle.appearance === 'none'
+      && checkStyle.borderTopStyle === 'solid');
+    const tick = cs('input[type="checkbox"]:checked', '::before');
+    t('control-checkbox-tick', Boolean(tick) && tick.content !== 'none');
+    const cellStyle = cs('td');
+    t('table-fence-thick', Boolean(cellStyle) && cellStyle.borderTopWidth === '2px');
 
     // nav.toc draws a full-width box, and a floated note stack that outgrows its
     // paragraph must not paint over it (NOTES.md, Progressive disclosure). A float
