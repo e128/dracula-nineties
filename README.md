@@ -8,7 +8,9 @@ copy can drift from it.
 The palette is a 1990s register of [Dracula](https://draculatheme.com/): a black ground, a silver
 structural tier, and Dracula's own accents kept as the accent colors. The objective is 1990s web
 design: the dense single-page document, the small type, the hairline rules, and the boxy,
-table-heavy layouts that period used, restated as one inline stylesheet with no build step. This repo
+table-heavy layouts that period used, restated as one inline stylesheet with no build step. The
+document shell carries that register too: a filled title box, a narrow left link rail, a center stack
+of bordered panels, and a bracketed link row, after the Be Inc. home page of 1996. This repo
 is not a fork of Dracula. Light mode is the silver register of the same idea.
 
 **Three files answer three different questions:**
@@ -46,7 +48,7 @@ contrast has no preview page. CI renders it and attaches the image to each pull 
 
 | File | What it is |
 | --- | --- |
-| `dracula-nineties.css` | The stylesheet payload (template v2.2.1, oklch palette). The complete `<style>…</style>` block, with its wrapper tags and its leading indent. Consumers inline it verbatim into every generated file. |
+| `dracula-nineties.css` | The stylesheet payload (template v2.3.0, oklch palette). The complete `<style>…</style>` block, with its wrapper tags and its leading indent. Consumers inline it verbatim into every generated file. |
 | `mermaid.js` | The Mermaid init script, with its `<script type="module">` wrapper. It holds the pinned CDN import, the init call, and the zoom overlay. Inline it only when the page has a mermaid fence. Bump the CDN pin here. |
 | `filter.js` | The filter-box script, with its wrapper. It wires each `input.filter-box` to the siblings that follow it. Inline it only when the page has a filter box. [CONTRACT.md § 6](CONTRACT.md#6-scope-of-filterjs) states the scope. |
 | `mermaid-palette.json` | Mermaid's hex palette for each `themeVariables` key, in dark and light, plus the `classDef` node roles. Mermaid cannot read `oklch()` or `var()`. Each entry names its `:root` source, and CI recomputes every hex. |
@@ -64,13 +66,13 @@ Both kinds resolve every path from the repo root. See [Repo layout](NOTES.md#rep
 
 ## Consumers
 
-The current release is **`v2.2.1`**. Consumers reach it through a git submodule. To refresh it,
+The current release is **`v2.3.0`**. Consumers reach it through a git submodule. To refresh it,
 run `git submodule update --remote external/dracula-nineties` and then commit the pointer.
 
 **Read [CONTRACT.md](CONTRACT.md) before you wire a generator.** It states five things:
 
 1. What to inline (§ 1).
-2. The twenty-five markup requirements a generator owes (§ 2), each pointing at a string to search
+2. The twenty-six markup requirements a generator owes (§ 2), each pointing at a string to search
    for in a fixture rather than at a line number.
 3. What changed in each release (§ 3).
 4. How to detect a stale artifact (§ 4).

@@ -29,6 +29,7 @@ Two comments remain in the CSS. A machine reads both.
 | [Type scale](#type-scale) | The one clamp, em steps, compounding traps |
 | [Italics](#italics) | Which eight rules slant, and why h3 does not |
 | [Width and measure](#width-and-measure) | `--page-width`, sidenote stacking, hyphenation scope |
+| [Document shell and the 1996 register](#document-shell-and-the-1996-register) | The title box, the left rail, the bordered panels, squared corners, the bracketed nav |
 | [Paragraphs and section rhythm](#paragraphs-and-section-rhythm) | Section gaps, `.indented`, `--space-*` |
 | [Lists](#lists) | Markers, list semantics, `dl.timeline` |
 | [Tables](#tables) | `table.tree`, widths, fills, `.num`, sticky `th`, `.table-scroll` |
@@ -158,11 +159,12 @@ the distinction instead.
 
 ## Width and measure
 
-**Page width is one number**, `--page-width: min(90vw, 160rem)` in `:root`, shared by `body` and
-`body.conn-map`'s article so the two layouts cannot drift. `90vw` is the proportional dial, `160rem`
-(scales with root size) is the ultrawide backstop, `100% - 2 * var(--gutter)` on `body` is the floor
-respecting the safe-area insets folded into `--gutter`. This is the width every consumer page
-inherits, so a change here is a decision rather than a dial.
+**Page width is one number**, `--page-width: min(94vw, 66rem)` in `:root`, shared by `body` and
+`body.conn-map`'s article so the two layouts cannot drift. `94vw` is the proportional dial, `66rem`
+(scales with root size) is the 1996 document measure, and `100% - 2 * var(--gutter)` on `body` is the
+floor respecting the safe-area insets folded into `--gutter`. This is the width every consumer page
+inherits, so a change here is a decision rather than a dial. It narrowed from `min(90vw, 160rem)` with
+the document shell below.
 
 **Sidenotes stack below 1000px, not 600px**: the 28% float is narrower than any measure worth
 reading between 600 and about 1280px.
@@ -173,6 +175,59 @@ headings. Both fixtures carry `lang="en"`, which hyphenation requires.
 
 **The 1000px and 600px breakpoints stay separate on purpose**: the 600px block is genuinely
 phone-sized, and one breakpoint wrong for half its contents beats two with distinct reasons.
+
+## Document shell and the 1996 register
+
+**The shell is the be-1996 frame: a filled title box, a narrow left rail, a center stack of bordered
+panels, and a bracketed link row.** That page is the closest single reference in `inspiration/` to the
+objective, so the document follows it rather than a multi-column grid. The corpus says the same thing
+at scale: of 42 references, about 20 carry a left link rail and only 2 name a bevel, so the rail is
+the register and the 3D edge is not.
+
+**`h1` is a filled box, `--code-bg` with `--on-surface` text.** The heading is the masthead, not
+run-in text, which is what the reference's navy title box is. **This reverses the pink `h1`**: the box
+is a text ground, and `--pink` on the light `--code-bg` (the Win9x `#d4d0c8`) fails the text floor,
+so the pair is `--on-surface` on the box in every mode. `--on-surface` is not one of check 5's TEXT
+roles, so that pair is not gated; it clears by construction (about 15:1 dark, 9:1 light) and the mode
+renders show it, but the gap is recorded here rather than papered over.
+
+**Every direct `<section>` child of `<article>` is a panel: a one-pixel `--rule-light` border with
+interior padding.** The border sits on `article > section`, not on bare `section`, because a nested
+`section` (the `.footnotes` block, an `.indented` block) then reads as subordinate content rather than
+as a panel inside a panel. A bare `section` selector boxed the footnotes inside their own box, which a
+render showed. **Do not move the border back to bare `section`.**
+
+**The plain `<nav>` becomes the left rail above 1000px.** Below that width it stays the horizontal
+`nav:has(> a)` flex row. Each `<a>` takes a bracketed pair, `[label]`, through `::before`/`::after`,
+with the empty alternative text the decorative-glyph convention already requires (the
+`@supports (content: "x" / "y")` twin, after its base rule, asserted in `.github/script-probe.py`).
+The rail is `15rem` wide so the fixtures' longest label (`REDISCOVERY AND SURVEY`) holds one line; a
+longer consumer label wraps inside its bracket pair, the same accepted artefact class as the wrapped
+`nav > a + a` separator.
+
+**The rail is `position: absolute` with `inset-block: 0`, and the divider is the full article
+height.** Grid was the first build and it needed `grid-row: 1 / span 1000` to make the rail's area
+tall enough for the row heights to track the content column, because `grid-row: 1 / -1` resolves to
+row 1 on an implicit grid in Chromium: a magic number for no gain. Absolute positioning has no row to
+span and no magic number, and it drops the sticky with it. **A 1996 rail scrolled with the page**, so
+sticky was never wanted. **Do not put the rail back on a grid row-span.**
+
+**The rail rules are scoped three ways, and each scope is load-bearing.**
+
+- `body:not(.conn-map)`, because `body.conn-map` already has its own two-column layout whose first
+  section is the sticky link rail. Without the scope the new panel border drew a second border inside
+  that rail and the page read as two rails.
+- `article:has(> nav:not(.toc))`, because a page with no plain nav (the charts fixture, a page built
+  from the toc alone) must not take the rail's `17.5rem` indent. A bare `article` selector left a wide
+  empty left margin on those pages, which a render showed.
+- `> nav:not(.toc)` and `> section`, so the toc, the margin notes and the byline are not caught.
+
+**Corners are square: `--radius` and `--radius-sm` are both `0`.** `border-radius` postdates the
+period, and the sheet's boxes are period boxes. Two hardcoded roundings went with it: the `.kicker`
+pill (`999px`, now `var(--radius-sm)`, so it is a rectangle carrying the same border and 8% fill it
+already had) and the `.nav-list` container (`calc(var(--radius-sm) + 0.3rem)`, now `var(--radius)`,
+which would otherwise have left a `4.8px` rounding on one box). `.tag-dot`, `.live-dot` and
+`.step-node` keep `border-radius: 50%`: a dot and a node are circles, not rounded corners.
 
 ## Paragraphs and section rhythm
 

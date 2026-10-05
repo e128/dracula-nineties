@@ -121,6 +121,8 @@ DRIVER = """
     t('alt-tree-arrow', alt('table.tree [data-depth="1"] td:first-child', '::before'));
     t('alt-pull-quote', alt('blockquote.pull', '::before'));
     t('alt-summary-triangle', alt('details.deep > summary', '::before'));
+    t('alt-nav-bracket-open', alt('nav:not(.toc) > a', '::before'));
+    t('alt-nav-bracket-close', alt('nav:not(.toc) > a', '::after'));
 
     // nav.toc paints a full-width ground, and a floated note stack that outgrows its
     // paragraph must not paint under it (NOTES.md, Progressive disclosure). A float

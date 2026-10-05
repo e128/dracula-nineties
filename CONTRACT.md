@@ -57,7 +57,7 @@ nothing after it.
 
 ## 2. Emit this markup
 
-Twenty-five requirements. No stylesheet change can supply any of them. Most name a string to search
+Twenty-six requirements. No stylesheet change can supply any of them. Most name a string to search
 for in a fixture, so you have a working example instead of only a sentence. The few with no fixture
 yet say so.
 
@@ -69,6 +69,13 @@ wrong by v1.38.1, and every check stayed green. A search string survives regener
 
 - [ ] `<main>` around the content, with `<article>` inside it
       (in `samples/dark.html`, search `<article>`).
+- [ ] Each top-level block of the document body as a `<section>` that is a direct child of
+      `<article>` (in `samples/dark.html`, search `<section>`). The document shell gives every such
+      section a one-pixel panel border and interior padding, and a plain `<nav>` that is also a
+      direct child of `<article>` becomes the left rail above 1000px. A section nested inside
+      another (a `.footnotes` block) is left unbordered on purpose, so a nested block reads as
+      subordinate rather than as a panel inside a panel; the border is on `article > section`, so a
+      block emitted outside a `<section>` gets no panel.
 - [ ] A real `<label for>` on every `input.filter-box`. A placeholder is not a label
       (in `samples/dark.html`, search `class="filter-label"`).
 - [ ] `accTitle:` and `accDescr:` inside every ` ```mermaid ` fence
@@ -261,6 +268,7 @@ regeneration re-inlines fresh CSS around whatever markup you already emitted.
 
 | since | your generator must now |
 | --- | --- |
+| v2.3.0 | **the document shell lands, and every page repaints and reflows.** A direct `<section>` of `<article>` is now a one-pixel bordered panel with interior padding, so bare blocks get boxed; a plain `<nav>` that is a direct child of `<article>` becomes the left rail above 1000px; `h1` is a filled title box. Page width narrows from `min(90vw, 160rem)` to `min(94vw, 66rem)`, and every `border-radius` is now `0`, so corners are square. **One new § 2 requirement**: each top-level block of the document body is a `<section>` that is a direct child of `<article>` |
 | v2.2.0 | nothing to emit, but **every page repaints**: the palette becomes a 1990s register of Dracula, so a pinned consumer that diffs screenshots sees a new ground (`#000000` dark, silver `#c0c0c0` light), a silver structural tier where the blue-grey was, and a web-safe link blue in light. One CSS-provided addition needs no markup: **`a:visited` now takes `--visited`**, a token separate from `--link`. No class, no token a generator writes, no § 2 requirement |
 | v2.1.0 to v2.1.1 | nothing to emit. **The palette reset to the upstream Dracula and Alucard baseline**, so a pinned consumer that diffs screenshots sees every accent and ground move at once. v2.1.1 dropped the `(muted)` qualifier from the template name. No class, no token a generator writes, no § 2 requirement |
 | v2.0.0 | **the baseline, and every requirement the pre-2.0.0 line carried is part of it**, in the set below. Counting in this repo begins here, so no earlier release is a row of its own |

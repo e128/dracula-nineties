@@ -6,7 +6,7 @@
   <title>Dracula-Nineties connections-map layout: forced light preview</title>
   <meta name="generated-by" content="scripts/build-sample.nu"/>
   <style>
-    /* Dracula-Nineties v2.2.1 */
+    /* Dracula-Nineties v2.3.0 */
     @layer dracula-nineties {
     @font-face {
       font-family: 'Source Serif 4'; font-style: normal; font-weight: 200 900;
@@ -52,10 +52,10 @@
       --data-4:      oklch(0.955 0.134 112.757);  /* was #f1fa8c */
       --body-font:   'Source Serif 4', Georgia, "Noto Serif", "DejaVu Serif", serif;
       --mono-font:   'JetBrains Mono', ui-monospace, 'Fira Code', monospace;
-      --page-width:  min(90vw, 160rem);
+      --page-width:  min(94vw, 66rem);
       --gutter:      max(2rem, env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px));
-      --radius:      4px;
-      --radius-sm:   2px;
+      --radius:      0;
+      --radius-sm:   0;
       --accent-bar:  3px;
       --ring:        oklch(1 0 0 / 0.18);
       --highlight:   oklch(from var(--orange) l c h / 0.30);
@@ -88,7 +88,7 @@
     .byline { font-size: 0.9em; color: var(--muted); font-style: italic; margin: 0 0 0.4rem; letter-spacing: 0.01em; }
     .kicker { display: inline-block; font-size: 0.75em; font-weight: 600; letter-spacing: 0.12em;
       text-transform: uppercase; color: var(--link); padding: 0.25em 0.7em; margin-bottom: 0.5rem;
-      border-radius: 999px; background: oklch(from var(--link) l c h / 0.08);
+      border-radius: var(--radius-sm); background: oklch(from var(--link) l c h / 0.08);
       border: 1px solid oklch(from var(--link) l c h / 0.65); }
     h2 { font-weight: 400; line-height: 1.2; font-style: italic; font-size: 1.35em; margin: var(--space-10) 0 var(--space-3); color: var(--purple); text-wrap: balance; }
     h3 { font-weight: 500; line-height: 1.3; font-size: 1.12em; color: var(--label); margin: var(--space-6) 0 0.4rem; text-wrap: balance; }
@@ -332,7 +332,7 @@
       background: var(--green); vertical-align: middle; animation: live-pulse 2s ease-in-out infinite; }
     @keyframes live-pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
     .nav-list { list-style: none; padding-inline-start: 0;
-      border: 1px solid var(--rule-light); border-radius: calc(var(--radius-sm) + 0.3rem); padding: 0.3rem; }
+      border: 1px solid var(--rule-light); border-radius: var(--radius); padding: 0.3rem; }
     .nav-list li { padding: 0; font-size: 0.95em; line-height: 1.4; }
     .nav-list li a { display: block; padding: 0.7rem 0.5rem; min-height: 40px; border-radius: var(--radius-sm); text-decoration-color: transparent; touch-action: manipulation;
       transition: text-decoration-color 0.15s ease-out, background-color 0.15s ease-out, scale 0.12s ease-out; }
@@ -607,6 +607,25 @@
     }
     @media print {
       nav.toc ol { columns: 1; }
+    }
+    h1 { background: var(--code-bg); color: var(--on-surface); padding: 0.5rem 0.9rem; }
+    nav:not(.toc) > a { border-inline-start: none; padding-inline-start: 0; }
+    nav:not(.toc) > a::before { content: "["; color: var(--muted); }
+    nav:not(.toc) > a::after { content: "]"; color: var(--muted); }
+    @supports (content: "x" / "y") {
+      nav:not(.toc) > a::before { content: "[" / ""; }
+      nav:not(.toc) > a::after { content: "]" / ""; }
+    }
+    body:not(.conn-map) article > section { border: 1px solid var(--rule-light); padding: var(--space-4); }
+    @media (min-width: 1000px) {
+      body:not(.conn-map) article:has(> nav:not(.toc)) { position: relative; padding-inline-start: 17.5rem; }
+      body:not(.conn-map) article:has(> nav:not(.toc)) > nav:not(.toc) {
+        position: absolute; inset-block: 0; inset-inline: 0 auto; width: 15rem;
+        display: block; margin: 0; padding-block: 0; padding-inline-end: 1.25rem;
+        border-inline-end: 1px solid var(--rule-light); }
+      body:not(.conn-map) article:has(> nav:not(.toc)) > nav:not(.toc) > a {
+        display: block; padding: 0.35rem 0; letter-spacing: 0.03em;
+        text-transform: uppercase; font-size: 0.74em; }
     }
     }
   </style>

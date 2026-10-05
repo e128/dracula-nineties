@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Language="en-US" Id="dracula-nineties" Version="2.2.1" Publisher="dracula-nineties" />
+    <Identity Language="en-US" Id="dracula-nineties" Version="2.3.0" Publisher="dracula-nineties" />
     <DisplayName>Dracula-Nineties</DisplayName>
     <Description xml:space="preserve">The muted Dracula-Nineties palette as a VS Code color theme.</Description>
     <Tags>theme,color-theme</Tags>

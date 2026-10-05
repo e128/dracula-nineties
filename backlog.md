@@ -13,9 +13,20 @@ The narrative goes in the commit.
 
 ---
 
-## Nothing is open
+## Open
 
-v1.40.0 closed every entry that was here. Six went in and six came out, and the
+**`inspiration/best-buy-1998.txt` states the wrong ground.** Its `[PALETTE]` line reads
+`ground  #0A0611  role: page bg  near-black`, but the image measures a dark navy field:
+`#010044` at the edges and `#000066` in the masthead. Correcting it means a full `[PALETTE]`
+re-measure of that one file, which is more than the `[RELEVANCE]`-only sweep that found it.
+It is a judgment call rather than a bug because a near-black and a dark navy read close at a
+glance, and the `[LAYOUT]`, `[META]` and `[RELEVANCE]` sections do not depend on the exact hue.
+
+---
+
+## Closed in v1.40.0
+
+v1.40.0 closed every entry that was open at the time. Six went in and six came out, and the
 measurements moved to NOTES.md as the rule above says.
 
 | entry | outcome | where the reasoning went |
