@@ -1,0 +1,23 @@
+lycos-1998.png
+site: lycos.com, Lycos Inc.
+period: 1998
+dimensions: 830x730
+sampled: 2026-10-05
+
+[PALETTE]
+ground #FDFDFD  role: page bg  white field
+header #010101  role: header  black masthead bar
+bar #D1D09A  role: heading  olive-tan section bar
+panel #C6C4F3  role: panel  lavender link panel
+text #010101  role: body  black copy
+link #0706FB  role: link  saturated blue link
+accent #F0B039  role: accent  orange wordmark and Go button
+
+[LAYOUT]
+A black masthead carries the Lycos wordmark, a search field and the orange Go Get It button, over a row of partner site links. The body is three columns: a left link index (Buy Holiday Gifts, My Start Page, Chat, Advanced Search and more), a center column with an ad box, a lavender Web Guides list in two text columns and a Shopping Center table, and a right news column under a Headlines bar. A centered footer of link rows ends with the copyright and Netscape and Internet Explorer badges.
+
+[META]
+A search portal directory. Every region is a list or a table, the section headings are olive bars, and the page is built to route a visitor outward. It reads as a doorway page.
+
+[RELEVANCE]
+The olive bar heading a grouped link list is the repo's own `nav-group`/`.toc-label` motif, and the center table is the fenced table it already draws. Nothing new.

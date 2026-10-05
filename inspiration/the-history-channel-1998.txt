@@ -1,0 +1,22 @@
+the-history-channel-1998.png
+site: historychannel.com, The History Channel
+period: 1998
+dimensions: 830x658
+sampled: 2026-10-05
+
+[PALETTE]
+ground #DFCDA5  role: page bg  parchment field
+text #2B190A  role: body  dark brown copy
+accent #990B1D  role: accent  deep red H logo
+gold #E1A328  role: heading  gold underline and rule
+sage #A6B4A5  role: tint  muted sage
+link #3D6F82  role: link  blue-gray link
+
+[LAYOUT]
+A parchment ground holds a three-column grid of icon, heading and one-line description cells (Community, History Store, Traveler, Great Speeches, On Air, Fun and Games) around a centered red H logo. A "This Day in History" box with a caption and a photograph sits in the middle, under a date line. A sweepstakes line and a horizontal rule separate the footer, which carries the copyright, a comment form link and a low advertising link.
+
+[META]
+A cable-channel front page on a textured parchment ground. The three-column icon grid and the gold underlines carry the branding, and the page reads as a themed portal rather than a document.
+
+[RELEVANCE]
+The three-column icon, heading and copy cells echo the repo's own `.icon-list`/`.edge-list`, and the gold rule under a heading is a heading rule it already draws. The parchment texture is an asset, not a decision. Nothing transferable.

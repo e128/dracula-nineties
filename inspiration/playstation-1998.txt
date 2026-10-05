@@ -1,0 +1,22 @@
+playstation-1998.png
+site: playstation.com, Sony Computer Entertainment America
+period: 1998
+dimensions: 830x600
+sampled: 2026-10-05
+
+[PALETTE]
+ground #0B090A  role: page bg  near-black field
+surface #393E4A  role: panel  slate panel and nav strip
+text #EBECEC  role: body  near-white copy
+link #E9DB9B  role: link  cream link
+heading #E5C740  role: heading  yellow heading
+accent #C70D11  role: accent  red tab and scroll box
+
+[LAYOUT]
+A dark canvas carries a beveled top nav strip (Games, News and Events, Hardware, PlayStation Store, Goodies, PlayStation Underground). A red Spotlight tab list on the left sits over a controller photograph, while a right scroll box stacks game rows (Blasto, Gran Turismo) with a box image, a yellow heading and body copy on red. A bottom bar holds Search and Site Map, Corporate Info and Contact Us, and a copyright line closes it.
+
+[META]
+A console marketing front page. The red and yellow on black, the beveled nav strip and the scroll box of game rows read as a console dashboard rather than a document.
+
+[RELEVANCE]
+A dark ground with a beveled nav strip and a tab list is close to this template's own dark theme, and the yellow heading on red echoes `h2.band`. The scroll box of image rows is a card form the repo does not need. Nothing transferable.

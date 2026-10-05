@@ -1,0 +1,22 @@
+loreal-cosmetics-1998.png
+site: loreal.com, L'Oreal Paris
+period: 1998
+dimensions: 830x600
+sampled: 2026-10-05
+
+[PALETTE]
+ground #FDFBFA  role: page bg  warm white field
+skin #EFC7B8  role: photo  peach skin tone
+text #1B1218  role: body  near-black copy
+link #9A9FCD  role: link  blue-lilac link
+accent #AA535E  role: accent  rose note
+chrome #707B9F  role: chrome  muted blue-violet
+
+[LAYOUT]
+Two columns. The wide left column carries the L'Oreal wordmark, a large beauty photograph with a smaller inset photo, an overlaid "Style Report Metamorphosis, Spring Collection 1998" title, a strip of five labeled thumbnails (Eyes, Lips, Nails, Hair, Fashion), and a fine-print line about monitor color. The narrow right column is a Features list of blue underlined link blocks, each with a short description under it.
+
+[META]
+A cosmetics campaign front page. It is image first and text light, with the model's face holding the center and elegant thin type over it. It reads as a magazine cover more than a navigation page.
+
+[RELEVANCE]
+An image-led hero with an overlaid title and a thumbnail strip is far from a text template, and the right Features list is a link list the repo already covers. Nothing transferable.
