@@ -1,0 +1,22 @@
+las-vegas-1998.png
+site: lasvegas.com, Donrey Media Group
+period: 1998
+dimensions: 830x1570
+sampled: 2026-10-05
+
+[PALETTE]
+ground #FCFEFE  role: page bg  white field
+surface #75CDFE  role: panel  pale blue showguide table
+banner #2224C5  role: banner  blue ad block
+text #11100E  role: body  near-black copy
+link #F40502  role: link  bright red link
+accent #E2B024  role: accent  gold rule and mark
+
+[LAYOUT]
+A three-column directory. The left column is a Features index of red category links, each with a short gray description under it. The center column stacks a banner ad, a "1998 Best of Las Vegas" heading, a bordered showguide table of links, a search box, and a centered column of red links separated by hairlines. The right column is a Community Partners stack of logo badges, and a centered red nav row with the copyright closes the page.
+
+[META]
+A city portal directory, driven almost entirely by links. The center is table-fenced and the two side columns are long indexes, so the page reads as a browsable list rather than a designed spread.
+
+[RELEVANCE]
+The left Features index, a category link over a one-line description, is the repo's own `nav-list`/recent-group form, and the center bordered table is the fenced table the repo already draws. Nothing new to transfer.

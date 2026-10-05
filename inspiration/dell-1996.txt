@@ -1,0 +1,22 @@
+dell-1996.png
+site: dell.com
+period: 1996
+dimensions: 800x750
+sampled: 2026-10-05
+
+[PALETTE]
+ground #FDFDFD  role: page bg  white field
+surface #A2A4A1  role: panel  gray product band
+banner #CDCC66  role: banner  khaki strip behind the logo
+panel #FD0231  role: callout  saturated red prose block
+text #060505  role: body  black copy
+link #5059BE  role: link  blue-violet link
+
+[LAYOUT]
+A black strip carries the headline and the red BUY A DELL logo. A two-column body follows: a left grid of cartoon icons with short labels (Buy Dell, Why Dell, Government, Worldwide Contacts, Order Status, Company Info, Careers), and a right stack of five product bands (Dimension, Optiplex, Latitude, PowerEdge, DellWare), each a gray bar with a heading, a line of copy and a product photo. A red paragraph panel fills the lower left, and an icon row plus a copyright line and browser badges close the page.
+
+[META]
+An early e-commerce catalog page. It is dense and product first, with photographs pinned to beveled gray bands and cartoon icons doing the navigation. It reads as a mail-order catalog translated to the web.
+
+[RELEVANCE]
+The product band, a labeled bar heading a row, is the same "bar heads a row" motif the repo already records for its grouped lists and tables. Nothing transferable; the cartoon icons and the red callout panel are decoration.

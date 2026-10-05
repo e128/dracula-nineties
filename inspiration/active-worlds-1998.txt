@@ -1,0 +1,22 @@
+active-worlds-1998.png
+site: activeworlds.com, Circle of Fire Studios
+period: 1998
+dimensions: 830x910
+sampled: 2026-10-05
+
+[PALETTE]
+ground #010101  role: page bg  pure black field
+surface #1A1E5E  role: nav base  deep blue button ground
+nav-glow #4356AC  role: nav top  lighter blue gradient highlight
+text #ECEEED  role: body  near-white copy
+link #1B229C  role: link  deep blue link
+accent #CB2B24  role: accent  red mark in the corner logo
+
+[LAYOUT]
+A full-width animated banner heads the page, with a magenta AW monogram at the right. A left column of beveled blue gradient buttons (Home, Downloads, Products, Press, Support, User Pages, Advertisers) runs down the side beside a centered prose column that ends in four bracketed links. Below sit a row of six flag language links and a row of seven web-ring badges, closed by a small sitemap, webmaster and legal footer.
+
+[META]
+A personal-software marketing page that sells a 3D virtual world. The black ground, the gradient button rail and the animated header GIF read as a fan-run storefront rather than a corporate site, and the badges and flags are the period's web-ring furniture.
+
+[RELEVANCE]
+The bracketed nav links are the same `nav > a` bracket form the repo already draws, and the blue beveled button rail is a nav shape this template does not use. Nothing transferable beyond that; the flags and web-ring badges are decoration to leave out.
