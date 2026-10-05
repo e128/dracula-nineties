@@ -36,6 +36,7 @@ Two comments remain in the CSS. A machine reads both.
 | [Links](#links) | Underline floor and colour |
 | [Color and the contrast budget](#color-and-the-contrast-budget) | Grounds, floors, the data ramp, gamut, forced colors |
 | [Form follows role](#form-follows-role) | Filled and outlined chips, bars and boxes, the hue budget |
+| [Form controls](#form-controls) | The control reset, the redrawn `select` arrow, the repainted checkbox, `accent-color` |
 | [Borrowed components](#borrowed-components) | `.kicker`, `.tag-dot`, `.live-dot`, `.icon-list`, the `.step-*` chain |
 | [CSS charts](#css-charts) | `table.bar-chart`, the alpha under the number, why the CSS pie went out, print and forced colors |
 | [Progressive disclosure](#progressive-disclosure) | `nav.toc`, `details.deep`, the narrow and print column overrides |
@@ -397,12 +398,16 @@ anyone wanting a real axis wants a chart, which this stylesheet does not grow in
 construction). **Do not put tables in the mono stack**: costs about a quarter of table width and
 puts tables in a different register from the prose.
 
-**Every `th` and `td` is fenced with a one-pixel `--rule-light` border, and the header row is filled
+**Every `th` and `td` is fenced with a two-pixel `--rule-light` border, and the header row is filled
 `--surface-alt`.** The 1996 corpus drew its directories as fenced cells headed by a bar
 (altavista-1999, "each cell fenced by a one-pixel rule and headed by a colored bar"; tucows-1996, "a
 flat one-pixel bordered box with a heading row"). The sheet had drawn a modern booktabs table:
 horizontal hairlines, no vertical rules, no header fill. **Do not strip the fence back to
-hairlines.** The header fill is the row-hover ground, so `--pink`'s floor against it is already
+hairlines.** The fence was one pixel through v2.5.0 and went to two against a maintainer's reference
+screenshot of a heavy-framed 1990s table: the corpus drew flat one-pixel rules, but the heavier frame
+is the register the maintainer wanted, and both reads are period. The sticky header's lower edge
+(an inset shadow, below) and the forced-colors block's structural `currentColor` border track the
+same width. The header fill is the row-hover ground, so `--pink`'s floor against it is already
 check 5's. A saturated header bar in the corpus's own colors would need a new inverted
 accent-as-ground pair and a check-8 entry, which the hue budget does not have to spend; the neutral
 band keeps the heading row without one.
@@ -737,6 +742,40 @@ the corpus spends its strip once per page, on a lead heading, not on every `h2`.
 `--purple` clears the floor in all four modes, so the band is check 8's third inverted pair. Print
 drops the fill for a `currentColor` ring and `--purple` text, the same treatment `.verdict` takes,
 so no saturated band spends ink and the heading text never goes white-on-white.
+
+## Form controls
+
+**The UA draws today's widgets, not 1996's.** The sheet had fixed only the control `font` and left the
+rest to the browser, on the argument that a UA widget is the period look. That is half the period
+look: the era delegated the drawing, but the drawing changed. A 2026 Chrome checkbox is rounded and
+Chrome-blue; a 1996 one is a square with a black inset bevel and a thick tick. A 2026 `select` and
+`search` field carry rounded corners, a shadow and a WebKit clear button. **The sheet now resets
+`appearance` and repaints the control set square**, in the same register as every other box here.
+
+- **Text inputs, `select` and `textarea` take a one-pixel `--rule` fence on `--code-bg`, square
+  corners.** This generalises the `.filter-box` treatment, and it drops the WebKit searchfield chrome
+  (`::-webkit-search-cancel-button`, `::-webkit-search-decoration`) so `input[type="search"]` reads as
+  the text box it is.
+- **`select` redraws its own indicator.** `appearance: none` removes the UA arrow, and a `select`
+  cannot carry a pseudo-element, so the arrow is two half-square `linear-gradient`s in `--label`
+  positioned inside the reserved inline-end padding.
+- **The shared control rule sets `background-color`, never the `background` shorthand.** The shorthand
+  zeroes `background-image` on every `input`, and at a specificity above the bare `select` rule it
+  deleted the arrow in silence. **Keep the shorthand off that rule.**
+- **The checkbox and radio are repainted square** (`appearance: none`, a `--rule-light` box on
+  `--surface-alt`), with `:checked` filling `--green`. The checkbox tick is a `::before` rotated
+  border, and `:checked` also fills the box, so a browser that drops a replaced element's `::before`
+  still shows a checked box rather than an empty square. GFM's task box stays `disabled`; the sheet
+  keeps it at full strength, because the box states the item's value.
+- **`accent-color: var(--green)`** colors the widgets the sheet does not repaint (`progress`, `meter`,
+  `input[type="range"]`). The repainted checkbox and radio ignore it.
+- **`color-scheme` stays undeclared** (see Appearance modes): the reset is a shape fix, not a request
+  to darken the UA's remaining widgets.
+
+**Gated**: `.github/script-probe.py` drives the fixture and asserts the search box's `appearance` is
+`none`, the checked task box is a square with a tick, and a table cell keeps its fence. **Do not
+repaint a control without a render**: the checkbox tick and the select arrow both draw through a
+mechanism a screenshot proved, not a computed style alone.
 
 ## Borrowed components
 
