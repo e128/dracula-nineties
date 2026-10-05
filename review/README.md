@@ -5,12 +5,13 @@ Dated output from the `design-audit` skill (`.claude/skills/design-audit/SKILL.m
 Each run writes a report, and a patch only when it has something to propose. Both are
 stamped with the date the run started:
 
-- `YYYY-MM-DD-design-audit.md`: the report. Findings against current CSS/color/
-  typography/layout/accessibility/CDN-pin practice, checked against the decisions already
-  recorded in `NOTES.md`. The header names the commit range it covered and the previous
-  report it read, so a run reports what changed rather than the same list again. Two fixed
-  sweeps sit alongside the six research topics: WCAG Level A and AA success criteria, and
-  the repo's own prose rules that no check enforces.
+- `YYYY-MM-DD-design-audit.md`: the report. Findings against the design standards of 1994
+  through 1999 (HTML 3.2, HTML 4.0, CSS1, CSS2, WCAG 1.0, the web-safe palette, and the
+  era's font stacks), and against the `inspiration/` references, checked against the
+  decisions already recorded in `NOTES.md`. The header names the commit range it covered and
+  the previous report it read, so a run reports what changed rather than the same list again.
+  Two fixed sweeps sit alongside the seven topics: WCAG 1.0 Priority 1 and 2 checkpoints,
+  and the repo's own prose rules that no check enforces.
 - `YYYY-MM-DD-design-audit.patch`: a draft diff for the non-controversial findings, against
   `HEAD`, touching source files only. No patch file is written when there is nothing to
   propose. Nothing here is applied automatically. Review it, then apply by hand.
