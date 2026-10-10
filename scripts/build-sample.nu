@@ -330,7 +330,7 @@ def body [] {
     # carries a separator with nothing before it. That artefact is accepted and
     # recorded in NOTES.md; the fixture has to show it rather than hide it behind
     # a two-link nav.
-    "    <nav>"
+    "    <nav aria-label=\"Primary\">"
     "      <a href=\"#\">Requirements Register</a>"
     "      <a href=\"#\">Decision Log</a>"
     "      <a href=\"#\">Dependency Tracker</a>"
@@ -364,8 +364,8 @@ def body [] {
     "    </nav>"
     ""
     "    <section>"
-    "      <h2 id=\"headings\">Headings &amp; text <a class=\"headerlink\" href=\"#headings\" aria-label=\"Permalink to this heading\">&#182;</a></h2>"
-    "      <h3 id=\"third-level\">Third-level heading <a class=\"anchor\" href=\"#third-level\" aria-label=\"Permalink to this heading\">#</a></h3>"
+    "      <h2 id=\"headings\">Headings &amp; text <a class=\"headerlink\" href=\"#headings\" aria-label=\"Permalink to Headings and text\">&#182;</a></h2>"
+    "      <h3 id=\"third-level\">Third-level heading <a class=\"anchor\" href=\"#third-level\" aria-label=\"Permalink to Third-level heading\">#</a></h3>"
     "      <h4>Fourth level: body size, label tier</h4>"
     "      <h5>Fifth level: body size, muted tier</h5>"
     "      <h6>Sixth level: muted and italic</h6>"
@@ -676,7 +676,7 @@ def timeline-body [] {
     "    <h1>Khmer Civilization Timeline</h1>"
     "    <p class=\"byline\">Real-content layout sample: dl.timeline across four era groups on one pinned axis</p>"
     ""
-    "    <nav>"
+    "    <nav aria-label=\"Timeline eras\">"
     "      <a href=\"#pre-angkor\">Pre-Angkor</a>"
     "      <a href=\"#angkor\">Angkor period</a>"
     "      <a href=\"#post-angkor\">Post-Angkor</a>"

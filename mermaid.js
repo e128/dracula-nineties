@@ -8,21 +8,21 @@
       primaryColor:        '#1e1e2e',
       primaryTextColor:    '#ffffff',
       primaryBorderColor:  '#bd93f9',
-      lineColor:           '#808080',
+      lineColor:           '#868686',
       textColor:           '#ffffff',
       secondaryColor:      '#12121a',
       clusterBkg:          '#1e1e2e',
-      clusterBorder:       '#666666',
+      clusterBorder:       '#6a6a6a',
       nodeBorder:          '#bd93f9',
       edgeLabelBackground: '#1e1e2e',
       noteBkgColor:        '#1e1e2e',
       noteTextColor:       '#ffffff',
-      noteBorderColor:     '#666666',
-      archEdgeColor:       '#808080',
-      archGroupBorderColor: '#666666',
+      noteBorderColor:     '#6a6a6a',
+      archEdgeColor:       '#868686',
+      archGroupBorderColor: '#6a6a6a',
       pie1: '#8be9fd', pie2: '#ff79c6', pie3: '#50fa7b', pie4: '#f1fa8c',
       pieSectionTextColor: '#000000',
-      pieStrokeColor: '#000000', pieOuterStrokeColor: '#808080',
+      pieStrokeColor: '#000000', pieOuterStrokeColor: '#868686',
     };
     const mermaidLightVars = {
       background:          '#d4d0c8',
@@ -34,15 +34,15 @@
       textColor:           '#000000',
       secondaryColor:      '#b0b0b0',
       clusterBkg:          '#d4d0c8',
-      clusterBorder:       '#606060',
+      clusterBorder:       '#5d5d5d',
       nodeBorder:          '#660099',
       edgeLabelBackground: '#d4d0c8',
       noteBkgColor:        '#d4d0c8',
       noteTextColor:       '#000000',
-      noteBorderColor:     '#606060',
+      noteBorderColor:     '#5d5d5d',
       archEdgeColor:       '#404040',
-      archGroupBorderColor: '#606060',
-      pie1: '#0019ee', pie2: '#8b005c', pie3: '#005500', pie4: '#5a4a00',
+      archGroupBorderColor: '#5d5d5d',
+      pie1: '#0016da', pie2: '#840058', pie3: '#004f00', pie4: '#5a4a00',
       pieSectionTextColor: '#c0c0c0',
       pieStrokeColor: '#c0c0c0', pieOuterStrokeColor: '#404040',
     };
@@ -82,7 +82,7 @@
       overlay.setAttribute('aria-label', named(svg, zoomLabel));
       overlay.replaceChildren(zoomed);
       overlay.showModal();
-      requestAnimationFrame(() => overlay.classList.add('active'));
+      overlay.classList.add('active');
     };
     const scrolls = window.matchMedia('(max-width: 600px)');
     const syncRegions = () => {

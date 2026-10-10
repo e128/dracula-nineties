@@ -23,7 +23,7 @@
       "from": "--purple"
     },
     "lineColor": {
-      "hex": "#808080",
+      "hex": "#868686",
       "from": "--muted"
     },
     "textColor": {
@@ -39,7 +39,7 @@
       "from": "--code-bg"
     },
     "clusterBorder": {
-      "hex": "#666666",
+      "hex": "#6a6a6a",
       "from": "--rule-light"
     },
     "nodeBorder": {
@@ -59,15 +59,15 @@
       "from": "--on-surface"
     },
     "noteBorderColor": {
-      "hex": "#666666",
+      "hex": "#6a6a6a",
       "from": "--rule-light"
     },
     "archEdgeColor": {
-      "hex": "#808080",
+      "hex": "#868686",
       "from": "--muted"
     },
     "archGroupBorderColor": {
-      "hex": "#666666",
+      "hex": "#6a6a6a",
       "from": "--rule-light"
     },
     "pie1": {
@@ -95,7 +95,7 @@
       "from": "--surface"
     },
     "pieOuterStrokeColor": {
-      "hex": "#808080",
+      "hex": "#868686",
       "from": "--muted"
     }
   },
@@ -138,7 +138,7 @@
       "from": "--code-bg"
     },
     "clusterBorder": {
-      "hex": "#606060",
+      "hex": "#5d5d5d",
       "from": "--rule-light"
     },
     "nodeBorder": {
@@ -158,7 +158,7 @@
       "from": "--on-surface"
     },
     "noteBorderColor": {
-      "hex": "#606060",
+      "hex": "#5d5d5d",
       "from": "--rule-light"
     },
     "archEdgeColor": {
@@ -166,19 +166,19 @@
       "from": "--muted"
     },
     "archGroupBorderColor": {
-      "hex": "#606060",
+      "hex": "#5d5d5d",
       "from": "--rule-light"
     },
     "pie1": {
-      "hex": "#0019ee",
+      "hex": "#0016da",
       "from": "--data-1"
     },
     "pie2": {
-      "hex": "#8b005c",
+      "hex": "#840058",
       "from": "--data-2"
     },
     "pie3": {
-      "hex": "#005500",
+      "hex": "#004f00",
       "from": "--data-3"
     },
     "pie4": {
@@ -226,21 +226,21 @@
     }
   },
   "classdefLight": {
-    "_comment": "The same four roles projected through the @media (prefers-color-scheme: light) palette, for a page locked to light the way samples/light.html is. The light ramp is mid-tone, so the text on the fill stays --surface: the light --surface (#c0c0c0) measures 4.78 to 5.12:1 against the four fills, where --on-surface (black) would land at 2.25 to 2.41:1. The ground inverts relative to the dark set, where --surface is black and the pale ramp carries black text. Same role names and same 'from' tokens as classdef, resolved through the light block; palette-check.py check 2 gates both sets and fails if the role sets diverge.",
+    "_comment": "The same four roles projected through the @media (prefers-color-scheme: light) palette, for a page locked to light the way samples/light.html is. The light ramp is mid-tone, so the text on the fill stays --surface: the light --surface (#c0c0c0) measures 4.80 to 5.42:1 against the four fills, where --on-surface (black) would land at 2.13 to 2.40:1. The ground inverts relative to the dark set, where --surface is black and the pale ramp carries black text. Same role names and same 'from' tokens as classdef, resolved through the light block; palette-check.py check 2 gates both sets and fails if the role sets diverge.",
     "repo": {
-      "fill": "#8b005c",
+      "fill": "#840058",
       "stroke": "#660099",
       "color": "#c0c0c0",
       "from": "--data-2"
     },
     "ext": {
-      "fill": "#0019ee",
+      "fill": "#0016da",
       "stroke": "#660099",
       "color": "#c0c0c0",
       "from": "--data-1"
     },
     "store": {
-      "fill": "#005500",
+      "fill": "#004f00",
       "stroke": "#660099",
       "color": "#c0c0c0",
       "from": "--data-3"
