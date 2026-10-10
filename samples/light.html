@@ -6,7 +6,7 @@
   <title>Dracula-Nineties component sample: forced light preview</title>
   <meta name="generated-by" content="scripts/build-sample.nu"/>
   <style>
-    /* Dracula-Nineties v2.7.0 */
+    /* Dracula-Nineties v2.8.0 */
     @layer dracula-nineties {
     @font-face {
       font-family: 'Tinos'; font-style: normal; font-weight: 400;
@@ -53,9 +53,9 @@
       --surface-alt: oklch(0.185 0.016 283.716);  /* was #12121a */
       --on-surface:  oklch(1 0 0);  /* was #ffffff */
       --label:       oklch(0.807 0.000 89.876);  /* was #c0c0c0 */
-      --muted:       oklch(0.600 0.000 89.876);  /* was #808080 */
+      --muted:       oklch(0.621 0.000 89.876);  /* was #868686 */
       --rule:        var(--muted);
-      --rule-light:  oklch(0.510 0.000 89.876);
+      --rule-light:  oklch(0.523 0.000 89.876);
       --link:        oklch(0.8826 0.0934 212.846);  /* was #8be9fd */
       --visited:     oklch(0.742 0.149 301.883);  /* was #bd93f9 */
       --code-bg:     oklch(0.241 0.031 283.811);  /* was #1e1e2e */
@@ -261,7 +261,7 @@
     dl { margin: var(--space-4) 0; }
     dt { font-weight: 700; margin-top: .5rem; }
     dd { margin-inline-start: 1.5rem; margin-bottom: .5rem; color: var(--label); }
-    dl.timeline { display: grid; grid-template-columns: var(--timeline-date, max-content) 1fr;
+    dl.timeline { display: grid; grid-template-columns: var(--timeline-date, max-content) minmax(0, 1fr);
       align-items: baseline; gap: var(--space-3) var(--space-6); }
     dl.timeline > dt { margin-top: 0; text-align: end; font-weight: 700;
       font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--on-surface); }
@@ -280,10 +280,10 @@
     li:has(input[type="checkbox"]:first-child) { list-style: none; }
     li input[type="checkbox"] { margin-inline-end: 0.45em; }
     :is(button, input, select, textarea) { font: inherit; font-size: max(1em, 1rem); }
-    :is(input, button, select, textarea, progress, meter) { appearance: none; -webkit-appearance: none;
-      color: inherit; accent-color: var(--green); }
-    :is(input, select, textarea):not([type="checkbox"], [type="radio"], [type="range"],
-      [type="color"], [type="file"], [type="submit"], [type="button"], [type="reset"], [type="image"]) {
+    :is(input, button, select, textarea, progress, meter) { color: inherit; accent-color: var(--green); }
+    :is(input:not([type="range"]), button, select, textarea) { appearance: none; -webkit-appearance: none; }
+    :is(input, select, textarea):where(:not([type="checkbox"], [type="radio"], [type="range"],
+      [type="color"], [type="file"], [type="submit"], [type="button"], [type="reset"], [type="image"])) {
       border: 1px solid var(--rule); background-color: var(--code-bg);
       border-radius: var(--radius); padding: 0.35em 0.55em; }
     :is(button, input[type="submit"], input[type="button"], input[type="reset"]) {
@@ -312,6 +312,9 @@
       transform: rotate(45deg) translate(-0.02em, -0.04em); }
     input[type="radio"]:checked::before { content: ""; width: 0.45em; height: 0.45em;
       border-radius: 50%; background: var(--surface); }
+    input[type="checkbox"]:indeterminate { background: var(--surface-alt); }
+    input[type="checkbox"]:indeterminate::before { content: ""; width: 0.5em; height: 0.15em;
+      background: var(--on-surface); }
     nav { margin: var(--space-4) 0; padding: .5rem 0; color: var(--label); font-size: 0.95em; }
     nav:has(> a) { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 0.7em; row-gap: 0.2em; }
     nav > a + a { border-inline-start: 1px solid var(--rule-light); padding-inline-start: 0.7em; }
@@ -326,7 +329,7 @@
     .verified { color: var(--green); }
     .unverified { color: var(--orange); }
     .correction { color: var(--red); }
-    .scorecard { display: grid; grid-template-columns: max-content max-content 1fr;
+    .scorecard { display: grid; grid-template-columns: max-content max-content minmax(0, 1fr);
       gap: 0.3rem 0.9rem; align-items: baseline; margin: var(--space-3) 0 1.25rem;
       font-size: 0.95em;
       border-inline-start: var(--accent-bar) solid var(--rule-light); padding: .5rem 1rem; }
@@ -366,8 +369,8 @@
     .nav-list { list-style: none; padding-inline-start: 0;
       border: 1px solid var(--rule-light); border-radius: var(--radius); padding: 0.3rem; }
     .nav-list li { padding: 0; font-size: 0.95em; line-height: 1.4; }
-    .nav-list li a { display: block; padding: 0.7rem 0.5rem; min-height: 40px; border-radius: var(--radius-sm); text-decoration-color: transparent; touch-action: manipulation; }
-    .edge-list { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4) 0; margin: var(--space-6) 0;
+    .nav-list li a { display: block; padding: 0.7rem 0.5rem; min-height: 40px; border-radius: var(--radius-sm); touch-action: manipulation; }
+    .edge-list { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-4) 0; margin: var(--space-6) 0;
       --edge-gutter: var(--space-4); --edge-rule: 1px solid var(--rule-light); }
     .edge-list h3 { margin-top: 0; }
     .edge-list > div { display: flex; flex-direction: column; padding-inline-end: var(--edge-gutter); }
@@ -426,6 +429,7 @@
     }
     .mermaid-overlay svg { width: 95vw; height: 95vh; }
     pre.mermaid { cursor: zoom-in; text-align: center; background: none; border-inline-start: none; overflow: visible; }
+    pre.mermaid:not(:has(svg)) { overflow-x: auto; overscroll-behavior-x: contain; }
     pre.mermaid svg, .mermaid-overlay svg { overflow: visible; }
     .mermaid-zoom { display: block; margin: var(--space-3) auto 0; min-height: 40px; padding: 0.5rem 0.9rem;
       font: inherit; font-family: var(--body-font); font-size: 0.9em; color: var(--link); background: none; cursor: zoom-in;
@@ -450,7 +454,7 @@
         flex: 1 1 0; min-width: 0;
       }
       body.conn-map article > section:nth-of-type(1) .edge-list {
-        grid-template-columns: 1fr; gap: 0.4rem; --edge-gutter: 0; --edge-rule: none;
+        grid-template-columns: minmax(0, 1fr); gap: 0.4rem; --edge-gutter: 0; --edge-rule: none;
       }
     }
     @media (hover: hover) {
@@ -460,7 +464,7 @@
       summary:hover { color: var(--on-surface); }
       nav.toc a:hover { color: var(--purple-bright); }
       details.deep > summary:hover { color: var(--purple-bright); }
-      .nav-list li a:hover { background: var(--code-bg); text-decoration-color: var(--link); }
+      .nav-list li a:hover { background: var(--code-bg); }
       pre.mermaid:hover { box-shadow: 0 0 0 1px var(--rule); }
       .mermaid-zoom:hover { color: var(--on-surface); background: var(--code-bg); }
     }
@@ -469,7 +473,7 @@
       table { display: block; overflow-x: auto; width: fit-content; }
     }
     @media (max-width: 760px) {
-      dl.timeline { grid-template-columns: 1fr; gap: 0.15rem; }
+      dl.timeline { grid-template-columns: minmax(0, 1fr); gap: 0.15rem; }
       dl.timeline > dt { text-align: start; white-space: normal; }
       dl.timeline > dd { border-inline-start: none; padding-inline-start: 0;
         margin-block-end: var(--space-4); }
@@ -480,11 +484,12 @@
       pre { padding: 0.6rem; }
       aside, blockquote { padding: 0.4rem 0.85rem; }
       details, details.nav-group { padding: 0.3rem 0.6rem; }
-      .edge-list { grid-template-columns: 1fr; gap: 0.4rem; --edge-gutter: 0; --edge-rule: none; }
+      .edge-list { grid-template-columns: minmax(0, 1fr); gap: 0.4rem; --edge-gutter: 0; --edge-rule: none; }
       .col-2 > ol, .col-2 > ul { columns: 1; }
-      .scorecard { grid-template-columns: max-content 1fr; column-gap: 0.7rem; }
+      .scorecard { grid-template-columns: max-content minmax(0, 1fr); column-gap: 0.7rem; }
       .scorecard .sc-note { grid-column: 1 / -1; }
       .nav-list li a { padding: 0.7rem 0.5rem; min-height: 44px; }
+      .recent-group .nav-list li a { white-space: normal; }
       details.nav-group > summary { padding: 0.75rem 0; min-height: 44px; }
       pre.mermaid { overflow-x: auto; overscroll-behavior-x: contain; }
       pre.mermaid svg, body.conn-map pre.mermaid svg { width: var(--natural-width, auto) !important; max-width: none !important; }
@@ -494,7 +499,7 @@
       :root {
         --on-surface:  oklch(1 0 0);
         --surface-alt: oklch(0.200 0.019 280.395);
-        --label:       oklch(0.912 0.038 275.492);
+        --label:       oklch(0.960 0.016 275.492);
         --muted:       oklch(0.912 0.038 275.000);
         --rule-light:  oklch(0.700 0.032 277.832);
         --link:        oklch(0.905 0.071 212.846);
@@ -511,7 +516,6 @@
         --data-4:      oklch(0.907 0.100 112.757);
       }
       a { text-decoration-thickness: max(2px, 0.1em); }
-      .nav-list li a { text-decoration-color: currentColor; }
       :is(a, summary, input, select, textarea, button, [tabindex="0"]):focus-visible { outline-width: 3px; }
     }
     @media all {
@@ -522,18 +526,18 @@
         --code-bg:     oklch(0.858 0.011 83.582);
         --label:       oklch(0.268 0.000 89.876);
         --muted:       oklch(0.371 0.000 89.876);
-        --rule-light:  oklch(0.489 0.000 89.876);
-        --link:        oklch(0.440 0.289 264.2);
+        --rule-light:  oklch(0.477 0.000 89.876);
+        --link:        oklch(0.412 0.271 264.2);
         --visited:     oklch(0.378 0.171 301.901);
-        --orange:      oklch(0.444 0.109 55.566);
-        --red:         oklch(0.475 0.185 29.184);
+        --orange:      oklch(0.391 0.096 55.566);
+        --red:         oklch(0.402 0.157 29.184);
         --purple:      oklch(0.400 0.204 308.158);
         --purple-bright: oklch(0.360 0.173 308.158);
-        --pink:        oklch(0.420 0.176 348.619);
-        --green:       oklch(0.389 0.133 142.495);
-        --data-1:      oklch(0.440 0.289 264.2);
-        --data-2:      oklch(0.420 0.176 348.619);
-        --data-3:      oklch(0.389 0.133 142.495);
+        --pink:        oklch(0.406 0.170 348.619);
+        --green:       oklch(0.371 0.127 142.495);
+        --data-1:      oklch(0.412 0.271 264.2);
+        --data-2:      oklch(0.406 0.170 348.619);
+        --data-3:      oklch(0.371 0.127 142.495);
         --data-4:      oklch(0.412 0.085 94.382);
         --ring:        oklch(0 0 0 / 0.1);
         --mermaid-scheme: light;
@@ -545,6 +549,7 @@
       pre code { border: none; }
       table, th, td { border: 1px solid currentColor; }
       .tag-dot::before, .live-dot { background: CanvasText; }
+      mark { box-shadow: inset 0 0 0 1px currentColor; }
     }
     @media print {
       :root {
@@ -578,7 +583,7 @@
         --on-surface:  oklch(1 0 0);
         --code-bg:     oklch(0.241 0.031 283.811);
         --purple:      oklch(0.742 0.149 301.883);
-        --muted:       oklch(0.600 0.000 89.876);
+        --muted:       oklch(0.621 0.000 89.876);
         background: var(--surface); padding: var(--space-3) 0; border-radius: var(--radius);
         print-color-adjust: exact; -webkit-print-color-adjust: exact;
       }
@@ -602,7 +607,7 @@
     }
     nav.toc { clear: right; clear: inline-end; margin: 1.4rem 0 2.2rem; padding: 0;
       border: 1px solid var(--rule-light); }
-    nav.toc .toc-label { font-size: 0.72rem; letter-spacing: 0.09em;
+    nav.toc .toc-label { font-size: 0.75rem; letter-spacing: 0.09em;
       text-transform: uppercase; color: var(--muted); margin: 0; padding: 0.45rem 0.9rem;
       background: var(--surface-alt); border-block-end: 1px solid var(--rule-light); }
     nav.toc ol { margin: 0; padding: 0.55rem 0.9rem 0.55rem 2rem; columns: 2; column-gap: 2.4rem; }
@@ -656,7 +661,7 @@
         border-inline-end: 1px solid var(--rule-light); }
       body:not(.conn-map) article:has(> nav:not(.toc)) > nav:not(.toc) > a {
         display: block; padding: 0.35rem 0; letter-spacing: 0.03em;
-        text-transform: uppercase; font-size: 0.74em; }
+        text-transform: uppercase; font-size: 0.8em; }
     }
     }
   </style>
@@ -670,21 +675,21 @@
       primaryColor:        '#1e1e2e',
       primaryTextColor:    '#ffffff',
       primaryBorderColor:  '#bd93f9',
-      lineColor:           '#808080',
+      lineColor:           '#868686',
       textColor:           '#ffffff',
       secondaryColor:      '#12121a',
       clusterBkg:          '#1e1e2e',
-      clusterBorder:       '#666666',
+      clusterBorder:       '#6a6a6a',
       nodeBorder:          '#bd93f9',
       edgeLabelBackground: '#1e1e2e',
       noteBkgColor:        '#1e1e2e',
       noteTextColor:       '#ffffff',
-      noteBorderColor:     '#666666',
-      archEdgeColor:       '#808080',
-      archGroupBorderColor: '#666666',
+      noteBorderColor:     '#6a6a6a',
+      archEdgeColor:       '#868686',
+      archGroupBorderColor: '#6a6a6a',
       pie1: '#8be9fd', pie2: '#ff79c6', pie3: '#50fa7b', pie4: '#f1fa8c',
       pieSectionTextColor: '#000000',
-      pieStrokeColor: '#000000', pieOuterStrokeColor: '#808080',
+      pieStrokeColor: '#000000', pieOuterStrokeColor: '#868686',
     };
     const mermaidLightVars = {
       background:          '#d4d0c8',
@@ -696,15 +701,15 @@
       textColor:           '#000000',
       secondaryColor:      '#b0b0b0',
       clusterBkg:          '#d4d0c8',
-      clusterBorder:       '#606060',
+      clusterBorder:       '#5d5d5d',
       nodeBorder:          '#660099',
       edgeLabelBackground: '#d4d0c8',
       noteBkgColor:        '#d4d0c8',
       noteTextColor:       '#000000',
-      noteBorderColor:     '#606060',
+      noteBorderColor:     '#5d5d5d',
       archEdgeColor:       '#404040',
-      archGroupBorderColor: '#606060',
-      pie1: '#0019ee', pie2: '#8b005c', pie3: '#005500', pie4: '#5a4a00',
+      archGroupBorderColor: '#5d5d5d',
+      pie1: '#0016da', pie2: '#840058', pie3: '#004f00', pie4: '#5a4a00',
       pieSectionTextColor: '#c0c0c0',
       pieStrokeColor: '#c0c0c0', pieOuterStrokeColor: '#404040',
     };
@@ -744,7 +749,7 @@
       overlay.setAttribute('aria-label', named(svg, zoomLabel));
       overlay.replaceChildren(zoomed);
       overlay.showModal();
-      requestAnimationFrame(() => overlay.classList.add('active'));
+      overlay.classList.add('active');
     };
     const scrolls = window.matchMedia('(max-width: 600px)');
     const syncRegions = () => {
@@ -850,7 +855,7 @@
     <h1>Dracula-Nineties Component Sample</h1>
     <p class="byline">Living style fixture: every rule in dracula-nineties.css, mermaid.js and filter.js</p>
 
-    <nav>
+    <nav aria-label="Primary">
       <a href="#">Requirements Register</a>
       <a href="#">Decision Log</a>
       <a href="#">Dependency Tracker</a>
@@ -875,8 +880,8 @@
     </nav>
 
     <section>
-      <h2 id="headings">Headings &amp; text <a class="headerlink" href="#headings" aria-label="Permalink to this heading">&#182;</a></h2>
-      <h3 id="third-level">Third-level heading <a class="anchor" href="#third-level" aria-label="Permalink to this heading">#</a></h3>
+      <h2 id="headings">Headings &amp; text <a class="headerlink" href="#headings" aria-label="Permalink to Headings and text">&#182;</a></h2>
+      <h3 id="third-level">Third-level heading <a class="anchor" href="#third-level" aria-label="Permalink to Third-level heading">#</a></h3>
       <h4>Fourth level: body size, label tier</h4>
       <h5>Fifth level: body size, muted tier</h5>
       <h6>Sixth level: muted and italic</h6>

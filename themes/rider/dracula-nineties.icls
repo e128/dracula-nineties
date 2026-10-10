@@ -10,17 +10,17 @@
   <option name="EDITOR_LIGATURES" value="false" />
   <colors>
     <option name="ADDED_LINES_COLOR" value="50fa7b" />
-    <option name="ANNOTATIONS_COLOR" value="808080" />
+    <option name="ANNOTATIONS_COLOR" value="868686" />
     <option name="ANNOTATIONS_LAST_COMMIT_COLOR" value="c0c0c0" />
     <option name="CARET_COLOR" value="ff79c6" />
-    <option name="CARET_ROW_COLOR" value="0c0c0c" />
+    <option name="CARET_ROW_COLOR" value="0d0d0d" />
     <option name="CONSOLE_BACKGROUND_KEY" value="12121a" />
     <option name="DELETED_LINES_COLOR" value="ff5555" />
     <option name="DOCUMENTATION_COLOR" value="1e1e2e" />
     <option name="FILESTATUS_ADDED" value="50fa7b" />
     <option name="FILESTATUS_COPIED" value="50fa7b" />
-    <option name="FILESTATUS_DELETED" value="666666" />
-    <option name="FILESTATUS_IDEA_FILESTATUS_IGNORED" value="666666" />
+    <option name="FILESTATUS_DELETED" value="6a6a6a" />
+    <option name="FILESTATUS_IDEA_FILESTATUS_IGNORED" value="6a6a6a" />
     <option name="FILESTATUS_IDEA_FILESTATUS_MERGED_WITH_CONFLICTS" value="ff5555" />
     <option name="FILESTATUS_MODIFIED" value="8be9fd" />
     <option name="FILESTATUS_NOT_CHANGED_IMMEDIATE" value="8be9fd" />
@@ -30,28 +30,28 @@
     <option name="IGNORED_ADDED_LINES_BORDER_COLOR" value="50fa7b" />
     <option name="IGNORED_DELETED_LINES_BORDER_COLOR" value="ff5555" />
     <option name="IGNORED_MODIFIED_LINES_BORDER_COLOR" value="8be9fd" />
-    <option name="INDENT_GUIDE" value="1f1f1f" />
-    <option name="LINE_NUMBERS_COLOR" value="666666" />
+    <option name="INDENT_GUIDE" value="202020" />
+    <option name="LINE_NUMBERS_COLOR" value="6a6a6a" />
     <option name="LINE_NUMBER_ON_CARET_ROW_COLOR" value="c0c0c0" />
-    <option name="METHOD_SEPARATORS_COLOR" value="1f1f1f" />
+    <option name="METHOD_SEPARATORS_COLOR" value="202020" />
     <option name="MODIFIED_LINES_COLOR" value="8be9fd" />
     <option name="NOTIFICATION_BACKGROUND" value="1e1e2e" />
     <option name="READONLY_BACKGROUND" value="12121a" />
     <option name="READONLY_FRAGMENT_BACKGROUND" value="12121a" />
-    <option name="RIGHT_MARGIN_COLOR" value="1f1f1f" />
-    <option name="SELECTED_INDENT_GUIDE" value="666666" />
+    <option name="RIGHT_MARGIN_COLOR" value="202020" />
+    <option name="SELECTED_INDENT_GUIDE" value="6a6a6a" />
     <option name="SELECTION_BACKGROUND" value="2e2f40" />
     <option name="SELECTION_FOREGROUND" value="ffffff" />
-    <option name="SEPARATOR_ABOVE_COLOR" value="1f1f1f" />
-    <option name="SEPARATOR_BELOW_COLOR" value="1f1f1f" />
-    <option name="TEARLINE_COLOR" value="1f1f1f" />
-    <option name="VCS_ANNOTATIONS_COLOR_1" value="0c0c0c" />
+    <option name="SEPARATOR_ABOVE_COLOR" value="202020" />
+    <option name="SEPARATOR_BELOW_COLOR" value="202020" />
+    <option name="TEARLINE_COLOR" value="202020" />
+    <option name="VCS_ANNOTATIONS_COLOR_1" value="0d0d0d" />
     <option name="VCS_ANNOTATIONS_COLOR_2" value="1e1e2e" />
-    <option name="VCS_ANNOTATIONS_COLOR_3" value="1f1f1f" />
-    <option name="VCS_ANNOTATIONS_COLOR_4" value="292929" />
+    <option name="VCS_ANNOTATIONS_COLOR_3" value="202020" />
+    <option name="VCS_ANNOTATIONS_COLOR_4" value="2a2a2a" />
     <option name="VCS_ANNOTATIONS_COLOR_5" value="2e2f40" />
-    <option name="VISUAL_INDENT_GUIDE" value="1f1f1f" />
-    <option name="WHITESPACES" value="3d3d3d" />
+    <option name="VISUAL_INDENT_GUIDE" value="202020" />
+    <option name="WHITESPACES" value="404040" />
     <option name="WHITESPACES_MODIFIED_LINES_COLOR" value="8be9fd" />
   </colors>
   <attributes>
@@ -125,19 +125,19 @@
     </option>
     <option name="DEFAULT_LINE_COMMENT">
       <value>
-        <option name="FOREGROUND" value="808080" />
+        <option name="FOREGROUND" value="868686" />
         <option name="FONT_TYPE" value="2" />
       </value>
     </option>
     <option name="DEFAULT_BLOCK_COMMENT">
       <value>
-        <option name="FOREGROUND" value="808080" />
+        <option name="FOREGROUND" value="868686" />
         <option name="FONT_TYPE" value="2" />
       </value>
     </option>
     <option name="DEFAULT_DOC_COMMENT">
       <value>
-        <option name="FOREGROUND" value="808080" />
+        <option name="FOREGROUND" value="868686" />
         <option name="FONT_TYPE" value="2" />
       </value>
     </option>
@@ -193,7 +193,7 @@
     <option name="DEFAULT_REASSIGNED_PARAMETER">
       <value>
         <option name="FOREGROUND" value="ffb86c" />
-        <option name="EFFECT_COLOR" value="666666" />
+        <option name="EFFECT_COLOR" value="6a6a6a" />
         <option name="EFFECT_TYPE" value="1" />
       </value>
     </option>
@@ -205,7 +205,7 @@
     <option name="DEFAULT_REASSIGNED_LOCAL_VARIABLE">
       <value>
         <option name="FOREGROUND" value="ffffff" />
-        <option name="EFFECT_COLOR" value="666666" />
+        <option name="EFFECT_COLOR" value="6a6a6a" />
         <option name="EFFECT_TYPE" value="1" />
       </value>
     </option>
@@ -373,7 +373,7 @@
     </option>
     <option name="DEPRECATED_ATTRIBUTES">
       <value>
-        <option name="EFFECT_COLOR" value="808080" />
+        <option name="EFFECT_COLOR" value="868686" />
         <option name="EFFECT_TYPE" value="3" />
       </value>
     </option>
@@ -385,7 +385,7 @@
     </option>
     <option name="NOT_USED_ELEMENT_ATTRIBUTES">
       <value>
-        <option name="FOREGROUND" value="666666" />
+        <option name="FOREGROUND" value="6a6a6a" />
       </value>
     </option>
     <option name="TODO_DEFAULT_ATTRIBUTES">
@@ -398,31 +398,31 @@
     <option name="HYPERLINK_ATTRIBUTES">
       <value>
         <option name="FOREGROUND" value="8be9fd" />
-        <option name="EFFECT_COLOR" value="808080" />
+        <option name="EFFECT_COLOR" value="868686" />
         <option name="EFFECT_TYPE" value="1" />
       </value>
     </option>
     <option name="FOLLOWED_HYPERLINK_ATTRIBUTES">
       <value>
         <option name="FOREGROUND" value="bd93f9" />
-        <option name="EFFECT_COLOR" value="808080" />
+        <option name="EFFECT_COLOR" value="868686" />
         <option name="EFFECT_TYPE" value="1" />
       </value>
     </option>
     <option name="INACTIVE_HYPERLINK_ATTRIBUTES">
       <value>
-        <option name="FOREGROUND" value="666666" />
+        <option name="FOREGROUND" value="6a6a6a" />
       </value>
     </option>
     <option name="FOLDED_TEXT_ATTRIBUTES">
       <value>
-        <option name="FOREGROUND" value="808080" />
+        <option name="FOREGROUND" value="868686" />
         <option name="BACKGROUND" value="1e1e2e" />
       </value>
     </option>
     <option name="INLINE_PARAMETER_HINT">
       <value>
-        <option name="FOREGROUND" value="808080" />
+        <option name="FOREGROUND" value="868686" />
         <option name="BACKGROUND" value="1e1e2e" />
       </value>
     </option>
@@ -519,17 +519,17 @@
     </option>
     <option name="LOG_DEBUG_OUTPUT">
       <value>
-        <option name="FOREGROUND" value="808080" />
+        <option name="FOREGROUND" value="868686" />
       </value>
     </option>
     <option name="LOG_VERBOSE_OUTPUT">
       <value>
-        <option name="FOREGROUND" value="666666" />
+        <option name="FOREGROUND" value="6a6a6a" />
       </value>
     </option>
     <option name="LOG_EXPIRED_ENTRY">
       <value>
-        <option name="FOREGROUND" value="666666" />
+        <option name="FOREGROUND" value="6a6a6a" />
       </value>
     </option>
     <option name="CONSOLE_BLACK_OUTPUT">
@@ -574,7 +574,7 @@
     </option>
     <option name="CONSOLE_DARKGRAY_OUTPUT">
       <value>
-        <option name="FOREGROUND" value="666666" />
+        <option name="FOREGROUND" value="6a6a6a" />
       </value>
     </option>
     <option name="CONSOLE_RED_BRIGHT_OUTPUT">

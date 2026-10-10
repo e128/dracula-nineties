@@ -196,6 +196,11 @@ DRIVER = """
           // A listener bound to a discarded clone leaves the live element with none,
           // so dispatching on the live svg is exactly the case that used to fail.
           t('mermaid-click-zooms', overlay.hasAttribute('open'));
+          // `.mermaid-overlay[open]` paints opacity 0 and takes no pointer events until
+          // `active` lands, and no transition exists anywhere in the payload to carry the
+          // change in. So the class has to be on the element by the time this line runs:
+          // a deferred add leaves a modal dialog that is open, invisible and dead.
+          t('mermaid-zoom-visible', overlay.classList.contains('active'));
           t('mermaid-overlay-named', Boolean(overlay.getAttribute('aria-label')));
           overlay.close();
         } else {

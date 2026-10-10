@@ -280,9 +280,12 @@ for found in sorted(set(re.findall(r"#[0-9a-f]{6}", (ROOT / "mermaid.js").read_t
 #    hardest of the three in light mode, where --muted, --orange and --pink all
 #    measured 4.44 to 4.47 on it while passing on the other two, so a `strong` or
 #    an outbound arrow inside a hovered row was under 4.5 with nothing saying so.
-#    Rule tokens are checked against --surface only: --rule-light is a hairline on
-#    the page background, and 1.4.11 asks 3:1 of a non-text boundary, not of a
-#    border drawn inside a code fill.
+#    Rule tokens are checked against --surface and --surface-alt, not --code-bg:
+#    --rule-light fences a table cell and outlines a checkbox, and a checkbox sits
+#    on --surface-alt (a table header cell is filled --surface-alt too), which is
+#    the harder of the two in light mode. A rule is never drawn inside a code fill,
+#    so --code-bg is not a ground for this role. 1.4.11 asks 3:1 of a non-text
+#    boundary.
 #
 #    DATA stays on --surface and --code-bg. A diagram is not drawn inside a table
 #    row, so the hover fill is not a ground a category fill ever lands on.
@@ -299,17 +302,14 @@ DATA = ["data-1", "data-2", "data-3", "data-4"]
 MODES = {
     # name: (media condition, text floor, non-text boundary floor)
     #
-    # Default is 4.0. Through v2.1.x it was 3.0, and that number existed only to
-    # carry the dracula baseline's deliberately dim Comment (#6272a4) and Red
-    # (#ff5555) on the Current Line fill. v2.2.0 reset both registers to a 1990s
-    # variant, and its hardest token (--muted) now measures 4.15 on --code-bg, so
-    # the floor is re-priced to the palette that ships rather than to the one that
-    # forced it down. Light stays 3.2 (hardest token --red at 3.39 on
-    # --surface-alt); print stays 4.5 because paper has no identity to preserve;
-    # high contrast stays 7.0.
-    "default": (None, 4.0, 3.0),
+    # Every mode that paints text carries the body floor, 4.5:1, except high
+    # contrast, which carries 7.0. Default and light were priced down in turn
+    # (4.0, then 3.2) to carry a token the palette has since been re-derived
+    # around, so neither is a floor any more. Print stays 4.5 because paper has no
+    # identity to preserve. The boundary floor for a rule or a data ramp stays 3.0.
+    "default": (None, 4.5, 3.0),
     "prefers-contrast: more": ("@media (prefers-contrast: more)", 7.0, 3.0),
-    "prefers-color-scheme: light": ("@media (prefers-color-scheme: light)", 3.2, 3.0),
+    "prefers-color-scheme: light": ("@media (prefers-color-scheme: light)", 4.5, 3.0),
     "print": ("@media print", 4.5, 3.0),
 }
 # Empty since v2.2.0. The two entries here existed only because the dracula
@@ -349,7 +349,7 @@ for mode, (condition, text_floor, rule_floor) in MODES.items():
         for name in role:
             fg = triples_for_mode[name]
             if role is RULES:
-                grounds = ["surface"]
+                grounds = ["surface", "surface-alt"]
             elif role is DATA:
                 grounds = ["surface", "code-bg"]
             else:

@@ -499,6 +499,13 @@ initial, so this is the browser default the sheet stopped overriding. **Do not d
 `text-decoration-color` back toward a tier**: the underline is the one affordance a link has, and a
 quieter underline weakens it.
 
+**`.nav-list li a` no longer suppresses the underline until hover.** It carried
+`text-decoration-color: transparent`, restored on `@media (hover: hover)` only. A touch client never
+matches that query, so every nav index entry, conn-map column and recent-group link was left
+distinguished by colour alone, and `CONTRACT.md` § 2 asks a consumer page to work with a finger.
+**Do not restore the transparent/restore pair**: the hover rule keeps its `--code-bg` fill, which is
+what a pointer gets instead.
+
 **There is no outbound-link marker.** The sheet painted a `↗` after every `a[href^="http"]`. It is
 gone, because none of the references carries one, and a glyph that promises a destination the
 link never names is a modern docs convention. **Do not reintroduce an external-link glyph.**
@@ -552,8 +559,10 @@ now) both invert and paint `--surface` text on an accent fill; check 8 gates bot
 for `.verdict-*` alone, since its print block swaps to an outline).
 
 **The link is the period bright, and there is now a `--visited` token.** Dark keeps the Dracula cyan
-`#8be9fd`; light is the web-safe blue `#0019ee`, chosen from the HTML5 default `#0000EE` (one unit
-off, because the exact default sits on the sRGB corner and clips). `--visited` is the HTML5 visited
+`#8be9fd`; light is a blue derived from the HTML5 default `#0000EE`, which cannot be stated exactly
+because it sits on the sRGB corner and clips. It is held at 95% of the ceiling and darkened until it
+clears the body floor on the hover fill as well as on the page, so it is no longer the lightest blue
+that reads as the period default. `--visited` is the HTML5 visited
 purple: `#bd93f9` dark (Dracula's own purple, so the token is not new ink) and `#551a8b` light, the
 Mosaic-default visited color. A link and a visited link are the two link states a 1990s page actually
 had, so the pair is role-exact, not decorative. **Do not collapse `--visited` back into `--link`**:
@@ -571,20 +580,25 @@ park it on the gamut boundary (the light value is held at 94% of the ceiling for
 `--on-surface` text clears 4.5:1 on the wash over `--code-bg` at 0.30 and not at 0.35. Check 9
 measures the composite.
 
-**Floors by mode: default 4.0:1, `prefers-contrast: more` 7:1, light 3.2:1, print 4.5:1.** Rule
-tokens sit at 3:1 against `--surface`; the data ramp at 3:1. The default floor was 3.0 only because
-the upstream baseline forced two pairs below it (Dracula Comment on Current Line, Dracula Red on
-Current Line). The 1990s reset lifted both, so the floor is re-priced to the palette that ships and
-`FLOOR_OVERRIDE` is now empty. **Do not lower a mode floor to fit a token**: raise the token, or name
-the pair in `FLOOR_OVERRIDE` and record the shortfall here.
+**Floors by mode: default 4.5:1, `prefers-contrast: more` 7:1, light 4.5:1, print 4.5:1.** Every mode
+that paints text carries the body floor; high contrast carries 7:1. Rule tokens sit at 3:1 against
+`--surface` **and** `--surface-alt`, and the data ramp at 3:1 against `--surface` and `--code-bg`. A
+rule is never drawn inside a code fill, so `--code-bg` is not a ground for that role, and print's
+near-white `--code-bg` would fail a token that is fine where a rule actually lands. The default floor
+was 3.0 and then 4.0, and the light floor 3.2, each priced to carry a token the palette has since
+been re-derived around; the accents were darkened to meet the body floor rather than the floor
+lowered to them, and `FLOOR_OVERRIDE` is empty. **Do not lower a mode floor to fit a token**: raise
+the token, or name the pair in `FLOOR_OVERRIDE` and record the shortfall here. **A text pair that
+fails in the light mode's own hover fill is a text pair**, which is why the light accents are darker
+than the sRGB hex they were sampled from.
 
 ### Tier decisions
 
 **`--label` and `--muted` are the silver structural tiers and have no upstream equivalent.** `--label`
 carries headings `h3`-`h6`, `.badge` text and kickers; `--muted` carries comments, `dt` terms in a
 timeline and de-emphasized notes. `--label` is `#c0c0c0` (the silver itself) and `--muted` is
-`#808080`, so the two read apart where they co-occur, and `--rule-light` `#666666` is a third step
-down. Light inverts the tier to near-black on the silver field (`#262626`/`#404040`/`#606060`).
+`#868686`, so the two read apart where they co-occur, and `--rule-light` `#6a6a6a` is a third step
+down. Light inverts the tier to near-black on the silver field (`#262626`/`#404040`/`#5d5d5d`).
 **Do not reintroduce a blue-grey tint into these tokens**: un-hued silver is the register, and a hue
 there is what made the sheet read as Dracula-generic rather than 1990s.
 
@@ -641,7 +655,7 @@ said nothing about what a `pie` fence itself rendered at Mermaid's default 0.7 `
 
 **`classdef`/`classdefLight` fills both exist**, check 2 gating both sets plus the letter each paints
 on its own fill. **Both sets paint `--surface`**: the dark ramp is legible under black and the light
-ramp under `#c0c0c0` (4.78 to 5.12:1), so neither set inverts to `--on-surface`.
+ramp under `#c0c0c0` (4.80 to 5.42:1), so neither set inverts to `--on-surface`.
 **`CONTRACT.md` § 2 bans a `classDef name fill:#hex` line on any page that follows the reader's
 appearance**, permitting it only on a page locked to one palette: a fence has no CSS to read, so one
 literal hex can't follow appearance and no palette work changes that.
@@ -790,7 +804,16 @@ Chrome-blue; a 1996 one is a square with a black inset bevel and a thick tick. A
   back in the tab order. **Do not let the control reset match `.margin-toggle`**: exclude the class in
   the selector rather than raising the hide rule's specificity.
 - **`accent-color: var(--green)`** colors the widgets the sheet does not repaint (`progress`, `meter`,
-  `input[type="range"]`). The repainted checkbox and radio ignore it.
+  `input[type="range"]`). The repainted checkbox and radio ignore it. **Those three are kept out of
+  the `appearance: none` reset for exactly this reason**: `accent-color` only reaches a widget the
+  user agent is still drawing, so resetting them deleted the platform painting and left `range` a
+  bare white bar and `meter` in the UA zone colors. The reset is therefore scoped to the controls the
+  sheet repaints in full (`input:not([type="range"])`, `button`, `select`, `textarea`), and the
+  `color`/`accent-color` pair sits on its own rule that still covers all six.
+- **An indeterminate checkbox draws a bar, not a tick.** The tick's `::before` is a rotated border,
+  which is the wrong shape for "neither checked nor unchecked"; `:indeterminate` takes a `--on-surface`
+  dash on the `--surface-alt` box. Without it an indeterminate box computed identically to an
+  unchecked one, so the third state was carried by nothing.
 - **`color-scheme` stays undeclared** (see Appearance modes): the reset is a shape fix, not a request
   to darken the UA's remaining widgets.
 
@@ -1146,7 +1169,11 @@ this). Needed on `pre.mermaid` (or inherited `overflow-x: auto` clips the same c
 **The cost: a label outside its own viewBox is unreachable below about 690px (not 600px), and no
 `overflow` value anywhere recovers it.** `overflow-x: auto` unconditionally was tried and reverted: strictly worse: SVG ink outside the root `<svg>`'s box is not scrollable overflow for any CSS
 ancestor, so a scroller recovers nothing and instead *clips* content `overflow: visible` had at least
-been painting into the page gutter. The zoom overlay doesn't rescue it either: it's proportional to
+been painting into the page gutter. **`pre.mermaid:not(:has(svg))` takes the scroller instead**, for
+the fence that never rendered: with no SVG there is no ink outside a viewBox to clip, and without a
+scroller the raw diagram source keeps its own width, which pushes the *page* sideways and makes the
+rest of the document unreadable. The selector is a `:has()` test on what mermaid actually drew, so
+it turns itself off the moment a diagram lands. **Do not widen it to the bare `pre.mermaid` rule.** The zoom overlay doesn't rescue it either: it's proportional to
 the SVG's own width, so the escape scales with the zoom (measured 69-105px lost at a 640px viewport): only shrinking the SVG helps, which would shrink every zoomed diagram, the one thing the overlay
 exists not to do. **This is a consumer constraint, stated in `CONTRACT.md` § 2**, not a stylesheet
 defect: the fixture's two overlong point labels exist to exercise this; realistic labels lose nothing
@@ -1601,11 +1628,18 @@ beat a loaded highlighter theme, the permalink group must beat the plain `a` rul
 **`@media (prefers-contrast: more)` reassigns tokens, not elements**: raises every accent to the
 mode's 7:1 floor against `--code-bg` (the harder ground); `--surface-alt` *darkens* there (its job as
 row-hover/tinted-root fill is to be unmistakable). `a` takes a thicker `currentColor` underline, and
-the focus ring widens. **`.nav-list li a` repeats the underline declaration**: a media query adds no
-specificity, so without the repeat the base `.nav-list li a` rule outranked the mode's `a` rule,
-leaving every nav link underline-free in the one mode built for the strongest cue. `mark` does not
-reach the mode's floor (the `--highlight` alpha wash caps what the composite can reach, and lowering
-alpha would defeat the highlight's purpose).
+the focus ring widens. `--label` and `--muted` **do not collapse onto one lightness here**: they are
+the two structural text tiers, and at equal lightness a `dd` and the `h3` above it render the same
+colour. The mode raises `--label` rather than dimming `--muted`, because nothing in this block is
+dimmed. `mark` does not reach the mode's floor (the `--highlight` alpha wash caps what the composite
+can reach, and lowering alpha would defeat the highlight's purpose).
+
+**A mode block's own token overrides are not a reason to repeat a base declaration.** `@media`
+adds no specificity, so a base rule that *suppresses* a property still wins inside the block; a
+`@media (prefers-contrast: more)` copy of `.nav-list li a { text-decoration-color: currentColor }`
+existed only because the base rule set that property to `transparent`. The base rule no longer sets
+it, so the copy is gone with it. **Before adding a declaration to a mode block, check whether the
+base rule it defends against still exists.**
 
 **`@media (prefers-color-scheme: light)` is a full second screen palette, not the print palette**: reusing print fails on screen for three reasons: `--surface`/`--surface-alt` are both pure white
 there (killing row hover and the overlay backdrop), `--code-bg` is a paper compromise, and the
