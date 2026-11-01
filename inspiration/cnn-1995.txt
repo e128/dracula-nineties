@@ -1,0 +1,28 @@
+cnn-1995.png
+site: cnn.com
+period: 1995
+dimensions: 830x600
+sampled: 2026-11-01
+
+[PALETTE]
+ground  #FFFFFF  role: page bg  plain white news sheet
+ink     #0F0D0E  role: text     black headlines and body
+accent  #EC2034  role: brand    red CNN wordmark and active tab
+link    #0000EE  role: link     browser-default blue
+rule    #636261  role: chrome   grey rules around the channel cells
+photo   #3D273B  role: image    dark tones in the lead photograph
+
+[LAYOUT]
+A black CNN Interactive logo sits left of a two-column grid of ruled channel cells. A red tab
+row below marks Contents, Search, Welcome Page and Help. The lead story runs as a bold headline
+over a dated paragraph and a small photograph. A three-column World, World, Link of the Day
+strip closes the page.
+
+[META]
+A news front page built from ruled table cells and one accent red. The logo, channel grid and
+tabs are graphics, while the story is plain text with blue links, so the page reads as a printed
+bulletin pasted onto a screen. One lead story carries the page; everything else is an index.
+
+[RELEVANCE]
+The ruled channel grid and the red active-tab row are the useful news header pattern. The story
+block, bold headline over a date and one photo, is the index tier.

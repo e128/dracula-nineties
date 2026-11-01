@@ -6,7 +6,7 @@
   <title>Dracula-Nineties chart components: forced light preview</title>
   <meta name="generated-by" content="scripts/build-sample.nu"/>
   <style>
-    /* Dracula-Nineties v2.8.0 */
+    /* Dracula-Nineties v2.9.0 */
     @layer dracula-nineties {
     @font-face {
       font-family: 'Tinos'; font-style: normal; font-weight: 400;
@@ -71,7 +71,7 @@
       --data-4:      oklch(0.955 0.134 112.757);  /* was #f1fa8c */
       --body-font:   'Tinos', 'Times New Roman', Times, 'Nimbus Roman', 'Noto Serif', 'DejaVu Serif', serif;
       --mono-font:   'Cousine', 'Courier New', Courier, Monaco, 'Lucida Console', 'Nimbus Mono PS', monospace;
-      --page-width:  min(94vw, 66rem);
+      --page-width:  min(94vw, 56rem);
       --gutter:      max(2rem, env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px));
       --radius:      0;
       --radius-sm:   0;
@@ -87,13 +87,18 @@
       --mermaid-scheme: dark;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { background: var(--code-bg); }
     body {
       font-family: var(--body-font);
       font-weight: 400;
-      width: min(100% - 2 * var(--gutter), var(--page-width)); margin-inline: auto;
+      width: min(100% - 2 * var(--gutter), var(--page-width));
+      margin-inline: var(--gutter) auto; margin-block: var(--space-6);
       padding-block: var(--space-12);
+      padding-inline: var(--space-4);
       line-height: 1.6; font-size: 1rem;
       background: var(--surface); color: var(--on-surface);
+      border: 1px solid var(--rule-light);
+      outline: 1px solid var(--rule-light); outline-offset: 2px;
       overflow-wrap: break-word;
     }
     h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
@@ -249,7 +254,7 @@
       margin: var(--space-6) 0; color: var(--label); font-style: italic;
     }
     blockquote p:last-child { margin-bottom: 0; }
-    hr { border: none; border-block-start: 1px solid var(--rule-light); margin: var(--space-10) 0; }
+    hr { border: none; border-block: 1px solid var(--rule-light); height: 4px; margin: var(--space-10) 0; }
     img { max-width: 100%; height: auto; box-shadow: 0 0 0 1px var(--ring); border-radius: var(--radius-sm); }
     :is(svg, video, canvas, iframe, object, embed) { max-width: 100%; }
     img.emoji { box-shadow: none; width: 1.1em; height: 1.1em; vertical-align: -0.15em; }
@@ -318,7 +323,9 @@
     nav { margin: var(--space-4) 0; padding: .5rem 0; color: var(--label); font-size: 0.95em; }
     nav:has(> a) { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 0.7em; row-gap: 0.2em; }
     nav > a + a { border-inline-start: 1px solid var(--rule-light); padding-inline-start: 0.7em; }
-    footer { margin-top: var(--space-12); color: var(--label); font-size: 0.9em; }
+    footer { margin-top: var(--space-12); padding: var(--space-4) 0.9rem;
+      background: var(--code-bg); border-block-start: 1px solid var(--rule-light);
+      color: var(--label); font-size: 0.9em; text-align: center; }
     :is(.footnotes, .footnote) { border-block-start: 1px solid var(--rule-light); margin-top: var(--space-10);
       padding-top: var(--space-3); font-size: 0.9em; color: var(--label); }
     :is(.footnotes, .footnote) p { margin-block: 0.2rem; }
@@ -575,7 +582,9 @@
         --ring:        oklch(0 0 0 / 0.1);
       }
       mark { background: none; box-shadow: inset 0 0 0 1px currentColor; }
-      body { width: auto; max-width: none; padding: 1rem; }
+      html { background: none; }
+      body { width: auto; max-width: none; margin: 0; padding: 1rem;
+        border: none; outline: none; }
       .table-scroll { max-height: none; overflow: visible; }
       .mermaid-zoom { display: none; }
       pre.mermaid {
@@ -642,7 +651,9 @@
     @media print {
       nav.toc ol { columns: 1; }
     }
-    h1 { background: var(--code-bg); color: var(--on-surface); padding: 0.5rem 0.9rem; }
+    h1 { background: var(--code-bg); color: var(--on-surface); padding: 0.5rem 0.9rem;
+      border-block-end: var(--accent-bar) solid var(--purple); }
+    h2:not(.band) { padding-block-end: 0.22rem; border-block-end: 1px solid var(--rule-light); }
     h2.band { background: var(--purple); color: var(--surface); font-style: normal;
       padding: 0.3rem 0.75rem; }
     nav:not(.toc) > a { border-inline-start: none; padding-inline-start: 0; }
@@ -660,13 +671,16 @@
         display: block; margin: 0; padding-block: 0; padding-inline-end: 1.25rem;
         border-inline-end: 1px solid var(--rule-light); }
       body:not(.conn-map) article:has(> nav:not(.toc)) > nav:not(.toc) > a {
-        display: block; padding: 0.35rem 0; letter-spacing: 0.03em;
-        text-transform: uppercase; font-size: 0.8em; }
+        display: block; padding-block: 0.45rem; letter-spacing: 0.03em;
+        text-transform: uppercase; font-size: 0.8em;
+        border-block-end: 1px solid var(--rule-light); }
+      body:not(.conn-map) article:has(> nav:not(.toc)) > nav:not(.toc) > a:last-of-type {
+        border-block-end: none; }
     }
     }
   </style>
   <script type="module">
-    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@12.1.0/dist/mermaid.esm.min.mjs';
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@12.2.0/dist/mermaid.esm.min.mjs';
     const mermaidLight = getComputedStyle(document.documentElement).getPropertyValue('--mermaid-scheme').trim() === 'light';
     const mermaidFont = '"Cousine", "Courier New", Courier, monospace';
     const mermaidDark = {

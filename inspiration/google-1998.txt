@@ -1,0 +1,27 @@
+google-1998.png
+site: google.com
+period: 1998
+dimensions: 830x600
+sampled: 2026-11-01
+
+[PALETTE]
+ground   #FFFFFF  role: page bg   pure white field
+panel    #7EE5DA  role: utility   pale teal band behind three link cells
+bar      #EEEEEE  role: search    light grey strip behind the query form
+wordmark #2F62C7  role: brand     blue G of the Google wordmark
+accent   #CE2B12  role: brand     red O of the Google wordmark
+link     #1820B0  role: link      deep blue underlined links
+
+[LAYOUT]
+A centered single column. The wordmark sits above a pale grey search strip that holds the query
+field and two beveled buttons. Below it a three-cell teal band carries Special Searches, Help
+and About, and Get Google updates. A centered copyright line closes the page on white.
+
+[META]
+A single-purpose search tool drawn as a small poster. The only saturated color arrives in the
+logo and the teal band, and the input field is the visual center. Structure is a stack of table
+rows with generous white space, and there is no sidebar, no banner and nothing below the fold.
+
+[RELEVANCE]
+The centered search-first composition and the three-cell utility band are the reusable parts.
+The beveled buttons are period furniture; the page needs no card or shadow.

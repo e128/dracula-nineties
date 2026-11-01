@@ -1,0 +1,29 @@
+ask-jeeves-1999.png
+site: askjeeves.com
+period: 1999
+dimensions: 830x600
+sampled: 2026-11-01
+
+[PALETTE]
+ground #FFFFF2  role: page bg  cream paper field
+frame  #666699  role: frame   muted purple border and footer bar
+navy   #0A3094  role: text    deep blue headings and wordmark
+olive  #9F9763  role: panel   olive topic rail
+red    #C91714  role: brand   red Ask! buttons and question marks
+ink    #1B1B1A  role: text    black body copy
+
+[LAYOUT]
+A cream page inside a thin purple frame. A left column lists eleven topic links in a ruled
+panel under a May I Suggest heading. The center holds the Jeeves character, the wordmark, a
+question field and two Ask! buttons, with a scrolling sample-question box below. A purple footer
+bar carries four text links.
+
+[META]
+A question-first search page staged as a drawing room joke. The butler illustration and the
+cream ground make the form feel like a desk, while the topic list supplies a conventional
+directory fallback. It is a single-purpose page with a character as its brand.
+
+[RELEVANCE]
+The topic rail beside a single centered question field is the reusable search layout. The
+character illustration is the period brand device, and the cream ground is a softer alternative
+to white.

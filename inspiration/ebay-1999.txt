@@ -1,0 +1,28 @@
+ebay-1999.png
+site: ebay.com
+period: 1999
+dimensions: 650x900
+sampled: 2026-11-01
+
+[PALETTE]
+ground #FFFFFF  role: page bg  white marketplace sheet
+yellow #FFCC00  role: index   category box and wordmark backing
+green  #9BCE00  role: feature green featured-items bar
+red    #EB100F  role: brand   red eBay wordmark strokes
+link   #0104EF  role: link    bright blue links
+panel  #765CAC  role: panel   purple welcome panel
+
+[LAYOUT]
+A two-column layout under a small top link row. The left column holds the eBay wordmark, a
+yellow categories box with counts, and a stats box. The right column carries Browse, Sell,
+Services, Search, Help and Community tabs, a registration pitch, a green featured list, a Visa
+promo, and a pale welcome panel.
+
+[META]
+A marketplace home page that is mostly navigation and inventory. The yellow category block, the
+green feature strip and the purple welcome panel act as separate colored regions, with blue
+links throughout. It reads as a department store directory compressed into one screen.
+
+[RELEVANCE]
+The counted category list and the tab row are the reusable commerce index. The three competing
+colored panels are a period excess to leave behind.

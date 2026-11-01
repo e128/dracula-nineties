@@ -231,10 +231,11 @@ Every design audit reports on period fidelity: whether the drawn design still ma
 of 1994 through 1999, and whether the payload has drifted from a decision NOTES.md records. For each
 check, report measured results, limits, and missing inputs. Never report an unrun check as a pass.
 **The audit's design vocabulary stops at 1999.** Judge the design against the period record: HTML
-3.2 (14 January 1997), HTML 4.0 (18 December 1997) and HTML 4.01 (24 December 1999), CSS1 (17
-December 1996), CSS2 (12 May 1998), WCAG 1.0 (5 May 1999), the 216-color web-safe palette, and the
-era's font stacks and fixed-width layout practice. Do not import a post-1999 standard as the
-yardstick.
+3.2 (14 January 1997), HTML 4.0 (18 December 1997), CSS1 (17 December 1996),
+CSS2 (12 May 1998), WCAG 1.0 (5 May 1999), the 216-color web-safe palette, and the era's font
+stacks and fixed-width layout practice. **Do not cite HTML 4.01 as a period source.** It was
+ratified on 24 December 1999, after the period's practice had settled, and NOTES.md records the
+prohibition. Do not import a post-1999 standard as the yardstick.
 
 The cap is on design convention, not on CSS implementation. The payload renders in a modern browser
 and may use a modern property to reach a period result; NOTES.md records those decisions. An audit

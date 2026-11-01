@@ -1,0 +1,82 @@
+diff --git a/NOTES.md b/NOTES.md
+index 843b06a..b4c9efc 100644
+--- a/NOTES.md
++++ b/NOTES.md
+@@ -240,6 +240,28 @@ that are not boxes: `.tag-dot::before`, `.live-dot` and `.step-node` are squares
+ pill is plain text (see [Borrowed components](#borrowed-components)). A 1996 bullet, a GIF status
+ marker and a process node were all square. **Do not round a dot, a node or a chip.**
+ 
++**The masthead closes with a `--purple` `--accent-bar` rule, and every `h2` that is not a
++`.band` closes with a one-pixel `--rule-light` rule.** The filled title box alone read as a modern
++banner: the corpus's mastheads close with a colored rule under the title (whitehouse-1995) or under
++the channel row (cnn-1995), and its section headings close with a hairline (history-channel-1998,
++yahoo-1999). **Do not put the rule on `h2.band`**: the band is already a filled bar, so a second
++edge under it reads as a double border. **Do not raise the masthead rule to a fill**: the fill is
++`h2.band`'s one loud move, and the masthead is a document title, not a section band.
++
++**The left rail draws a `--rule-light` rule under each link, and the footer closes in a `--code-bg`
++band with a top rule and centered boilerplate.** The corpus's rails are stacked directories, not a
++run of labels (apogee-3d-realms-1996, geocities-1996), and its pages close on a copyright and
++webmaster line (apple-1996, silicon-surf-1996). **Do not fill the rail panel**: a full-height
++`--surface-alt` slab is the table header's fill and reads as an empty column below the last link.
++**Do not drop the footer band's top rule**: the band is the same `--code-bg` as the masthead, so the
++rule marks the closing landmark where the fill sits close to the page ground. **Do not center a
++footer that carries more than boilerplate**: the centering is for the one-line copyright and contact
++line, and a long footer reads as a ragged block.
++
++**`hr` draws as a doubled hairline, the same period doubled line the table frame uses.** A single
++hairline read as a modern rule; the period's `<hr>` was a two-tone groove, and two flat one-pixel
++lines 2px apart are the same edge with no bevel. **Do not collapse it back to one line.**
++
+ ## Paragraphs and section rhythm
+ 
+ **`section` spacing matches `h2`'s top margin**, collapsing to one value; unequal values hid a
+diff --git a/dracula-nineties.css b/dracula-nineties.css
+index 4777c80..de27a83 100644
+--- a/dracula-nineties.css
++++ b/dracula-nineties.css
+@@ -242,7 +242,7 @@
+       margin: var(--space-6) 0; color: var(--label); font-style: italic;
+     }
+     blockquote p:last-child { margin-bottom: 0; }
+-    hr { border: none; border-block-start: 1px solid var(--rule-light); margin: var(--space-10) 0; }
++    hr { border: none; border-block: 1px solid var(--rule-light); height: 4px; margin: var(--space-10) 0; }
+     img { max-width: 100%; height: auto; box-shadow: 0 0 0 1px var(--ring); border-radius: var(--radius-sm); }
+     :is(svg, video, canvas, iframe, object, embed) { max-width: 100%; }
+     img.emoji { box-shadow: none; width: 1.1em; height: 1.1em; vertical-align: -0.15em; }
+@@ -311,7 +311,9 @@
+     nav { margin: var(--space-4) 0; padding: .5rem 0; color: var(--label); font-size: 0.95em; }
+     nav:has(> a) { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 0.7em; row-gap: 0.2em; }
+     nav > a + a { border-inline-start: 1px solid var(--rule-light); padding-inline-start: 0.7em; }
+-    footer { margin-top: var(--space-12); color: var(--label); font-size: 0.9em; }
++    footer { margin-top: var(--space-12); padding: var(--space-4) 0.9rem;
++      background: var(--code-bg); border-block-start: 1px solid var(--rule-light);
++      color: var(--label); font-size: 0.9em; text-align: center; }
+     :is(.footnotes, .footnote) { border-block-start: 1px solid var(--rule-light); margin-top: var(--space-10);
+       padding-top: var(--space-3); font-size: 0.9em; color: var(--label); }
+     :is(.footnotes, .footnote) p { margin-block: 0.2rem; }
+@@ -635,7 +637,9 @@
+     @media print {
+       nav.toc ol { columns: 1; }
+     }
+-    h1 { background: var(--code-bg); color: var(--on-surface); padding: 0.5rem 0.9rem; }
++    h1 { background: var(--code-bg); color: var(--on-surface); padding: 0.5rem 0.9rem;
++      border-block-end: var(--accent-bar) solid var(--purple); }
++    h2:not(.band) { padding-block-end: 0.22rem; border-block-end: 1px solid var(--rule-light); }
+     h2.band { background: var(--purple); color: var(--surface); font-style: normal;
+       padding: 0.3rem 0.75rem; }
+     nav:not(.toc) > a { border-inline-start: none; padding-inline-start: 0; }
+@@ -653,8 +657,11 @@
+         display: block; margin: 0; padding-block: 0; padding-inline-end: 1.25rem;
+         border-inline-end: 1px solid var(--rule-light); }
+       body:not(.conn-map) article:has(> nav:not(.toc)) > nav:not(.toc) > a {
+-        display: block; padding: 0.35rem 0; letter-spacing: 0.03em;
+-        text-transform: uppercase; font-size: 0.8em; }
++        display: block; padding-block: 0.45rem; letter-spacing: 0.03em;
++        text-transform: uppercase; font-size: 0.8em;
++        border-block-end: 1px solid var(--rule-light); }
++      body:not(.conn-map) article:has(> nav:not(.toc)) > nav:not(.toc) > a:last-of-type {
++        border-block-end: none; }
+     }
+     }
+   </style>
