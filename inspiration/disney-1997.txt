@@ -1,0 +1,27 @@
+disney-1997.png
+site: disney.com
+period: 1997
+dimensions: 920x1035
+sampled: 2026-11-01
+
+[PALETTE]
+ground  #FFFFFF  role: page bg  white column
+banner  #FEFE32  role: ad       yellow banner strip at the top
+ink     #1F0A0D  role: text     black body copy and headings
+link    #0505EF  role: link     bright blue underlined links
+brand   #AF4538  role: brand    red in the Disney banner art
+accent  #DE9D42  role: image    gold and tan in the character art
+
+[LAYOUT]
+A centered white column with a yellow banner ad at the top, then a Disney.com banner for Beauty
+and the Beast, a three-part feature row of artwork and text, a row of five character thumbnails,
+and a legal block. A narrow vertical rail of blue links runs down the right edge.
+
+[META]
+A promotional page built as a stack of centered image banners and short blurbs. The characters
+supply the color, the text stays blue and black, and the right rail is a permanent site
+directory. The result is a magazine page with no grid discipline beyond the center line.
+
+[RELEVANCE]
+The character thumbnail row as a gateway is the useful index device. The banner stack above it
+is the period ad furniture to avoid.

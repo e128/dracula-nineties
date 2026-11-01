@@ -1,0 +1,28 @@
+nintendo-1998.png
+site: nintendo.com
+period: 1998
+dimensions: 830x620
+sampled: 2026-11-01
+
+[PALETTE]
+ground #FFFFFF  role: page bg  white field around the collage
+yellow #FECF22  role: hub     yellow circles behind the game tiles
+red    #E03828  role: brand   red Nintendo 64 and game art
+blue   #190FDD  role: link    deep blue footer links
+ink    #0A090B  role: text    black labels and footer copy
+tan    #CBB9A8  role: image   skin and sand tones in the photo art
+
+[LAYOUT]
+A white page with a collage header of characters and the Nintendo 64 logo. Below, a central
+yellow circle motif holds five game tiles and a center tile, with a left column of platform
+logos and a right column of label buttons. A small colored bullet list sits at lower left, and
+a dense blue link footer closes the page.
+
+[META]
+A game portal organized as collage. Every destination is a logo, a tile or a character, and the
+yellow circles tie them together. The page has no reading column, only a map of brands, so it
+works as a poster and not as a document.
+
+[RELEVANCE]
+The circular hub of game tiles is a period navigation device, useful as a documented
+alternative to a list. The logo collage header is too busy to reuse.

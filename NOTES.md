@@ -170,12 +170,27 @@ instead.
 
 ## Width and measure
 
-**Page width is one number**, `--page-width: min(94vw, 66rem)` in `:root`, shared by `body` and
-`body.conn-map`'s article so the two layouts cannot drift. `94vw` is the proportional dial, `66rem`
-(scales with root size) is the 1996 document measure, and `100% - 2 * var(--gutter)` on `body` is the
-floor respecting the safe-area insets folded into `--gutter`. This is the width every consumer page
-inherits, so a change here is a decision rather than a dial. It narrowed from `min(90vw, 160rem)` with
-the document shell below.
+**Page width is one number**, `--page-width: min(94vw, 56rem)` in `:root`, shared by `body` and
+`body.conn-map`'s article so the two layouts cannot drift. `94vw` is the proportional dial, `56rem`
+is 896px at the default root size, wider than the corpus's 600-760px pages but still narrow enough
+to leave the field visible at 1024, and
+`100% - 2 * var(--gutter)` on `body` is the floor respecting the safe-area insets folded into
+`--gutter`. This is the width every consumer page inherits, so a change here is a decision rather
+than a dial. It narrowed from `min(90vw, 160rem)` with the document shell, then from 66rem, because
+66rem read as a modern wide canvas and left the field almost invisible at 1024.
+**The column's inner measure is that width minus its 1rem inline padding**, and the column sits
+`--space-6` below the top of the field. The padding is part of the frame decision below, not a
+second width.
+
+**The column is left aligned, not centered.** `body` carries `margin-inline: var(--gutter) auto`,
+so the page sits at the start edge and the field opens to its end side. The corpus is mostly left
+aligned: bbc-1995, cnn-1995, microsoft-1996 and nasa-1997 all place the document at the start edge,
+and the centered pages (google-1998, disney-1997) are the search and promo exceptions. Left
+alignment also reads as the 1996 default, because a fixed table was simply placed on the page
+rather than balanced against it. **Do not restore `margin-inline: auto`**: centering turns the two
+field gutters into a modern frame around the column. The shift becomes visible once
+`--page-width` binds, above about 960px at 896px plus both gutters; at 1024 the field is 96px on
+the end side, and at 800 the column nearly fills the viewport and the two gutters are equal.
 
 **Sidenotes stack below 1000px, not 600px**: the 28% float is narrower than any measure worth
 reading between 600 and about 1280px.
@@ -195,6 +210,19 @@ panels, and a bracketed link row.** That page is the closest single reference in
 objective, so the document follows it rather than a multi-column grid. The corpus says the same thing
 at scale: of the references, about 20 carry a left link rail and only 2 name a bevel, so the rail is
 the register and the 3D edge is not.
+
+**The viewport paints `--code-bg` and the column paints `--surface` inside a doubled
+`--rule-light` frame.** `html` carries the field and `body` carries the column, so the page reads as
+paper on a colored desk rather than as one flat sheet. The corpus composes this way (hotmail-1997's
+steel field behind a white band, ask-jeeves-1999's cream field inside a purple frame), and the
+device is the strongest one the template was missing. The frame is `border: 1px` plus
+`outline: 1px` at `outline-offset: 2px`, which draws the same two-line fence as the table and the
+`hr` without adding layout width. **Do not paint the field on `body`**: body is the column, and a
+field there collapses the composition. **Do not use `--surface-alt` for the field**: it is one step
+from `--surface` in dark mode, and the column edge disappears. **Do not replace the outer line with
+`box-shadow`**: an outline adds no width, so the column measure does not shift when the frame is
+drawn. **Print removes both the field and the frame**, because the printed `body` is full width and a
+screen frame there is a border around the paper.
 
 **`h1` is a filled box, `--code-bg` with `--on-surface` text.** The heading is the masthead, not
 run-in text, which is what the reference's navy title box is. **This reverses the pink `h1`**: the box
@@ -239,6 +267,28 @@ period, and the sheet's boxes are period boxes. Every rounding went with it, inc
 that are not boxes: `.tag-dot::before`, `.live-dot` and `.step-node` are squares, and the `.kicker`
 pill is plain text (see [Borrowed components](#borrowed-components)). A 1996 bullet, a GIF status
 marker and a process node were all square. **Do not round a dot, a node or a chip.**
+
+**The masthead closes with a `--purple` `--accent-bar` rule, and every `h2` that is not a
+`.band` closes with a one-pixel `--rule-light` rule.** The filled title box alone read as a modern
+banner: the corpus's mastheads close with a colored rule under the title (whitehouse-1995) or under
+the channel row (cnn-1995), and its section headings close with a hairline (history-channel-1998,
+yahoo-1999). **Do not put the rule on `h2.band`**: the band is already a filled bar, so a second
+edge under it reads as a double border. **Do not raise the masthead rule to a fill**: the fill is
+`h2.band`'s one loud move, and the masthead is a document title, not a section band.
+
+**The left rail draws a `--rule-light` rule under each link, and the footer closes in a `--code-bg`
+band with a top rule and centered boilerplate.** The corpus's rails are stacked directories, not a
+run of labels (apogee-3d-realms-1996, geocities-1996), and its pages close on a copyright and
+webmaster line (apple-1996, silicon-surf-1996). **Do not fill the rail panel**: a full-height
+`--surface-alt` slab is the table header's fill and reads as an empty column below the last link.
+**Do not drop the footer band's top rule**: the band is the same `--code-bg` as the masthead, so the
+rule marks the closing landmark where the fill sits close to the page ground. **Do not center a
+footer that carries more than boilerplate**: the centering is for the one-line copyright and contact
+line, and a long footer reads as a ragged block.
+
+**`hr` draws as a doubled hairline, the same period doubled line the table frame uses.** A single
+hairline read as a modern rule; the period's `<hr>` was a two-tone groove, and two flat one-pixel
+lines 2px apart are the same edge with no bevel. **Do not collapse it back to one line.**
 
 ## Paragraphs and section rhythm
 
@@ -2132,6 +2182,14 @@ a scroll to an edge chains into the page behind it.
 **`--ring` is a token because the `img` hairline was the one color declared twice as a literal**: as a token it flips in print with the other overrides. Deliberately not a palette color (white at
 10% over an arbitrary image is a translucent veil, not a hue), so its alpha-slash form doesn't match
 `palette-check.py`'s token regex, leaving the parsed token count unaffected.
+
+**The period HTML reference is HTML 4.0 (18 December 1997), not HTML 4.01 (24 December 1999).**
+HTML 4.0 is the version the period actually built against, and its element and attribute set is
+the one the corpus pages were written to. HTML 4.01 was ratified on 24 December 1999, at the very
+end of the window and after the period's practice had already settled, so citing it as the design
+yardstick stretches the cap by a year's worth of documents. The rest of the record stands: HTML 3.2
+(14 January 1997), CSS1 (17 December 1996), CSS2 (12 May 1998) and WCAG 1.0 (5 May 1999).
+**Do not cite HTML 4.01, XHTML 1.0 or any later document as a period source.**
 
 **The W3C CSS validator's `css3` profile once flagged `container-type` and `@container`; both are
 gone, so the flags are too.** The validator now reports the sheet clean. If a future edit adds them

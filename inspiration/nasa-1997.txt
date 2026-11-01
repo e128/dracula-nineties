@@ -1,0 +1,27 @@
+nasa-1997.png
+site: nasa.gov
+period: 1997
+dimensions: 800x1560
+sampled: 2026-11-01
+
+[PALETTE]
+ground  #D1D2D2  role: page bg  grey textured field
+ink     #171117  role: text     black body copy and labels
+link    #183AAF  role: link     blue underlined directory links
+brand   #3C0A44  role: brand    deep red NASA meatball patch
+chrome  #A1A1A1  role: tiles    grey bevel on the navigation tiles
+accent  #E4B143  role: image    gold in the tile illustrations
+
+[LAYOUT]
+A grey textured field carries a centered five by three grid of beveled image tiles, each with a
+label, around a faint NASA wordmark. Below, a centered meatball, a rule and a titled body list
+of twelve bulleted links with descriptions. A credits block closes the page.
+
+[META]
+An image-map home page that becomes a text directory underneath. The tile grid is the primary
+navigation and the text list repeats it, so the page serves both graphical and text browsers.
+The grey ground and beveled tiles read as a control panel rather than a document.
+
+[RELEVANCE]
+The repeated text directory under an image map is the accessible fallback pattern to reuse. The
+five by three tile grid is too heavy to copy, but its label-and-description pairing is sound.

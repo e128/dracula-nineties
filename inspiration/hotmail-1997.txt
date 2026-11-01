@@ -1,0 +1,27 @@
+hotmail-1997.png
+site: hotmail.com
+period: 1997
+dimensions: 830x600
+sampled: 2026-11-01
+
+[PALETTE]
+ground #3C679B  role: page bg  steel blue field under the masthead
+paper  #FEFEFA  role: masthead white header band
+ink    #11196B  role: text     navy headings and labels
+brand  #C30000  role: brand    red Hotmail mark
+badge  #DBDBA7  role: award    buff award plaques
+link   #0000EE  role: link     browser-default blue
+
+[LAYOUT]
+A white masthead with the red Hotmail mark sits over a blue field that fills the rest of the
+screen. A navy registered-user bar holds login and password fields and a beveled Enter button.
+Two pill buttons for sign-up follow, then an Awards bar and two framed award badges.
+
+[META]
+A service page split into two flat color fields. The form is the only interactive cluster, and
+the blue ground makes the white masthead read as a header rather than a card. Every control is
+a beveled oval, the period default, and the page ends with social proof rather than content.
+
+[RELEVANCE]
+The two-field login strip under a colored band is the reusable form pattern. The flat colored
+page field behind a white masthead is a strong period ground treatment.

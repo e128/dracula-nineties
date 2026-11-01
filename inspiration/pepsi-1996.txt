@@ -1,0 +1,27 @@
+pepsi-1996.png
+site: pepsi.com
+period: 1996
+dimensions: 830x600
+sampled: 2026-11-01
+
+[PALETTE]
+ground #010702  role: page bg  near-black field
+grid   #109D08  role: texture bright green wireframe grid
+chrome #C3CFD6  role: console brushed metal panel
+blue   #2B53AB  role: brand   Pepsi blue in the logo
+red    #CF251E  role: brand   Pepsi red in the logo
+glow   #48A1DB  role: chrome  cyan highlight on the console edge
+
+[LAYOUT]
+A black page covered by a green wireframe grid and glow. A centered chrome console holds the
+Pepsi World logo over a fire image, a left panel for the Microsoft Connection, a right column
+of browser badges, and a chrome Enter button. A Shockwave prompt sits below the console.
+
+[META]
+A splash page built as a piece of science fiction hardware. The grid background, brushed metal,
+glow and badge logos all point to a multimedia CD, and the only path forward is a plugin. The
+page is atmosphere before content, and it gates the site behind installed software.
+
+[RELEVANCE]
+The splash page is a period type worth documenting and not reviving. The chrome panel and grid
+texture are too heavy for a document surface.

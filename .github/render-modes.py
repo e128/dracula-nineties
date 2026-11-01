@@ -20,13 +20,15 @@ What each mode asserts:
 
   1. the fixture contains every mode `@media` condition verbatim
   2. Chrome renders the rewritten copy without error
-  3. the top-left pixel is the mode's `--surface`, within a tolerance
+  3. a pixel inside the content column is the mode's `--surface`, within a tolerance
 
-Check 3 is what makes this more than a screenshot. It reads the first pixel of
-the first PNG scanline, which needs no image library: for the first pixel of row
-0 every PNG filter predicts from a left and an above byte that are both zero, so
-the filtered bytes are the raw bytes. `.github/palette-check.py` check 6 gates
-the contrast inside each palette; this gates that the palette arrives at all.
+Check 3 is what makes this more than a screenshot. The page paints `--code-bg`
+on `html` behind the centered column, so the top-left pixel is the field rather
+than the surface; the sample therefore sits inside the column's padding at
+(180, 40), which is the same point in every fixture at the fixed 1400-wide
+window. It still needs no image library beyond zlib, which decodes the scanlines
+and reverses the PNG filters. `.github/palette-check.py` check 6 gates the
+contrast inside each palette; this gates that the palette arrives at all.
 
 Check 3 does not distinguish contrast mode from dark, because the high-contrast
 block deliberately leaves `--surface` alone. It raises the accents and darkens
@@ -100,16 +102,20 @@ def find_chrome():
     sys.exit("No Chrome found. Set $CHROME to the binary.")
 
 
-def first_pixel(png):
-    """(r, g, b) of the top-left pixel of an 8-bit RGB or RGBA PNG."""
+SAMPLE_X, SAMPLE_Y = 180, 40
+
+
+def pixel_at(png, x, y):
+    """(r, g, b) of one pixel in an 8-bit RGB or RGBA PNG, filters reversed."""
     if png[:8] != b"\x89PNG\r\n\x1a\n":
         sys.exit("Chrome did not write a PNG.")
-    pos, depth, color, idat = 8, None, None, b""
+    pos, depth, color, idat, width = 8, None, None, b"", None
     while pos < len(png):
         length = int.from_bytes(png[pos:pos + 4], "big")
         kind = png[pos + 4:pos + 8]
         body = png[pos + 8:pos + 8 + length]
         if kind == b"IHDR":
+            width = int.from_bytes(body[0:4], "big")
             depth, color = body[8], body[9]
         elif kind == b"IDAT":
             idat += body
@@ -118,10 +124,31 @@ def first_pixel(png):
         pos += 12 + length
     if (depth, color) not in ((8, 2), (8, 6)):
         sys.exit(f"Unsupported PNG: bit depth {depth}, color type {color}.")
+    channels = 3 if color == 2 else 4
+    stride = width * channels
     raw = zlib.decompress(idat)
-    # raw[0] is row 0's filter byte. For the first pixel of row 0 the left and
-    # above bytes are both zero, so every filter type is the identity there.
-    return tuple(raw[1:4])
+    prior = bytearray(stride)
+    for row in range(y + 1):
+        start = row * (stride + 1)
+        kind, line = raw[start], bytearray(raw[start + 1:start + 1 + stride])
+        for i in range(stride):
+            left = line[i - channels] if i >= channels else 0
+            above = prior[i]
+            corner = prior[i - channels] if i >= channels else 0
+            if kind == 1:
+                line[i] = (line[i] + left) & 0xFF
+            elif kind == 2:
+                line[i] = (line[i] + above) & 0xFF
+            elif kind == 3:
+                line[i] = (line[i] + (left + above) // 2) & 0xFF
+            elif kind == 4:
+                p = left + above - corner
+                pa, pb, pc = abs(p - left), abs(p - above), abs(p - corner)
+                best = left if pa <= pb and pa <= pc else above if pb <= pc else corner
+                line[i] = (line[i] + best) & 0xFF
+        prior = line
+    offset = x * channels
+    return tuple(prior[offset:offset + 3])
 
 
 def strip_scripts(html):
@@ -173,7 +200,7 @@ def main():
             source.write_text(body)
             png = outdir / f"{fixture.stem}-in-{mode}.png"
             render(chrome, source, png)
-            got = first_pixel(png.read_bytes())
+            got = pixel_at(png.read_bytes(), SAMPLE_X, SAMPLE_Y)
             want = tuple(int(want_hex[i:i + 2], 16) for i in (1, 3, 5))
             if max(abs(a - b) for a, b in zip(got, want)) > TOLERANCE:
                 got_hex = "#%02x%02x%02x" % got

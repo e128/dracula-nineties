@@ -1,0 +1,27 @@
+bbc-1995.png
+site: bbcnc.org.uk
+period: 1995
+dimensions: 830x600
+sampled: 2026-11-01
+
+[PALETTE]
+ground  #FFFFFF  role: page bg  white document
+banner  #A5A3A0  role: masthead grey coat-of-arms banner
+ink     #0B0C0A  role: text     black body copy
+link    #0435B8  role: link     blue underlined links
+accent  #96301A  role: icon     red in the small topic icons
+chrome  #C4C8C8  role: chrome   grey bevel on the icon plates
+
+[LAYOUT]
+A grey BBC coat-of-arms banner spans the top, followed by a plain white body. A short welcome
+paragraph is followed by five rows, each a small icon at left and a blue underlined link with a
+sentence of description. A copyright line closes the page.
+
+[META]
+A directory page with no ornament beyond the banner and the icons. The body is Times text with
+browser-default blue links, and the icons are the only color. It reads as a text index carrying
+a crest, and the whole page fits one screen.
+
+[RELEVANCE]
+The icon-plus-link-plus-description row is the reusable directory pattern, and the banner is a
+period masthead. The rest is browser default, which is the point.

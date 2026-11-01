@@ -1,0 +1,28 @@
+whitehouse-1995.png
+site: whitehouse.gov
+period: 1995
+dimensions: 830x600
+sampled: 2026-11-01
+
+[PALETTE]
+ground #FFFFFF  role: page bg  white field around the card
+gold   #DFA135  role: frame    gold border and script title
+cream  #EAE5A1  role: plaque   buff plaque behind the title
+ink    #191916  role: text     black label type on the seals
+photo  #A1D7F6  role: image    sky blue in the White House photograph
+seal   #564544  role: chrome   brown engraving in the circular seals
+
+[LAYOUT]
+A centered card floats on white. A gold bordered panel holds a script title, a large photograph
+of the White House, six circular seal buttons arranged three per side, and three illustrated
+icons below. Nothing is left-aligned; the whole page is one symmetrical composition with no
+scroll.
+
+[META]
+The page behaves like an invitation or a brochure cover. Ornament carries all the hierarchy:
+gold rules, seals, engraved type and a photograph. Every destination is a picture, and the
+white margin turns the card into an object rather than a document.
+
+[RELEVANCE]
+The centered bordered card and the seal-button ring are a period frame device. The gold rule
+and centered script title are worth reusing; the clickable seal ring is not.

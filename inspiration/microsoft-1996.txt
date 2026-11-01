@@ -1,0 +1,27 @@
+microsoft-1996.png
+site: microsoft.com
+period: 1996
+dimensions: 830x1150
+sampled: 2026-11-01
+
+[PALETTE]
+ground  #FFFFFF  role: page bg   white document
+ink     #070707  role: text      black body copy and nav labels
+link    #020265  role: link      navy underlined links
+brand   #D42916  role: brand     red Microsoft wordmark and icons
+chrome  #B1B2C8  role: chrome    grey icon art in the top bar
+accent  #A3B04F  role: accent    olive green in the illustration icons
+
+[LAYOUT]
+A black top bar holds six icon-and-label navigation items. The body is a two-column table: a
+narrow left rail of icon links and a wide right column of underlined headlines with short
+paragraphs and small icons. A country and product select row closes above the footer.
+
+[META]
+A corporate portal organized as a link directory. The page is almost entirely navy underlined
+text on white, with color used only in the icon bar and the left rail. Dense, text-first, and
+built for a 640-wide window, it treats the home page as a table of contents.
+
+[RELEVANCE]
+The icon nav bar and the two-column link directory are the corporate index tier. The left rail
+of icon links is the reusable pattern; the table-based alignment is the period method.

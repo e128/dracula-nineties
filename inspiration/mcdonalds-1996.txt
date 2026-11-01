@@ -1,0 +1,27 @@
+mcdonalds-1996.png
+site: mcdonalds.com
+period: 1996
+dimensions: 830x600
+sampled: 2026-11-01
+
+[PALETTE]
+ground #FFFFFF  role: page bg  white field below the art
+red    #FC0402  role: nav     red tab bar and Ronald costume
+yellow #FFCD00  role: brand   golden arches and menu panels
+sky    #66CCFF  role: scene   light blue counter wall
+ink    #251C16  role: text    black speech text and outlines
+blue   #195799  role: scene   dark blue crew uniform
+
+[LAYOUT]
+A red top bar splits into four tabbed sections. Below, an illustrated counter scene fills the
+width: Ronald at left, a menu board and crew at center, a white speech balloon. The page ends
+after the illustration, with no body text and no footer.
+
+[META]
+A single illustrated storefront used as the home page. Navigation is four flat red tabs over a
+cartoon, and the only instruction sits in a speech balloon. The page is an image with a
+caption rather than a document, so it assumes a graphical browser and a fast connection.
+
+[RELEVANCE]
+The illustrated counter as a full-width header and the four flat tabs are the period storefront
+pattern. The rest is image-only and teaches nothing reusable.
